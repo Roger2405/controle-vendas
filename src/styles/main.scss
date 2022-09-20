@@ -2,55 +2,66 @@
 @tailwind components;
 @tailwind utilities;
 
-$headerHeight: 7vh;
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
 
 .header {
     background-color: #eeeeee;
-    height: $headerHeight; //7
+    height: 7vh; //7
     width: 100vw;
     z-index: 10;
 }
+
 main {
-    height: calc(100vh - $headerHeight);
+    height: calc(100vh - 7vh);
 }
+
 .products-section {
+    position: relative;
     scroll-behavior: auto;
     overflow-y: scroll;
-    height: 55%;// 50
+    height: 55%; // 50
 
 
     input {
         color: #FFFFFF;
-        position: fixed;
         padding: .25rem .5rem;
-        top: calc($headerHeight - 1rem);
-        right: 1rem;
+        position: absolute;
+        right: .5rem;
+        width: 300px;
         z-index: 15;
 
     }
 }
+
 .cart-section {
-    height: 45%;//remain width
+    position: relative;
+    height: 45%; //remain width
     margin-bottom: 4rem;
 }
 
 @media screen and (min-width: 992px) {
-    .App {
-        height: 100vh;
-    }
-    $headerHeight: 10vh;
     main {
         display: grid;
-        height: calc(100% - 10vh);
         grid-template-columns: 2fr 1fr;
+        padding: 0 7rem;
+        margin: 0;
     }
+
     .products-section {
+        position: relative;
         height: 100%;
     }
+    
     .cart-section {
+        position: relative;
         height: 100%;
+        margin: 0;
     }
 }
+
 @media screen and (min-width:1440px) {
     main {
         grid-template-columns: 3fr 1fr;

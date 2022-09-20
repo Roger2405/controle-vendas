@@ -69,7 +69,7 @@ function App() {
             })
           }
         </section>
-        <section className='cart-section bg-zinc-500'>
+        <section className='cart-section bg-gray-700'>
           <Cart cartProducts={cartProducts} setCartProducts={setCartProducts} />
           
         </section>

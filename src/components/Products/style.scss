@@ -38,9 +38,11 @@
         align-items: flex-end;
 
         .product__name {
-    
+            overflow: hidden;
             font-size: .75rem;
             text-transform: uppercase;
+            font-weight: 700;
+            color: rgb(0, 54, 155);
             text-align: end;
             width: 100%;
             text-shadow: 2px 2px 2px #FFFFFF;

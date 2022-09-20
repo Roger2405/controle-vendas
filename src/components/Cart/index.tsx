@@ -1,5 +1,7 @@
 import './styles.scss';
 import CartProduct from "../../types/cartProduct";
+//import ArrowImg from "../../../public/arrow.png";
+
 
 interface Props {
     cartProducts: CartProduct[],
@@ -23,13 +25,13 @@ export default function Cart({ cartProducts, setCartProducts }: Props) {
             setCartProducts(oldProducts => [...oldProducts]);
         }
     }
-    var sumPrices: number;
+    var sumPrices: number = 0;
     return (
 
         <>
-            <h2 className='title bg-gray-700'>Carrinho</h2>
+            <h2 className='title'>Carrinho</h2>
             <div className="cart">
-                <div className='cart__item bg-gray-300'>
+                <div className='cart__item bg-gray-300 font-bold mb-1'>
                     <p className='cart__item--name'>Nome</p>
                     <span className='cart__item--count'>Qtd.</span>
                     <p className='cart__item--price'>Soma</p>
@@ -51,9 +53,16 @@ export default function Cart({ cartProducts, setCartProducts }: Props) {
 
 
             </div>
-            <div className='buttons'>
-                <button className='button-cancel button'>Cancelar</button>
-                <button className='button-confirm button'>Confirmar</button>
+            <div className='footer'>
+                <p className='total'>R$ {sumPrices.toFixed(2)}</p>
+                <div className='buttons'>
+                    <button className='button-cancel button'>
+                        Cancelar
+                    </button>
+                    <button className='button-confirm button'>
+                        Confirmar
+                    </button>
+                </div>
             </div>
         </>
     )
