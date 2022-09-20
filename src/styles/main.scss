@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.header {
+    background-color: #eeeeee;
+    height: 7vh; //7
+    width: 100vw;
+    z-index: 10;
+}
+
+.products-section {
+    scroll-behavior: auto;
+    overflow-y: scroll;
+    height: 50vh;// 50
+}
+.cart-section {
+    min-height: calc(50vh - 7vh);//remain width
+}

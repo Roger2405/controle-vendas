@@ -1,52 +1,65 @@
-.products {
-    display: flex;
-    width: 200%;
-    flex-wrap: wrap;
-    gap: .5rem;
-    padding: .5rem;
-
-
-
-
-}
-
-.product {
-    padding: .5rem;
-    position: relative;
-    box-shadow: 0 0 .5rem rgba(0, 0, 0, 0.25);
-    width: 100px;
-    height: 80px;
-    border-radius: .25rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-end;
-
-}
-
-.product__name {
-
-    font-size: .75rem;
-    text-transform: uppercase;
-    text-align: end;
-    width: 100%;
-    text-shadow: 0 0 .5rem #FFFFFF;
-}
-
-.product__name,
-.product__price {
+.type {
     margin: 0;
-}
-.product__price {
+    text-transform: uppercase;
     font-weight: 700;
 }
-.product__image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    object-fit: contain;
-    height: 100%;
-    width: 70px;
-    z-index: -1;
+.products-container {
+    scroll-behavior: auto;
+    overflow-x: scroll;
+    width: 100%;
+}
+
+.products {
+    display: flex;
+    max-width: 200%;
+    width: max-content;
+    flex-wrap: wrap;
+    gap: .5rem;
+    
+    
+    .product {
+        padding: .25rem;
+        padding-bottom: 0;
+        position: relative;
+        box-shadow: 0 0 .5rem rgba(0, 0, 0, 0.25);
+        width: 100px;
+        height: 80px;
+        border-radius: .25rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        .product__name {
+    
+            font-size: .75rem;
+            text-transform: uppercase;
+            text-align: end;
+            width: 100%;
+            text-shadow: 0 0 .5rem #FFFFFF;
+        }
+        
+        .product__name,
+        .product__price {
+            margin: 0;
+        }
+        .product__price {
+            font-weight: 700;
+        }
+        .product__image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            object-fit: contain;
+            height: 100%;
+            width: 70px;
+            z-index: -1;
+        
+        }
+    
+    }
+    
+    
 
 }
+
