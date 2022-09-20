@@ -16,16 +16,16 @@ export default function Cart({ cartProducts, setCartProducts }: Props) {
         cartProduct.count--;
         let index = cartProducts.indexOf(cartProduct);
         cartProducts.splice(index, 1);
-        if(cartProduct.count !== 0) {
+        if (cartProduct.count !== 0) {
             setCartProducts(oldProducts => [...oldProducts, cartProduct])
         }
         else {
             setCartProducts(oldProducts => [...oldProducts]);
         }
     }
-    var sumPrices:number;
+    var sumPrices: number;
     return (
-        
+
         <>
             <h2 className='title bg-gray-700'>Carrinho</h2>
             <div className="cart">
@@ -43,13 +43,17 @@ export default function Cart({ cartProducts, setCartProducts }: Props) {
                                 <p className='cart__item--name'>{product.name}</p>
                                 <span className='cart__item--count'>{product.count}</span>
                                 <p className='cart__item--price'><strong>{(subtotal).toFixed(2)}</strong></p>
-                                
+
                             </div>
                         )
                     })}
 
 
 
+            </div>
+            <div className='buttons'>
+                <button className='button-cancel button'>Cancelar</button>
+                <button className='button-confirm button'>Confirmar</button>
             </div>
         </>
     )

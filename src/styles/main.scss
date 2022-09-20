@@ -2,18 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
+$headerHeight: 7vh;
+
 .header {
     background-color: #eeeeee;
-    height: 7vh; //7
+    height: $headerHeight; //7
     width: 100vw;
     z-index: 10;
 }
-
+main {
+    height: calc(100vh - $headerHeight);
+}
 .products-section {
     scroll-behavior: auto;
     overflow-y: scroll;
-    height: 50vh;// 50
+    height: 55%;// 50
+
+
+    input {
+        color: #FFFFFF;
+        position: fixed;
+        padding: .25rem .5rem;
+        top: calc($headerHeight - 1rem);
+        right: 1rem;
+        z-index: 15;
+
+    }
 }
 .cart-section {
-    min-height: calc(50vh - 7vh);//remain width
+    height: 45%;//remain width
+    margin-bottom: 4rem;
+}
+
+@media screen and (min-width: 992px) {
+    .App {
+        height: 100vh;
+    }
+    $headerHeight: 10vh;
+    main {
+        display: grid;
+        height: calc(100% - 10vh);
+        grid-template-columns: 2fr 1fr;
+    }
+    .products-section {
+        height: 100%;
+    }
+    .cart-section {
+        height: 100%;
+    }
+}
+@media screen and (min-width:1440px) {
+    main {
+        grid-template-columns: 3fr 1fr;
+    }
 }

@@ -8,9 +8,10 @@
 }
 
 .cart {
-    height: 216px;
+    max-height: 216px;
     scroll-behavior: auto;
     overflow-y: scroll;
+    padding: .5rem;
 
     .cart__item {
         display: flex;
@@ -25,5 +26,34 @@
 
     .cart__item--name {
         flex-basis: 70%;
+    }
+}
+.buttons {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 1rem;
+    width: 100%;
+
+    .button {
+        padding: 1rem;
+        flex-basis: 40%;
+    }
+    .button-cancel {
+        background-color: rgb(255, 122, 122);
+        border-radius: 2rem 0 0 2rem;
+    }
+    .button-confirm {
+        background-color: rgb(129, 255, 129);
+        border-radius: 0 2rem 2rem 0;
+    }
+
+}
+
+
+
+@media screen and (min-width:992px) {
+    .cart {
+        max-height: 400px;
     }
 }
