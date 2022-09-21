@@ -64,7 +64,6 @@
     },
     {
         "name": "Geleia de Uva",
-        "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-grandes",
         "price": 14,
         "id": 10
@@ -92,7 +91,6 @@
     },
     {
         "name": "Geleia de Uva",
-        "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-pequenas",
         "price": 9,
         "id": 14
@@ -106,7 +104,6 @@
     },
     {
         "name": "Suco de Uva",
-        "imgUrl": "/assets/img/vidro.png",
         "type": "outros",
         "price": 7,
         "id": 16
@@ -120,7 +117,6 @@
     },
     {
         "name": "Geleia de Guavirova",
-        "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-grandes",
         "price": 14,
         "id": 18

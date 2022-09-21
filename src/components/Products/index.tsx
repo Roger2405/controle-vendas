@@ -5,13 +5,7 @@ import './style.scss';
 
 
 interface Props {
-    group: {
-        name: string;
-        imgUrl: string;
-        type: string;
-        price: number;
-        id: number;
-    }[],
+    group: ProductProps[],
     setCartProducts: React.Dispatch<React.SetStateAction<CartProduct[]>>,
     cartProducts: CartProduct[]
 }
@@ -39,19 +33,7 @@ export default function Products({ group, cartProducts, setCartProducts }: Props
     function isInTheCart(product: any) {
         return cartProducts.includes(product);
     }
-    function getProductCount(product: any) {
-        if(cartProducts.includes(product)) {
-            let index = cartProducts.indexOf(product);
-            return cartProducts[index].count;
-        }
-        return 0;
-    }
-    function setBgColor(count:number) {
-        if(count >= 9) {
-            return 'bg-green-900';
-        }
-        return `bg-green-${count}00`;
-    }
+
     return (
         <>
             {
@@ -63,10 +45,12 @@ export default function Products({ group, cartProducts, setCartProducts }: Props
                         <div className='products'>
                             {group.map(product => {
                                 return (
-                                    <div key={product.id} className={`product ${isInTheCart(product) ? 'bg-green-500' : 'bg-zinc-700'}`} onClick={() => refreshCartProducts(product)}>
+                                    <div key={product.id} className={`product ${isInTheCart(product) ? 'bg-green-500 outline-2 outline outline-gray-700' : 'bg-gray-200'}`} onClick={() => refreshCartProducts(product)}>
                                         <h3 className='product__name overflow-hidden'>{product.name}</h3>
-                                        <p className='product__price bg-green-500'>R$ {product.price.toFixed(2)}</p>
-                                        <img className='product__image bg-neutral-400' src='https://cdn-icons-png.flaticon.com/128/7565/7565160.png' alt="Imagem do produto" />
+                                        <p className={`product__price text-zinc-700 ${isInTheCart(product) ? 'bg-green-400' : 'bg-green-500'}`}>R$ {product.price.toFixed(2)}</p>
+                                        {product.imgUrl &&
+                                            <img className='product__image bg-neutral-400' src='https://cdn-icons-png.flaticon.com/128/7565/7565160.png' alt="Imagem do produto" />
+                                        }
                                     </div>
                                 )
                             })}
