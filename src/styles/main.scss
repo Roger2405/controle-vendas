@@ -14,7 +14,7 @@
 }
 
 main {
-    height: calc(100vh - 7vh);
+    height: calc(100vh - 10vh);
 }
 
 .products-section {
@@ -38,7 +38,6 @@ main {
 .cart-section {
     position: relative;
     height: 45%; //remain width
-    margin-bottom: 4rem;
 }
 
 @media screen and (min-width: 992px) {
