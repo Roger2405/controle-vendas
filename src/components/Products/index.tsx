@@ -39,6 +39,19 @@ export default function Products({ group, cartProducts, setCartProducts }: Props
     function isInTheCart(product: any) {
         return cartProducts.includes(product);
     }
+    function getProductCount(product: any) {
+        if(cartProducts.includes(product)) {
+            let index = cartProducts.indexOf(product);
+            return cartProducts[index].count;
+        }
+        return 0;
+    }
+    function setBgColor(count:number) {
+        if(count >= 9) {
+            return 'bg-green-900';
+        }
+        return `bg-green-${count}00`;
+    }
     return (
         <>
             {
@@ -50,9 +63,9 @@ export default function Products({ group, cartProducts, setCartProducts }: Props
                         <div className='products'>
                             {group.map(product => {
                                 return (
-                                    <div key={product.id} className={`product ${isInTheCart(product) ? 'bg-green-500' : 'bg-white'}`} onClick={() => refreshCartProducts(product)}>
+                                    <div key={product.id} className={`product ${isInTheCart(product) ? setBgColor(getProductCount(product)) : 'bg-white'}`} onClick={() => refreshCartProducts(product)}>
                                         <h3 className='product__name overflow-hidden'>{product.name}</h3>
-                                        <p className='product__price'>R$ {product.price.toFixed(2)}</p>
+                                        <p className='product__price bg-green-500'>R$ {product.price.toFixed(2)}</p>
                                         <img className='product__image' src='https://cdn-icons-png.flaticon.com/128/7565/7565160.png' alt="Imagem do produto" />
                                     </div>
                                 )

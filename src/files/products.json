@@ -159,5 +159,19 @@
         "type": "geleias-grandes",
         "price": 14,
         "id": 23
+    },
+    {
+        "name": "Casquinha de Laranja",
+        "imgUrl": "/assets/img/vidro.png",
+        "type": "outros",
+        "price": 4,
+        "id": 24
+    },
+    {
+        "name": "Cricri de Amendoim",
+        "imgUrl": "/assets/img/vidro.png",
+        "type": "outros",
+        "price": 3.5,
+        "id": 25
     }
 ]

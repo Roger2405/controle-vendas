@@ -58,9 +58,9 @@ function App() {
         <Header />
 
       </header>
-      <main>
-        <section className='products-section relative px-2 py-4 bg-gray-200'>
-          <input className='rounded-full bg-zinc-700' type="text" onChange={e => setInputValue(e.target.value)} />
+      <main className='bg-zinc-100'>
+        <section className='products-section relative px-2 py-4'>
+          <input className='rounded-full bg-zinc-400' type="text" onChange={e => setInputValue(e.target.value)} />
           {
             arrFiltered.map(group => {
               return (
@@ -69,7 +69,7 @@ function App() {
             })
           }
         </section>
-        <section className='cart-section bg-gray-700'>
+        <section className='cart-section bg-gray-200'>
           <Cart cartProducts={cartProducts} setCartProducts={setCartProducts} />
           
         </section>
