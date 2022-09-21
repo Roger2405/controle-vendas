@@ -10,37 +10,33 @@ interface Props {
     cartProducts: CartProduct[]
 }
 export default function Products({ group, cartProducts, setCartProducts }: Props) {
-
-
     function refreshCartProducts(product: unknown) {
 
         var cartProduct = product as CartProduct;
-        if (!cartProduct.count) {
-            cartProduct.count = 1;
-            setCartProducts(oldProducts => [...oldProducts, cartProduct])
-        }
-        else {
-            cartProduct.count++;
-        }
-
         if (cartProducts.includes(cartProduct)) {
+            cartProduct.count++;
             let index = cartProducts.indexOf(cartProduct);
             cartProducts.splice(index, 1);
-            setCartProducts(oldProducts => [...oldProducts, cartProduct]);
         }
+        else {
+            cartProduct.count = 1;
+
+        }
+        setCartProducts(oldProducts => [...oldProducts, cartProduct]);
 
     }
-    function isInTheCart(product: any) {
-        return cartProducts.includes(product);
+    function isInTheCart(product: ProductProps) {
+        const cartProduct = product as CartProduct;
+        return cartProducts.includes(cartProduct);
     }
 
     return (
         <>
             {
-                group[0] !== undefined &&   
+                group[0] !== undefined &&
                 <div>
                     <h2 className='type mt-2'>{group[0].type}</h2>
-                
+
                     <div className='products-container pb-4'>
                         <div className='products'>
                             {group.map(product => {
@@ -55,7 +51,7 @@ export default function Products({ group, cartProducts, setCartProducts }: Props
                                 )
                             })}
                         </div>
-    
+
                     </div>
 
                 </div>

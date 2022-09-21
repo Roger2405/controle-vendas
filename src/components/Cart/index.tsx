@@ -10,7 +10,7 @@ interface Props {
     children: React.ReactNode
 }
 
-export default function Cart({ cartProducts, setCartProducts, children }: Props ) {
+export default function Cart({ cartProducts, setCartProducts, children }: Props) {
 
     cartProducts.sort((a, b) => {
         return a.id - b.id;
@@ -55,10 +55,8 @@ export default function Cart({ cartProducts, setCartProducts, children }: Props 
 
 
             </div>
-            <div className='footer'>
-                <p className='total'>R$ {sumPrices.toFixed(2)}</p>
-                {children}
-            </div>
+            <p className='total'>R$ {sumPrices.toFixed(2)}</p>
+            {children}
         </>
     )
 }

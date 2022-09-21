@@ -11,7 +11,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import getCartProductsFromLocalStorage from '../commons/getCartProductsFromLocalStorage';
 
 export default function Home() {
-    const [cartProducts, setCartProducts] = useState<CartProduct[]>(getCartProductsFromLocalStorage());
+    const [cartProducts, setCartProducts] = useState<CartProduct[]>([]);
     const [inputValue, setInputValue] = useState<string>('');
 
     const productsArr = Array.from(productsJson);
@@ -23,7 +23,6 @@ export default function Home() {
     const [arrFiltered, setArrFiltered] = useState<ProductProps[][]>(arrayProductsGrouped);
 
     const navigate = useNavigate();
-
 
     if (productsArr) {
         productsArr.forEach(productsArr => {
@@ -41,6 +40,9 @@ export default function Home() {
             }
         }
     }
+    useEffect(() => {
+        localStorage.setItem('cart-products', JSON.stringify(cartProducts));
+    }, [cartProducts])
 
     useEffect(() => {
         const regex = new RegExp(inputValue.toString().toLowerCase());
@@ -56,8 +58,8 @@ export default function Home() {
     }, [inputValue]);
 
     function navigateToOrders() {
-        navigate('/pedidos');
         localStorage.setItem('cart-products', JSON.stringify(cartProducts));
+        navigate('/pedidos');
     }
 
     return (
