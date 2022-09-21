@@ -63,10 +63,10 @@ export default function Products({ group, cartProducts, setCartProducts }: Props
                         <div className='products'>
                             {group.map(product => {
                                 return (
-                                    <div key={product.id} className={`product ${isInTheCart(product) ? setBgColor(getProductCount(product)) : 'bg-white'}`} onClick={() => refreshCartProducts(product)}>
+                                    <div key={product.id} className={`product ${isInTheCart(product) ? 'bg-green-500' : 'bg-zinc-700'}`} onClick={() => refreshCartProducts(product)}>
                                         <h3 className='product__name overflow-hidden'>{product.name}</h3>
                                         <p className='product__price bg-green-500'>R$ {product.price.toFixed(2)}</p>
-                                        <img className='product__image' src='https://cdn-icons-png.flaticon.com/128/7565/7565160.png' alt="Imagem do produto" />
+                                        <img className='product__image bg-neutral-400' src='https://cdn-icons-png.flaticon.com/128/7565/7565160.png' alt="Imagem do produto" />
                                     </div>
                                 )
                             })}
