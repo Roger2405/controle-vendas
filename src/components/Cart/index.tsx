@@ -1,14 +1,16 @@
 import './styles.scss';
 import CartProduct from "../../types/cartProduct";
+import { Children } from 'react';
 //import ArrowImg from "../../../public/arrow.png";
 
 
 interface Props {
     cartProducts: CartProduct[],
     setCartProducts: React.Dispatch<React.SetStateAction<CartProduct[]>>
+    children: React.ReactNode
 }
 
-export default function Cart({ cartProducts, setCartProducts }: Props) {
+export default function Cart({ cartProducts, setCartProducts, children }: Props ) {
 
     cartProducts.sort((a, b) => {
         return a.id - b.id;
@@ -55,14 +57,7 @@ export default function Cart({ cartProducts, setCartProducts }: Props) {
             </div>
             <div className='footer'>
                 <p className='total'>R$ {sumPrices.toFixed(2)}</p>
-                <div className='buttons'>
-                    <button className='button-cancel button'>
-                        Cancelar
-                    </button>
-                    <button className='button-confirm button'>
-                        Confirmar
-                    </button>
-                </div>
+                {children}
             </div>
         </>
     )
