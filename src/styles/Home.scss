@@ -2,49 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-    font-family: 'Roboto', sans-serif;
+.main-home {
+    height: calc(100vh - 4rem);
 }
-
-.header {
-    background-color: #eeeeee;
-    height: 7vh; //7
-    width: 100vw;
-    z-index: 10;
-}
-body {
-    height: 100vh;
-}
-
-main {
-    height: calc(100vh - 7vh);
-}
-
 .products-section {
     position: relative;
     scroll-behavior: auto;
     overflow-y: scroll;
-    height: 55%; // 50
+    height: 50%; // 50
 
 
     input {
         color: #FFFFFF;
         padding: .25rem .5rem;
-        position: absolute;
-        right: .5rem;
-        width: 150px;
-        z-index: 15;
+        width: 250px;
+        float: right;
 
     }
 }
 
 .cart-section {
     position: relative;
-    height: 45%; //remain width
+    height: 50%; //remain width
 }
 
 @media screen and (min-width: 992px) {
-    main {
+    .main-home {
         display: grid;
         grid-template-columns: 2fr 1fr;
         margin: 0;
@@ -57,7 +40,6 @@ main {
 
         input {
             width: 300px;
-            position: absolute;
         }
     }
 
@@ -71,7 +53,7 @@ main {
 
 
 @media screen and (min-width:1440px) {
-    main {
+    .main-home {
         grid-template-columns: 3fr 1fr;
     }
 }

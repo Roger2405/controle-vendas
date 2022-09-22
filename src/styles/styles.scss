@@ -1,0 +1,12 @@
+$headerHeigth: 4rem;
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    height: 100vh;
+}
+main {
+    height: calc(100vh - $headerHeigth);
+}

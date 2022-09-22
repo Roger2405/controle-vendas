@@ -1,28 +1,36 @@
-import { useEffect, useState } from 'react';
-import Products from '../components/Products';
+import '../styles/Home.scss';
+import '../styles/styles.scss';
+//files
 import productsJson from '../files/products.json';
-import CartProduct from '../types/cartProduct';
-import ProductProps from '../types/product';
-
-import '../styles/main.scss';
-import Cart from '../components/Cart';
-import Button from '../components/Button';
+//hooks
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import getCartProductsFromLocalStorage from '../commons/cartProductsFromLocalStorage';
+//types
+import ProductProps from '../types/product';
+import CartProduct from '../types/cartProduct';
+//components
+import Products from '../components/Products';
+import Cart from '../components/Cart';
+import Total from '../components/Total';
+import Button from '../components/Button';
+//common functions
+import { getCartProductsFromLocalStorage, getSumTotal } from '../commons/cartProductsFromLocalStorage';
+
 
 export default function Home() {
-    
+
     const productsArr = Array.from(productsJson);
-    
+
     var arrayProductsGrouped: ProductProps[][] = [];
     var productsTypes: string[] = [];
-    
+
     var arrFilter = [];
-    
+
     const navigate = useNavigate();
     const [cartProducts, setCartProducts] = useState<CartProduct[]>(getCartProductsFromLocalStorage());
     const [inputValue, setInputValue] = useState<string>('');
     const [arrFiltered, setArrFiltered] = useState<ProductProps[][]>(arrayProductsGrouped);
+    const [total, setTotal] = useState<number>(getSumTotal(cartProducts));
 
     if (productsArr) {
         productsArr.forEach(productsArr => {
@@ -55,6 +63,9 @@ export default function Home() {
     function clearCartProducts() {
         setCartProducts([]);
     }
+    useEffect(() => {
+        setTotal(getSumTotal(cartProducts));
+    }, [cartProducts]);
 
     function navigateToOrders() {
         localStorage.setItem('cart-products', JSON.stringify(cartProducts));
@@ -63,24 +74,30 @@ export default function Home() {
 
     return (
         <div className='Home'>
-            <main className='bg-zinc-100'>
+            <main className='bg-zinc-100 main-home'>
                 <section className='products-section relative px-2 py-4'>
                     <input className='rounded-full bg-zinc-400' type="text" onChange={e => setInputValue(e.target.value)} />
                     {
                         arrFiltered.map(group => {
                             return (
-                                <Products group={group} cartProducts={cartProducts} setCartProducts={setCartProducts} />
+                                <Products group={group} cartProducts={cartProducts} setTotal={setTotal} total={total} setCartProducts={setCartProducts} />
                             )
                         })
                     }
                 </section>
                 <section className='cart-section bg-gray-200'>
-                    <Cart cartProducts={cartProducts} setCartProducts={setCartProducts} >
-                        <div className='flex justify-center absolute bottom-0 w-full'>
-                            <Button className='bg-red-500' onClick={clearCartProducts} text='Cancelar' />
-                            <Button className='bg-green-500' text='Confirmar' onClick={navigateToOrders} />
+                    <Cart cartProducts={cartProducts} setTotal={setTotal} setCartProducts={setCartProducts} />
+
+                    <div className='absolute bottom-0 w-full max-h-2/5'>
+                        <div className='max-w-xl relative mx-auto'>
+                            <Total sumTotal={total} />
+                            <div className='flex justify-center bottom-0 w-full'>
+                                <Button className='bg-red-500' onClick={clearCartProducts} text='Cancelar' />
+                                <Button className='bg-green-500' text='Confirmar' onClick={navigateToOrders} />
+                            </div>
                         </div>
-                    </Cart>
+
+                    </div>
                 </section>
             </main>
         </div>

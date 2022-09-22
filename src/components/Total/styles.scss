@@ -1,0 +1,24 @@
+.total {
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    font-weight: 700;
+    
+    .total__text, .total__value {
+        display: inline;
+    }
+    
+    .total__label {
+        color: white;
+        text-transform: uppercase;
+        font-size: 1.75rem;
+    }
+    .total__value {
+        text-align: center;
+        font-size: 2rem;
+        margin: 0;
+        color: rgb(0, 155, 21);
+        
+    }
+}

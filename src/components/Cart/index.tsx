@@ -4,13 +4,13 @@ import { Children } from 'react';
 //import ArrowImg from "../../../public/arrow.png";
 
 
-interface Props {
+interface Props extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
     cartProducts: CartProduct[],
     setCartProducts: React.Dispatch<React.SetStateAction<CartProduct[]>>
-    children: React.ReactNode
+    setTotal: React.Dispatch<React.SetStateAction<number>>
 }
 
-export default function Cart({ cartProducts, setCartProducts, children }: Props) {
+export default function Cart({ cartProducts, setCartProducts, setTotal, className }: Props) {
     cartProducts.sort((a, b) => {
         return a.id - b.id;
     })
@@ -25,13 +25,14 @@ export default function Cart({ cartProducts, setCartProducts, children }: Props)
         else {
             setCartProducts(oldProducts => [...oldProducts]);
         }
+        setTotal(total => total - cartProduct.price)
     }
     var sumPrices: number = 0;
     return (
 
-        <>
+        <div className={`div-cart ${className}`} >
             <h2 className='title'>Carrinho</h2>
-            <div className="cart">
+            <div className={`cart`}>
                 <div className='cart__item bg-gray-300 font-bold mb-1'>
                     <p className='cart__item--name'>Nome</p>
                     <span className='cart__item--count'>Qtd.</span>
@@ -51,11 +52,8 @@ export default function Cart({ cartProducts, setCartProducts, children }: Props)
                         )
                     })}
 
-
-
             </div>
-            <p className='total'>R$ {sumPrices.toFixed(2)}</p>
-            {children}
-        </>
+
+        </div>
     )
 }
