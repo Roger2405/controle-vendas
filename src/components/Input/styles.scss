@@ -1,0 +1,15 @@
+
+.div-input {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1rem .75rem;
+
+    .label {
+        text-transform: uppercase;
+        font-size: 1.75rem;
+    }
+    .input {
+        border-radius: .5rem;
+        padding: .5rem;
+    }
+}

@@ -12,9 +12,12 @@
     width: 100vw;
     z-index: 10;
 }
+body {
+    height: 100vh;
+}
 
 main {
-    height: calc(100vh - 10vh);
+    height: calc(100vh - 7vh);
 }
 
 .products-section {

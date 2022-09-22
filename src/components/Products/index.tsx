@@ -10,24 +10,30 @@ interface Props {
     cartProducts: CartProduct[]
 }
 export default function Products({ group, cartProducts, setCartProducts }: Props) {
-    function refreshCartProducts(product: unknown) {
+    function refreshCartProducts(product: CartProduct) {
 
-        var cartProduct = product as CartProduct;
-        if (cartProducts.includes(cartProduct)) {
-            cartProduct.count++;
-            let index = cartProducts.indexOf(cartProduct);
-            cartProducts.splice(index, 1);
+        if (!isInTheCart(product.id)) {
+            product.count = 1;
         }
         else {
-            cartProduct.count = 1;
+            product.count++;
+            var index = searchIndexById(product.id);
+            cartProducts.splice(index, 1);
 
         }
-        setCartProducts(oldProducts => [...oldProducts, cartProduct]);
+        setCartProducts(oldProducts => [...oldProducts, product]);
 
     }
-    function isInTheCart(product: ProductProps) {
-        const cartProduct = product as CartProduct;
-        return cartProducts.includes(cartProduct);
+    function searchIndexById(productId : number) {
+        return cartProducts.indexOf(cartProducts.filter(function (cartProduct) {
+            return cartProduct.id == productId;
+        })[0]);
+        //return -1 if the productId doesn't exists in the cart, else, returns the index
+    }
+
+    function isInTheCart(productId: number) {
+        const indexById = searchIndexById(productId); 
+        return indexById >= 0 ? true : false;
     }
 
     return (
@@ -40,10 +46,11 @@ export default function Products({ group, cartProducts, setCartProducts }: Props
                     <div className='products-container pb-4'>
                         <div className='products'>
                             {group.map(product => {
+                                const productIsInTheCart:boolean = isInTheCart(product.id)
                                 return (
-                                    <div key={product.id} className={`product ${isInTheCart(product) ? 'bg-green-500 outline-2 outline outline-gray-700' : 'bg-gray-200'}`} onClick={() => refreshCartProducts(product)}>
+                                    <div key={product.id} className={`product ${productIsInTheCart ? 'bg-green-500 outline-2 outline outline-gray-700' : 'bg-gray-200'}`} onClick={() => refreshCartProducts(product as CartProduct)}>
                                         <h3 className='product__name overflow-hidden'>{product.name}</h3>
-                                        <p className={`product__price text-zinc-700 ${isInTheCart(product) ? 'bg-green-400' : 'bg-green-500'}`}>R$ {product.price.toFixed(2)}</p>
+                                        <p className={`product__price text-zinc-700 ${productIsInTheCart ? 'bg-green-400' : 'bg-green-500'}`}>R$ {product.price.toFixed(2)}</p>
                                         {product.imgUrl &&
                                             <img className='product__image bg-neutral-400' src='https://cdn-icons-png.flaticon.com/128/7565/7565160.png' alt="Imagem do produto" />
                                         }

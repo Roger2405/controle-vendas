@@ -11,7 +11,6 @@ interface Props {
 }
 
 export default function Cart({ cartProducts, setCartProducts, children }: Props) {
-
     cartProducts.sort((a, b) => {
         return a.id - b.id;
     })

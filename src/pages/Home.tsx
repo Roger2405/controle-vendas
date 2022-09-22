@@ -7,22 +7,22 @@ import ProductProps from '../types/product';
 import '../styles/main.scss';
 import Cart from '../components/Cart';
 import Button from '../components/Button';
-import { Link, useNavigate } from 'react-router-dom';
-import getCartProductsFromLocalStorage from '../commons/getCartProductsFromLocalStorage';
+import { useNavigate } from 'react-router-dom';
+import getCartProductsFromLocalStorage from '../commons/cartProductsFromLocalStorage';
 
 export default function Home() {
-    const [cartProducts, setCartProducts] = useState<CartProduct[]>([]);
-    const [inputValue, setInputValue] = useState<string>('');
-
+    
     const productsArr = Array.from(productsJson);
-
+    
     var arrayProductsGrouped: ProductProps[][] = [];
     var productsTypes: string[] = [];
-
+    
     var arrFilter = [];
-    const [arrFiltered, setArrFiltered] = useState<ProductProps[][]>(arrayProductsGrouped);
-
+    
     const navigate = useNavigate();
+    const [cartProducts, setCartProducts] = useState<CartProduct[]>(getCartProductsFromLocalStorage());
+    const [inputValue, setInputValue] = useState<string>('');
+    const [arrFiltered, setArrFiltered] = useState<ProductProps[][]>(arrayProductsGrouped);
 
     if (productsArr) {
         productsArr.forEach(productsArr => {
@@ -31,7 +31,6 @@ export default function Home() {
             }
             productsTypes.push(productsArr.type);
         });
-
         for (var i = 0; i < productsTypes.length; i++) {
             let arr = productsArr.filter(product => product.type === productsTypes[i]);
             arrayProductsGrouped.push(arr);
@@ -40,10 +39,7 @@ export default function Home() {
             }
         }
     }
-    useEffect(() => {
-        localStorage.setItem('cart-products', JSON.stringify(cartProducts));
-    }, [cartProducts])
-
+    //updates the search when the inputValue is update
     useEffect(() => {
         const regex = new RegExp(inputValue.toString().toLowerCase());
 
@@ -54,8 +50,11 @@ export default function Home() {
             arrFilter.push(arr);
         }
         setArrFiltered(arrFilter);
-
     }, [inputValue]);
+
+    function clearCartProducts() {
+        setCartProducts([]);
+    }
 
     function navigateToOrders() {
         localStorage.setItem('cart-products', JSON.stringify(cartProducts));
@@ -77,14 +76,12 @@ export default function Home() {
                 </section>
                 <section className='cart-section bg-gray-200'>
                     <Cart cartProducts={cartProducts} setCartProducts={setCartProducts} >
-                        <div className='flex justify-center'>
-                            <Button className='button-cancel bg-red-500' text='Cancelar' />
-                            <Button className='button-confirm bg-green-500' text='Confirmar' onClick={navigateToOrders} />
+                        <div className='flex justify-center absolute bottom-0 w-full'>
+                            <Button className='bg-red-500' onClick={clearCartProducts} text='Cancelar' />
+                            <Button className='bg-green-500' text='Confirmar' onClick={navigateToOrders} />
                         </div>
                     </Cart>
-
                 </section>
-
             </main>
         </div>
     );
