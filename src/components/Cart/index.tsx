@@ -33,7 +33,7 @@ export default function Cart({ cartProducts, setCartProducts, setTotal, classNam
         <div className={`div-cart ${className}`} >
             <h2 className='title'>Carrinho</h2>
             <div className={`cart`}>
-                <div className='cart__item bg-gray-300 font-bold mb-1'>
+                <div className='cart__item font-bold mb-1'>
                     <p className='cart__item--name'>Nome</p>
                     <span className='cart__item--count'>Qtd.</span>
                     <p className='cart__item--price'>Soma</p>

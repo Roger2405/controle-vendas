@@ -22,7 +22,7 @@ export default function Products({ group, cartProducts, setCartProducts, setTota
             console.log('Atualizou oo total')
             var index = searchIndexById(product.id);
             cartProducts.splice(index, 1);
-            
+
         }
         setTotal(total => total + product.price);
         setCartProducts(oldProducts => [...oldProducts, product]);
@@ -52,7 +52,7 @@ export default function Products({ group, cartProducts, setCartProducts, setTota
                             {group.map(product => {
                                 const productIsInTheCart: boolean = isInTheCart(product.id)
                                 return (
-                                    <div key={product.id} className={`product ${productIsInTheCart ? 'bg-green-500 outline-2 outline outline-gray-700' : 'bg-gray-200'}`} onClick={() => refreshCartProducts(product as CartProduct)}>
+                                    <div key={product.id} className={`product ${productIsInTheCart ? 'bg-green-500 outline-2 outline outline-gray-700' : 'bg-gray-100'}`} onClick={() => refreshCartProducts(product as CartProduct)}>
                                         <h3 className='product__name overflow-hidden'>{product.name}</h3>
                                         <p className={`product__price text-zinc-700 ${productIsInTheCart ? 'bg-green-400' : 'bg-green-500'}`}>R$ {product.price.toFixed(2)}</p>
                                         {product.imgUrl &&

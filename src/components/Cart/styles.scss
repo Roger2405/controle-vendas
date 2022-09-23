@@ -1,9 +1,10 @@
-
 $titleHeight: 50px;
 
 .div-cart {
     height: 60%;
     position: relative;
+    background-color: #FFF;
+
     .title {
         color: #222222;
         font-weight: 700;
@@ -13,9 +14,9 @@ $titleHeight: 50px;
         padding: .5rem 0;
         text-transform: uppercase;
         text-align: center;
-    
+
     }
-    
+
     .cart {
         /*max-height: 216px;*/
         //height: calc(100% - 48px - 116px);
@@ -23,7 +24,7 @@ $titleHeight: 50px;
         scroll-behavior: smooth;
         overflow-y: scroll;
         padding: 0 .5rem;
-    
+
         .cart__item {
             display: flex;
             padding: .5rem;
@@ -36,7 +37,7 @@ $titleHeight: 50px;
             overflow: hidden;
             height: 3rem;
         }
-    
+
         .cart__item--name {
             flex-basis: 70%;
         }

@@ -1,30 +1,38 @@
-
 .div-input {
     align-items: center;
     display: flex;
     justify-content: space-between;
     margin: 0 1rem .75rem;
-    
+    height: 75px;
+
     .label {
         text-transform: uppercase;
         font-size: 1rem;
         font-weight: 700;
         color: rgb(71, 71, 71);
+        flex: 1 1 50%;
     }
+
     .input {
         border-radius: .5rem;
         color: rgb(4, 126, 0);
+        box-sizing: border-box;
+        font-size: 1.5rem;
+        width: 50%;
         direction: rtl;
         outline: 2px solid rgb(0, 187, 0);
         padding: .5rem;
-        
+
+
 
         transition: .25s;
     }
+
     .input:disabled {
         background-color: lightgray;
         outline: none;
     }
+
     .input:focus {
         background-color: rgba(0, 161, 0, 0.5);
         transition: .25s;

@@ -15,6 +15,7 @@ import Total from '../components/Total';
 import Button from '../components/Button';
 //common functions
 import { getCartProductsFromLocalStorage, getSumTotal } from '../commons/cartProductsFromLocalStorage';
+import InputSearch from '../components/InputSearch';
 
 
 export default function Home() {
@@ -74,18 +75,18 @@ export default function Home() {
 
     return (
         <div className='Home'>
-            <main className='bg-zinc-100 main-home'>
+            <main className='bg-zinc-300 main-home'>
                 <section className='products-section relative px-2 py-4'>
-                    <input className='rounded-full bg-zinc-400' type="text" onChange={e => setInputValue(e.target.value)} />
+                    <InputSearch setInputValue={setInputValue} />
                     {
                         arrFiltered.map(group => {
                             return (
-                                <Products group={group} cartProducts={cartProducts} setTotal={setTotal} total={total} setCartProducts={setCartProducts} />
+                                <Products key={group[0]?.type} group={group} cartProducts={cartProducts} setTotal={setTotal} total={total} setCartProducts={setCartProducts} />
                             )
                         })
                     }
                 </section>
-                <section className='cart-section bg-gray-200'>
+                <section className='cart-section bg-white'>
                     <Cart cartProducts={cartProducts} setTotal={setTotal} setCartProducts={setCartProducts} />
 
                     <div className='absolute bottom-0 w-full max-h-2/5'>

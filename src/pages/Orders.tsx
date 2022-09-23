@@ -31,7 +31,6 @@ export default function Orders() {
         if(!payment) {
             setChangeMoney(0);
         }
-        console.log(payment)
     }, [payment]);
 
     return (
