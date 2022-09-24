@@ -11,3 +11,7 @@
     height: 4rem;
 
 }
+.button:disabled {
+    background-color: gray;
+    color: rgb(158, 158, 158);
+}

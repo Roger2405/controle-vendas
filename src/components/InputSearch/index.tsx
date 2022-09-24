@@ -6,6 +6,6 @@ interface Props {
 
 export default function InputSearch({ setInputValue }: Props) {
     return (
-        <input className='inputSearch' type="text" onChange={e => setInputValue(e.target.value)} />
+        <input className='inputSearch bg-white' style={{color: "#000000"}} type="text" onChange={e => setInputValue(e.target.value)} />
     )
 }

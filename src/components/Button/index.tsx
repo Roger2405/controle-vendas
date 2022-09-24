@@ -5,8 +5,8 @@ interface Props extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLB
 }
 
 
-export default function Button({className, text, onClick}:Props) {
+export default function Button({className, text, onClick, disabled}:Props) {
     return (
-        <button onClick={onClick} className={`button ${className}`} >{text}</button>
+        <button onClick={onClick} disabled={disabled} className={`button ${className}`} >{text}</button>
     )
 }

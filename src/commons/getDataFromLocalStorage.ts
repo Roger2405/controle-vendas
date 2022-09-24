@@ -18,3 +18,15 @@ export function getSumTotal(obj: CartProduct[]) {
     });
     return sum;
 }
+
+export function getSales() {
+    const strOldSales = localStorage.getItem('sales');
+    if (strOldSales) {
+        const objOldSales: CartProduct[] = JSON.parse(strOldSales);
+        return objOldSales;
+    }
+    return [];
+}
+export function setSales(objSales: CartProduct[]) {
+    localStorage.setItem('sales', JSON.stringify(objSales));
+}

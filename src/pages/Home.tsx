@@ -14,7 +14,7 @@ import Cart from '../components/Cart';
 import Total from '../components/Total';
 import Button from '../components/Button';
 //common functions
-import { getCartProductsFromLocalStorage, getSumTotal } from '../commons/cartProductsFromLocalStorage';
+import { getCartProductsFromLocalStorage, getSumTotal } from '../commons/getDataFromLocalStorage';
 import InputSearch from '../components/InputSearch';
 
 
@@ -94,7 +94,7 @@ export default function Home() {
                             <Total sumTotal={total} />
                             <div className='flex justify-center bottom-0 w-full'>
                                 <Button className='bg-red-500' onClick={clearCartProducts} text='Cancelar' />
-                                <Button className='bg-green-500' text='Confirmar' onClick={navigateToOrders} />
+                                <Button className='bg-green-500' disabled={cartProducts.length == 0 ? true : false} text='Confirmar' onClick={navigateToOrders} />
                             </div>
                         </div>
 

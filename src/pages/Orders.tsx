@@ -10,14 +10,15 @@ import Total from '../components/Total';
 import Input from '../components/Input';
 import Button from "../components/Button";
 //common functions
-import { getCartProductsFromLocalStorage, getSumTotal } from '../commons/cartProductsFromLocalStorage';
+import { getCartProductsFromLocalStorage, getSumTotal, getSales, setSales } from '../commons/getDataFromLocalStorage';
+import CartProduct from '../types/cartProduct';
 
 
 
 export default function Orders() {
     const navigate = useNavigate();
-    const objProducts = getCartProductsFromLocalStorage();
-    const total = getSumTotal(objProducts);
+    const cartProducts = getCartProductsFromLocalStorage();
+    const total = getSumTotal(cartProducts);
     const [payment, setPayment] = useState(0);
     const [changeMoney, setChangeMoney] = useState<number>(0);
 
@@ -28,15 +29,46 @@ export default function Orders() {
     }
     useEffect(() => {
         setChangeMoney(payment - total);
-        if(!payment) {
+        if (!payment) {
             setChangeMoney(0);
         }
     }, [payment]);
 
+    function searchIndexById(objSales: CartProduct[], productId: number) {
+        return objSales.indexOf(objSales.filter(function (cartProduct) {
+            return cartProduct.id == productId;
+        })[0]);
+        //return -1 if the productId doesn't exists in the cart, else, returns the index
+    }
+
+
+    function navigateToLog() {
+        const oldSales = getSales();
+        var newSales = oldSales;
+
+        cartProducts.forEach(cartProduct => {
+            const indexById = searchIndexById(newSales, cartProduct.id);
+            if(indexById >= 0) {
+                newSales[indexById].count+=cartProduct.count;
+            }
+            else {
+                newSales.push(cartProduct);
+            }
+
+        })
+
+        setSales(newSales);
+        localStorage.removeItem('cart-products');
+
+
+        navigate('/log')
+    }
+
+
     return (
         <main className='main-orders'>
 
-            <Cart cartProducts={objProducts} setTotal={() => { }} setCartProducts={() => { }} />
+            <Cart cartProducts={cartProducts} setTotal={() => { }} setCartProducts={() => { }} />
 
             <div className='flex-col bg-zinc-200 relative mt-auto'>
                 <div className='max-w-xl mt-auto mx-auto'>
@@ -45,7 +77,7 @@ export default function Orders() {
                     <Input disabled label='Troco:' value={changeMoney} />
                     <div className='flex justify-center h-auto w-full'>
                         <Button className='bg-gray-500' onClick={goBack} text='Voltar' />
-                        <Button className='bg-green-500' text='Confirmar' onClick={() => { }} />
+                        <Button className='bg-green-500' text='Confirmar' onClick={navigateToLog} />
                     </div>
                 </div>
 
