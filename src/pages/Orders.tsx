@@ -10,7 +10,7 @@ import Total from '../components/Total';
 import Input from '../components/Input';
 import Button from "../components/Button";
 //common functions
-import { getCartProductsFromLocalStorage, getSumTotal, getSales, setSales } from '../commons/getDataFromLocalStorage';
+import { getCartProductsFromLocalStorage, getSumTotal, getSalesFromLocalStorage, setSalesInLocalStorage } from '../commons/getDataFromLocalStorage';
 import CartProduct from '../types/cartProduct';
 
 
@@ -43,7 +43,7 @@ export default function Orders() {
 
 
     function navigateToLog() {
-        const oldSales = getSales();
+        const oldSales = getSalesFromLocalStorage();
         var newSales = oldSales;
 
         cartProducts.forEach(cartProduct => {
@@ -57,7 +57,7 @@ export default function Orders() {
 
         })
 
-        setSales(newSales);
+        setSalesInLocalStorage(newSales);
         localStorage.removeItem('cart-products');
 
 

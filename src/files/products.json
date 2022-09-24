@@ -1,115 +1,118 @@
 [
     {
-        "name": "Conserva de Pepino",
+        "name": "Pepino Agridoce",
         "imgUrl": "/assets/img/vidro.png",
-        "type": "conservas",
-        "price": 7,
+        "type": "conservas-grandes",
+        "price": 8,
         "id": 1
     },
     {
-        "name": "Conserva de Abobrinha",
+        "name": "Conserva de Pepino",
         "imgUrl": "/assets/img/vidro.png",
-        "type": "conservas",
-        "price": 10,
+        "type": "conservas-grandes",
+        "price": 7,
         "id": 2
     },
     {
         "name": "Conserva de Broto de Bambu",
         "imgUrl": "/assets/img/vidro.png",
-        "type": "conservas",
+        "type": "conservas-grandes",
         "price": 7.5,
         "id": 3
     },
     {
         "name": "Conserva de Páprica",
         "imgUrl": "/assets/img/vidro.png",
-        "type": "conservas",
+        "type": "conservas-grandes",
         "price": 10,
         "id": 4
     },
     {
-        "name": "Pepino Agridoce",
+        "name": "Conserva de Biquinho",
         "imgUrl": "/assets/img/vidro.png",
-        "type": "conservas",
-        "price": 8,
+        "type": "conservas-pequenas",
+        "price": 7,
         "id": 5
     },
     {
-        "name": "Conserva de Minimilho",
+        "name": "Conserva de Dedo de Moça",
         "imgUrl": "/assets/img/vidro.png",
-        "type": "conservas",
-        "price": 14,
+        "type": "conservas-pequenas",
+        "price": 7,
         "id": 6
-    },
-    {
-        "name": "Geleia de Kiwi",
-        "imgUrl": "/assets/img/vidro.png",
-        "type": "geleias-grandes",
-        "price": 14,
-        "id": 7
-    },
-    {
-        "name": "Geleia de Morango",
-        "imgUrl": "/assets/img/vidro.png",
-        "type": "geleias-grandes",
-        "price": 14,
-        "id": 8
-    },
-    {
-        "name": "Geleia de Mimosa",
-        "imgUrl": "/assets/img/vidro.png",
-        "type": "geleias-grandes",
-        "price": 14,
-        "id": 9
-    },
-    {
-        "name": "Geleia de Uva",
-        "type": "geleias-grandes",
-        "price": 14,
-        "id": 10
-    },
-    {
-        "name": "Geleia de Mirtilo",
-        "imgUrl": "/assets/img/vidro.png",
-        "type": "geleias-grandes",
-        "price": 14,
-        "id": 11
-    },
-    {
-        "name": "Geleia de Kiwi",
-        "imgUrl": "/assets/img/vidro.png",
-        "type": "geleias-pequenas",
-        "price": 9,
-        "id": 12
     },
     {
         "name": "Geleia de Figo",
         "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-pequenas",
         "price": 9,
+        "id": 7
+    },
+    {
+        "name": "Geleia de Guavirova",
+        "imgUrl": "/assets/img/vidro.png",
+        "type": "geleias-pequenas",
+        "price": 9,
+        "id": 8
+    },
+    {
+        "name": "Geleia de Kiwi",
+        "imgUrl": "/assets/img/vidro.png",
+        "type": "geleias-pequenas",
+        "price": 9,
+        "id": 9
+    },
+    {
+        "name": "Geleia de Laranja",
+        "imgUrl": "/assets/img/vidro.png",
+        "type": "geleias-pequenas",
+        "price": 9,
+        "id": 10
+    },
+    {
+        "name": "Geleia de Melão",
+        "imgUrl": "/assets/img/vidro.png",
+        "type": "geleias-pequenas",
+        "price": 9,
+        "id": 11
+    },
+    {
+        "name": "Geleia de Mimosa",
+        "imgUrl": "/assets/img/vidro.png",
+        "type": "geleias-pequenas",
+        "price": 9,
+        "id": 12
+    },
+    {
+        "name": "Geleia de Mirtilo",
+        "imgUrl": "/assets/img/vidro.png",
+        "type": "geleias-pequenas",
+        "price": 15,
         "id": 13
     },
     {
-        "name": "Geleia de Uva",
+        "name": "Geleia de Morango",
+        "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-pequenas",
         "price": 9,
         "id": 14
     },
     {
-        "name": "Mel",
+        "name": "Geleia de Pêssego",
         "imgUrl": "/assets/img/vidro.png",
-        "type": "outros",
-        "price": 16,
+        "type": "geleias-pequenas",
+        "price": 9,
         "id": 15
     },
     {
-        "name": "Suco de Uva",
-        "type": "outros",
-        "price": 7,
+        "name": "Geleia de Uva",
+        "imgUrl": "/assets/img/vidro.png",
+        "type": "geleias-pequenas",
+        "price": 9,
         "id": 16
     },
     {
-        "name": "Geleia de Goiaba",
+        "name": "Geleia de Abóbora",
         "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-grandes",
         "price": 14,
@@ -117,6 +120,7 @@
     },
     {
         "name": "Geleia de Guavirova",
+        "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-grandes",
         "price": 14,
         "id": 18
@@ -129,45 +133,87 @@
         "id": 19
     },
     {
-        "name": "Geleia de Melão",
+        "name": "Geleia de Kiwi",
         "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-grandes",
         "price": 14,
         "id": 20
     },
     {
-        "name": "Geleia de Physalis",
+        "name": "Geleia de Laranja",
         "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-grandes",
         "price": 14,
         "id": 21
     },
     {
-        "name": "Geleia de Laranja",
+        "name": "Geleia de Melão",
         "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-grandes",
         "price": 14,
         "id": 22
     },
     {
-        "name": "Geleia de Abóbora",
+        "name": "Geleia de Mimosa",
         "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-grandes",
         "price": 14,
         "id": 23
     },
     {
-        "name": "Casquinha de Laranja",
+        "name": "Geleia de Uva",
+        "imgUrl": "/assets/img/vidro.png",
+        "type": "geleias-grandes",
+        "price": 14,
+        "id": 24
+    },
+    {
+        "name": "Mel",
+        "imgUrl": "/assets/img/vidro.png",
+        "type": "outros",
+        "price": 16,
+        "id": 25
+    },
+    {
+        "name": "Suco de Mimosa",
+        "imgUrl": "/assets/img/vidro.png",
+        "type": "outros",
+        "price": 7,
+        "id": 26
+    },
+    {
+        "name": "Suco de Uva",
+        "imgUrl": "/assets/img/vidro.png",
+        "type": "outros",
+        "price": 7,
+        "id": 27
+    },
+    {
+        "name": "Vinho de Mimosa",
+        "imgUrl": "/assets/img/vidro.png",
+        "type": "outros",
+        "price": 15,
+        "id": 28
+    },
+    {
+        "name": "Palha",
+        "imgUrl": "/assets/img/vidro.png",
+        "type": "outros",
+        "price": 2,
+        "id": 29
+    },
+    {
+        "name": "Casquinhas de Laranja",
         "imgUrl": "/assets/img/vidro.png",
         "type": "outros",
         "price": 4,
-        "id": 24
+        "id": 30
     },
     {
         "name": "Cricri de Amendoim",
         "imgUrl": "/assets/img/vidro.png",
         "type": "outros",
         "price": 3.5,
-        "id": 25
+        "id": 31
     }
 ]

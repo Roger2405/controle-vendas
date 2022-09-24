@@ -19,7 +19,7 @@ export function getSumTotal(obj: CartProduct[]) {
     return sum;
 }
 
-export function getSales() {
+export function getSalesFromLocalStorage() {
     const strOldSales = localStorage.getItem('sales');
     if (strOldSales) {
         const objOldSales: CartProduct[] = JSON.parse(strOldSales);
@@ -27,6 +27,6 @@ export function getSales() {
     }
     return [];
 }
-export function setSales(objSales: CartProduct[]) {
+export function setSalesInLocalStorage(objSales: CartProduct[]) {
     localStorage.setItem('sales', JSON.stringify(objSales));
 }

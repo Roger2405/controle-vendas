@@ -1,36 +1,56 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import CartProduct from "../types/cartProduct";
-import { getSales } from '../commons/getDataFromLocalStorage';
+import { getSalesFromLocalStorage, setSalesInLocalStorage } from '../commons/getDataFromLocalStorage';
 import Cart from "../components/Cart";
 import Total from "../components/Total";
+import { useEffect, useState } from "react";
+import Modal from "../components/Modal";
 
 export default function Log() {
     const navigate = useNavigate();
 
-    const objSales = getSales();
+    var salesFromLocalStorage = getSalesFromLocalStorage();
+
+    const [showModal, setShowModal] = useState(false);
+    const [confirmExclusion, setConfirmExclusion] = useState<boolean>();
+
+    const [sales, setSales] = useState(salesFromLocalStorage);
     let sumTotal: number = 0;
-    objSales.map(product => {
+    sales.map(product => {
         sumTotal += (product.count * product.price);
     })
 
+    useEffect(() => {
+        setSalesInLocalStorage(sales);
+    }, [sales])
+
+    useEffect(() => {
+        if (confirmExclusion) {
+            setSales([]);
+        }
+        setShowModal(false);
+    }, [confirmExclusion]);
+
 
     return (
-        <div>
+        <div className="">
+            {
+                showModal &&
+                <Modal setConfirmExclusion={setConfirmExclusion} />
+            }
             {
                 <div>
-                    <Cart cartProducts={objSales} setCartProducts={() => { }} setTotal={() => { }} />
-                    <Total sumTotal={sumTotal} />
+                    <Cart cartProducts={sales} setCartProducts={() => { }} setTotal={() => { }} />
 
                 </div>
             }
 
-            <div className='flex justify-center absolute bottom-0 h-auto w-full'>
+            <div className='flex flex-col justify-center absolute bottom-0 h-auto w-full'>
+                <Total sumTotal={sumTotal} />
+                <Button className='bg-red-500' text='Resetar vendas' onClick={() => setShowModal(true)} />
                 <Button className='bg-green-500' text='Nova venda' onClick={() => navigate('/')} />
             </div>
         </div>
     )
 }
-/*
-[{"name":"Geleia de Uva","type":"geleias-grandes","price":14,"id":10,"count":1}][{"name":"Geleia de Morango","imgUrl":"/assets/img/vidro.png","type":"geleias-grandes","price":14,"id":8,"count":1},{"name":"Cricri de Amendoim","imgUrl":"/assets/img/vidro.png","type":"outros","price":3.5,"id":25,"count":1}]
-*/
