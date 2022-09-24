@@ -1,5 +1,5 @@
 
-export default interface CartProduct {
+export default interface OrderProduct {
     name: string,
     count: number,
     type: string,

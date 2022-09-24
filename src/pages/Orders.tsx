@@ -1,30 +1,30 @@
 //styles
 import '../styles/Orders.scss';
-import '../styles/styles.scss';
+//import '../styles/styles.scss';
 //hooks
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 //components
-import Cart from '../components/Cart';
+import ListOrderProducts from '../components/ListOrderProducts';
 import Total from '../components/Total';
 import Input from '../components/Input';
 import Button from "../components/Button";
 //common functions
-import { getCartProductsFromLocalStorage, getSumTotal, getSalesFromLocalStorage, setSalesInLocalStorage } from '../commons/getDataFromLocalStorage';
-import CartProduct from '../types/cartProduct';
+import { getOrderProductsFromLocalStorage, getSumTotal, getSalesFromLocalStorage, setSalesInLocalStorage } from '../commons/getDataFromLocalStorage';
+import OrderProductProps from '../types/orderProduct';
 
 
 
 export default function Orders() {
     const navigate = useNavigate();
-    const cartProducts = getCartProductsFromLocalStorage();
+    const cartProducts = getOrderProductsFromLocalStorage();
     const total = getSumTotal(cartProducts);
     const [payment, setPayment] = useState(0);
     const [changeMoney, setChangeMoney] = useState<number>(0);
 
     function goBack() {
         //localStorage.setItem('cart-products', []);
-        navigate('/');
+        navigate(-1);
 
     }
     useEffect(() => {
@@ -34,7 +34,7 @@ export default function Orders() {
         }
     }, [payment]);
 
-    function searchIndexById(objSales: CartProduct[], productId: number) {
+    function searchIndexById(objSales: OrderProductProps[], productId: number) {
         return objSales.indexOf(objSales.filter(function (cartProduct) {
             return cartProduct.id == productId;
         })[0]);
@@ -42,14 +42,14 @@ export default function Orders() {
     }
 
 
-    function navigateToLog() {
+    function navigateToHome() {
         const oldSales = getSalesFromLocalStorage();
         var newSales = oldSales;
 
         cartProducts.forEach(cartProduct => {
             const indexById = searchIndexById(newSales, cartProduct.id);
-            if(indexById >= 0) {
-                newSales[indexById].count+=cartProduct.count;
+            if (indexById >= 0) {
+                newSales[indexById].count += cartProduct.count;
             }
             else {
                 newSales.push(cartProduct);
@@ -58,30 +58,33 @@ export default function Orders() {
         })
 
         setSalesInLocalStorage(newSales);
-        localStorage.removeItem('cart-products');
+        localStorage.removeItem('order-products');
 
 
-        navigate('/log')
+        navigate('/')
     }
 
 
     return (
-        <main className='main-orders'>
+        <main>
+            <section className='flex flex-col h-full'>
+                <ListOrderProducts orderProducts={cartProducts} className='h-3/5' />
 
-            <Cart cartProducts={cartProducts} setTotal={() => { }} setCartProducts={() => { }} />
-
-            <div className='flex-col bg-zinc-200 relative mt-auto'>
-                <div className='max-w-xl mt-auto mx-auto'>
-                    <Total sumTotal={total} />
-                    <Input label='Total pago:' onChange={(e) => setPayment(parseFloat(e.target.value))} />
-                    <Input disabled label='Troco:' value={changeMoney} />
-                    <div className='flex justify-center h-auto w-full'>
-                        <Button className='bg-gray-500' onClick={goBack} text='Voltar' />
-                        <Button className='bg-green-500' text='Confirmar' onClick={navigateToLog} />
+                <div className='bg-zinc-200 h-2/5 relative mt-auto'>
+                    <div className='max-w-xl h-full relative mt-auto mx-auto'>
+                        <Total sumTotal={total} />
+                        <Input label='Total pago:' onChange={(e) => setPayment(parseFloat(e.target.value))} />
+                        <Input disabled label='Troco:' value={changeMoney} />
+                        <div className='flex justify-center absolute bottom-0 h-auto w-full'>
+                            <Button className='bg-gray-500' onClick={goBack} text='Voltar' />
+                            <Button className='bg-green-500' text='Confirmar' onClick={navigateToHome} />
+                        </div>
                     </div>
                 </div>
 
-            </div>
+            </section>
+
+
 
         </main>
     )

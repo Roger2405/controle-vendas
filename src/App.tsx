@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Log from "./pages/Log";
 import Orders from "./pages/Orders";
-import ProductsPage from "./pages/Products";
+import ProductsPage from "./pages/ProductsPage";
 
 
 

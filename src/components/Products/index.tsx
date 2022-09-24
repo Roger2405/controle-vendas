@@ -1,36 +1,35 @@
 import { useState } from 'react';
-import CartProduct from '../../types/cartProduct';
+import OrderProductProps from '../../types/orderProduct';
 import ProductProps from '../../types/product';
 import './style.scss';
 
 
 interface Props {
     group: ProductProps[],
-    setCartProducts: React.Dispatch<React.SetStateAction<CartProduct[]>>,
-    cartProducts: CartProduct[],
+    setOrderProducts: React.Dispatch<React.SetStateAction<OrderProductProps[]>>,
+    orderProducts: OrderProductProps[],
     total: number,
     setTotal: React.Dispatch<React.SetStateAction<number>>
 }
-export default function Products({ group, cartProducts, setCartProducts, setTotal }: Props) {
-    function refreshCartProducts(product: CartProduct) {
+export default function Products({ group, orderProducts, setOrderProducts, setTotal }: Props) {
+    function refreshOrderProducts(product: OrderProductProps) {
 
         if (!isInTheCart(product.id)) {
             product.count = 1;
         }
         else {
             product.count++;
-            console.log('Atualizou oo total')
             var index = searchIndexById(product.id);
-            cartProducts.splice(index, 1);
+            orderProducts.splice(index, 1);
 
         }
         setTotal(total => total + product.price);
-        setCartProducts(oldProducts => [...oldProducts, product]);
+        setOrderProducts(oldProducts => [...oldProducts, product]);
 
     }
     function searchIndexById(productId: number) {
-        return cartProducts.indexOf(cartProducts.filter(function (cartProduct) {
-            return cartProduct.id == productId;
+        return orderProducts.indexOf(orderProducts.filter(function (orderProduct) {
+            return orderProduct.id == productId;
         })[0]);
         //return -1 if the productId doesn't exists in the cart, else, returns the index
     }
@@ -52,7 +51,7 @@ export default function Products({ group, cartProducts, setCartProducts, setTota
                             {group.map(product => {
                                 const productIsInTheCart: boolean = isInTheCart(product.id)
                                 return (
-                                    <div key={product.id} className={`product ${productIsInTheCart ? 'bg-green-500 outline-2 outline outline-gray-700' : 'bg-gray-100'}`} onClick={() => refreshCartProducts(product as CartProduct)}>
+                                    <div key={product.id} className={`product ${productIsInTheCart ? 'bg-green-500 outline-2 outline outline-gray-700' : 'bg-gray-100'}`} onClick={() => refreshOrderProducts(product as OrderProductProps)}>
                                         <h3 className='product__name overflow-hidden'>{product.name}</h3>
                                         <p className={`product__price text-zinc-700 ${productIsInTheCart ? 'bg-green-400' : 'bg-green-500'}`}>R$ {product.price.toFixed(2)}</p>
                                         {product.imgUrl &&

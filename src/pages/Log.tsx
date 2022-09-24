@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import Button from "../components/Button";
-import CartProduct from "../types/cartProduct";
-import { getSalesFromLocalStorage, setSalesInLocalStorage } from '../commons/getDataFromLocalStorage';
-import Cart from "../components/Cart";
-import Total from "../components/Total";
 import { useEffect, useState } from "react";
+
+import ListOrderProducts from "../components/ListOrderProducts";
+import Button from "../components/Button";
+import Total from "../components/Total";
 import Modal from "../components/Modal";
+
+import { getSalesFromLocalStorage, setSalesInLocalStorage } from '../commons/getDataFromLocalStorage';
 
 export default function Log() {
     const navigate = useNavigate();
@@ -34,23 +35,45 @@ export default function Log() {
 
 
     return (
-        <div className="">
+        <main>
+
             {
                 showModal &&
                 <Modal setConfirmExclusion={setConfirmExclusion} />
             }
             {
-                <div>
-                    <Cart className="h-96" cartProducts={sales} setCartProducts={() => { }} setTotal={() => { }} />
+                <div className="flex flex-col h-full">
+                    <ListOrderProducts orderProducts={sales} className='h-5/6' >
+                    </ListOrderProducts>
+                    <Total sumTotal={sumTotal} />
+                    <div className='flex flex-col align-middle w-full gap-2 max-w-xs mx-auto'>
+                        <Button className='bg-red-500 text-red-800' text='Resetar vendas' onClick={() => setShowModal(true)} />
+                        <Button className='bg-green-500 min-w-fit' text='Nova venda' onClick={() => navigate('/produtos')} />
+                    </div>
+
 
                 </div>
             }
 
-            <div className='flex flex-col justify-center h-auto w-full'>
-                <Total sumTotal={sumTotal} />
-                <Button className='bg-red-500' text='Resetar vendas' onClick={() => setShowModal(true)} />
-                <Button className='bg-green-500' text='Nova venda' onClick={() => navigate('/')} />
-            </div>
-        </div>
+        </main>
     )
+}
+
+{
+    /*
+
+                <div className='flex-col bg-zinc-200 h-2/5 relative mt-auto'>
+                    <div className='max-w-xl h-full relative mt-auto mx-auto'>
+                        <Total sumTotal={total} />
+                        <Input label='Total pago:' onChange={(e) => setPayment(parseFloat(e.target.value))} />
+                        <Input disabled label='Troco:' value={changeMoney} />
+                        <div className='flex justify-center absolute bottom-0 h-auto w-full'>
+                            <Button className='bg-gray-500' onClick={goBack} text='Voltar' />
+                            <Button className='bg-green-500' text='Confirmar' onClick={navigateToHome} />
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+    */
 }

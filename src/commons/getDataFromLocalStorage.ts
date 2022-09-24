@@ -1,7 +1,7 @@
-import CartProduct from "../types/cartProduct";
+import CartProduct from "../types/orderProduct";
 
-export function getCartProductsFromLocalStorage() {
-    const strProducts = localStorage.getItem('cart-products');
+export function getOrderProductsFromLocalStorage() {
+    const strProducts = localStorage.getItem('order-products');
 
     if (strProducts) {
         const objProducts: CartProduct[] = JSON.parse(strProducts);

@@ -7,6 +7,7 @@ $headerHeigth: 4rem;
 body {
     height: 100vh;
 }
+
 main {
     height: calc(100vh - $headerHeigth);
 }

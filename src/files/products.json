@@ -28,140 +28,140 @@
         "id": 4
     },
     {
-        "name": "Conserva de Biquinho",
+        "name": "Conserva de Biquinho P",
         "imgUrl": "/assets/img/vidro.png",
         "type": "conservas-pequenas",
         "price": 7,
         "id": 5
     },
     {
-        "name": "Conserva de Dedo de Moça",
+        "name": "Conserva de Dedo de Moça P",
         "imgUrl": "/assets/img/vidro.png",
         "type": "conservas-pequenas",
         "price": 7,
         "id": 6
     },
     {
-        "name": "Geleia de Figo",
+        "name": "Geleia de Figo 280g",
         "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-pequenas",
         "price": 9,
         "id": 7
     },
     {
-        "name": "Geleia de Guavirova",
+        "name": "Geleia de Guavirova 280g",
         "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-pequenas",
         "price": 9,
         "id": 8
     },
     {
-        "name": "Geleia de Kiwi",
+        "name": "Geleia de Kiwi 280g",
         "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-pequenas",
         "price": 9,
         "id": 9
     },
     {
-        "name": "Geleia de Laranja",
+        "name": "Geleia de Laranja 280g",
         "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-pequenas",
         "price": 9,
         "id": 10
     },
     {
-        "name": "Geleia de Melão",
+        "name": "Geleia de Melão 280g",
         "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-pequenas",
         "price": 9,
         "id": 11
     },
     {
-        "name": "Geleia de Mimosa",
+        "name": "Geleia de Mimosa 280g",
         "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-pequenas",
         "price": 9,
         "id": 12
     },
     {
-        "name": "Geleia de Mirtilo",
+        "name": "Geleia de Mirtilo 280g",
         "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-pequenas",
         "price": 15,
         "id": 13
     },
     {
-        "name": "Geleia de Morango",
+        "name": "Geleia de Morango 280g",
         "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-pequenas",
         "price": 9,
         "id": 14
     },
     {
-        "name": "Geleia de Pêssego",
+        "name": "Geleia de Pêssego 280g",
         "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-pequenas",
         "price": 9,
         "id": 15
     },
     {
-        "name": "Geleia de Uva",
+        "name": "Geleia de Uva 280g",
         "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-pequenas",
         "price": 9,
         "id": 16
     },
     {
-        "name": "Geleia de Abóbora",
+        "name": "Geleia de Abóbora 700g",
         "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-grandes",
         "price": 14,
         "id": 17
     },
     {
-        "name": "Geleia de Guavirova",
+        "name": "Geleia de Guavirova 700g",
         "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-grandes",
         "price": 14,
         "id": 18
     },
     {
-        "name": "Geleia de Jabuticaba",
+        "name": "Geleia de Jabuticaba 700g",
         "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-grandes",
         "price": 14,
         "id": 19
     },
     {
-        "name": "Geleia de Kiwi",
+        "name": "Geleia de Kiwi 700g",
         "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-grandes",
         "price": 14,
         "id": 20
     },
     {
-        "name": "Geleia de Laranja",
+        "name": "Geleia de Laranja 700g",
         "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-grandes",
         "price": 14,
         "id": 21
     },
     {
-        "name": "Geleia de Melão",
+        "name": "Geleia de Melão 700g",
         "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-grandes",
         "price": 14,
         "id": 22
     },
     {
-        "name": "Geleia de Mimosa",
+        "name": "Geleia de Mimosa 700g",
         "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-grandes",
         "price": 14,
         "id": 23
     },
     {
-        "name": "Geleia de Uva",
+        "name": "Geleia de Uva 700g",
         "imgUrl": "/assets/img/vidro.png",
         "type": "geleias-grandes",
         "price": 14,

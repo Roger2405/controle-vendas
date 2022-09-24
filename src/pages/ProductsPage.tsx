@@ -7,14 +7,14 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 //types
 import ProductProps from '../types/product';
-import CartProduct from '../types/cartProduct';
+import OrderProduct from '../types/orderProduct';
 //components
-import Cart from '../components/Cart';
+import ListOrderProducts from '../components/ListOrderProducts';
 import Total from '../components/Total';
 import Button from '../components/Button';
 import Products from '../components/Products';
 //common functions
-import { getCartProductsFromLocalStorage, getSumTotal } from '../commons/getDataFromLocalStorage';
+import { getOrderProductsFromLocalStorage, getSumTotal } from '../commons/getDataFromLocalStorage';
 import InputSearch from '../components/InputSearch';
 
 
@@ -28,10 +28,10 @@ export default function ProductsPage() {
     var arrFilter = [];
 
     const navigate = useNavigate();
-    const [cartProducts, setCartProducts] = useState<CartProduct[]>(getCartProductsFromLocalStorage());
+    const [orderProducts, setOrderProducts] = useState<OrderProduct[]>(getOrderProductsFromLocalStorage());
     const [inputValue, setInputValue] = useState<string>('');
     const [arrFiltered, setArrFiltered] = useState<ProductProps[][]>(arrayProductsGrouped);
-    const [total, setTotal] = useState<number>(getSumTotal(cartProducts));
+    const [total, setTotal] = useState<number>(getSumTotal(orderProducts));
 
     if (productsArr) {
         productsArr.forEach(productsArr => {
@@ -61,16 +61,19 @@ export default function ProductsPage() {
         setArrFiltered(arrFilter);
     }, [inputValue]);
 
-    function clearCartProducts() {
-        setCartProducts([]);
+    function clearOrderProducts() {
+        setOrderProducts([]);
     }
     useEffect(() => {
-        setTotal(getSumTotal(cartProducts));
-    }, [cartProducts]);
+        setTotal(getSumTotal(orderProducts));
+    }, [orderProducts]);
 
     function navigateToOrders() {
-        localStorage.setItem('cart-products', JSON.stringify(cartProducts));
+        localStorage.setItem('order-products', JSON.stringify(orderProducts));
         navigate('/pedidos');
+    }
+    function navigateToHome() {
+        navigate('/');
     }
 
     return (
@@ -81,26 +84,46 @@ export default function ProductsPage() {
                     {
                         arrFiltered.map(group => {
                             return (
-                                <Products key={group[0]?.type} group={group} cartProducts={cartProducts} setTotal={setTotal} total={total} setCartProducts={setCartProducts} />
+                                <Products key={group[0]?.type} group={group} orderProducts={orderProducts} setTotal={setTotal} total={total} setOrderProducts={setOrderProducts} />
                             )
                         })
                     }
                 </section>
-                <section className='cart-section bg-white'>
-                    <Cart cartProducts={cartProducts} setTotal={setTotal} setCartProducts={setCartProducts} />
+                <section className='order-section flex flex-col  bg-white'>
+                    <ListOrderProducts orderProducts={orderProducts} setTotal={setTotal} setOrderProducts={setOrderProducts} className='' />
+                    <div className='flex-col flex w-full bg-zinc-200 justify-end bottom-0 mt-auto'>
+                        <Total sumTotal={total} />
+                        <div className='max-w-xl relative w-full mx-auto'>
+                            <div className='flex justify-center h-auto w-full'>
+                                {orderProducts.length === 0 ?
+                                    <>
+                                        <Button className='bg-gray-500' onClick={navigateToHome} text='Voltar' />
+                                    </>
+                                    :
+                                    <>
+                                        <Button className='bg-red-500' onClick={clearOrderProducts} text='Cancelar' />
 
-                    <div className='absolute bottom-0 w-full max-h-2/5'>
+                                    </>
+                                }
+                                <Button className='bg-green-500' disabled={orderProducts.length === 0 ? true : false} text='Confirmar' onClick={navigateToOrders} />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/*
+                    <div className='bottom-0 w-full'>
                         <div className='max-w-xl relative mx-auto'>
                             <Total sumTotal={total} />
                             <div className='flex justify-center bottom-0 w-full'>
-                                <Button className='bg-red-500' onClick={clearCartProducts} text='Cancelar' />
-                                <Button className='bg-green-500' disabled={cartProducts.length == 0 ? true : false} text='Confirmar' onClick={navigateToOrders} />
+                                <Button className='bg-red-500' onClick={clearOrderProducts} text='Cancelar' />
+                                <Button className='bg-green-500' disabled={orderProducts.length == 0 ? true : false} text='Confirmar' onClick={navigateToOrders} />
                             </div>
                         </div>
+                </div>
+                */                     }
 
-                    </div>
                 </section>
             </main>
-        </div>
+        </div >
     );
 }

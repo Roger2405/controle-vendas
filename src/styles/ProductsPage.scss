@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.main-home {
+main {
     height: calc(100vh - 4rem);
 }
 
@@ -10,7 +10,7 @@
     position: relative;
     scroll-behavior: auto;
     overflow-y: scroll;
-    height: 50%; // 50
+    height: 60%; // 50
 
 
     input {
@@ -22,9 +22,9 @@
     }
 }
 
-.cart-section {
+.order-section {
     position: relative;
-    height: 50%; //remain width
+    height: 40%; //remain width
 }
 
 @media screen and (min-width: 992px) {
@@ -44,7 +44,7 @@
         }
     }
 
-    .cart-section {
+    .order-section {
         position: relative;
         height: 100%;
         margin: 0;

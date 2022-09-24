@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     margin: 0 1rem .75rem;
-    height: 75px;
+    max-height: 75px;
 
     .label {
         text-transform: uppercase;
