@@ -41,12 +41,12 @@ export default function Log() {
             }
             {
                 <div>
-                    <Cart cartProducts={sales} setCartProducts={() => { }} setTotal={() => { }} />
+                    <Cart className="h-96" cartProducts={sales} setCartProducts={() => { }} setTotal={() => { }} />
 
                 </div>
             }
 
-            <div className='flex flex-col justify-center absolute bottom-0 h-auto w-full'>
+            <div className='flex flex-col justify-center h-auto w-full'>
                 <Total sumTotal={sumTotal} />
                 <Button className='bg-red-500' text='Resetar vendas' onClick={() => setShowModal(true)} />
                 <Button className='bg-green-500' text='Nova venda' onClick={() => navigate('/')} />

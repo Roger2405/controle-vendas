@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
-import Home from './pages/Home';
 import Log from "./pages/Log";
 import Orders from "./pages/Orders";
+import ProductsPage from "./pages/Products";
 
 
 
@@ -11,9 +11,9 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Header />}>
-        <Route index element={<Home />} />
+        <Route index element={<Log />} />
         <Route path="pedidos" element={<Orders />} />
-        <Route path="log" element={<Log />} />
+        <Route path="produtos" element={<ProductsPage />} />
       </Route>
     </Routes>
 

@@ -30,9 +30,9 @@ export default function Cart({ cartProducts, setCartProducts, setTotal, classNam
     var sumPrices: number = 0;
     return (
 
-        <div className={`div-cart ${className}`} >
+        <div className={`div-cart `} >
             <h2 className='title'>Carrinho</h2>
-            <div className={`cart`}>
+            <div className={`cart ${className} `}>
                 <div className='cart__item font-bold mb-1'>
                     <p className='cart__item--name'>Nome</p>
                     <span className='cart__item--count'>Qtd.</span>
