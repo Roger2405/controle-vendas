@@ -47,10 +47,10 @@
         .product__name {
             font-size: .75rem;
             font-weight: 700;
-            width: 65%;
+            width: 100%;
             text-transform: uppercase;
         }
-        
+
         .product__name,
         .product__price {
             margin: 0;
@@ -59,7 +59,7 @@
             text-align: end;
 
         }
-        
+
         .product__price {
             padding: .25rem;
             font-weight: 700;

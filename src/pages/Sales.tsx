@@ -6,9 +6,9 @@ import Button from "../components/Button";
 import Total from "../components/Total";
 import Modal from "../components/Modal";
 
-import { getSalesFromLocalStorage, setSalesInLocalStorage } from '../commons/getDataFromLocalStorage';
+import { getSalesFromLocalStorage, setSalesInLocalStorage } from '../commons/dataFromLocalStorage';
 
-export default function Log() {
+export default function Sales() {
     const navigate = useNavigate();
 
     var salesFromLocalStorage = getSalesFromLocalStorage();
@@ -43,10 +43,9 @@ export default function Log() {
             }
             {
                 <div className="flex flex-col h-full">
-                    <ListOrderProducts orderProducts={sales} className='h-5/6' >
-                    </ListOrderProducts>
+                    <ListOrderProducts orderProducts={sales} className='h-5/6' />
                     <Total sumTotal={sumTotal} />
-                    <div className='flex flex-col align-middle w-full gap-2 max-w-xs mx-auto'>
+                    <div className='flex flex-col align-middle gap-0 w-full max-w-xl mx-auto'>
                         <Button className='bg-red-500 text-red-800' text='Resetar vendas' onClick={() => setShowModal(true)} />
                         <Button className='bg-green-500 min-w-fit' text='Nova venda' onClick={() => navigate('/produtos')} />
                     </div>

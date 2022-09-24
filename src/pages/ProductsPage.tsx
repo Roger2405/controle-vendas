@@ -14,7 +14,7 @@ import Total from '../components/Total';
 import Button from '../components/Button';
 import Products from '../components/Products';
 //common functions
-import { getOrderProductsFromLocalStorage, getSumTotal } from '../commons/getDataFromLocalStorage';
+import { getOrderProductsFromLocalStorage, getSumTotal, setOrderProductsToLocalStorage } from '../commons/dataFromLocalStorage';
 import InputSearch from '../components/InputSearch';
 
 
@@ -61,15 +61,12 @@ export default function ProductsPage() {
         setArrFiltered(arrFilter);
     }, [inputValue]);
 
-    function clearOrderProducts() {
-        setOrderProducts([]);
-    }
     useEffect(() => {
         setTotal(getSumTotal(orderProducts));
+        setOrderProductsToLocalStorage(orderProducts);
     }, [orderProducts]);
 
     function navigateToOrders() {
-        localStorage.setItem('order-products', JSON.stringify(orderProducts));
         navigate('/pedidos');
     }
     function navigateToHome() {
@@ -79,6 +76,7 @@ export default function ProductsPage() {
     return (
         <div className='Home'>
             <main className='bg-zinc-300 main-home'>
+
                 <section className='products-section relative px-2 py-4'>
                     <InputSearch setInputValue={setInputValue} />
                     {
@@ -95,32 +93,17 @@ export default function ProductsPage() {
                         <Total sumTotal={total} />
                         <div className='max-w-xl relative w-full mx-auto'>
                             <div className='flex justify-center h-auto w-full'>
-                                {orderProducts.length === 0 ?
-                                    <>
-                                        <Button className='bg-gray-500' onClick={navigateToHome} text='Voltar' />
-                                    </>
-                                    :
-                                    <>
-                                        <Button className='bg-red-500' onClick={clearOrderProducts} text='Cancelar' />
-
-                                    </>
+                                {
+                                    orderProducts.length === 0 //if doesn't exists any products in the order, the button have the "return previous page" function, else, it clears the order; 
+                                        ?
+                                        <><Button className='bg-gray-500' onClick={navigateToHome} text='Voltar' /></>
+                                        :
+                                        <><Button className='bg-red-500' onClick={() => setOrderProducts([])} text='Cancelar' /></>
                                 }
                                 <Button className='bg-green-500' disabled={orderProducts.length === 0 ? true : false} text='Confirmar' onClick={navigateToOrders} />
                             </div>
                         </div>
                     </div>
-
-                    {/*
-                    <div className='bottom-0 w-full'>
-                        <div className='max-w-xl relative mx-auto'>
-                            <Total sumTotal={total} />
-                            <div className='flex justify-center bottom-0 w-full'>
-                                <Button className='bg-red-500' onClick={clearOrderProducts} text='Cancelar' />
-                                <Button className='bg-green-500' disabled={orderProducts.length == 0 ? true : false} text='Confirmar' onClick={navigateToOrders} />
-                            </div>
-                        </div>
-                </div>
-                */                     }
 
                 </section>
             </main>

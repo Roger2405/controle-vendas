@@ -1,6 +1,6 @@
 //styles
 import '../styles/Orders.scss';
-//import '../styles/styles.scss';
+import '../styles/styles.scss';
 //hooks
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -10,7 +10,7 @@ import Total from '../components/Total';
 import Input from '../components/Input';
 import Button from "../components/Button";
 //common functions
-import { getOrderProductsFromLocalStorage, getSumTotal, getSalesFromLocalStorage, setSalesInLocalStorage } from '../commons/getDataFromLocalStorage';
+import { getOrderProductsFromLocalStorage, getSumTotal, getSalesFromLocalStorage, setSalesInLocalStorage, removeOrderProductsFromLocalStorage } from '../commons/dataFromLocalStorage';
 import OrderProductProps from '../types/orderProduct';
 
 
@@ -58,9 +58,7 @@ export default function Orders() {
         })
 
         setSalesInLocalStorage(newSales);
-        localStorage.removeItem('order-products');
-
-
+        removeOrderProductsFromLocalStorage();
         navigate('/')
     }
 
@@ -68,14 +66,15 @@ export default function Orders() {
     return (
         <main>
             <section className='flex flex-col h-full'>
-                <ListOrderProducts orderProducts={cartProducts} className='h-3/5' />
+                <h1 className='title'>Resumo</h1>
+                <ListOrderProducts orderProducts={cartProducts} className='' />
 
-                <div className='bg-zinc-200 h-2/5 relative mt-auto'>
+                <div className='bg-zinc-200 relative mt-auto'>
                     <div className='max-w-xl h-full relative mt-auto mx-auto'>
                         <Total sumTotal={total} />
                         <Input label='Total pago:' onChange={(e) => setPayment(parseFloat(e.target.value))} />
                         <Input disabled label='Troco:' value={changeMoney} />
-                        <div className='flex justify-center absolute bottom-0 h-auto w-full'>
+                        <div className='flex justify-center w-full'>
                             <Button className='bg-gray-500' onClick={goBack} text='Voltar' />
                             <Button className='bg-green-500' text='Confirmar' onClick={navigateToHome} />
                         </div>

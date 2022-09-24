@@ -10,6 +10,12 @@ export function getOrderProductsFromLocalStorage() {
     //localStorage.removeItem('cart-products');
     return [];
 }
+export function setOrderProductsToLocalStorage(obj: CartProduct[]) {
+    localStorage.setItem('order-products', JSON.stringify(obj));
+}
+export function removeOrderProductsFromLocalStorage() {
+    localStorage.removeItem('order-products');
+}
 
 export function getSumTotal(obj: CartProduct[]) {
     let sum = 0;

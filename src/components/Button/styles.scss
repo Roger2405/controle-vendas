@@ -1,5 +1,7 @@
 .button {
     padding: 1rem .5rem;
+    border-radius: .5rem;
+    margin: .5rem .25rem;
 
     flex-basis: 50%;
     font-size: 1.25rem;
@@ -9,8 +11,16 @@
     position: relative;
     height: 4rem;
 
+    transition: .25s;
 }
+
 .button:disabled {
     background-color: gray;
     color: rgb(158, 158, 158);
+}
+
+.button:enabled:hover {
+    filter: brightness(125%);
+
+    transition: .25s;
 }
