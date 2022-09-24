@@ -1,4 +1,4 @@
-import '../styles/Home.scss';
+import '../styles/ProductsPage.scss';
 import '../styles/styles.scss';
 //files
 import productsJson from '../files/products.json';
@@ -9,16 +9,16 @@ import { useNavigate } from 'react-router-dom';
 import ProductProps from '../types/product';
 import CartProduct from '../types/cartProduct';
 //components
-import Products from '../components/Products';
 import Cart from '../components/Cart';
 import Total from '../components/Total';
 import Button from '../components/Button';
+import Products from '../components/Products';
 //common functions
 import { getCartProductsFromLocalStorage, getSumTotal } from '../commons/getDataFromLocalStorage';
 import InputSearch from '../components/InputSearch';
 
 
-export default function Home() {
+export default function ProductsPage() {
 
     const productsArr = Array.from(productsJson);
 
