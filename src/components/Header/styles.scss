@@ -1,16 +1,4 @@
-.navBar {
+header {
     height: 4rem;
-
-    .navBar__list {
-        display: flex;
-        justify-content: end;
-        align-items: center;
-        height: 100%;
-
-        .navBar__list--item {
-            text-transform: uppercase;
-            margin-right: 3rem;
-        }
-    }
 
 }

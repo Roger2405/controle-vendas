@@ -12,6 +12,7 @@ import Button from "../components/Button";
 //common functions
 import { getOrderProductsFromLocalStorage, getSumTotal, getSalesFromLocalStorage, setSalesInLocalStorage, removeOrderProductsFromLocalStorage } from '../commons/dataFromLocalStorage';
 import OrderProductProps from '../types/orderProduct';
+import MoneyCards from '../components/MoneyCard';
 
 
 
@@ -69,8 +70,9 @@ export default function Orders() {
                 <h1 className='title'>Resumo</h1>
                 <ListOrderProducts orderProducts={cartProducts} className='' />
 
-                <div className='bg-zinc-200 relative mt-auto'>
+                <div className='relative mt-auto'>
                     <div className='max-w-xl h-full relative mt-auto mx-auto'>
+                        <MoneyCards />
                         <Total sumTotal={total} />
                         <Input label='Total pago:' onChange={(e) => setPayment(parseFloat(e.target.value))} />
                         <Input disabled label='Troco:' value={changeMoney} />

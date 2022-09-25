@@ -1,0 +1,12 @@
+.cards {
+    overflow-x: scroll;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+
+    .card {
+        height: 75px;
+        width: 150px;
+        border: 1px solid black;
+    }
+}

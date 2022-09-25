@@ -1,0 +1,66 @@
+.navBar {
+    position: absolute;
+    width: 95%;
+    height: 100%;
+
+    padding: 4rem 2rem;
+
+    top: 0;
+    left: 0;
+
+    flex-direction: column;
+    display: flex;
+    align-items: flex-start;
+    gap: .5rem;
+
+
+    transition: .25s;
+
+    z-index: 10;
+
+
+
+    .navBar__list--item {
+        border-radius: .25rem;
+        color: #FFFFFF;
+        line-height: 2rem;
+        max-height: 4rem;
+        padding: .5rem .5rem;
+        text-transform: uppercase;
+
+    }
+}
+
+.navBar-inactive {
+    left: -100%;
+    transition: .25s;
+}
+
+.button-nav {
+    position: absolute;
+    left: 1rem;
+    top: .5rem;
+
+    z-index: 15;
+
+}
+
+
+
+@media screen and (min-width:992px) {
+    .navBar {
+        align-items: center;
+        flex-direction: row;
+        justify-content: end;
+        padding: 0;
+        position: relative;
+    }
+
+    .button-nav {
+        display: none;
+    }
+
+    .navBar-inactive {
+        left: 0;
+    }
+}

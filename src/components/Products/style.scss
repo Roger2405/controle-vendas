@@ -1,12 +1,17 @@
-.type {
-    margin: 0;
-    text-transform: uppercase;
-    font-weight: 700;
-}
+.productsType {
+    background-color: rgb(255, 255, 255);
+    margin-bottom: .5rem;
 
-.products-container {
-    overflow-x: scroll;
-    width: 100%;
+    .type {
+        margin: 0;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    .productsContainer {
+        overflow-x: scroll;
+        width: 100%;
+    }
 }
 
 .products {
@@ -30,7 +35,6 @@
     .product {
         align-items: flex-end;
         //border-radius: 1rem;
-        //box-shadow: 0 0 .5rem rgba(0, 0, 0, 0.25);
 
         display: flex;
         flex-direction: column;
@@ -45,7 +49,6 @@
 
         .product__name {
             font-size: .75rem;
-            //font-weight: 700;
             width: 100%;
             text-transform: uppercase;
         }

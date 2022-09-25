@@ -1,15 +1,13 @@
-import { Outlet, Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
+import Navigation from "../Navegation";
 
 import './styles.scss';
 
 export default function Header() {
     return (
-        <>
-            <nav className='navBar bg-green-500'>
-                <ul className="navBar__list">
-                </ul>
-            </nav>
+        <header className="bg-green-500">
+            <Navigation />
             <Outlet />
-        </>
+        </header>
     )
 }

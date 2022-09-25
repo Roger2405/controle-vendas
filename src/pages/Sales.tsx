@@ -42,14 +42,14 @@ export default function Sales() {
                 <Modal setConfirmExclusion={setConfirmExclusion} />
             }
             {
-                <div className="flex flex-col h-full">
-                    <ListOrderProducts orderProducts={sales} className='h-5/6' />
-                    <div className='flex-col flex w-full bg-zinc-200 justify-end bottom-0 mt-auto'>
+                <div className="flex flex-col h-screen">
+                    <ListOrderProducts orderProducts={sales} className='' />
+                    <div className='flex-col flex w-full justify-end bottom-0 mt-auto'>
                         <Total sumTotal={sumTotal} />
                         <div className='max-w-xl relative w-full mx-auto'>
                             <div className='flex justify-center flex-col h-auto w-full'>
-                                <Button className='bg-red-500 text-red-800' text='Resetar vendas' onClick={() => setShowModal(true)} />
                                 <Button className='bg-green-500 min-w-fit' text='Nova venda' onClick={() => navigate('/produtos')} />
+                                <Button className='bg-red-500 text-red-800' text='Resetar vendas' onClick={() => setShowModal(true)} />
                             </div>
                         </div>
                     </div>

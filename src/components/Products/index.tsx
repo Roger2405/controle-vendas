@@ -43,15 +43,15 @@ export default function Products({ group, orderProducts, setOrderProducts, setTo
         <>
             {
                 group[0] !== undefined &&
-                <div>
+                <div className='productsType'>
                     <h2 className='type mt-2'>{group[0].type}</h2>
 
-                    <div className='products-container pb-4'>
+                    <div className='productsContainer pb-4'>
                         <div className='products'>
                             {group.map(product => {
                                 const productIsInTheCart: boolean = isInTheCart(product.id)
                                 return (
-                                    <div key={product.id} className={`product ${productIsInTheCart ? 'bg-green-500 text-white' : 'bg-gray-100'}`} onClick={() => refreshOrderProducts(product as OrderProductProps)}>
+                                    <div key={product.id} className={`product ${productIsInTheCart ? 'bg-green-500 text-white' : 'bg-gray-200'}`} onClick={() => refreshOrderProducts(product as OrderProductProps)}>
                                         <h3 className='product__name overflow-hidden'>{product.name}</h3>
                                         <p className={`product__price text-zinc-700 bg-green-400`}>R$ {product.price.toFixed(2)}</p>
                                         {product.imgUrl &&
@@ -62,13 +62,13 @@ export default function Products({ group, orderProducts, setOrderProducts, setTo
                             })}
                         </div>
 
-                    </div>
 
+                    </div>
                 </div>
 
 
             }
-
         </>
+
     )
 }
