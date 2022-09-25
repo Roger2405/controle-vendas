@@ -56,5 +56,10 @@ main {
 @media screen and (min-width:1440px) {
     .main-home {
         grid-template-columns: 3fr 1fr;
+
+        .order-section {
+            max-height: 100%;
+        }
     }
+
 }

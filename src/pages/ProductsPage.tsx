@@ -87,8 +87,8 @@ export default function ProductsPage() {
                         })
                     }
                 </section>
-                <section className='order-section flex flex-col  bg-white'>
-                    <ListOrderProducts orderProducts={orderProducts} setTotal={setTotal} setOrderProducts={setOrderProducts} className='' />
+                <section className='order-section flex flex-col bg-white h-full'>
+                    <ListOrderProducts orderProducts={orderProducts} setTotal={setTotal} setOrderProducts={setOrderProducts} />
                     <div className='flex-col flex w-full bg-zinc-200 justify-end bottom-0 mt-auto'>
                         <Total sumTotal={total} />
                         <div className='max-w-xl relative w-full mx-auto'>
