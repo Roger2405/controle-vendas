@@ -27,6 +27,7 @@ export default function ProductsPage() {
 
     var arrFilter = [];
 
+
     const navigate = useNavigate();
     const [orderProducts, setOrderProducts] = useState<OrderProduct[]>(getOrderProductsFromLocalStorage());
     const [inputValue, setInputValue] = useState<string>('');
