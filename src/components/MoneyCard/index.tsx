@@ -1,14 +1,18 @@
 import './styles.scss';
 import { Money, Coins, CurrencyDollar } from 'phosphor-react';
 
-export default function MoneyCards() {
-    let arr = [0, 0, 0, 0, 0, 0, 0, 0];
+interface Props {
+    setPayment: React.Dispatch<React.SetStateAction<number>>
+}
+
+export default function MoneyCards({ setPayment }: Props) {
+    let arr = [0.5, 1, 2, 5, 10, 20, 50, 100];
     return (
         <div className="cards">
             {
                 arr.map(item => {
                     return (
-                        <Card value={item} />
+                        <Card setPayment={setPayment} value={item} />
                     )
                 })
             }
@@ -17,15 +21,21 @@ export default function MoneyCards() {
         </div>
     )
 }
-interface CardProps {
+interface CardProps extends Props {
     value: number
 }
 
-function Card({ value }: CardProps) {
+function Card({ value, setPayment }: CardProps) {
     return (
-        <div className='card flex'>
-            <p className='font-semibold text-2xl'>{value}</p>
-            <CurrencyDollar size={32} />
+        <div onClick={() => setPayment(oldValue => oldValue + value)} className={` ${value <= 1 ? 'coinCard' : 'noteCard'} card flex flex-wrap `}>
+            {
+                value > 1 &&
+                <span className='m-auto text-2xl'>R$</span>
+
+            }
+            <p className='font-semibold card__text text-2xl'>{value.toFixed(2)}</p>
+
         </div>
+
     )
 }

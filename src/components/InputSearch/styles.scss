@@ -1,9 +1,10 @@
 .inputSearch {
     border-radius: 2rem;
     position: fixed;
-    top: .5rem;
-    right: .5rem;
+    top: 1rem;
+    right: 1rem;
 }
+
 @media screen and (min-width: 992px) {
     .inputSearch {
         position: relative;

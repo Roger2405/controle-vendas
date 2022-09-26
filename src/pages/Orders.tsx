@@ -72,12 +72,17 @@ export default function Orders() {
 
                 <div className='relative mt-auto'>
                     <div className='max-w-xl h-full relative mt-auto mx-auto'>
-                        <MoneyCards />
+                        <MoneyCards setPayment={setPayment} />
                         <Total sumTotal={total} />
-                        <Input label='Total pago:' onChange={(e) => setPayment(parseFloat(e.target.value))} />
+                        <Input label='Total pago:' onChange={(e) => setPayment(parseFloat(e.target.value))} value={payment} />
                         <Input disabled label='Troco:' value={changeMoney} />
                         <div className='flex justify-center w-full'>
-                            <Button className='bg-gray-500' onClick={goBack} text='Voltar' />
+                            {
+                                payment !== 0 ?
+                                    <Button className='bg-red-500' onClick={() => setPayment(0)} text='Limpar' />
+                                    :
+                                    <Button className='bg-gray-500' onClick={goBack} text='Voltar' />
+                            }
                             <Button className='bg-green-500' text='Confirmar' onClick={navigateToHome} />
                         </div>
                     </div>
