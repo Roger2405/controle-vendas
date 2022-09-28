@@ -1,4 +1,4 @@
-import '../styles/ProductsPage.scss';
+import '../styles/AddSales.scss';
 import '../styles/styles.scss';
 //files
 import productsJson from '../files/products.json';
@@ -25,13 +25,13 @@ export default function AddSales() {
     var arrayProductsGrouped: ProductProps[][] = [];
     var productsTypes: string[] = [];
 
-    const user = localStorage.getItem('user');
+    /*const user = localStorage.getItem('user');
     var jsonUser;
     if (user) {
         jsonUser = JSON.parse(user);
 
     }
-
+*/
     var arrFilter = [];
 
 
@@ -81,12 +81,9 @@ export default function AddSales() {
         navigate('/');
     }
 
+
     return (
         <div className='Home'>
-            <div>
-                <p>{jsonUser.email}</p>
-                <p>{jsonUser.id}</p>
-            </div>
             <main className=' main-home'>
 
                 <section className='products-section relative px-2 py-4'>

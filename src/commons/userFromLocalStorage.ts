@@ -10,7 +10,6 @@ export function getUserFromLocalStorage() {
         objUser = JSON.parse(strUser);
     }
 
-    console.log(objUser);
     return objUser;
 
 }

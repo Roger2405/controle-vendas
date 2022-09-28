@@ -77,7 +77,6 @@ export default function Login({ setUser }: Props) {
             <button className="form-button" type="submit">
                 <Link to={"/registro"}>Cadastro</Link>
             </button>
-            {/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/}
 
         </div>
     );
