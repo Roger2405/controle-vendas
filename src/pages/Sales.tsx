@@ -17,6 +17,8 @@ export default function Sales() {
     const [confirmExclusion, setConfirmExclusion] = useState<boolean>();
 
     const [sales, setSales] = useState(salesFromLocalStorage);
+
+    
     let sumTotal: number = 0;
     sales.map(product => {
         sumTotal += (product.count * product.price);

@@ -18,12 +18,19 @@ import { getOrderProductsFromLocalStorage, getSumTotal, setOrderProductsToLocalS
 import InputSearch from '../components/InputSearch';
 
 
-export default function ProductsPage() {
+export default function AddSales() {
 
     const productsArr = Array.from(productsJson);
 
     var arrayProductsGrouped: ProductProps[][] = [];
     var productsTypes: string[] = [];
+
+    const user = localStorage.getItem('user');
+    var jsonUser;
+    if (user) {
+        jsonUser = JSON.parse(user);
+
+    }
 
     var arrFilter = [];
 
@@ -53,7 +60,7 @@ export default function ProductsPage() {
     useEffect(() => {
         const regex = new RegExp(inputValue.toString().toLowerCase());
 
-        arrFilter = []
+        arrFilter = [];
         for (var i = 0; i < productsTypes.length; i++) {
             let arr = productsArr.filter(product => product.type === productsTypes[i]);
             arr = arr.filter(product => regex.test(product.name.toLowerCase()));
@@ -76,6 +83,10 @@ export default function ProductsPage() {
 
     return (
         <div className='Home'>
+            <div>
+                <p>{jsonUser.email}</p>
+                <p>{jsonUser.id}</p>
+            </div>
             <main className=' main-home'>
 
                 <section className='products-section relative px-2 py-4'>
