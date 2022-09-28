@@ -17,7 +17,7 @@ function App() {
   return (
     <Routes>
       {
-        user.length === 0 ?
+        user.length !== 0 ?
           <Route path="/" >
             <Route index element={<Login setUser={setUser} />} />
             <Route path="registro" element={<Register />} />
