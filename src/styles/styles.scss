@@ -1,5 +1,9 @@
 $headerHeigth: 4rem;
 
+:root {
+    --background: #FFFFFF
+}
+
 * {
     font-family: 'Roboto', sans-serif;
 }
@@ -7,9 +11,12 @@ $headerHeigth: 4rem;
 body {
 
     height: 100vh;
+    z-index: 0;
+    width: 100vw;
 }
 
 main {
+    background-color: var(--background);
     height: calc(100vh - $headerHeigth);
 }
 
@@ -21,7 +28,7 @@ main {
 }
 
 @media screen and (min-width: 992px) {
-    body>*>* {
+    body>*>*>* {
         padding: 0 7rem;
     }
 }

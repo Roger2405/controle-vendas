@@ -6,10 +6,11 @@ interface Props extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLB
     orderProducts: OrderProduct[],
     setOrderProducts?: React.Dispatch<React.SetStateAction<OrderProduct[]>>
     setTotal?: React.Dispatch<React.SetStateAction<number>>,
+    hiddenOverflow: boolean,
     children?: React.ReactNode
 }
 
-export default function ListProduct({ orderProducts, setOrderProducts, setTotal, className, children }: Props) {
+export default function ListProduct({ orderProducts, setOrderProducts, setTotal, hiddenOverflow, className, children }: Props) {
     orderProducts.sort((a, b) => {
         return a.id - b.id;
     })
@@ -34,7 +35,7 @@ export default function ListProduct({ orderProducts, setOrderProducts, setTotal,
     var sumPrices: number = 0;
     return (
 
-        <div className={`order max-w-7xl w-full h-full mx-auto`}>
+        <div className={`order max-w-7xl w-full mx-auto ${hiddenOverflow ? 'overflowHidden' : ''}`}>
             <div className='order__item font-bold mb-1'>
                 <p className='order__item--name'>Nome</p>
                 <span className='order__item--count'>Qtd.</span>

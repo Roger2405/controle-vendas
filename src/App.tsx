@@ -1,27 +1,31 @@
 import { Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import Header from "./components/Header";
+
 import Sales from "./pages/Sales";
 import Orders from "./pages/Orders";
 import Login from "./pages/Login";
-import { useEffect, useState } from "react";
 import AddSales from "./pages/AddSales";
 import Register from "./pages/Register";
+
+import './styles/styles.scss';
+
 import { getUserFromLocalStorage } from "./commons/userFromLocalStorage";
 
 
 function App() {
   const [user, setUser] = useState(getUserFromLocalStorage());
-  var [isLogged, setIsLogged] = useState(true);
-  /*
-    useEffect(() => {
-      if (user.length !== 0) { 
-        console.log("User:", user)
-        setIsLogged(true)
-      }
-      console.log(isLogged + user);
-    }, []);
-  */
+  var [isLogged, setIsLogged] = useState(false);
+
+  useEffect(() => {
+    if (user.length === 0) {//provisorio
+      console.log("User:", user)
+      setIsLogged(true)
+    }
+    console.log(isLogged + user);
+  }, []);
+
 
   return (
     <Routes>

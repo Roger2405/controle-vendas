@@ -1,5 +1,4 @@
 import '../styles/AddSales.scss';
-import '../styles/styles.scss';
 //files
 import productsJson from '../files/products.json';
 //hooks
@@ -97,7 +96,7 @@ export default function AddSales() {
                     }
                 </section>
                 <section className='order-section flex flex-col bg-white h-full'>
-                    <ListOrderProducts orderProducts={orderProducts} setTotal={setTotal} setOrderProducts={setOrderProducts} />
+                    <ListOrderProducts hiddenOverflow orderProducts={orderProducts} setTotal={setTotal} setOrderProducts={setOrderProducts} />
                     <div className='flex-col flex w-full justify-end bottom-0 mt-auto'>
                         <Total sumTotal={total} />
                         <div className='max-w-xl relative w-full mx-auto'>

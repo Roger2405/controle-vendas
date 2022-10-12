@@ -1,0 +1,32 @@
+.download-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: .5rem;
+    background-color: white;
+    padding: .75rem;
+}
+
+.sales-print {
+    border: 2px solid black;
+    overflow: auto;
+    width: 300px;
+
+    align-items: flex-end;
+    z-index: -10;
+    gap: .5rem;
+
+    .print__date,
+    .print__total {
+        margin: .5rem;
+    }
+
+    .print__total {
+        font-size: 1.5rem;
+
+        b {
+            margin-left: .5rem;
+        }
+    }
+
+}

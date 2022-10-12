@@ -1,6 +1,6 @@
 //styles
 import '../styles/Orders.scss';
-import '../styles/styles.scss';
+
 //hooks
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -13,7 +13,6 @@ import Button from "../components/Button";
 import { getOrderProductsFromLocalStorage, getSumTotal, getSalesFromLocalStorage, setSalesInLocalStorage, removeOrderProductsFromLocalStorage } from '../commons/dataFromLocalStorage';
 import OrderProductProps from '../types/orderProduct';
 import MoneyCards from '../components/MoneyCard';
-
 
 
 export default function Orders() {
@@ -67,8 +66,9 @@ export default function Orders() {
     return (
         <main>
             <section className='flex flex-col h-full'>
+
                 <h1 className='title'>Resumo</h1>
-                <ListOrderProducts orderProducts={cartProducts} className='' />
+                <ListOrderProducts hiddenOverflow orderProducts={cartProducts} className='' />
 
                 <div className='relative mt-auto'>
                     <div className='max-w-xl h-full relative mt-auto mx-auto'>

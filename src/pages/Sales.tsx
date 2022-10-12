@@ -7,6 +7,7 @@ import Total from "../components/Total";
 import Modal from "../components/Modal";
 
 import { getSalesFromLocalStorage, setSalesInLocalStorage } from '../commons/dataFromLocalStorage';
+import Print from "../components/Print";
 
 export default function Sales() {
     const navigate = useNavigate();
@@ -18,7 +19,7 @@ export default function Sales() {
 
     const [sales, setSales] = useState(salesFromLocalStorage);
 
-    
+
     let sumTotal: number = 0;
     sales.map(product => {
         sumTotal += (product.count * product.price);
@@ -44,10 +45,12 @@ export default function Sales() {
                 <Modal setConfirmExclusion={setConfirmExclusion} />
             }
             {
-                <div className="flex flex-col h-screen">
-                    <ListOrderProducts orderProducts={sales} className='' />
-                    <div className='flex-col flex w-full justify-end bottom-0 mt-auto'>
-                        <Total sumTotal={sumTotal} />
+                <div className=" w-full flex flex-col ">
+
+                    <ListOrderProducts hiddenOverflow={false} orderProducts={sales} className='' />
+                    <Print total={sumTotal} sales={sales} />
+                    <Total sumTotal={sumTotal} />
+                    <div className='flex-col flex w-full justify-end mt-auto'>
                         <div className='max-w-xl relative w-full mx-auto'>
                             <div className='flex justify-center flex-col h-auto w-full'>
                                 <Button className='bg-green-500 min-w-fit' text='Nova venda' onClick={() => navigate('/produtos')} />

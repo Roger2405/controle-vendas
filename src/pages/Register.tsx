@@ -10,7 +10,7 @@ export default function Register() {
     const navigate = useNavigate();
 
     const handleRegister = (values: { email: string, password: string }) => {
-        Axios.post("http://127.0.0.1:3001/register/", {
+        Axios.post("http://localhost:3001/register", {
             email: values.email,
             password: values.password,
         }).then((response) => {
