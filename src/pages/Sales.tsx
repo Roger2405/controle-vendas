@@ -45,7 +45,7 @@ export default function Sales() {
                 <Modal setConfirmExclusion={setConfirmExclusion} />
             }
             {
-                <div className=" w-full flex flex-col ">
+                <div className="page w-full flex flex-col ">
 
                     <ListOrderProducts hiddenOverflow={false} orderProducts={sales} className='' />
                     <Print total={sumTotal} sales={sales} />

@@ -16,7 +16,6 @@ body {
 }
 
 main {
-    background-color: var(--background);
     height: calc(100vh - $headerHeigth);
 }
 
@@ -25,6 +24,10 @@ main {
     font-weight: 700;
     text-transform: uppercase;
     text-align: center;
+}
+
+.page {
+    background-color: var(--background);
 }
 
 @media screen and (min-width: 992px) {

@@ -65,7 +65,7 @@ export default function Orders() {
 
     return (
         <main>
-            <section className='flex flex-col h-full'>
+            <section className='page flex flex-col h-full'>
 
                 <h1 className='title'>Resumo</h1>
                 <ListOrderProducts hiddenOverflow orderProducts={cartProducts} className='' />

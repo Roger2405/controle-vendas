@@ -82,7 +82,7 @@ export default function AddSales() {
 
 
     return (
-        <div className='Home'>
+        <div className='page Home'>
             <main className=' main-home'>
 
                 <section className='products-section relative px-2 py-4'>
