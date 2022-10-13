@@ -35,8 +35,8 @@ export default function ListProduct({ orderProducts, setOrderProducts, setTotal,
     var sumPrices: number = 0;
     return (
 
-        <div className={`order max-w-7xl w-full mx-auto ${hiddenOverflow ? 'overflowHidden' : ''}`}>
-            <div className='order__item font-bold mb-1'>
+        <div className={`order max-h-7xl w-full mx-auto ${hiddenOverflow ? 'overflowHidden' : ''}`}>
+            <div className='order__item'>
                 <p className='order__item--name'>Nome</p>
                 <span className='order__item--count'>Qtd.</span>
                 <p className='order__item--price'>Soma</p>

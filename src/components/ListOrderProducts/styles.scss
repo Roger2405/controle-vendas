@@ -1,10 +1,10 @@
 .order {
     /*max-height: 216px;*/
     //height: calc(100% - 48px - 116px);
-    max-height: 80%;
+    //max-height: 80%;
     position: relative;
-    padding: 0 .5rem;
-    background-color: var(--background);
+    padding: .75rem .5rem;
+    background-color: var(--secondary);
 
     .order__item {
         display: flex;
@@ -23,7 +23,8 @@
         }
 
         &:first-child {
-            background-color: #EEE;
+            background-color: #EEEEEE;
+            font-weight: 700;
         }
 
         &:last-child {

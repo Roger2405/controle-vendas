@@ -1,7 +1,8 @@
 $headerHeigth: 4rem;
 
 :root {
-    --background: #FFFFFF
+    --background: #FFFFFF;
+    --secondary: #CCCCCC;
 }
 
 * {
@@ -17,6 +18,7 @@ body {
 
 main {
     height: calc(100vh - $headerHeigth);
+    background-color: var(--background);
 }
 
 .title {
@@ -25,6 +27,7 @@ main {
     text-transform: uppercase;
     text-align: center;
 }
+
 
 .page {
     background-color: var(--background);

@@ -1,11 +1,29 @@
-.download-button {
+.controls {
     position: absolute;
     top: 0;
     right: 0;
-    margin: .5rem;
-    background-color: white;
-    padding: .75rem;
-    z-index: 20;
+    display: flex;
+
+    .download-button {
+        padding: .75rem;
+        background-color: #FFF;
+        width: 50px;
+        height: 50px;
+    }
+
+    input {
+        padding: .75rem;
+        width: 150px;
+        margin-right: .125rem;
+
+
+        &:focus {
+            outline: .125rem solid rgb(0, 255, 0);
+            background-color: #DDD;
+        }
+    }
+
+    padding: .5rem;
 }
 
 .sales-print {
@@ -14,24 +32,39 @@
     max-width: 450px;
     width: 100%;
 
-    align-items: flex-end;
     z-index: -10;
     padding-bottom: 4rem;
     gap: .5rem;
 
-    .print__date,
-    .print__total {
-        margin: .5rem;
+
+    * {
+        padding: 0;
     }
 
     .print__total {
         font-size: 1.5rem;
         position: absolute;
         bottom: 0;
+        align-self: flex-end;
 
         b {
             margin-left: .5rem;
         }
+    }
+
+    .print__info {
+        justify-content: space-between;
+        display: flex;
+        align-items: center;
+        text-transform: uppercase;
+
+
+
+    }
+
+    .print__info,
+    .print__total {
+        padding: .5rem 1rem;
     }
 
 }

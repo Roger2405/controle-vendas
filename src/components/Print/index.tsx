@@ -1,18 +1,26 @@
 
 import domtoimage from 'dom-to-image';
 import { Download } from 'phosphor-react';
+import { ReactNode, useState } from 'react';
 import OrderProduct from '../../types/orderProduct';
+import Input from '../Input';
 import ListOrderProducts from '../ListOrderProducts';
 import Total from '../Total';
 import './styles.scss';
 
 interface Props {
     sales: OrderProduct[],
-    total: number
+    total: number,
+    mustIncludeInput?: boolean
+    children?: ReactNode
 }
 
-export default function Print({ sales, total }: Props) {
-    let date = new Date().toLocaleDateString('pt-BR');
+export default function Print({ sales, total, mustIncludeInput }: Props) {
+    const date = new Date().toLocaleDateString('pt-BR');
+    const time = new Date().toLocaleTimeString('pt-BR');
+
+    const [info, setInfo] = useState('');
+
     //const day = date.getDay();
     //const month = date.getMonth();
     //const year = date.getFullYear();
@@ -38,14 +46,28 @@ export default function Print({ sales, total }: Props) {
     return (
         <div>
             <div hidden className="absolute bg-white left-0 top-0 sales-print flex flex-col" id="print">
-                <p className='print__date'>{date}</p>
-                <ListOrderProducts orderProducts={sales} className='' hiddenOverflow={false} />
-                <p className='print__total'>
-                    R$<b>{total.toFixed(2)}</b>
-                </p>
-            </div>
-            <button onClick={GenerateImage} className='download-button'><Download size={24} /></button>
+                <div className='print__info'>
+                    <p>{info}</p>
+                    <div className='print__date'>
+                        <p>{date}</p>
+                        <p>{time}</p>
+                    </div>
 
+                </div>
+                <ListOrderProducts orderProducts={sales} className='' hiddenOverflow={false} />
+                <div className='print__total flex'>
+                    <p>Total: R$</p>
+                    <b>{total.toFixed(2)}</b>
+                </div>
+            </div>
+            <div className='controls'>
+                {
+                    mustIncludeInput &&
+                    <input placeholder='Informações adicionais' onChange={e => setInfo(e.target.value)} type='text' />
+                }
+                <button onClick={GenerateImage} className='download-button'><Download size={24} /></button>
+
+            </div>
         </div>
     )
 }

@@ -13,6 +13,7 @@ import Button from "../components/Button";
 import { getOrderProductsFromLocalStorage, getSumTotal, getSalesFromLocalStorage, setSalesInLocalStorage, removeOrderProductsFromLocalStorage } from '../commons/dataFromLocalStorage';
 import OrderProductProps from '../types/orderProduct';
 import MoneyCards from '../components/MoneyCard';
+import Print from '../components/Print';
 
 
 export default function Orders() {
@@ -66,13 +67,14 @@ export default function Orders() {
     return (
         <main>
             <section className='page flex flex-col h-full'>
+                <Print sales={cartProducts} mustIncludeInput total={total} />
 
                 <h1 className='title'>Resumo</h1>
                 <ListOrderProducts hiddenOverflow orderProducts={cartProducts} className='' />
 
                 <div className='relative mt-auto'>
                     <div className='max-w-xl h-full relative mt-auto mx-auto'>
-                        <MoneyCards setPayment={setPayment} />
+                        {/*<MoneyCards setPayment={setPayment} />*/}
                         <Total sumTotal={total} />
                         <Input label='Total pago:' onChange={(e) => setPayment(parseFloat(e.target.value))} value={payment} />
                         <Input disabled label='Troco:' value={changeMoney} />
