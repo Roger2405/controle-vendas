@@ -42,7 +42,16 @@ export default function Sales() {
 
             {
                 showModal &&
-                <Modal setConfirmExclusion={setConfirmExclusion} />
+                <Modal >
+                    <div className="flex flex-col justify-center h-full w-full text-center">
+                        <p className="font-bold text-3xl px-4">Deseja realmente excluir os dados da venda?</p>
+                    </div>
+
+                    <div className='flex w-full'>
+                        <Button className='bg-gray-500' onClick={() => setConfirmExclusion(false)} >Cancelar</Button>
+                        <Button className='bg-red-500' onClick={() => setConfirmExclusion(true)} >Confirmar</Button>
+                    </div>
+                </Modal>
             }
             {
                 <div className="page w-full flex flex-col ">
@@ -53,8 +62,8 @@ export default function Sales() {
                     <div className='flex-col flex w-full justify-end mt-auto'>
                         <div className='max-w-xl relative w-full mx-auto'>
                             <div className='flex justify-center flex-col h-auto w-full'>
-                                <Button className='bg-green-500 min-w-fit' text='Nova venda' onClick={() => navigate('/produtos')} />
-                                <Button className='bg-red-500 text-red-800' text='Resetar vendas' onClick={() => setShowModal(true)} />
+                                <Button className='bg-green-500 min-w-fit' onClick={() => navigate('/produtos')} >Nova venda</Button>
+                                <Button className='bg-red-500 text-red-800' onClick={() => setShowModal(true)} >Resetar vendas</Button>
                             </div>
                         </div>
                     </div>

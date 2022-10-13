@@ -81,11 +81,11 @@ export default function Orders() {
                         <div className='flex justify-center w-full'>
                             {
                                 payment !== 0 ?
-                                    <Button className='bg-red-500' onClick={() => setPayment(0)} text='Limpar' />
+                                    <Button className='bg-red-500' onClick={() => setPayment(0)} >Voltar</Button>
                                     :
-                                    <Button className='bg-gray-500' onClick={goBack} text='Voltar' />
+                                    <Button className='bg-gray-500' onClick={goBack} >Voltar</Button>
                             }
-                            <Button className='bg-green-500' text='Confirmar' onClick={navigateToHome} />
+                            <Button className='bg-green-500' onClick={navigateToHome}>Confirmar</Button>
                         </div>
                     </div>
                 </div>

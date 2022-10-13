@@ -1,7 +1,7 @@
 .modal {
     height: 100%;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.75);
     top: 0;
     left: 0;
     position: fixed;
@@ -11,16 +11,11 @@
         background-color: white;
         height: 50%;
         width: 80%;
+        max-height: 500px;
         max-width: 500px;
-        border-radius: 1rem;
+        border-radius: .5rem;
         margin: auto;
-        padding: .5rem .25rem;
         overflow: hidden;
 
-        .modal__content--text {
-            font-weight: 700;
-            font-size: 2rem;
-            text-align: center;
-        }
     }
 }

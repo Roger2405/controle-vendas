@@ -1,8 +1,6 @@
 .button {
     padding: 1rem .5rem;
-    border-radius: .5rem;
-    margin: 0 .25rem;
-    margin-bottom: .25rem;
+    //border-radius: .5rem;
     flex-basis: 50%;
     font-size: 1.25rem;
     color: #FFFFFF;
@@ -21,6 +19,5 @@
 
 .button:enabled:hover {
     filter: brightness(125%);
-
     transition: .25s;
 }

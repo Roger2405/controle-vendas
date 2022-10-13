@@ -6,11 +6,11 @@ interface Props extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLIn
     value?: number
 }
 
-export default function Input({ label, disabled, onChange, value }: Props) {
+export default function Input({ label, disabled, onChange, value, type = 'number' }: Props) {
     return (
         <div className='div-input'>
             <label htmlFor="" className='label'>{label}</label>
-            <input onChange={onChange} className='input font-semibold' disabled={disabled} type="number" value={value?.toFixed(2)} />
+            <input onChange={onChange} className={` input font-semibold ${type == 'number' ? 'input-number' : ''}`} disabled={disabled} type={type} value={value?.toFixed(2)} />
         </div>
     )
 }
