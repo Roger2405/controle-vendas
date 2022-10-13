@@ -53,7 +53,7 @@ export default function Print({ sales, total }: Props) {
         <div>
             <div hidden className="absolute bg-white left-0 top-0 sales-print flex flex-col" id="print">
                 <div className='print__info'>
-                    <p>{fieldName}: {fieldValue}</p>
+                    <p>{fieldName ? fieldName + ': ' : ''}{fieldValue}</p>
                     <div className='print__info--date'>
                         <p>{date}</p>
                         <p>{time}</p>
@@ -62,8 +62,7 @@ export default function Print({ sales, total }: Props) {
                 </div>
                 <ListOrderProducts orderProducts={sales} className='' hiddenOverflow={false} />
                 <div className='print__total flex'>
-                    <p>Total: R$</p>
-                    <b>{total.toFixed(2)}</b>
+                    <p>Total: R$<b>{total.toFixed(2)}</b></p>
                 </div>
             </div>
             <div className='controls'>
