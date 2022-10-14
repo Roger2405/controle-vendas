@@ -61,7 +61,7 @@ export default function Print({ sales, total }: Props) {
 
                 </div>
                 <ListOrderProducts orderProducts={sales} className='' hiddenOverflow={false} />
-                <div className='print__total flex'>
+                <div className='print__total'>
                     <p>Total: R$<b>{total.toFixed(2)}</b></p>
                 </div>
             </div>
