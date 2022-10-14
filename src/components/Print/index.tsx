@@ -61,7 +61,7 @@ export default function Print({ sales, total }: Props) {
 
                 </div>
                 <ListOrderProducts orderProducts={sales} className='' hiddenOverflow={false} />
-                <div className='print__total flex w-full'>
+                <div className='print__total flex'>
                     <p>Total: R$<b>{total.toFixed(2)}</b></p>
                 </div>
             </div>
@@ -71,19 +71,19 @@ export default function Print({ sales, total }: Props) {
                     <Modal >
                         <form id='form' action="" className='flex flex-col justify-start h-full py-4 px-2'>
                             <fieldset className='flex flex-col gap-2'>
-                                <div className='flex justify-between uppercase align-middle'>
+                                <div className='flex flex-col uppercase'>
                                     <label htmlFor="field-name">Nome do campo</label>
-                                    <input id='field-name' className='bg-gray-300 basis-1/2' autoFocus onBlur={(e) => setFieldName(e.target.value)} />
+                                    <input id='field-name' className='bg-gray-300' autoFocus onBlur={(e) => setFieldName(e.target.value)} />
                                 </div>
-                                <div className='flex justify-between uppercase align-middle'>
+                                <div className='flex flex-col uppercase'>
                                     <label htmlFor="field-value">Valor do campo</label>
-                                    <input onBlur={(e) => setFieldValue(e.target.value)} id='field-value' className='bg-gray-300  basis-1/2' type='text' />
+                                    <input onBlur={(e) => setFieldValue(e.target.value)} id='field-value' className='bg-gray-300' type='text' />
                                 </div>
                             </fieldset>
 
 
                         </form>
-                        <div className='flex h-16'>
+                        <div className='buttons flex h-16'>
                             <Button onClick={() => setShowForm(false)} className='h-full basis-1/2 bg-gray-500' >Voltar</Button>
                             <Button onClick={(e) => {
                                 e.preventDefault();
@@ -94,9 +94,10 @@ export default function Print({ sales, total }: Props) {
                             </Button>
                         </div>
                     </Modal>
-
                 }
-                <button onClick={() => setShowForm(true)} className='download-button bg-gray-500'><Download size={24} /></button>
+                <button onClick={() => setShowForm(true)} className='download-button bg-white bg-opacity-50'>
+                    <Download size={24} />
+                </button>
 
             </div>
         </div>
