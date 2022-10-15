@@ -184,5 +184,11 @@
         "type": "outros",
         "price": 3.5,
         "id": 31
+    },
+    {
+        "name": "Geleia de Physalis 700g",
+        "type": "geleias-grandes",
+        "price": 14,
+        "id": 32
     }
 ]
