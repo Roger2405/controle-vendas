@@ -74,7 +74,7 @@ export default function Orders() {
 
                 <div className='relative mt-auto'>
                     <div className='max-w-xl h-full relative mt-auto mx-auto'>
-                        {/*<MoneyCards setPayment={setPayment} />*/}
+                        {<MoneyCards setPayment={setPayment} />}
                         <Total sumTotal={total} />
                         <Input label='Total pago:' onChange={(e) => setPayment(parseFloat(e.target.value))} value={payment} />
                         <Input disabled label='Troco:' value={changeMoney} />
