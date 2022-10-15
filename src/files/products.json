@@ -190,5 +190,11 @@
         "type": "geleias-grandes",
         "price": 14,
         "id": 32
+    },
+    {
+        "name": "Geleia de Abóbora 280g",
+        "type": "geleias-pequenas",
+        "price": 9,
+        "id": 33
     }
 ]
