@@ -196,5 +196,17 @@
         "type": "geleias-pequenas",
         "price": 9,
         "id": 33
+    },
+    {
+        "name": "Conserva de Abobrinha GG",
+        "type": "conservas-gg",
+        "price": 50,
+        "id": 34
+    },
+    {
+        "name": "Conserva de Broto de Bambu GG",
+        "type": "conservas-gg",
+        "price": 44,
+        "id": 35
     }
 ]
