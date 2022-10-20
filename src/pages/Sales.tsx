@@ -61,8 +61,8 @@ export default function Sales() {
                     <div className='flex-col flex w-full justify-end mt-auto'>
                         <div className='max-w-xl relative w-full mx-auto'>
                             <div className='flex justify-center flex-col h-auto w-full'>
-                                <Button className='bg-green-500 min-w-fit' onClick={() => navigate('/produtos')} >Nova venda</Button>
-                                <Button className='bg-red-500 text-red-800' onClick={() => setShowModal(true)} >Resetar vendas</Button>
+                                <Button className='green-button min-w-fit' onClick={() => navigate('/produtos')} >Nova venda</Button>
+                                <Button className=' text-red-800' onClick={() => setShowModal(true)} >Resetar vendas</Button>
                             </div>
                         </div>
                     </div>

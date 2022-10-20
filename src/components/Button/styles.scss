@@ -10,6 +10,66 @@
     height: 4rem;
 
     transition: .25s;
+
+    span {
+        z-index: 1;
+        position: relative;
+    }
+
+    &::before {
+        content: '';
+        width: 100%;
+        height: 50%;
+        background-color: black;
+        position: absolute;
+    }
+}
+
+.green-button {
+    background-color: var(--primary);
+}
+
+.red-button {
+    background-color: var(--red);
+}
+
+.gray-button {
+    background-color: var(--gray);
+}
+
+.right {
+    transform: translateY(1rem);
+    border-radius: 0 2rem 2rem 2rem;
+
+    &::before {
+        top: 0;
+        left: 0;
+        border-radius: 0 2rem 0 0;
+        background-image: linear-gradient(45deg, var(--background), var(--primary));
+    }
+}
+
+.left.gray-button {
+    &::before {
+        background-image: linear-gradient(45deg, var(--gray), var(--background));
+    }
+}
+
+.left.red-button {
+    &::before {
+        background-image: linear-gradient(45deg, var(--red), var(--background));
+    }
+}
+
+.left {
+    transform: translateY(-1rem);
+    border-radius: 2rem 2rem 0 2rem;
+
+    &::before {
+        bottom: 0;
+        left: 0;
+        border-radius: 0 0 0 2rem;
+    }
 }
 
 .button:disabled {
@@ -18,6 +78,7 @@
 }
 
 .button:enabled:hover {
-    filter: brightness(125%);
+    //filter: brightness(125%);
+    opacity: .75;
     transition: .25s;
 }

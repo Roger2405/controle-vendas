@@ -15,6 +15,7 @@ import Products from '../components/Products';
 //common functions
 import { getOrderProductsFromLocalStorage, getSumTotal, setOrderProductsToLocalStorage } from '../commons/dataFromLocalStorage';
 import InputSearch from '../components/InputSearch';
+import { ArrowRight } from 'phosphor-react';
 
 
 export default function AddSales() {
@@ -100,15 +101,15 @@ export default function AddSales() {
                     <div className='flex-col flex w-full justify-end bottom-0 mt-auto'>
                         <Total sumTotal={total} />
                         <div className='max-w-xl relative w-full mx-auto'>
-                            <div className='flex justify-center h-auto w-full'>
+                            <div className='flex justify-center align-middle mx-4 h-24'>
                                 {
                                     orderProducts.length === 0 //if doesn't exists any products in the order, the button have the "return previous page" function, else, it clears the order; 
                                         ?
-                                        <><Button className='bg-gray-500' onClick={navigateToHome} >Voltar</Button></>
+                                        <><Button className='red-button left' onClick={navigateToHome} >Voltar</Button></>
                                         :
-                                        <><Button className='bg-red-500' onClick={() => setOrderProducts([])} >Cancelar</Button></>
+                                        <><Button className='red-button left' onClick={() => setOrderProducts([])} >Cancelar</Button></>
                                 }
-                                <Button className='bg-green-500' disabled={orderProducts.length === 0 ? true : false}  onClick={navigateToOrders} >Confirmar</Button>
+                                <Button className='green-button right' disabled={orderProducts.length === 0 ? true : false} onClick={navigateToOrders} >Avançar</Button>
                             </div>
                         </div>
                     </div>
