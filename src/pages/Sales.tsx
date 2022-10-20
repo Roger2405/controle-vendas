@@ -39,7 +39,6 @@ export default function Sales() {
 
     return (
         <main>
-
             {
                 showModal &&
                 <Modal >

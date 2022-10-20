@@ -1,7 +1,8 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, Navigate } from 'react-router-dom';
 import { List, X } from "phosphor-react";
 import './styles.scss';
+
 
 export default function Navigation() {
 
@@ -18,6 +19,9 @@ export default function Navigation() {
                 <Link className="navBar__list--item" to="adicionar-produtos">Adicionar produtos</Link>
                 <Link className="navBar__list--item" to="/">Vendas do dia</Link>
                 <Link className="navBar__list--item" to="">Total de vendas</Link>
+                <button onClick={() => {
+                    localStorage.setItem('user', '');
+                }}><Link reloadDocument to='/'>Sair</Link></button>
             </nav>
         </div>
 

@@ -4,23 +4,26 @@ import Axios from "axios";
 import '../styles/Form.scss';
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Button from "../components/Button";
 
 export default function Register() {
     const [registered, setRegistered] = useState<boolean>();
     const navigate = useNavigate();
 
     const handleRegister = (values: { email: string, password: string }) => {
-        Axios.post("http://localhost:3001/register", {
+        Axios.post("https://server-controle-vendas.herokuapp.com/user/register", {
             email: values.email,
             password: values.password,
         }).then((response) => {
-            setRegistered(response.data.success);
+            if (response.data.success) {
+                navigate('/');
+            }
+            alert(response.data.msg)
         });
     };
 
     useEffect(() => {
         if (registered) {
-            navigate('/');
         }
     }, [registered]);
 
@@ -81,16 +84,16 @@ export default function Register() {
                         />
                     </div>
 
-                    <button className="form-button" type="submit">
+                    <Button className="form-button" type="submit">
                         Cadastrar
-                    </button>
+                    </Button>
                 </Form>
             </Formik>
             <p className="mt-8">Já tem uma conta?</p>
 
-            <button className="form-button" type="submit">
+            <Button className="form-button" type="submit">
                 <Link to={"/"}>Login</Link>
-            </button>
+            </Button>
         </div>
     )
 }

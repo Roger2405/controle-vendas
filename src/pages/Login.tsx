@@ -5,6 +5,7 @@ import Axios from "axios";
 import '../styles/Form.scss';
 import { Link } from "react-router-dom";
 import { getUserFromLocalStorage } from "../commons/userFromLocalStorage";
+import Button from "../components/Button";
 
 interface Props {
     setUser: React.Dispatch<any>
@@ -12,10 +13,11 @@ interface Props {
 
 export default function Login({ setUser }: Props) {
     const handleLogin = (values: { email: string, password: string }) => {
-        Axios.post("http://127.0.0.1:3001/login/", {
+        Axios.post("https://server-controle-vendas.herokuapp.com/user/login/", {
             email: values.email,
             password: values.password,
         }).then((response) => {
+            console.log(response)
             if (response.data.success) {
                 const user = response.data.user;
                 setUser(user);
@@ -48,35 +50,35 @@ export default function Login({ setUser }: Props) {
                 validationSchema={validationsLogin}
             >
                 <Form className="login-form">
-                    <div className="form-group">
-                        <Field name="email" className="form-field" placeholder="Email" />
+                    <fieldset name="LogIn">
+                        <div className="form-group">
+                            <Field name="email" className="form-field" placeholder="Email" />
+                            <ErrorMessage
+                                component="span"
+                                name="email"
+                                className="form-error"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <Field name="password" className="form-field" placeholder="Senha" />
+                            <ErrorMessage
+                                component="span"
+                                name="password"
+                                className="form-error"
+                            />
+                        </div>
+                    </fieldset>
 
-                        <ErrorMessage
-                            component="span"
-                            name="email"
-                            className="form-error"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <Field name="password" className="form-field" placeholder="Senha" />
-
-                        <ErrorMessage
-                            component="span"
-                            name="password"
-                            className="form-error"
-                        />
-                    </div>
-
-                    <button className="form-button" type="submit">
+                    <Button className="form-button" type="submit">
                         Login
-                    </button>
+                    </Button>
                 </Form>
             </Formik>
 
             <p className="mt-8">Ainda não tem uma conta?</p>
-            <button className="form-button" type="submit">
+            <Button className="form-button" type="submit">
                 <Link to={"/registro"}>Cadastro</Link>
-            </button>
+            </Button>
 
         </div>
     );

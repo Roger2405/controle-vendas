@@ -16,15 +16,15 @@ import { getUserFromLocalStorage } from "./commons/userFromLocalStorage";
 
 function App() {
   const [user, setUser] = useState(getUserFromLocalStorage());
-  var [isLogged, setIsLogged] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
 
   useEffect(() => {
-    if (user.length === 0) {//provisorio
+    if (user.length !== 0) {//provisorio
       console.log("User:", user)
       setIsLogged(true)
     }
     console.log(isLogged + user);
-  }, []);
+  }, [user]);
 
 
   return (
