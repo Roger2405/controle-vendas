@@ -14,7 +14,7 @@
         position: relative;
 
         &::after {
-            width: 30%;
+            width: 20%;
             height: 4px;
             background-color: var(--white);
             right: 0;
@@ -24,7 +24,7 @@
         }
 
         &::before {
-            width: 30%;
+            width: 20%;
             height: 4px;
             background-color: var(--white);
             left: 0;

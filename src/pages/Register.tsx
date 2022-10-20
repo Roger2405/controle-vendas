@@ -64,7 +64,7 @@ export default function Register() {
                     </div>
 
                     <div className="form-group">
-                        <Field name="password" className="form-field" placeholder="Senha" />
+                        <Field name="password" type="password" className="form-field" placeholder="Senha" />
 
                         <ErrorMessage
                             component="span"
@@ -78,6 +78,7 @@ export default function Register() {
                             name="confirmation"
                             className="form-field"
                             placeholder="Confirmar senha"
+                            type="password"
                         />
 
                         <ErrorMessage

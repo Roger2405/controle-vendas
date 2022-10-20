@@ -14,6 +14,7 @@ import { getOrderProductsFromLocalStorage, getSumTotal, getSalesFromLocalStorage
 import OrderProductProps from '../types/orderProduct';
 import MoneyCards from '../components/MoneyCard';
 import Print from '../components/Print';
+import { ArrowLeft, Check, X } from 'phosphor-react';
 
 
 export default function Orders() {
@@ -80,11 +81,11 @@ export default function Orders() {
                     <div className='flex h-24'>
                         {
                             payment !== 0 ?
-                                <Button className='red-button left' onClick={() => setPayment(0)} >Voltar</Button>
+                                <Button className='red-button left' onClick={() => setPayment(0)} ><X size={48} />Cancelar</Button>
                                 :
-                                <Button className='gray-button left' onClick={goBack} >Voltar</Button>
+                                <Button className='gray-button left' onClick={goBack} ><ArrowLeft size={48} />Voltar</Button>
                         }
-                        <Button className='green-button right' onClick={navigateToHome}>Confirmar</Button>
+                        <Button className='green-button right' onClick={navigateToHome}>Confirmar<Check size={48} /></Button>
                     </div>
                 </div>
 

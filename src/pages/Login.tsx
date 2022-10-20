@@ -67,7 +67,8 @@ export default function Login({ setUser }: Props) {
                         />
                     </div>
                     <div className="form-group">
-                        <Field name="password" className="form-field" id="password" placeholder="Senha" />
+                        <Field type="password" name="password" className="form-field" id="password" placeholder="Senha" />
+                        
                         <ErrorMessage
                             component="span"
                             name="password"

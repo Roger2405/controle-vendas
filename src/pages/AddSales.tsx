@@ -15,7 +15,7 @@ import Products from '../components/Products';
 //common functions
 import { getOrderProductsFromLocalStorage, getSumTotal, setOrderProductsToLocalStorage } from '../commons/dataFromLocalStorage';
 import InputSearch from '../components/InputSearch';
-import { ArrowRight } from 'phosphor-react';
+import { ArrowLeft, ArrowRight, X } from 'phosphor-react';
 
 
 export default function AddSales() {
@@ -101,15 +101,15 @@ export default function AddSales() {
                     <div className='px-4'>
                         <Total sumTotal={total} />
 
-                        <div className='flex h-24'>
+                        <div className='mt-4 flex h-24'>
                             {
                                 orderProducts.length === 0 //if doesn't exists any products in the order, the button have the "return previous page" function, else, it clears the order; 
                                     ?
-                                    <><Button className='gray-button left' onClick={navigateToHome} >Voltar</Button></>
+                                    <Button className='gray-button left' onClick={navigateToHome} ><ArrowLeft size={48} />Voltar</Button>
                                     :
-                                    <><Button className='red-button left' onClick={() => setOrderProducts([])} >Cancelar</Button></>
+                                    <Button className='red-button left' onClick={() => setOrderProducts([])} ><X size={48} />Cancelar</Button>
                             }
-                            <Button className='green-button right' disabled={orderProducts.length === 0 ? true : false} onClick={navigateToOrders} >Avançar</Button>
+                            <Button className='green-button right' disabled={orderProducts.length === 0 ? true : false} onClick={navigateToOrders} >Avançar<ArrowRight size={48} /></Button>
                         </div>
                     </div>
 
