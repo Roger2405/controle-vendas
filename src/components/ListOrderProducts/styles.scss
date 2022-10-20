@@ -5,17 +5,23 @@
     position: relative;
     padding: .75rem .5rem;
     background-color: var(--secondary);
+    gap: .25rem;
+    color: var(--primary);
 
     .order__item {
-        display: flex;
+        background-color: var(--item-color);
+        border-radius: .5rem;
+        box-shadow: var(--shadow);
+        height: 3rem;
         padding: .5rem;
-        line-height: 2rem;
+        margin-top: .25rem;
+
+        align-items: center;
+        display: flex;
         gap: .5rem;
         justify-content: space-between;
+
         text-transform: uppercase;
-        width: 100%;
-        border-bottom: 1px solid #CCC;
-        height: 3rem;
         overflow: hidden;
 
         .order__item--name {

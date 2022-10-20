@@ -1,38 +1,60 @@
-body:has(.container) {
-    background-image: linear-gradient(45deg, rgb(22, 196, 22), rgb(138, 233, 138));
-}
-
-.container {
-    background-color: white;
-
-    padding: 2rem;
-    margin: auto;
+.form-container {
+    padding: 1rem;
+    box-sizing: border-box;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     max-width: 600px;
     width: calc(100% - 2rem);
+    background-color: var(--item-color);
+    box-shadow: var(--shadow);
+
+    .form-title {
+        position: relative;
+
+        &::after {
+            width: 30%;
+            height: 4px;
+            background-color: var(--white);
+            right: 0;
+            top: 50%;
+            content: '';
+            position: absolute;
+        }
+
+        &::before {
+            width: 30%;
+            height: 4px;
+            background-color: var(--white);
+            left: 0;
+            top: 50%;
+            content: '';
+            position: absolute;
+        }
+    }
+
 
     .form-group {
         margin: 1rem 0;
 
+
         .form-field {
             width: 100%;
-            outline: 1px solid;
-            padding: .5rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+
+            padding: 1rem;
+
+            &:focus {
+                outline: .25rem solid var(--primary);
+            }
         }
 
-        .form-error {
-            color: rgb(214, 55, 55);
-        }
     }
 
-    .form-button {
-        background-color: rgb(83, 189, 74);
-        box-shadow: 0 .25rem .5rem rgba(0, 0, 0, 0.5);
-        color: #FFFFFF;
-        width: 100%;
-        border-radius: .5rem;
-    }
+}
+
+.error-message {
+    color: rgb(214, 55, 55);
 }

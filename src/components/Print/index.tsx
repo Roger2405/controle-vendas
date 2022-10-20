@@ -85,12 +85,11 @@ export default function Print({ sales, total }: Props) {
 
                         </form>
                         <div className='buttons flex h-16'>
-                            <Button onClick={() => setShowForm(false)} className='h-full basis-1/2 bg-gray-500' >Voltar</Button>
+                            <Button onClick={() => setShowForm(false)} className='modal-button gray-button' >Voltar</Button>
                             <Button onClick={(e) => {
                                 e.preventDefault();
                                 GenerateImage();
-
-                            }} className='download-button w-full h-full basis-1/2 bg-green-500'>
+                            }} className='modal-button green-button'>
                                 <Download className='mx-auto relative' color='white' size={24} />
                             </Button>
                         </div>

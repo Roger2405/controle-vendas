@@ -1,15 +1,22 @@
 import React, { ReactNode } from 'react';
+import Loading from '../Loading';
 import './styles.scss';
 interface Props extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
-    children?: ReactNode
+    children?: ReactNode,
+    isLoading?: boolean
 }
 
 
-export default function Button({ className, children, onClick, disabled }: Props) {
+export default function Button({ className, children, onClick, isLoading, disabled }: Props) {
     return (
-        <button onClick={onClick} disabled={disabled} className={`button ${className}`} ><span>
-            {children}
-        </span>
+        <button onClick={onClick} disabled={disabled} className={`button ${className}`} >
+            {
+                isLoading ?
+                    <Loading />
+                    :
+                    <span>{children}</span>
+            }
+
         </button>
     )
 }

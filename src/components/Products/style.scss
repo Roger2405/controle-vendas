@@ -1,7 +1,4 @@
 .productsType {
-    background-color: rgb(255, 255, 255);
-    margin-bottom: .5rem;
-
     .type {
         margin: 0;
         text-transform: uppercase;
@@ -23,7 +20,7 @@
     padding: .5rem;
 
     .product:active {
-        background-color: rgb(23, 190, 79);
+        background-color: var(--primary);
         transition: .25s;
     }
 
@@ -34,7 +31,10 @@
 
     .product {
         align-items: flex-end;
-        //border-radius: 1rem;
+        border-radius: .5rem;
+        box-shadow: var(--shadow);
+
+        background-color: var(--item-color);
 
         display: flex;
         flex-direction: column;
@@ -59,12 +59,13 @@
             padding-right: .25rem;
             z-index: 1;
             text-align: end;
-
         }
 
         .product__price {
             padding: .25rem;
             font-weight: 700;
+            background-color: var(--primary);
+            color: var(--white);
             width: 75%;
             clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%);
         }
@@ -79,6 +80,17 @@
 
         }
 
+    }
+
+    .product-in-the-cart {
+        background-color: var(--primary);
+        color: var(--white);
+
+        //bg-green-500 text-white
+        .product__price {
+            background-color: var(--background);
+            color: var(--dark);
+        }
     }
 
 }

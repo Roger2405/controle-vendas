@@ -29,7 +29,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Header />}>
+      <Route path="/" element={<Header isLogged={isLogged} />}>
         <Route index element={isLogged ? <Sales /> : <Login setUser={setUser} />} />
         <Route path="registro" element={<Register />} />
         <Route path="pedidos" element={<Orders />} />

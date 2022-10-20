@@ -47,24 +47,27 @@ export default function Sales() {
                     </div>
 
                     <div className='flex w-full'>
-                        <Button className='bg-gray-500' onClick={() => setConfirmExclusion(false)} >Cancelar</Button>
-                        <Button className='bg-red-500' onClick={() => setConfirmExclusion(true)} >Confirmar</Button>
+                        <Button className='gray-button modal-button' onClick={() => setConfirmExclusion(false)} >Cancelar</Button>
+                        <Button className='red-button modal-button' onClick={() => setConfirmExclusion(true)} >Confirmar</Button>
                     </div>
                 </Modal>
             }
             {
-                <div className="page w-full flex flex-col ">
+                <div className="page w-full flex flex-col justify-between min-h-full h-max">
 
                     <ListOrderProducts hiddenOverflow={false} orderProducts={sales} className='' />
-                    <Print total={sumTotal} sales={sales} />
-                    <Total sumTotal={sumTotal} />
-                    <div className='flex-col flex w-full justify-end mt-auto'>
-                        <div className='max-w-xl relative w-full mx-auto'>
-                            <div className='flex justify-center flex-col h-auto w-full'>
-                                <Button className='green-button min-w-fit' onClick={() => navigate('/produtos')} >Nova venda</Button>
-                                <Button className=' text-red-800' onClick={() => setShowModal(true)} >Resetar vendas</Button>
+                    <div>
+                        <Print total={sumTotal} sales={sales} />
+                        <Total sumTotal={sumTotal} />
+                        <div className='flex-col flex w-full justify-end mt-auto'>
+                            <div className='max-w-xl relative w-full mx-auto'>
+                                <div className='flex justify-center flex-col h-auto mx-8'>
+                                    <Button className='green-button' onClick={() => navigate('/produtos')} >Nova venda</Button>
+                                    <Button className=' text-red-800' onClick={() => setShowModal(true)} >Resetar vendas</Button>
+                                </div>
                             </div>
                         </div>
+
                     </div>
                     {
                         /*

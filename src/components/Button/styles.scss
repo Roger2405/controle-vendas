@@ -4,24 +4,19 @@
     flex-basis: 50%;
     font-size: 1.25rem;
     color: #FFFFFF;
+    box-shadow: var(--shadow), inset 0 .25rem .5rem rgb(0, 0, 0, 0.25);
     text-transform: uppercase;
     font-weight: 700;
     position: relative;
     height: 4rem;
+    border-radius: 2rem;
+    width: 100%;
 
     transition: .25s;
 
     span {
         z-index: 1;
         position: relative;
-    }
-
-    &::before {
-        content: '';
-        width: 100%;
-        height: 50%;
-        background-color: black;
-        position: absolute;
     }
 }
 
@@ -35,6 +30,17 @@
 
 .gray-button {
     background-color: var(--gray);
+}
+
+.left,
+.right {
+    &::before {
+        content: '';
+        width: 100%;
+        height: 50%;
+        background-color: black;
+        position: absolute;
+    }
 }
 
 .right {
@@ -75,6 +81,11 @@
 .button:disabled {
     background-color: gray;
     color: rgb(158, 158, 158);
+
+    &::before {
+
+        background-image: linear-gradient(45deg, var(--background), var(--gray));
+    }
 }
 
 .button:enabled:hover {

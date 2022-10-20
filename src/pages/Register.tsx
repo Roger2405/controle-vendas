@@ -7,10 +7,13 @@ import { useEffect, useState } from "react";
 import Button from "../components/Button";
 
 export default function Register() {
-    const [registered, setRegistered] = useState<boolean>();
+    const [isLoading, setIsLoading] = useState(false);
+    const [showErrorMsg, setShowErrorMsg] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
     const navigate = useNavigate();
 
     const handleRegister = (values: { email: string, password: string }) => {
+        setIsLoading(true);
         Axios.post("https://server-controle-vendas.herokuapp.com/user/register", {
             email: values.email,
             password: values.password,
@@ -19,13 +22,13 @@ export default function Register() {
                 navigate('/');
             }
             alert(response.data.msg)
+
+            setShowErrorMsg(true);
+            setErrorMsg(response.data.msg);
+
+            setIsLoading(false);
         });
     };
-
-    useEffect(() => {
-        if (registered) {
-        }
-    }, [registered]);
 
     const validationsRegister = yup.object().shape({
         email: yup
@@ -42,8 +45,8 @@ export default function Register() {
             .required("A confirmação da senha é obrigatória"),
     });
     return (
-        <div className="container">
-            <h1>Cadastro</h1>
+        <div className="form-container">
+            <h1 className="form-title title">Cadastro</h1>
             <Formik
                 initialValues={{ email: "", password: "" }}
                 onSubmit={handleRegister}
@@ -56,7 +59,7 @@ export default function Register() {
                         <ErrorMessage
                             component="span"
                             name="email"
-                            className="form-error"
+                            className="error-message"
                         />
                     </div>
 
@@ -66,7 +69,7 @@ export default function Register() {
                         <ErrorMessage
                             component="span"
                             name="password"
-                            className="form-error"
+                            className="error-message"
                         />
                     </div>
 
@@ -80,18 +83,30 @@ export default function Register() {
                         <ErrorMessage
                             component="span"
                             name="confirmation"
-                            className="form-error"
+                            className="error-message"
+                        />
+                    </div>
+                    <div>
+                        <ErrorMessage
+                            component="span"
+                            name="regiter-error"
+                            className="error-message"
                         />
                     </div>
 
-                    <Button className="form-button" type="submit">
+                    <Button isLoading={isLoading} className="green-button" type="submit">
                         Cadastrar
                     </Button>
                 </Form>
             </Formik>
+
+            {
+                showErrorMsg &&
+                <span className='error-message' >{errorMsg}</span>
+            }
             <p className="mt-8">Já tem uma conta?</p>
 
-            <Button className="form-button" type="submit">
+            <Button className="green-button" type="submit">
                 <Link to={"/"}>Login</Link>
             </Button>
         </div>

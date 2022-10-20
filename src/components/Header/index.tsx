@@ -3,11 +3,18 @@ import Navigation from "../Navigation";
 
 import './styles.scss';
 
-export default function Header() {
+interface HeaderProps {
+    isLogged: boolean
+}
+
+export default function Header({ isLogged }: HeaderProps) {
     return (
-        <header className="bg-green-500">
-            <Navigation />
+        <>
+            <header className="header" hidden={!isLogged}>
+                <Navigation />
+            </header>
             <Outlet />
-        </header>
+
+        </>
     )
 }

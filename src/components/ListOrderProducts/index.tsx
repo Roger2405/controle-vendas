@@ -46,7 +46,7 @@ export default function ListProduct({ orderProducts, setOrderProducts, setTotal,
                     let subtotal = product.price * (product.count ? product.count : 1);
                     sumPrices += subtotal;
                     return (
-                        <div key={product.id} className='order__item bg-white' onClick={() => decrementCountProduct(product)}>
+                        <div key={product.id} className='order__item' onClick={() => decrementCountProduct(product)}>
                             <p className='order__item--name'>{product.name}</p>
                             <span className='order__item--count'>{product.count}</span>
                             <p className='order__item--price'><strong>{(subtotal).toFixed(2)}</strong></p>

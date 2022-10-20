@@ -14,14 +14,14 @@ export default function Navigation() {
                 :
                 <List size={48} color='white' />
             }</button>
-            <nav className={`bg-green-500 navBar ${showNav ? '' : 'navBar-inactive'}`} >
+            <nav className={`navBar ${showNav ? '' : 'navBar-inactive'}`} >
                 <Link className="navBar__list--item" to="produtos">Adicionar venda</Link>
                 <Link className="navBar__list--item" to="adicionar-produtos">Adicionar produtos</Link>
                 <Link className="navBar__list--item" to="/">Vendas do dia</Link>
                 <Link className="navBar__list--item" to="">Total de vendas</Link>
-                <button onClick={() => {
+                <Link className="navBar__list--item" onClick={() => {
                     localStorage.setItem('user', '');
-                }}><Link reloadDocument to='/'>Sair</Link></button>
+                }} reloadDocument to='/'>Sair</Link>
             </nav>
         </div>
 

@@ -1,33 +1,34 @@
-$cardsHeight: 75px;
+//$cardsHeight: 75px;
 
 .cards {
     overflow-x: scroll;
     scroll-behavior: smooth;
+    align-items: center;
 
     width: 100%;
-    padding: .5rem;
+    height: 75px;
 
     display: flex;
-    gap: .5rem;
+    gap: .25rem;
 
 
     color: #FFFFFF;
 
     .card {
-        transform:
-            /*skewX(-5deg) skewY(5deg) 
-            scale(.5)*/
-            rotateY(0deg) rotateX(45deg);
 
-        height: $cardsHeight;
+        //@function: auto;
         box-shadow: 0 .25rem .25rem rgba(0, 0, 0, 0.25);
+        background-color: var(--primary);
+        padding: .5rem;
+        height: auto;
 
         .card__text {
-            text-shadow: -2px -1px 0 rgba(0, 0, 0, 0.5);
+            //text-shadow: -2px -1px 0 rgba(0, 0, 0, 0.5);
             margin: auto;
         }
     }
 
+    /*
     .noteCard {
         flex: 0 0 150px;
         border: 5px solid rgb(34, 206, 0);
@@ -44,5 +45,5 @@ $cardsHeight: 75px;
         box-shadow: 0rem .5rem 0 rgba(0, 0, 0, 0.5);
         background-color: rgb(194, 194, 194);
 
-    }
+    }*/
 }

@@ -28,12 +28,12 @@ interface CardProps extends Props {
 function Card({ value, setPayment }: CardProps) {
     return (
         <div onClick={() => setPayment(oldValue => oldValue + value)} className={` ${value <= 1 ? 'coinCard' : 'noteCard'} card flex flex-wrap `}>
-            {
+            {/*
                 value > 1 &&
                 <span className='m-auto text-2xl'>R$</span>
-
+*/
             }
-            <p className='font-semibold card__text text-2xl'>{value.toFixed(2)}</p>
+            <p className='font-semibold card__text text-2xl'>+{value.toFixed(2)}</p>
 
         </div>
 

@@ -51,9 +51,9 @@ export default function Products({ group, orderProducts, setOrderProducts, setTo
                             {group.map(product => {
                                 const productIsInTheCart: boolean = isInTheCart(product.id)
                                 return (
-                                    <div key={product.id} className={`product ${productIsInTheCart ? 'bg-green-500 text-white' : 'bg-gray-200'}`} onClick={() => refreshOrderProducts(product as OrderProductProps)}>
+                                    <div key={product.id} className={`product ${productIsInTheCart && 'product-in-the-cart'}`} onClick={() => refreshOrderProducts(product as OrderProductProps)}>
                                         <h3 className='product__name overflow-hidden'>{product.name}</h3>
-                                        <p className={`product__price text-zinc-700 bg-green-400`}>R$ {product.price.toFixed(2)}</p>
+                                        <p className={`product__price`}>R$ {product.price.toFixed(2)}</p>
                                         {product.imgUrl &&
                                             <img className='product__image bg-neutral-400' src='https://cdn-icons-png.flaticon.com/128/7565/7565160.png' alt="Imagem do produto" />
                                         }

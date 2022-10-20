@@ -3,8 +3,8 @@ import * as yup from "yup";
 import { ErrorMessage, Formik, Form, Field } from "formik";
 import Axios from "axios";
 import '../styles/Form.scss';
+import '../styles/styles.scss';
 import { Link } from "react-router-dom";
-import { getUserFromLocalStorage } from "../commons/userFromLocalStorage";
 import Button from "../components/Button";
 
 interface Props {
@@ -12,7 +12,12 @@ interface Props {
 }
 
 export default function Login({ setUser }: Props) {
+    const [isLoading, setIsLoading] = useState(false);
+    const [showErrorMsg, setShowErrorMsg] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
+
     const handleLogin = (values: { email: string, password: string }) => {
+        setIsLoading(true);
         Axios.post("https://server-controle-vendas.herokuapp.com/user/login/", {
             email: values.email,
             password: values.password,
@@ -23,6 +28,9 @@ export default function Login({ setUser }: Props) {
                 setUser(user);
                 localStorage.setItem('user', JSON.stringify(user));
             }
+            setShowErrorMsg(true);
+            setErrorMsg(response.data.msg);
+            setIsLoading(false);
         });
     };
 
@@ -42,42 +50,43 @@ export default function Login({ setUser }: Props) {
 
 
     return (
-        <div className="container">
-            <h1>Login</h1>
+        <div className="form-container">
+            <h1 className="title form-title">Login</h1>
             <Formik
                 initialValues={{ email: "", password: "" }}
                 onSubmit={handleLogin}
                 validationSchema={validationsLogin}
             >
                 <Form className="login-form">
-                    <fieldset name="LogIn">
-                        <div className="form-group">
-                            <Field name="email" className="form-field" placeholder="Email" />
-                            <ErrorMessage
-                                component="span"
-                                name="email"
-                                className="form-error"
-                            />
-                        </div>
-                        <div className="form-group">
-                            <Field name="password" className="form-field" placeholder="Senha" />
-                            <ErrorMessage
-                                component="span"
-                                name="password"
-                                className="form-error"
-                            />
-                        </div>
-                    </fieldset>
+                    <div className="form-group">
+                        <Field name="email" className="form-field" id="email" placeholder="Email" />
+                        <ErrorMessage
+                            component="span"
+                            name="email"
+                            className="error-message"
+                        />
+                    </div>
+                    <div className="form-group">
+                        <Field name="password" className="form-field" id="password" placeholder="Senha" />
+                        <ErrorMessage
+                            component="span"
+                            name="password"
+                            className="error-message"
+                        />
+                    </div>
 
-                    <Button className="form-button" type="submit">
+                    <Button className="green-button" isLoading={isLoading} type="submit">
                         Login
                     </Button>
                 </Form>
             </Formik>
-
+            {
+                showErrorMsg &&
+                <span className='error-message' >{errorMsg}</span>
+            }
             <p className="mt-8">Ainda não tem uma conta?</p>
-            <Button className="form-button" type="submit">
-                <Link to={"/registro"}>Cadastro</Link>
+            <Button className="green-button" type="submit">
+                <Link to={"/registro"}>Cadastrar-se</Link>
             </Button>
 
         </div>

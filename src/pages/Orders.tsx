@@ -66,27 +66,25 @@ export default function Orders() {
 
     return (
         <main>
-            <section className='page flex flex-col h-full'>
+            <section className='page flex flex-col h-full w-full align-middle'>
                 <Print sales={cartProducts} mustIncludeInput total={total} />
-
                 <h1 className='title'>Resumo</h1>
                 <ListOrderProducts hiddenOverflow orderProducts={cartProducts} className='' />
 
-                <div className='relative mt-auto'>
-                    <div className='max-w-xl h-full relative mt-auto mx-auto'>
-                        {<MoneyCards setPayment={setPayment} />}
-                        <Total sumTotal={total} />
-                        <Input label='Total pago:' onChange={(e) => setPayment(parseFloat(e.target.value))} value={payment} />
-                        <Input disabled label='Troco:' value={changeMoney} />
-                        <div className='flex justify-center w-full'>
-                            {
-                                payment !== 0 ?
-                                    <Button className='red-button left' onClick={() => setPayment(0)} >Voltar</Button>
-                                    :
-                                    <Button className='gray-button left' onClick={goBack} >Voltar</Button>
-                            }
-                            <Button className='green-button right' onClick={navigateToHome}>Confirmar</Button>
-                        </div>
+
+                <div className='max-w-xl w-full mx-auto mt-auto px-4 '>
+                    {<MoneyCards setPayment={setPayment} />}
+                    <Total sumTotal={total} />
+                    <Input label='Total pago:' onChange={(e) => setPayment(parseFloat(e.target.value))} value={payment} />
+                    <Input disabled label='Troco:' value={changeMoney} />
+                    <div className='flex h-24'>
+                        {
+                            payment !== 0 ?
+                                <Button className='red-button left' onClick={() => setPayment(0)} >Voltar</Button>
+                                :
+                                <Button className='gray-button left' onClick={goBack} >Voltar</Button>
+                        }
+                        <Button className='green-button right' onClick={navigateToHome}>Confirmar</Button>
                     </div>
                 </div>
 

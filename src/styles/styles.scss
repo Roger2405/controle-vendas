@@ -1,11 +1,20 @@
 $headerHeigth: 4rem;
 
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
 :root {
     --background: #CAEFB7;
     --primary: #579853;
     --red: #E55454;
     --gray: #8F8F8F;
-    --secondary: #CCCCCC;
+    --item-color: #E5F7DB;
+    --white: #FFFFFF;
+    --dark: #000000;
+
+    --shadow: 0 .25rem .25rem #00000022;
+    //--secondary: #CCCCCC;
 }
 
 * {
@@ -17,15 +26,17 @@ body {
     height: 100vh;
     z-index: 0;
     width: 100vw;
+    background-color: var(--background);
 }
 
 main {
     height: calc(100vh - $headerHeigth);
-    background-color: var(--background);
 }
 
 .title {
-    font-size: 1.5rem;
+    font-size: 2rem;
+    color: var(--white);
+    text-shadow: var(--shadow);
     font-weight: 700;
     text-transform: uppercase;
     text-align: center;

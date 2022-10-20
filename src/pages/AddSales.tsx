@@ -96,21 +96,20 @@ export default function AddSales() {
                         })
                     }
                 </section>
-                <section className='order-section flex flex-col bg-white h-full'>
+                <section className='order-section flex flex-col justify-between max-w-xl mx-auto'>
                     <ListOrderProducts hiddenOverflow orderProducts={orderProducts} setTotal={setTotal} setOrderProducts={setOrderProducts} />
-                    <div className='flex-col flex w-full justify-end bottom-0 mt-auto'>
+                    <div className='px-4'>
                         <Total sumTotal={total} />
-                        <div className='max-w-xl relative w-full mx-auto'>
-                            <div className='flex justify-center align-middle mx-4 h-24'>
-                                {
-                                    orderProducts.length === 0 //if doesn't exists any products in the order, the button have the "return previous page" function, else, it clears the order; 
-                                        ?
-                                        <><Button className='red-button left' onClick={navigateToHome} >Voltar</Button></>
-                                        :
-                                        <><Button className='red-button left' onClick={() => setOrderProducts([])} >Cancelar</Button></>
-                                }
-                                <Button className='green-button right' disabled={orderProducts.length === 0 ? true : false} onClick={navigateToOrders} >Avançar</Button>
-                            </div>
+
+                        <div className='flex h-24'>
+                            {
+                                orderProducts.length === 0 //if doesn't exists any products in the order, the button have the "return previous page" function, else, it clears the order; 
+                                    ?
+                                    <><Button className='gray-button left' onClick={navigateToHome} >Voltar</Button></>
+                                    :
+                                    <><Button className='red-button left' onClick={() => setOrderProducts([])} >Cancelar</Button></>
+                            }
+                            <Button className='green-button right' disabled={orderProducts.length === 0 ? true : false} onClick={navigateToOrders} >Avançar</Button>
                         </div>
                     </div>
 

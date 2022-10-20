@@ -1,9 +1,4 @@
-.download-button {
-    padding: .75rem;
-    min-width: 50px;
-    min-height: 50px;
-    border-radius: .5rem;
-}
+
 
 .controls {
     position: absolute;
@@ -11,10 +6,7 @@
     right: 0;
     display: flex;
 
-    .buttons .download-button {
-        border-radius: 0;
-    }
-
+    
     input {
         padding: .75rem;
         margin-right: .125rem;
