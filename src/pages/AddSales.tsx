@@ -16,14 +16,14 @@ import Products from '../components/Products';
 import { getOrderProductsFromLocalStorage, getSumTotal, setOrderProductsToLocalStorage } from '../commons/dataFromLocalStorage';
 import InputSearch from '../components/InputSearch';
 import { ArrowLeft, ArrowRight, X } from 'phosphor-react';
+import { getProducts } from '../commons/getProductsFromDataBase';
+import { getUserFromLocalStorage } from '../commons/userFromLocalStorage';
 
 
 export default function AddSales() {
+    //var productsFromDB = ;
+    //console.log("", productsFromDB);
 
-    const productsArr = Array.from(productsJson);
-
-    var arrayProductsGrouped: ProductProps[][] = [];
-    var productsTypes: string[] = [];
 
     /*const user = localStorage.getItem('user');
     var jsonUser;
@@ -31,31 +31,47 @@ export default function AddSales() {
         jsonUser = JSON.parse(user);
 
     }
-*/
+    */
     var arrFilter = [];
 
 
     const navigate = useNavigate();
     const [orderProducts, setOrderProducts] = useState<OrderProduct[]>(getOrderProductsFromLocalStorage());
     const [inputValue, setInputValue] = useState<string>('');
-    const [arrFiltered, setArrFiltered] = useState<ProductProps[][]>(arrayProductsGrouped);
     const [total, setTotal] = useState<number>(getSumTotal(orderProducts));
+    const [arrFiltered, setArrFiltered] = useState<ProductProps[][]>([]);
 
-    if (productsArr) {
-        productsArr.forEach(productsArr => {
-            if (productsTypes.includes(productsArr.type)) {
-                return;
-            }
-            productsTypes.push(productsArr.type);
-        });
-        for (var i = 0; i < productsTypes.length; i++) {
-            let arr = productsArr.filter(product => product.type === productsTypes[i]);
-            arrayProductsGrouped.push(arr);
-            if (i > 50) {
-                break;
-            }
-        }
+    var productsArr: ProductProps[];
+    var productsTypes: string[] = [];
+    var arrayProductsGrouped: ProductProps[][] = [];
+
+    async function getArrayOfProducts() {
+        let arrProducts = await getProducts(getUserFromLocalStorage().id)
+        return arrProducts;
     }
+    useEffect(() => {
+        getArrayOfProducts()
+            .then(response => {
+                productsArr = response;
+                productsArr.forEach(product => {
+                    if (productsTypes.includes(product.type)) {
+                        return;
+                    }
+                    productsTypes.push(product.type);
+                });
+                for (var i = 0; i < productsTypes.length; i++) {
+                    let arr = productsArr.filter(product => product.type === productsTypes[i]);
+                    arrayProductsGrouped.push(arr);
+
+                    if (i > 50) {//watch dog
+                        break;
+                    }
+                }
+
+                setArrFiltered(arrayProductsGrouped);
+            });
+
+    }, [])
     //updates the search when the inputValue is update
     useEffect(() => {
         const regex = new RegExp(inputValue.toString().toLowerCase());
@@ -74,6 +90,10 @@ export default function AddSales() {
         setOrderProductsToLocalStorage(orderProducts);
     }, [orderProducts]);
 
+
+
+
+
     function navigateToOrders() {
         navigate('/pedidos');
     }
@@ -87,7 +107,7 @@ export default function AddSales() {
             <main className=' main-home'>
 
                 <section className='products-section relative px-2 py-4'>
-                    <InputSearch setInputValue={setInputValue} />
+                    {/*<InputSearch setInputValue={setInputValue} />*/}
                     {
                         arrFiltered.map(group => {
                             return (

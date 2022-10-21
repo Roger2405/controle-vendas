@@ -20,10 +20,8 @@ function App() {
 
   useEffect(() => {
     if (user.length !== 0) {//provisorio
-      console.log("User:", user)
       setIsLogged(true)
     }
-    console.log(isLogged + user);
   }, [user]);
 
 
