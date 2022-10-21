@@ -29,7 +29,7 @@ export default function ListProduct({ orderProducts, setOrderProducts, setTotal,
             }
         }
         if (setTotal) {
-            setTotal(total => total - cartProduct.price)
+            setTotal(total => total - cartProduct.price_product)
         }
     }
     var sumPrices: number = 0;
@@ -43,11 +43,11 @@ export default function ListProduct({ orderProducts, setOrderProducts, setTotal,
             </div>
             {
                 orderProducts.map(product => {
-                    let subtotal = product.price * (product.count ? product.count : 1);
+                    let subtotal = product.price_product * (product.count ? product.count : 1);
                     sumPrices += subtotal;
                     return (
                         <div key={product.id} className='order__item' onClick={() => decrementCountProduct(product)}>
-                            <p className='order__item--name'>{product.name}</p>
+                            <p className='order__item--name'>{product.name_product}</p>
                             <span className='order__item--count'>{product.count}</span>
                             <p className='order__item--price'><strong>{(subtotal).toFixed(2)}</strong></p>
 

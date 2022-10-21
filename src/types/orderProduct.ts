@@ -1,8 +1,8 @@
 
 export default interface OrderProduct {
-    name: string,
+    name_product: string,
     count: number,
-    type: string,
-    price: number,
+    type_product: string,
+    price_product: number,
     id: number
 }

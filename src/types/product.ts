@@ -1,7 +1,7 @@
 export default interface ProductProps {
-    name: string,
+    name_product: string,
     imgUrl?: string,
-    type: string,
-    price: number,
+    type_product: string,
+    price_product: number,
     id: number
 }

@@ -20,7 +20,7 @@ export function removeOrderProductsFromLocalStorage() {
 export function getSumTotal(obj: CartProduct[]) {
     let sum = 0;
     obj.forEach(cartProduct => {
-        sum += (cartProduct.price * cartProduct.count);
+        sum += (cartProduct.price_product * cartProduct.count);
     });
     return sum;
 }

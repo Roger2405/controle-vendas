@@ -23,7 +23,7 @@ export default function Products({ group, orderProducts, setOrderProducts, setTo
             orderProducts.splice(index, 1);
 
         }
-        setTotal(total => total + product.price);
+        setTotal(total => total + product.price_product);
         setOrderProducts(oldProducts => [...oldProducts, product]);
 
     }
@@ -44,7 +44,7 @@ export default function Products({ group, orderProducts, setOrderProducts, setTo
             {
                 group[0] !== undefined &&
                 <div className='productsType'>
-                    <h2 className='type mt-2'>{group[0].type}</h2>
+                    <h2 className='type mt-2'>{group[0].type_product}</h2>
 
                     <div className='productsContainer pb-4'>
                         <div className='products'>
@@ -52,8 +52,8 @@ export default function Products({ group, orderProducts, setOrderProducts, setTo
                                 const productIsInTheCart: boolean = isInTheCart(product.id)
                                 return (
                                     <div key={product.id} className={`product ${productIsInTheCart && 'product-in-the-cart'}`} onClick={() => refreshOrderProducts(product as OrderProductProps)}>
-                                        <h3 className='product__name overflow-hidden'>{product.name}</h3>
-                                        <p className={`product__price`}>R$ {product.price.toFixed(2)}</p>
+                                        <h3 className='product__name overflow-hidden'>{product.name_product}</h3>
+                                        <p className={`product__price`}>R$ {product.price_product.toFixed(2)}</p>
                                         {product.imgUrl &&
                                             <img className='product__image bg-neutral-400' src='https://cdn-icons-png.flaticon.com/128/7565/7565160.png' alt="Imagem do produto" />
                                         }

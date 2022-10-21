@@ -22,7 +22,7 @@ export default function Sales() {
 
     let sumTotal: number = 0;
     sales.map(product => {
-        sumTotal += (product.count * product.price);
+        sumTotal += (product.count * product.price_product);
     })
 
     useEffect(() => {

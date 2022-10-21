@@ -54,13 +54,13 @@ export default function AddSales() {
             .then(response => {
                 productsArr = response;
                 productsArr.forEach(product => {
-                    if (productsTypes.includes(product.type)) {
+                    if (productsTypes.includes(product.type_product)) {
                         return;
                     }
-                    productsTypes.push(product.type);
+                    productsTypes.push(product.type_product);
                 });
                 for (var i = 0; i < productsTypes.length; i++) {
-                    let arr = productsArr.filter(product => product.type === productsTypes[i]);
+                    let arr = productsArr.filter(product => product.type_product === productsTypes[i]);
                     arrayProductsGrouped.push(arr);
 
                     if (i > 50) {//watch dog
@@ -78,8 +78,8 @@ export default function AddSales() {
 
         arrFilter = [];
         for (var i = 0; i < productsTypes.length; i++) {
-            let arr = productsArr.filter(product => product.type === productsTypes[i]);
-            arr = arr.filter(product => regex.test(product.name.toLowerCase()));
+            let arr = productsArr.filter(product => product.type_product === productsTypes[i]);
+            arr = arr.filter(product => regex.test(product.name_product.toLowerCase()));
             arrFilter.push(arr);
         }
         setArrFiltered(arrFilter);
@@ -111,7 +111,7 @@ export default function AddSales() {
                     {
                         arrFiltered.map(group => {
                             return (
-                                <Products key={group[0]?.type} group={group} orderProducts={orderProducts} setTotal={setTotal} total={total} setOrderProducts={setOrderProducts} />
+                                <Products key={group[0]?.type_product} group={group} orderProducts={orderProducts} setTotal={setTotal} total={total} setOrderProducts={setOrderProducts} />
                             )
                         })
                     }
