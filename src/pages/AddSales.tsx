@@ -8,15 +8,15 @@ import { useNavigate } from 'react-router-dom';
 import ProductProps from '../types/product';
 import OrderProduct from '../types/orderProduct';
 //components
-import ListOrderProducts from '../components/ListOrderProducts';
+import ListOrderProducts from '../components/OrderProducts';
 import Total from '../components/Total';
 import Button from '../components/Button';
-import Products from '../components/Products';
+import Products from '../components/ProductsGrid';
 //common functions
 import { getOrderProductsFromLocalStorage, getSumTotal, setOrderProductsToLocalStorage } from '../commons/dataFromLocalStorage';
 import InputSearch from '../components/InputSearch';
 import { ArrowLeft, ArrowRight, X } from 'phosphor-react';
-import { getProducts } from '../commons/getProductsFromDataBase';
+import { getGroupedProducts, getProductsFromDB } from '../commons/getProductsFromDataBase';
 import { getUserFromLocalStorage } from '../commons/userFromLocalStorage';
 
 
@@ -45,34 +45,17 @@ export default function AddSales() {
     var productsTypes: string[] = [];
     var arrayProductsGrouped: ProductProps[][] = [];
 
-    async function getArrayOfProducts() {
-        let arrProducts = await getProducts(getUserFromLocalStorage().id)
-        return arrProducts;
-    }
+
     useEffect(() => {
-        getArrayOfProducts()
-            .then(response => {
-                productsArr = response;
-                productsArr.forEach(product => {
-                    if (productsTypes.includes(product.type_product)) {
-                        return;
-                    }
-                    productsTypes.push(product.type_product);
-                });
-                for (var i = 0; i < productsTypes.length; i++) {
-                    let arr = productsArr.filter(product => product.type_product === productsTypes[i]);
-                    arrayProductsGrouped.push(arr);
-
-                    if (i > 50) {//watch dog
-                        break;
-                    }
-                }
-
-                setArrFiltered(arrayProductsGrouped);
-            });
-
-    }, [])
+        getGroupedProducts().then(
+            groupedProducts => {
+                setArrFiltered(groupedProducts);
+            }
+        )
+    }, []);
+    console.log(arrFiltered)
     //updates the search when the inputValue is update
+    /*
     useEffect(() => {
         const regex = new RegExp(inputValue.toString().toLowerCase());
 
@@ -84,6 +67,7 @@ export default function AddSales() {
         }
         setArrFiltered(arrFilter);
     }, [inputValue]);
+    */
 
     useEffect(() => {
         setTotal(getSumTotal(orderProducts));
@@ -95,7 +79,7 @@ export default function AddSales() {
 
 
     function navigateToOrders() {
-        navigate('/pedidos');
+        navigate('/resumo');
     }
     function navigateToHome() {
         navigate('/');

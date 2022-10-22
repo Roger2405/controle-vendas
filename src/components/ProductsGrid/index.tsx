@@ -11,7 +11,7 @@ interface Props {
     total: number,
     setTotal: React.Dispatch<React.SetStateAction<number>>
 }
-export default function Products({ group, orderProducts, setOrderProducts, setTotal }: Props) {
+export default function ProductsGrid({ group, orderProducts, setOrderProducts, setTotal }: Props) {
     function refreshOrderProducts(product: OrderProductProps) {
 
         if (!isInTheCart(product.id)) {

@@ -5,7 +5,7 @@ import '../styles/Orders.scss';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 //components
-import ListOrderProducts from '../components/ListOrderProducts';
+import ListOrderProducts from '../components/OrderProducts';
 import Total from '../components/Total';
 import Input from '../components/Input';
 import Button from "../components/Button";

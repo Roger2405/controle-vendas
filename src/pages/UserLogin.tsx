@@ -2,7 +2,7 @@ import { useState } from "react";
 import * as yup from "yup";
 import { ErrorMessage, Formik, Form, Field } from "formik";
 import Axios from "axios";
-import '../styles/Form.scss';
+import '../styles/AuthForm.scss';
 import '../styles/styles.scss';
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
@@ -11,7 +11,7 @@ interface Props {
     setUser: React.Dispatch<any>
 }
 
-export default function Login({ setUser }: Props) {
+export default function UserLogin({ setUser }: Props) {
     const [isLoading, setIsLoading] = useState(false);
     const [showErrorMsg, setShowErrorMsg] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
@@ -50,7 +50,7 @@ export default function Login({ setUser }: Props) {
 
 
     return (
-        <div className="form-container">
+        <div className="auth-form-container">
             <h1 className="title form-title">Login</h1>
             <Formik
                 initialValues={{ email: "", password: "" }}
@@ -87,7 +87,7 @@ export default function Login({ setUser }: Props) {
             }
             <p className="mt-8">Ainda não tem uma conta?</p>
             <Button className="green-button" type="submit">
-                <Link to={"/registro"}>Cadastrar-se</Link>
+                <Link to={"/cadastro"}>Cadastrar-se</Link>
             </Button>
 
         </div>

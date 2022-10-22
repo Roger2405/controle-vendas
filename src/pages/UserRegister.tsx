@@ -1,12 +1,12 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as yup from "yup";
 import Axios from "axios";
-import '../styles/Form.scss';
+import '../styles/AuthForm.scss';
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Button from "../components/Button";
 
-export default function Register() {
+export default function UserRegister() {
     const [isLoading, setIsLoading] = useState(false);
     const [showErrorMsg, setShowErrorMsg] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
@@ -45,7 +45,7 @@ export default function Register() {
             .required("A confirmação da senha é obrigatória"),
     });
     return (
-        <div className="form-container">
+        <div className="auth-form-container">
             <h1 className="form-title title">Cadastro</h1>
             <Formik
                 initialValues={{ email: "", password: "" }}

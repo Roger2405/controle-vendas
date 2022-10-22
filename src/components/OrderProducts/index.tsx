@@ -3,14 +3,14 @@ import OrderProduct from "../../types/orderProduct";
 
 
 interface Props extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
-    orderProducts: OrderProduct[],
+    orderProducts: any[],
     setOrderProducts?: React.Dispatch<React.SetStateAction<OrderProduct[]>>
     setTotal?: React.Dispatch<React.SetStateAction<number>>,
     hiddenOverflow: boolean,
     children?: React.ReactNode
 }
 
-export default function ListProduct({ orderProducts, setOrderProducts, setTotal, hiddenOverflow, className, children }: Props) {
+export default function OrderProducts({ orderProducts, setOrderProducts, setTotal, hiddenOverflow, className, children }: Props) {
     orderProducts.sort((a, b) => {
         return a.id - b.id;
     })
@@ -48,7 +48,10 @@ export default function ListProduct({ orderProducts, setOrderProducts, setTotal,
                     return (
                         <div key={product.id} className='order__item' onClick={() => decrementCountProduct(product)}>
                             <p className='order__item--name'>{product.name_product}</p>
-                            <span className='order__item--count'>{product.count}</span>
+                            {
+                                product.count &&
+                                <span className='order__item--count'>{product.count}</span>
+                            }
                             <p className='order__item--price'><strong>{(subtotal).toFixed(2)}</strong></p>
 
                         </div>

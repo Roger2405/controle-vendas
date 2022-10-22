@@ -1,0 +1,38 @@
+.productForm-container {
+
+    .productForm {
+        max-width: 500px;
+        margin: auto;
+        padding: 1rem;
+
+
+        &__group {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+            margin-top: .5rem;
+
+            &--label {
+                text-transform: uppercase;
+                font-weight: 700;
+                color: var(--primary);
+
+            }
+
+            &--input {
+                padding: .5rem;
+                border-radius: .5rem;
+                background-color: var(--item-color);
+                border: .125rem solid var(--primary);
+                color: var(--primary);
+                width: 70%;
+
+                &::placeholder {
+                    color: var(--primary);
+                    font-size: .75rem;
+                }
+            }
+        }
+    }
+
+}

@@ -5,7 +5,7 @@ import { ReactNode, useState } from 'react';
 import OrderProduct from '../../types/orderProduct';
 import Button from '../Button';
 import Input from '../Input';
-import ListOrderProducts from '../ListOrderProducts';
+import ListOrderProducts from '../OrderProducts';
 import Modal from '../Modal';
 import Total from '../Total';
 import './styles.scss';

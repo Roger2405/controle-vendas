@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import ListOrderProducts from "../components/ListOrderProducts";
+import ListOrderProducts from "../components/OrderProducts";
 import Button from "../components/Button";
 import Total from "../components/Total";
 import Modal from "../components/Modal";
@@ -9,7 +9,7 @@ import Modal from "../components/Modal";
 import { getSalesFromLocalStorage, setSalesInLocalStorage } from '../commons/dataFromLocalStorage';
 import Print from "../components/Print";
 
-export default function Sales() {
+export default function SalesOfTheDay() {
     const navigate = useNavigate();
 
     var salesFromLocalStorage = getSalesFromLocalStorage();
@@ -54,7 +54,6 @@ export default function Sales() {
             }
             {
                 <div className="page w-full flex flex-col justify-between min-h-full h-max">
-
                     <ListOrderProducts hiddenOverflow={false} orderProducts={sales} className='' />
                     <div>
                         <Print total={sumTotal} sales={sales} />
@@ -62,24 +61,12 @@ export default function Sales() {
                         <div className='flex-col flex w-full justify-end mt-auto'>
                             <div className='max-w-xl relative w-full mx-auto'>
                                 <div className='flex justify-center flex-col h-auto mx-8'>
-                                    <Button className='green-button' onClick={() => navigate('/produtos')} >Nova venda</Button>
+                                    <Button className='green-button' onClick={() => navigate('/adicionar-venda')} >Nova venda</Button>
                                     <Button className=' text-red-800' onClick={() => setShowModal(true)} >Resetar vendas</Button>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                    {
-                        /*
-                    <Total sumTotal={sumTotal} />
-                    <div className='flex flex-col justify-end align-middle gap-0 w-full max-w-xl mx-auto'>
-                        <Button className='bg-red-500 text-red-800' text='Resetar vendas' onClick={() => setShowModal(true)} />
-                        <Button className='bg-green-500 min-w-fit' text='Nova venda' onClick={() => navigate('/produtos')} />
-                    </div>
-*/
-                    }
-
-
                 </div>
             }
 

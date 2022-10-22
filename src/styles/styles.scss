@@ -30,7 +30,6 @@ body {
 }
 
 main {
-    height: calc(100vh - $headerHeigth);
 }
 
 .title {
@@ -44,6 +43,7 @@ main {
 
 
 .page {
+    height: calc(100vh - $headerHeigth);
     background-color: var(--background);
 }
 
