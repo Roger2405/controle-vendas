@@ -29,7 +29,7 @@ export default function ProductsPage() {
 
             </div>
             <div className='flex justify-center w-full fixed bottom-0 mb-2 flex-col h-auto px-8'>
-                <Button className='green-button' onClick={() => navigate('/adicionar-venda')} >Adicionar produto</Button>
+                <Button className='green-button' onClick={() => navigate('/adicionar-produto')} >Adicionar produto</Button>
             </div>
 
         </div>
