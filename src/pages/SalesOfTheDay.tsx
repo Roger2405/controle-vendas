@@ -58,7 +58,7 @@ export default function SalesOfTheDay() {
                     <div>
                         <Print total={sumTotal} sales={sales} />
                         <Total sumTotal={sumTotal} />
-                        <div className='flex-col flex w-full justify-end mt-auto'>
+                        <div className='flex-col mb-2 flex w-full justify-end mt-auto'>
                             <div className='max-w-xl relative w-full mx-auto'>
                                 <div className='flex justify-center flex-col h-auto mx-8'>
                                     <Button className='green-button' onClick={() => navigate('/adicionar-venda')} >Nova venda</Button>
