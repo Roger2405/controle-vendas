@@ -23,8 +23,10 @@ export default function ProductsPage() {
         <div>
             <div className="pb-40">
                 {
-                    arrProducts.length !== 0 &&
+                    arrProducts.length !== 0 ?
                     <OrderProducts hiddenOverflow={false} orderProducts={arrProducts} />
+:
+<p>Não há produtos cadastrados</p>
                 }
 
             </div>
