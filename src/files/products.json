@@ -1,40 +1,5 @@
 [
-    {
-        "name": "Pepino Agridoce",
-        "type": "conservas-grandes",
-        "price": 8,
-        "id": 1
-    },
-    {
-        "name": "Conserva de Pepino",
-        "type": "conservas-grandes",
-        "price": 7,
-        "id": 2
-    },
-    {
-        "name": "Conserva de Broto de Bambu",
-        "type": "conservas-grandes",
-        "price": 8.5,
-        "id": 3
-    },
-    {
-        "name": "Conserva de Páprica",
-        "type": "conservas-grandes",
-        "price": 10,
-        "id": 4
-    },
-    {
-        "name": "Conserva de Biquinho P",
-        "type": "conservas-pequenas",
-        "price": 7,
-        "id": 5
-    },
-    {
-        "name": "Conserva de Dedo de Moça P",
-        "type": "conservas-pequenas",
-        "price": 7,
-        "id": 6
-    },
+    
     {
         "name": "Geleia de Guavirova 700g",
         "type": "geleias-grandes",

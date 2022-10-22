@@ -1,3 +1,29 @@
+.navigation {
+    padding: 1rem .5rem 0;
+    height: 100%;
+
+    .link {
+        border-radius: 1rem 1rem 0 0;
+        flex-basis: 50%;
+        height: 100%;
+        background-color: var(--primary);
+        color: var(--background);
+
+        text-align: center;
+        line-height: 3rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 1.25rem;
+    }
+
+    .active {
+        background-color: var(--background);
+        color: var(--primary);
+    }
+
+}
+
+
 .navBar {
     position: absolute;
     background-color: var(--primary);

@@ -4,7 +4,6 @@ import { getUserFromLocalStorage } from "./userFromLocalStorage";
 
 export async function getProductsFromDB() {
     let idUser = getUserFromLocalStorage().id;
-    console.log("idUser in getProducts():", idUser)
     const arrProducts = await Axios.get(`https://server-controle-vendas.herokuapp.com/products?id=${idUser}`)
         .then((response) => {
             //if (response.data.success) {
