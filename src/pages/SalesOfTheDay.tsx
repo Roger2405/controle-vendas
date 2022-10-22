@@ -62,7 +62,7 @@ export default function SalesOfTheDay() {
                             <div className='max-w-xl relative w-full mx-auto'>
                                 <div className='flex justify-center flex-col h-auto mx-8'>
                                     <Button className='green-button' onClick={() => navigate('/adicionar-venda')} >Nova venda</Button>
-                                    <Button className=' text-red-800' onClick={() => setShowModal(true)} >Resetar vendas</Button>
+                                    {/*<Button className=' text-red-800' onClick={() => setShowModal(true)} >Resetar vendas</Button>*/}
                                 </div>
                             </div>
                         </div>
