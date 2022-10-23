@@ -17,6 +17,7 @@ import { ArrowLeft, ArrowRight, X } from 'phosphor-react';
 import { getGroupedProducts, getProductsFromDB } from '../commons/getProductsFromDataBase';
 import { getUserFromLocalStorage } from '../commons/userFromLocalStorage';
 import Summary from '../components/Summary';
+import Loading from '../components/Loading';
 
 
 export default function AddSales() {
@@ -78,14 +79,13 @@ export default function AddSales() {
         navigate('/');
     }
 
-
     return (
         <div className='page'>
             <main className='main-addSale'>
                 {
                     !showSummary ?
                         <>
-                            <section className='products-section page px-2 py-4'>
+                            <section className='products-section px-2 py-4'>
                                 {/*<InputSearch setInputValue={setInputValue} />*/}
                                 {
                                     arrFiltered.length > 0 ?
@@ -95,7 +95,7 @@ export default function AddSales() {
                                             )
                                         })
                                         :
-                                        <p>Não há produtos a serem listados</p>
+                                        <Loading dark />
                                 }
                             </section>
                             <section className='order-section flex flex-col justify-between'>

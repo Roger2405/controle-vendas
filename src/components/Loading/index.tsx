@@ -1,11 +1,15 @@
 import './styles.scss';
 
-export default function Loading() {
+interface Props {
+    dark?: boolean
+}
+
+export default function Loading({ dark }: Props) {
     return (
         <div className="loading">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span className={`${dark ? 'dark' : ''}`}></span>
+            <span className={`${dark ? 'dark' : ''}`}></span>
+            <span className={`${dark ? 'dark' : ''}`}></span>
         </div>
     )
 }

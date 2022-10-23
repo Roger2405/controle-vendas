@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getProductsFromDB } from "../commons/getProductsFromDataBase";
 import Button from "../components/Button";
+import Loading from "../components/Loading";
 import OrderProducts from "../components/OrderProducts";
 import ListProduct from "../components/OrderProducts";
 import OrderProduct from "../types/orderProduct";
@@ -21,20 +22,20 @@ export default function ProductsPage() {
         )
     }, [])
     return (
-        <div>
-            <div className="pb-40">
+        <main className="">
+            <div className="pb-40 min-h-full">
                 {
                     arrProducts?.length ?
                         <OrderProducts hiddenOverflow={false} orderProducts={arrProducts} />
                         :
-                        <p>Não há produtos a serem listados</p>
+                        <Loading dark />
                 }
 
             </div>
-            <div className='flex justify-center w-full fixed bottom-0 mb-2 flex-col h-auto px-8'>
+            <div className='max-w-xl fixed bottom-4 px-4 w-full'>
                 <Button className='green-button' onClick={() => navigate('/adicionar-produto')} >Adicionar produto</Button>
             </div>
 
-        </div>
+        </main>
     )
 }

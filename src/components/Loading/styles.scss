@@ -21,7 +21,9 @@
         animation-duration: .75s;
 
 
-
+        &.dark {
+            background-color: var(--primary);
+        }
     }
 
     :nth-child(1) {
