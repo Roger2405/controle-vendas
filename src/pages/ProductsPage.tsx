@@ -22,11 +22,11 @@ export default function ProductsPage() {
         )
     }, [])
     return (
-        <main className="">
-            <div className="pb-40 min-h-full">
+        <main className="page">
+            <div className="pb-32 h-full">
                 {
                     arrProducts?.length ?
-                        <OrderProducts hiddenOverflow={false} orderProducts={arrProducts} />
+                        <OrderProducts className="h-full" hiddenOverflow={false} orderProducts={arrProducts} />
                         :
                         <Loading dark />
                 }

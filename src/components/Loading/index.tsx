@@ -6,10 +6,10 @@ interface Props {
 
 export default function Loading({ dark }: Props) {
     return (
-        <div className="loading">
-            <span className={`${dark ? 'dark' : ''}`}></span>
-            <span className={`${dark ? 'dark' : ''}`}></span>
-            <span className={`${dark ? 'dark' : ''}`}></span>
-        </div>
+        <div className={`loading ${dark ? 'dark' : ''}`}>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div >
     )
 }

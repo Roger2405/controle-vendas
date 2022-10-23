@@ -29,8 +29,7 @@ body {
     background-color: var(--background);
 }
 
-main {
-}
+main {}
 
 .title {
     font-size: 2rem;
@@ -43,6 +42,7 @@ main {
 
 
 .page {
+    padding-top: $headerHeigth;
     height: calc(100vh - $headerHeigth);
     background-color: var(--background);
 }

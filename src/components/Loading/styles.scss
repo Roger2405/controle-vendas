@@ -1,13 +1,15 @@
 .loading {
     min-height: 1.5rem;
-    height: 100%;
+    height: inherit;
     width: 100%;
-    position: relative;
+
     display: flex;
     justify-content: center;
     align-items: center;
 
-
+    &.dark span {
+        background-color: var(--primary);
+    }
 
     span {
         background-color: var(--background);
@@ -19,11 +21,6 @@
         animation-name: loadingSpan;
         animation-iteration-count: infinite;
         animation-duration: .75s;
-
-
-        &.dark {
-            background-color: var(--primary);
-        }
     }
 
     :nth-child(1) {
