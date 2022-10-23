@@ -18,11 +18,18 @@ export default function Navigation() {
     return (
         <div onClick={() => setShowNav(!showNav)} className='h-full'>
             <nav className='navigation justify-end'>
-                <Link className="link logout" onClick={() => {
-                    localStorage.setItem('user', '');
-                }} reloadDocument to='/'>Sair</Link>
-                <Link onClick={() => setLinkProductsActive(true)} className={`link ${linkProductsActive && 'active'}`} to="produtos">Produtos</Link>
-                <Link onClick={() => setLinkProductsActive(false)} className={`link ${!linkProductsActive && 'active'}`} to="/">Vendas</Link>
+                <div className="div-link">
+                    <Link className="link logout" onClick={() => {
+                        localStorage.setItem('user', '');
+                    }} reloadDocument to='/'><span>Sair</span></Link>
+                </div>
+                <div className='div-link'>
+                    <Link onClick={() => setLinkProductsActive(false)} className={`link ${!linkProductsActive && 'active'}`} to="/">Vendas</Link>
+
+                </div>
+                <div className='div-link'>
+                    <Link onClick={() => setLinkProductsActive(true)} className={`link ${linkProductsActive && 'active'}`} to="produtos">Produtos</Link>
+                </div>
 
             </nav>
             {

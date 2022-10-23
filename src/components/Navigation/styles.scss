@@ -1,14 +1,12 @@
 .navigation {
-    padding: 1rem .5rem 0;
-    height: 100%;
+    padding: .5rem 0;
     display: flex;
     align-items: center;
+    background-image: linear-gradient(var(--primary) 50%, var(--background) 60%);
 
-    .link {
-        border-radius: 1rem 1rem 0 0;
+    .div-link {
+        height: 3rem;
         flex-basis: 40%;
-        height: 100%;
-        background-color: var(--primary);
         color: var(--background);
 
         text-align: center;
@@ -16,29 +14,62 @@
         text-transform: uppercase;
         font-weight: 700;
         font-size: 1.25rem;
+
+
+        .link {
+            display: inline-block;
+            background-color: var(--primary);
+            height: 100%;
+            width: 100%;
+            border-radius: 1rem;
+        }
+
+        &:nth-child(3) .link:not(.active) {
+            border-radius: 1rem 1rem 0 1rem;
+        }
+
+        &:nth-child(2) .link:not(.active) {
+            border-radius: 1rem 1rem 1rem 0;
+        }
+
+
+        &:nth-child(1) {
+            flex-basis: 20%;
+
+            .link.logout {
+                border-radius: 0;
+                font-weight: 400;
+                position: relative;
+                background: var(--primary);
+
+                span {
+                    font-size: 1rem;
+                }
+
+            }
+        }
+
+
     }
 
-    .logout {
-        font-size: 1rem;
-        padding: 0;
-        font-weight: 400;
-        flex-basis: 20%;
-        border-radius: 1rem;
-        margin-bottom: .5rem;
-        margin-right: 1rem;
-        border: 1px solid;
 
-        //text-align: left;
-    }
 
-    .active {
+
+
+    .link.active {
         background-color: var(--background);
+        border-radius: 1rem 1rem 0 0;
         color: var(--primary);
     }
 
+    /*
+    .div-link:has(.link:not(.active)) {
+        background-color: var(--background);
+    }
+*/
 }
 
-
+/*
 .navBar {
     position: absolute;
     background-color: var(--primary);
@@ -121,4 +152,4 @@
     .navBar-inactive {
         left: 0;
     }
-}
+}*/
