@@ -1,6 +1,4 @@
 import '../styles/AddSales.scss';
-//files
-import productsJson from '../files/products.json';
 //hooks
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -18,6 +16,7 @@ import InputSearch from '../components/InputSearch';
 import { ArrowLeft, ArrowRight, X } from 'phosphor-react';
 import { getGroupedProducts, getProductsFromDB } from '../commons/getProductsFromDataBase';
 import { getUserFromLocalStorage } from '../commons/userFromLocalStorage';
+import Summary from '../components/Summary';
 
 
 export default function AddSales() {
@@ -36,15 +35,11 @@ export default function AddSales() {
 
 
     const navigate = useNavigate();
-    const [orderProducts, setOrderProducts] = useState<OrderProduct[]>(getOrderProductsFromLocalStorage());
-    const [inputValue, setInputValue] = useState<string>('');
+    const [orderProducts, setOrderProducts] = useState<OrderProduct[]>([]);
+    //const [inputValue, setInputValue] = useState<string>('');
     const [total, setTotal] = useState<number>(getSumTotal(orderProducts));
     const [arrFiltered, setArrFiltered] = useState<ProductProps[][]>([]);
-
-    var productsArr: ProductProps[];
-    var productsTypes: string[] = [];
-    var arrayProductsGrouped: ProductProps[][] = [];
-
+    const [showSummary, setShowSummary] = useState(false);
 
     useEffect(() => {
         getGroupedProducts().then(
@@ -53,7 +48,6 @@ export default function AddSales() {
             }
         )
     }, []);
-    console.log(arrFiltered)
     //updates the search when the inputValue is update
     /*
     useEffect(() => {
@@ -71,7 +65,6 @@ export default function AddSales() {
 
     useEffect(() => {
         setTotal(getSumTotal(orderProducts));
-        setOrderProductsToLocalStorage(orderProducts);
     }, [orderProducts]);
 
 
@@ -87,37 +80,47 @@ export default function AddSales() {
 
 
     return (
-        <div className='page Home'>
-            <main className=' main-home'>
+        <div className='page'>
+            <main className='main-addSale'>
+                {
+                    !showSummary ?
+                        <>
+                            <section className='products-section page px-2 py-4'>
+                                {/*<InputSearch setInputValue={setInputValue} />*/}
+                                {
+                                    arrFiltered.length > 0 ?
+                                        arrFiltered.map(group => {
+                                            return (
+                                                <Products key={group[0]?.type_product} group={group} orderProducts={orderProducts} setTotal={setTotal} total={total} setOrderProducts={setOrderProducts} />
+                                            )
+                                        })
+                                        :
+                                        <p>Não há produtos a serem listados</p>
+                                }
+                            </section>
+                            <section className='order-section flex flex-col justify-between'>
+                                <ListOrderProducts hiddenOverflow orderProducts={orderProducts} setTotal={setTotal} setOrderProducts={setOrderProducts} />
+                                <div className='px-4'>
+                                    <Total sumTotal={total} />
 
-                <section className='products-section relative px-2 py-4'>
-                    {/*<InputSearch setInputValue={setInputValue} />*/}
-                    {
-                        arrFiltered.map(group => {
-                            return (
-                                <Products key={group[0]?.type_product} group={group} orderProducts={orderProducts} setTotal={setTotal} total={total} setOrderProducts={setOrderProducts} />
-                            )
-                        })
-                    }
-                </section>
-                <section className='order-section flex flex-col justify-between max-w-xl mx-auto'>
-                    <ListOrderProducts hiddenOverflow orderProducts={orderProducts} setTotal={setTotal} setOrderProducts={setOrderProducts} />
-                    <div className='px-4'>
-                        <Total sumTotal={total} />
+                                    <div className='mt-4 flex h-24'>
+                                        {
+                                            orderProducts.length === 0 //if doesn't exists any products in the order, the button have the "return previous page" function, else, it clears the order; 
+                                                ?
+                                                <Button className='gray-button left' onClick={navigateToHome} ><ArrowLeft size={48} />Voltar</Button>
+                                                :
+                                                <Button className='red-button left' onClick={() => setOrderProducts([])} ><X size={48} />Cancelar</Button>
+                                        }
+                                        <Button className='green-button right' disabled={orderProducts.length === 0 ? true : false} onClick={() => setShowSummary(true)} >Avançar<ArrowRight size={48} /></Button>
+                                    </div>
+                                </div>
 
-                        <div className='mt-4 flex h-24'>
-                            {
-                                orderProducts.length === 0 //if doesn't exists any products in the order, the button have the "return previous page" function, else, it clears the order; 
-                                    ?
-                                    <Button className='gray-button left' onClick={navigateToHome} ><ArrowLeft size={48} />Voltar</Button>
-                                    :
-                                    <Button className='red-button left' onClick={() => setOrderProducts([])} ><X size={48} />Cancelar</Button>
-                            }
-                            <Button className='green-button right' disabled={orderProducts.length === 0 ? true : false} onClick={navigateToOrders} >Avançar<ArrowRight size={48} /></Button>
-                        </div>
-                    </div>
+                            </section>
+                        </>
+                        :
+                        <Summary setShowSummary={setShowSummary} orderProducts={orderProducts} />
 
-                </section>
+                }
             </main>
         </div >
     );

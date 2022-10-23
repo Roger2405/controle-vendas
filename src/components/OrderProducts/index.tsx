@@ -56,7 +56,8 @@ export default function OrderProducts({ orderProducts, setOrderProducts, setTota
 
                         </div>
                     )
-                })}
+                })
+            }
 
             {children}
         </div>

@@ -5,9 +5,10 @@
     justify-content: center;
     font-weight: 700;
 
-    .total__text,
+    .total__label,
     .total__value {
         display: inline;
+        text-shadow: var(--shadow);
     }
 
     .total__label {

@@ -7,7 +7,7 @@ main {
     position: relative;
     scroll-behavior: auto;
     overflow-y: scroll;
-    height: 60%; // 50
+    height: 55%; // 50
 
 
     input {
@@ -21,7 +21,7 @@ main {
 
 .order-section {
     position: relative;
-    height: 40%; //remain width
+    height: 45%; //remain width
 }
 
 @media screen and (min-width: 992px) {

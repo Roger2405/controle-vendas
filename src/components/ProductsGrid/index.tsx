@@ -1,30 +1,32 @@
-import { useState } from 'react';
-import OrderProductProps from '../../types/orderProduct';
+import { trace } from 'console';
+import { useEffect, useState } from 'react';
+import OrderProduct from '../../types/orderProduct';
 import ProductProps from '../../types/product';
 import './style.scss';
 
 
 interface Props {
     group: ProductProps[],
-    setOrderProducts: React.Dispatch<React.SetStateAction<OrderProductProps[]>>,
-    orderProducts: OrderProductProps[],
+    setOrderProducts: React.Dispatch<React.SetStateAction<OrderProduct[]>>,
+    orderProducts: OrderProduct[],
     total: number,
     setTotal: React.Dispatch<React.SetStateAction<number>>
 }
 export default function ProductsGrid({ group, orderProducts, setOrderProducts, setTotal }: Props) {
-    function refreshOrderProducts(product: OrderProductProps) {
-
-        if (!isInTheCart(product.id)) {
-            product.count = 1;
+    function refreshOrderProducts(product: OrderProduct) {
+        let productToUpdate = product;
+        if (!isInTheCart(productToUpdate.id)) {
+            productToUpdate.count = 1;
         }
         else {
-            product.count++;
-            var index = searchIndexById(product.id);
+            productToUpdate.count = productToUpdate.count + 1;
+
+            var index = searchIndexById(productToUpdate.id);
             orderProducts.splice(index, 1);
 
         }
         setTotal(total => total + product.price_product);
-        setOrderProducts(oldProducts => [...oldProducts, product]);
+        setOrderProducts(oldProducts => [...oldProducts, productToUpdate]);
 
     }
     function searchIndexById(productId: number) {
@@ -39,6 +41,7 @@ export default function ProductsGrid({ group, orderProducts, setOrderProducts, s
         return indexById >= 0 ? true : false;
     }
 
+
     return (
         <>
             {
@@ -51,7 +54,7 @@ export default function ProductsGrid({ group, orderProducts, setOrderProducts, s
                             {group.map(product => {
                                 const productIsInTheCart: boolean = isInTheCart(product.id)
                                 return (
-                                    <div key={product.id} className={`product ${productIsInTheCart && 'product-in-the-cart'}`} onClick={() => refreshOrderProducts(product as OrderProductProps)}>
+                                    <div key={product.id} id={product.id.toString()} className={`product ${productIsInTheCart && 'product-in-the-cart'}`} onClick={() => refreshOrderProducts(product as OrderProduct)}>
                                         <h3 className='product__name overflow-hidden'>{product.name_product}</h3>
                                         <p className={`product__price`}>R$ {product.price_product.toFixed(2)}</p>
                                         {product.imgUrl &&

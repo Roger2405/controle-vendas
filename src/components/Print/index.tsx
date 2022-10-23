@@ -51,7 +51,7 @@ export default function Print({ sales, total }: Props) {
     }
     return (
         <div>
-            <div hidden className="absolute bg-white left-0 top-0 sales-print flex flex-col" id="print">
+            <div hidden={true} className="absolute bg-white left-0 top-0 sales-print flex flex-col" id="print">
                 <div className='print__info'>
                     <p>{fieldName ? fieldName + ': ' : ''}{fieldValue}</p>
                     <div className='print__info--date'>
@@ -60,7 +60,26 @@ export default function Print({ sales, total }: Props) {
                     </div>
 
                 </div>
-                <ListOrderProducts orderProducts={sales} className='' hiddenOverflow={false} />
+                <table>
+                    <tr className='border-b-2 border-b-black'>
+                        <th>Nome</th>
+                        <th>Qtd.</th>
+                        <th>Subtotal</th>
+                    </tr>
+                    {
+                        sales.map(sale => {
+                            const subtotal = sale.price_product * sale.count;
+                            return (
+                                <tr className='border-b-2'>
+                                    <td>{sale.name_product}</td>
+                                    <td>{sale.count}</td>
+                                    <td className=''>R$ {subtotal.toFixed(2)}</td>
+                                </tr>
+                            )
+                        })
+                    }
+                </table>
+                {/* <ListOrderProducts orderProducts={sales} className='' hiddenOverflow={false} /> */}
                 <div className='print__total flex'>
                     <p>Total: </p>
                     <p>R$<b>{total.toFixed(2)}</b></p>

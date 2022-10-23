@@ -1,23 +1,19 @@
-import CartProduct from "../types/orderProduct";
+import OrderProduct from "../types/orderProduct";
 
 export function getOrderProductsFromLocalStorage() {
     const strProducts = localStorage.getItem('order-products');
-
-    if (strProducts) {
-        const objProducts: CartProduct[] = JSON.parse(strProducts);
-        return objProducts;
-    }
+    const objProducts: OrderProduct[] = strProducts !== null ? JSON.parse(strProducts) : [];
+    return objProducts;
     //localStorage.removeItem('cart-products');
-    return [];
 }
-export function setOrderProductsToLocalStorage(obj: CartProduct[]) {
+export function setOrderProductsToLocalStorage(obj: OrderProduct[]) {
     localStorage.setItem('order-products', JSON.stringify(obj));
 }
 export function removeOrderProductsFromLocalStorage() {
     localStorage.removeItem('order-products');
 }
 
-export function getSumTotal(obj: CartProduct[]) {
+export function getSumTotal(obj: OrderProduct[]) {
     let sum = 0;
     obj.forEach(cartProduct => {
         sum += (cartProduct.price_product * cartProduct.count);
@@ -27,12 +23,9 @@ export function getSumTotal(obj: CartProduct[]) {
 
 export function getSalesFromLocalStorage() {
     const strOldSales = localStorage.getItem('sales');
-    if (strOldSales) {
-        const objOldSales: CartProduct[] = JSON.parse(strOldSales);
-        return objOldSales;
-    }
-    return [];
+    const objOldSales: OrderProduct[] = strOldSales !== null ? JSON.parse(strOldSales) : [];
+    return objOldSales;
 }
-export function setSalesInLocalStorage(objSales: CartProduct[]) {
+export function setSalesInLocalStorage(objSales: OrderProduct[]) {
     localStorage.setItem('sales', JSON.stringify(objSales));
 }

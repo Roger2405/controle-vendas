@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { List, X } from "phosphor-react";
 import './styles.scss';
@@ -8,9 +8,19 @@ export default function Navigation() {
 
     const [showNav, setShowNav] = useState<boolean>(false);
     const [linkProductsActive, setLinkProductsActive] = useState<boolean>(false);
+
+    useEffect(() => {
+        const path = window.location.pathname;
+        path.includes('produto') ? setLinkProductsActive(true) : setLinkProductsActive(false);
+    }, [])
+
+
     return (
         <div onClick={() => setShowNav(!showNav)} className='h-full'>
-            <nav className='navigation flex justify-around'>
+            <nav className='navigation justify-end'>
+                <Link className="link logout" onClick={() => {
+                    localStorage.setItem('user', '');
+                }} reloadDocument to='/'>Sair</Link>
                 <Link onClick={() => setLinkProductsActive(true)} className={`link ${linkProductsActive && 'active'}`} to="produtos">Produtos</Link>
                 <Link onClick={() => setLinkProductsActive(false)} className={`link ${!linkProductsActive && 'active'}`} to="/">Vendas</Link>
 

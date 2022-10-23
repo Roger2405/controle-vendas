@@ -12,6 +12,7 @@ export default function ProductsPage() {
     const navigate = useNavigate();
     const [arrProducts, setArrProducts] = useState<any[]>();
 
+
     useEffect(() => {
         getProductsFromDB().then(
             arr => {
@@ -23,10 +24,10 @@ export default function ProductsPage() {
         <div>
             <div className="pb-40">
                 {
-                    arrProducts.length !== 0 ?
-                    <OrderProducts hiddenOverflow={false} orderProducts={arrProducts} />
-:
-<p>Não há produtos cadastrados</p>
+                    arrProducts?.length ?
+                        <OrderProducts hiddenOverflow={false} orderProducts={arrProducts} />
+                        :
+                        <p>Não há produtos a serem listados</p>
                 }
 
             </div>

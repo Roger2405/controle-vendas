@@ -52,23 +52,20 @@ export default function SalesOfTheDay() {
                     </div>
                 </Modal>
             }
-            {
-                <div className="page w-full flex flex-col justify-between min-h-full h-max">
-                    <ListOrderProducts hiddenOverflow={false} orderProducts={sales} className='' />
-                    <div>
-                        <Print total={sumTotal} sales={sales} />
+            <div className="page w-full flex flex-col justify-between h-full">
+                <div className="pb-32">
+                    <ListOrderProducts className="h-full" hiddenOverflow orderProducts={sales} />
+
+                </div>
+                <div>
+                    <Print total={sumTotal} sales={sales} />
+                    <div className='max-w-xl fixed bottom-4 px-4 w-full'>
                         <Total sumTotal={sumTotal} />
-                        <div className='flex-col mb-2 flex w-full justify-end mt-auto'>
-                            <div className='max-w-xl relative w-full mx-auto'>
-                                <div className='flex justify-center flex-col h-auto mx-8'>
-                                    <Button className='green-button' onClick={() => navigate('/adicionar-venda')} >Nova venda</Button>
-                                    {/*<Button className=' text-red-800' onClick={() => setShowModal(true)} >Resetar vendas</Button>*/}
-                                </div>
-                            </div>
-                        </div>
+                        <Button className='green-button' onClick={() => navigate('/adicionar-venda')} >Nova venda</Button>
+                        {/*<Button className=' text-red-800' onClick={() => setShowModal(true)} >Resetar vendas</Button>*/}
                     </div>
                 </div>
-            }
+            </div>
 
         </main>
     )

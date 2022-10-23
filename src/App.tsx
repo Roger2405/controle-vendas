@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 
 import Header from "./components/Header";
 import Sales from "./pages/SalesOfTheDay";
-import Summary from "./pages/Summary";
 import UserLogin from "./pages/UserLogin";
 import UserRegister from "./pages/UserRegister";
 
@@ -34,7 +33,7 @@ function App() {
         <Route path="cadastro" element={<UserRegister />} />
         <Route path="adicionar-venda" element={<AddSales />} />
 
-        <Route path="resumo" element={<Summary />} />
+        {/*<Route path="resumo" element={<Summary />} />*/}
         <Route path="produtos" element={<ProductsPage />} />
         <Route path="adicionar-produto" element={<AddProduct />} />
       </Route>
