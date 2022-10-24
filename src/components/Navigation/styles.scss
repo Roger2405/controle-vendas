@@ -1,7 +1,8 @@
 .navigation {
-    padding: .5rem 0;
+    padding-top: .5rem;
     display: flex;
-    align-items: center;
+    height: 100%;
+    align-items: flex-end;
     background-image: linear-gradient(var(--primary) 50%, var(--background) 60%);
 
     .div-link {
@@ -38,7 +39,7 @@
             background-color: var(--primary);
 
             .link.logout {
-                border-radius: 0;
+                border-radius: .25rem;
                 font-weight: 400;
                 position: relative;
                 background-color: var(--background);

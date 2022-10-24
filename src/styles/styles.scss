@@ -43,13 +43,13 @@ main {}
 
 .page {
     padding-top: $headerHeigth;
-    height: calc(100vh - $headerHeigth);
+    height: 100vh;
     background-color: var(--background);
 }
 
 @media screen and (min-width: 992px) {
+
     .page {
         padding: 0 7rem;
-
     }
 }

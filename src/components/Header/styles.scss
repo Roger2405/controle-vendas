@@ -1,8 +1,9 @@
 header {
     height: 4rem;
     width: 100%;
-    background-color: var(--background);
+    background-color: var(--primary);
     position: fixed;
+    padding: 0 .5rem;
     z-index: 15;
 
 }

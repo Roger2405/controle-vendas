@@ -1,12 +1,10 @@
+import { Plus } from "phosphor-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getProductsFromDB } from "../commons/getProductsFromDataBase";
 import Button from "../components/Button";
 import Loading from "../components/Loading";
 import OrderProducts from "../components/OrderProducts";
-import ListProduct from "../components/OrderProducts";
-import OrderProduct from "../types/orderProduct";
-import ProductProps from "../types/product";
 
 
 export default function ProductsPage() {
@@ -23,19 +21,22 @@ export default function ProductsPage() {
     }, [])
     return (
         <main className="page">
-            <div className="pb-32 h-full">
+            <div className="h-full">
                 {
                     arrProducts?.length ?
-                        <OrderProducts className="h-full" hiddenOverflow={false} orderProducts={arrProducts} />
+                        <div className="pb-32">
+                            <OrderProducts className="h-full mb-32" hiddenOverflow={false} orderProducts={arrProducts} />
+
+                        </div>
                         :
                         <Loading dark />
                 }
 
             </div>
             <div className='max-w-xl fixed bottom-4 px-4 w-full'>
-                <Button className='green-button' onClick={() => navigate('/adicionar-produto')} >Adicionar produto</Button>
+                <Button className='green-button' onClick={() => navigate('/adicionar-produto')} ><Plus size={32} />Adicionar produto</Button>
             </div>
 
-        </main>
+        </main >
     )
 }

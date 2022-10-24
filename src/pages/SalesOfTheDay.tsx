@@ -8,6 +8,7 @@ import Modal from "../components/Modal";
 
 import { getSalesFromLocalStorage, setSalesInLocalStorage } from '../commons/dataFromLocalStorage';
 import Print from "../components/Print";
+import { Plus } from "phosphor-react";
 
 export default function SalesOfTheDay() {
     const navigate = useNavigate();
@@ -38,7 +39,7 @@ export default function SalesOfTheDay() {
 
 
     return (
-        <main>
+        <main className="page">
             {
                 showModal &&
                 <Modal >
@@ -52,7 +53,7 @@ export default function SalesOfTheDay() {
                     </div>
                 </Modal>
             }
-            <div className="page w-full flex flex-col justify-between h-full">
+            <div className="w-full flex flex-col justify-between h-full">
                 <div className="pb-32">
                     <ListOrderProducts className="h-full" hiddenOverflow orderProducts={sales} />
 
@@ -61,7 +62,7 @@ export default function SalesOfTheDay() {
                     <Print total={sumTotal} sales={sales} />
                     <div className='max-w-xl fixed bottom-4 px-4 w-full'>
                         <Total sumTotal={sumTotal} />
-                        <Button className='green-button' onClick={() => navigate('/adicionar-venda')} >Nova venda</Button>
+                        <Button className='green-button' onClick={() => navigate('/adicionar-venda')} ><Plus size={32} />Nova venda</Button>
                         {/*<Button className=' text-red-800' onClick={() => setShowModal(true)} >Resetar vendas</Button>*/}
                     </div>
                 </div>
