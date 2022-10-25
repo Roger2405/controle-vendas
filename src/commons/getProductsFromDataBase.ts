@@ -12,7 +12,7 @@ export async function getProductsFromDB() {
         return [];
     }
     else {
-        const arrProducts: ProductProps[] = await Axios.get(`http://127.0.0.1:3001/products?id=${idUser}`)
+        const arrProducts: ProductProps[] = await Axios.get(`https://server-controle-vendas.herokuapp.com/products?id=${idUser}`)
             .then((response) => {
                 if (response.data[0]) {
                     return response.data;
