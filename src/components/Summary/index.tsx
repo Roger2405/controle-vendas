@@ -70,7 +70,7 @@ export default function Summary({ setShowSummary, orderProducts }: Props) {
                 <OrderProducts hiddenOverflow orderProducts={orderProducts} className='' />
 
             </section>
-            <section className='px-4 h-fit'>
+            <section className='px-4 h-fit w-full max-w-2xl mx-auto'>
                 {<MoneyCards setPayment={setPayment} />}
                 <Total sumTotal={total} />
                 <Input label='Total pago:' onChange={(e) => setPayment(parseFloat(e.target.value))} value={payment} />

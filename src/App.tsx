@@ -14,14 +14,20 @@ import AddProduct from "./pages/AddProduct";
 import ProductsPage from './pages/ProductsPage';
 import AddSales from './pages/AddSales';
 
+type User = {
+  email: string,
+  id: number
+}
 
 function App() {
-  const [user, setUser] = useState(getUserFromLocalStorage());
+  const [user, setUser] = useState<User>(getUserFromLocalStorage());
   const [isLogged, setIsLogged] = useState(false);
 
+
   useEffect(() => {
-    if (user.length !== 0) {//provisorio
+    if (user.id) {//provisorio
       setIsLogged(true)
+      localStorage.setItem('user', JSON.stringify(user))
     }
   }, [user]);
 

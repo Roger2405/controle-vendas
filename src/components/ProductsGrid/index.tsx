@@ -10,9 +10,10 @@ interface Props {
     setOrderProducts: React.Dispatch<React.SetStateAction<OrderProduct[]>>,
     orderProducts: OrderProduct[],
     total: number,
-    setTotal: React.Dispatch<React.SetStateAction<number>>
+    setTotal: React.Dispatch<React.SetStateAction<number>>,
+    overflowX: boolean
 }
-export default function ProductsGrid({ group, orderProducts, setOrderProducts, setTotal }: Props) {
+export default function ProductsGrid({ group, orderProducts, setOrderProducts, setTotal, overflowX }: Props) {
     function refreshOrderProducts(product: OrderProduct) {
         let productToUpdate = product;
         if (!isInTheCart(productToUpdate.id)) {
@@ -49,7 +50,7 @@ export default function ProductsGrid({ group, orderProducts, setOrderProducts, s
                 <div className='productsType'>
                     <h2 className='type mt-2'>{group[0].type_product}</h2>
 
-                    <div className='productsContainer pb-4'>
+                    <div className={`productsContainer ${overflowX && 'overflowX'}`}>
                         <div className='products'>
                             {group.map(product => {
                                 const productIsInTheCart: boolean = isInTheCart(product.id)

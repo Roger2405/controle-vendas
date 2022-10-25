@@ -29,8 +29,6 @@ body {
     background-color: var(--background);
 }
 
-main {}
-
 .title {
     font-size: 2rem;
     color: var(--white);
@@ -40,6 +38,16 @@ main {}
     text-align: center;
 }
 
+.subtitle {
+    font-size: 1.5rem;
+    color: var(--white);
+    text-shadow: var(--shadow);
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: left;
+    margin-left: .5rem;
+}
+
 
 .page {
     padding-top: $headerHeigth;
@@ -47,9 +55,9 @@ main {}
     background-color: var(--background);
 }
 
-@media screen and (min-width: 992px) {
-
+@media screen and (min-width: 1440px) {
     .page {
-        padding: 0 7rem;
+        padding-left: 7rem;
+        padding-right: 7rem;
     }
 }

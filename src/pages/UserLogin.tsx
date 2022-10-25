@@ -6,6 +6,7 @@ import '../styles/AuthForm.scss';
 import '../styles/styles.scss';
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
+import { ArrowRight } from "phosphor-react";
 
 interface Props {
     setUser: React.Dispatch<any>
@@ -22,7 +23,6 @@ export default function UserLogin({ setUser }: Props) {
             email: values.email,
             password: values.password,
         }).then((response) => {
-            console.log(response)
             if (response.data.success) {
                 const user = response.data.user;
                 setUser(user);
@@ -85,11 +85,21 @@ export default function UserLogin({ setUser }: Props) {
                 showErrorMsg &&
                 <span className='error-message' >{errorMsg}</span>
             }
-            <p className="mt-8">Ainda não tem uma conta?</p>
-            <Button className="green-button" type="submit">
-                <Link to={"/cadastro"}>Cadastrar-se</Link>
-            </Button>
+            <p className="translate-y-8 ml-auto mr-0 w-1/2 text-end">Ainda não tem uma conta?</p>
+            <div className="flex py-4 w-full">
+                <Link className="basis-1/2" to={"/"}>
+                    <Button className="green-button left" onClick={() => setUser({ email: 'teste@demo.com', id: 1 })}>
+                        Conta de demonstração
+                    </Button>
+                </Link>
+                <Link className="basis-1/2" to={"/cadastro"}>
+                    <Button className="green-button right">
+                        Cadastre-se
+                        <ArrowRight size={48} />
+                    </Button>
+                </Link>
 
-        </div>
+            </div >
+        </div >
     );
 }

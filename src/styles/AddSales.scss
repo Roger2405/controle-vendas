@@ -1,16 +1,16 @@
-
 .products-section {
     position: relative;
     scroll-behavior: auto;
     overflow-y: scroll;
     height: 55%; // 50
 
-
-    input {
-        color: #FFFFFF;
-        padding: .25rem .5rem;
-        width: 250px;
-        float: right;
+    .scroll-checkbox {
+        text-transform: uppercase;
+        font-weight: 700;
+        display: flex;
+        gap: 1rem;
+        width: 100%;
+        justify-content: end;
 
     }
 }
@@ -21,7 +21,7 @@
 }
 
 @media screen and (min-width: 992px) {
-    .main-home {
+    .main-addSale {
         display: grid;
         grid-template-columns: 2fr 1fr;
         margin: 0;
@@ -31,27 +31,17 @@
         position: relative;
         height: 100%;
 
-        input {
-            width: 300px;
-        }
     }
 
     .order-section {
-        position: relative;
         height: 100%;
-        margin: 0;
-
     }
+
 }
 
-
 @media screen and (min-width:1440px) {
-    .main-home {
+    .main-addSale {
         grid-template-columns: 3fr 1fr;
-
-        .order-section {
-            max-height: 100%;
-        }
     }
 
 }

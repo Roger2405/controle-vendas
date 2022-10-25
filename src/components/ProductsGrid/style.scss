@@ -6,103 +6,110 @@
     }
 
     .productsContainer {
-        overflow-x: scroll;
         width: 100%;
+        padding-bottom: 1rem;
+
+        .products {
+            display: flex;
+            max-width: 100%;
+            width: max-content;
+            flex-wrap: wrap;
+            gap: .5rem;
+            padding: .5rem;
+            justify-content: center;
+
+            .product:active {
+                background-color: var(--primary);
+                transition: .25s;
+            }
+
+            .product:hover {
+                transform: scale(1.05);
+                transition: .25s;
+            }
+
+            .product {
+                border-radius: .5rem;
+                box-shadow: var(--shadow);
+                background-color: var(--item-color);
+
+                align-items: flex-end;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+
+                overflow: hidden;
+
+                position: relative;
+
+                height: 90px;
+                width: 160px;
+
+                @media screen and (min-width: 992px) {
+                    height: 100px;
+                    width: 200px;
+                }
+
+
+                .product__name {
+                    font-size: .75rem;
+                    text-transform: uppercase;
+                    width: 100%;
+                }
+
+                .product__name,
+                .product__price {
+                    margin: 0;
+                    padding-right: .25rem;
+                    z-index: 1;
+                    text-align: end;
+                }
+
+                .product__price {
+                    padding: .25rem;
+                    font-weight: 700;
+                    background-color: var(--primary);
+                    color: var(--white);
+                    width: 75%;
+                    clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%);
+                }
+
+                .product__image {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    object-fit: contain;
+                    height: 100%;
+                    width: 35%;
+                }
+            }
+
+            .product-in-the-cart {
+                background-color: var(--primary);
+                color: var(--white);
+
+                .product__price {
+                    background-color: var(--background);
+                    color: var(--dark);
+                }
+            }
+
+        }
+    }
+
+    .productsContainer.overflowX {
+        overflow-x: scroll;
+
+        .products {
+            justify-content: left;
+            max-width: 200%;
+        }
     }
 }
 
-.products {
-    display: flex;
-    max-width: 200%;
-    width: max-content;
-    flex-wrap: wrap;
-    gap: .5rem;
-    padding: .5rem;
-
-    .product:active {
-        background-color: var(--primary);
-        transition: .25s;
-    }
-
-    .product:hover {
-        transform: scale(1.05);
-        transition: .25s;
-    }
-
-    .product {
-        align-items: flex-end;
-        border-radius: .5rem;
-        box-shadow: var(--shadow);
-
-        background-color: var(--item-color);
-
-        display: flex;
-        flex-direction: column;
-
-        overflow: hidden;
-
-
-        position: relative;
-        height: 80px;
-        justify-content: space-between;
-        width: 120px;
-
-        .product__name {
-            font-size: .75rem;
-            width: 100%;
-            text-transform: uppercase;
-        }
-
-        .product__name,
-        .product__price {
-            margin: 0;
-            padding-right: .25rem;
-            z-index: 1;
-            text-align: end;
-        }
-
-        .product__price {
-            padding: .25rem;
-            font-weight: 700;
-            background-color: var(--primary);
-            color: var(--white);
-            width: 75%;
-            clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%);
-        }
-
-        .product__image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            object-fit: contain;
-            height: 100%;
-            width: 35%;
-
-        }
-
-    }
-
-    .product-in-the-cart {
-        background-color: var(--primary);
-        color: var(--white);
-
-        //bg-green-500 text-white
-        .product__price {
-            background-color: var(--background);
-            color: var(--dark);
-        }
-    }
-
-}
 
 @media screen and (min-width:992px) {
-    .products-container {
-        overflow-x: auto;
-    }
-
     .products {
-        width: 100%;
-
         .product {
             width: 200px;
             height: 100px;

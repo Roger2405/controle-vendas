@@ -3,23 +3,17 @@ import Button from "../components/Button";
 import '../styles/AddProduct.scss';
 import { ArrowRight, Check, X } from "phosphor-react";
 import Axios from "axios";
-import { useNavigate, useSubmit } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getUserFromLocalStorage } from "../commons/userFromLocalStorage";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as yup from "yup";
 import { useState } from "react";
 import Modal from "../components/Modal";
 
-interface Props {
-    name: string,
-    type: string,
-    price: number
-}
 
 export default function AddProduct() {
     const [isLoading, setIsLoading] = useState(false);
     const [responseCode, setResponseCode] = useState(0);
-    var showModal = false;
 
     const navigate = useNavigate();
     function handleAddProduct(values: { name: string, type: string, price: number }) {
@@ -38,7 +32,6 @@ export default function AddProduct() {
             else {
                 setResponseCode(-1);
             }
-            showModal = true;
         });
     }
     const validationsRegister = yup.object().shape({
@@ -53,12 +46,13 @@ export default function AddProduct() {
             .required("O preço é obrigatório")
     });
 
+
     return (
         <main className="page">
             <div>
                 <h1 className="form-title title">Cadastro</h1>
                 <Formik
-                    initialValues={{ name: "", type: "", price: 0 }}
+                    initialValues={{ name: "", type: "", price: 0}}
                     onSubmit={handleAddProduct}
                     validationSchema={validationsRegister}
                 >
@@ -86,7 +80,7 @@ export default function AddProduct() {
                         </div>
                         <div className="productForm__group">
                             <label htmlFor="price" className="productForm__group--label">Preço: </label>
-                            <Field id="price" name="price" type="number" className="productForm__group--input" placeholder="Preço" />
+                            <Field id="price" name="price" type="number" className="productForm__group--input" value="" placeholder="Preço" />
 
                             <ErrorMessage
                                 component="span"
@@ -133,34 +127,5 @@ export default function AddProduct() {
                     <></>
             }
         </main>
-        // <div className="page productForm-container flex flex-col justify-between">
-        //     <div className="h-full">
-        //         <h1 className="title">Adicionar Produto</h1>
-        //         <form action="" className="productForm">
-        //             <div className="productForm__group">
-        //                 <label className="productForm__group--label" htmlFor="name">Nome:</label>
-        //                 <input className="productForm__group--input" type="text" id="name" name="name" placeholder="Nome detalhado do produto" required />
-        //             </div>
-        //             <div className="productForm__group">
-        //                 <label className="productForm__group--label" htmlFor="type">Tipo:</label>
-        //                 <input className="productForm__group--input" type="text" id="type" name="type" placeholder="Tipo do produto" required />
-        //             </div>
-        //             <div className="productForm__group">
-        //                 <label className="productForm__group--label" htmlFor="price">Preço:</label>
-        //                 <input className="productForm__group--input" type="number" name="price" id="price" required />
-        //             </div>
-        //         </form>
-        //     </div>
-
-        // <div className='px-4'>
-        //     <div className='mt-4 flex h-24'>
-
-        //         <Button className='red-button left' onClick={() => { navigate('/produtos') }} ><X size={48} />Cancelar</Button>
-        //         <Button type="submit" className='green-button right' onClick={e => handleAddProduct(e)}  >Adicionar<Check size={48} /></Button>
-
-        //     </div>
-        // </div>
-
-        // </div>
     )
 }

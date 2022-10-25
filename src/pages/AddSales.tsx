@@ -1,4 +1,5 @@
 import '../styles/AddSales.scss';
+import '../styles/styles.scss';
 //hooks
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -41,6 +42,7 @@ export default function AddSales() {
     const [total, setTotal] = useState<number>(getSumTotal(orderProducts));
     const [arrFiltered, setArrFiltered] = useState<ProductProps[][]>([]);
     const [showSummary, setShowSummary] = useState(false);
+    const [overflowX, setOverflowX] = useState(true);
 
     useEffect(() => {
         getGroupedProducts().then(
@@ -80,17 +82,24 @@ export default function AddSales() {
     }
 
     return (
-        <main className='page main-addSale'>
+        <>
             {
+
                 !showSummary ?
-                    <>
+
+                    <main className='page main-addSale'>
+
                         <section className='products-section px-2 py-4'>
+                            <div className='scroll-checkbox'>
+                                <label htmlFor="scroll-x">Scroll X</label>
+                                <input checked={overflowX} onClick={() => setOverflowX(!overflowX)} type="checkbox" name="scroll-x" id="scroll-x" />
+                            </div>
                             {/*<InputSearch setInputValue={setInputValue} />*/}
                             {
                                 arrFiltered.length > 0 ?
                                     arrFiltered.map(group => {
                                         return (
-                                            <Products key={group[0]?.type_product} group={group} orderProducts={orderProducts} setTotal={setTotal} total={total} setOrderProducts={setOrderProducts} />
+                                            <Products overflowX={overflowX} key={group[0]?.type_product} group={group} orderProducts={orderProducts} setTotal={setTotal} total={total} setOrderProducts={setOrderProducts} />
                                         )
                                     })
                                     :
@@ -115,11 +124,16 @@ export default function AddSales() {
                             </div>
 
                         </section>
-                    </>
+
+
+
+                    </main>
                     :
-                    <Summary setShowSummary={setShowSummary} orderProducts={orderProducts} />
+                    <main className='page'>
+                        <Summary setShowSummary={setShowSummary} orderProducts={orderProducts} />
+                    </main>
 
             }
-        </main>
+        </>
     );
 }

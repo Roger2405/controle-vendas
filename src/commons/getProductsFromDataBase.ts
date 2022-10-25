@@ -1,5 +1,6 @@
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { isArray } from "util";
 import ProductProps from "../types/product";
 import { getUserFromLocalStorage } from "./userFromLocalStorage";
 
@@ -11,13 +12,15 @@ export async function getProductsFromDB() {
         return [];
     }
     else {
-        const arrProducts: ProductProps[] = await Axios.get(`https://server-controle-vendas.herokuapp.com/products?id=${idUser}`)
+        const arrProducts: ProductProps[] = await Axios.get(`http://127.0.0.1:3001/products?id=${idUser}`)
             .then((response) => {
-                //if (response.data.success) {
-                return response.data;
-                //}
-            });
-
+                if (response.data[0]) {
+                    return response.data;
+                }
+                else {
+                    throw Error(response.data.msg);
+                }
+            })
         return arrProducts;
     }
 };
@@ -27,7 +30,7 @@ export async function getGroupedProducts() {
     var arrayProductsGrouped: ProductProps[][] = [];
     await getProductsFromDB()
         .then(response => {
-            if (response.length > 0) {
+            if (response) {
                 productsArr = response;
                 productsArr.forEach(product => {
                     if (productsTypes.includes(product.type_product)) {
@@ -44,7 +47,7 @@ export async function getGroupedProducts() {
                     }
                 }
             }
-        }).catch(error => alert(error))
+        })
     return arrayProductsGrouped;
 
 }

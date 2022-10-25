@@ -31,7 +31,6 @@ export default function Print({ sales, total }: Props) {
     //const year = date.getFullYear();
 
     //let fullDate = `${day}-${month}-${year}`;
-    console.log(date)
 
     async function GenerateImage() {
         var element = document.getElementById('print') || document.createElement('div');

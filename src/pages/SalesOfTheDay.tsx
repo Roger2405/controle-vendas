@@ -58,13 +58,11 @@ export default function SalesOfTheDay() {
                     <ListOrderProducts className="h-full" hiddenOverflow orderProducts={sales} />
 
                 </div>
-                <div>
-                    <Print total={sumTotal} sales={sales} />
-                    <div className='max-w-xl fixed bottom-4 px-4 w-full'>
-                        <Total sumTotal={sumTotal} />
-                        <Button className='green-button' onClick={() => navigate('/adicionar-venda')} ><Plus size={32} />Nova venda</Button>
-                        {/*<Button className=' text-red-800' onClick={() => setShowModal(true)} >Resetar vendas</Button>*/}
-                    </div>
+                <Print total={sumTotal} sales={sales} />
+                <div className='max-w-xl fixed right-1/2 translate-x-1/2 bottom-4 px-4 w-full'>
+                    <Total sumTotal={sumTotal} />
+                    <Button className='green-button' onClick={() => navigate('/adicionar-venda')} ><Plus size={32} />Nova venda</Button>
+                    {/*<Button className=' text-red-800' onClick={() => setShowModal(true)} >Resetar vendas</Button>*/}
                 </div>
             </div>
 
