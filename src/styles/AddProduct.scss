@@ -29,9 +29,38 @@
                 color: var(--primary);
                 flex-basis: 70%;
 
+
                 &::placeholder {
                     //color: var(--primary);
                 }
+
+            }
+
+            div {
+                display: flex;
+                flex-basis: 70%;
+                width: 70%;
+
+                .productForm__group--input {
+                    flex-basis: 50%;
+                }
+
+                .productForm__group--select {
+                    flex-basis: 50%;
+                    width: 50%;
+                    background-color: var(--background);
+                    color: var(--primary);
+
+                    &::backdrop {
+                        color: red;
+                    }
+
+                    &::-ms-backdrop {
+                        background-color: blue;
+                    }
+
+                }
+
             }
 
             span {

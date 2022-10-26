@@ -1,3 +1,7 @@
+.main-formAuth {
+    background-color: var(--primary);
+}
+
 .auth-form-container {
     padding: 1rem;
     box-sizing: border-box;
@@ -7,8 +11,9 @@
     transform: translateX(-50%) translateY(-50%);
     max-width: 600px;
     width: calc(100% - 2rem);
-    background-color: var(--item-color);
-    box-shadow: var(--shadow);
+    background-color: var(--background);
+    border-radius: 1rem;
+    box-shadow: 0 0 5rem rgba(0, 0, 0, 0.25);
 
     .form-title {
         position: relative;

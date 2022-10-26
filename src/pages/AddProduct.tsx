@@ -7,13 +7,17 @@ import { useNavigate } from "react-router-dom";
 import { getUserFromLocalStorage } from "../commons/userFromLocalStorage";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as yup from "yup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "../components/Modal";
+import { productsTypes } from "../commons/getProductsFromDataBase";
 
 
 export default function AddProduct() {
     const [isLoading, setIsLoading] = useState(false);
     const [responseCode, setResponseCode] = useState(0);
+    const [inputTypeValue, setInputTypeValue] = useState('');
+
+    const arrProductTypes = productsTypes;
 
     const navigate = useNavigate();
     function handleAddProduct(values: { name: string, type: string, price: number }) {
@@ -45,14 +49,12 @@ export default function AddProduct() {
             .number()
             .required("O preço é obrigatório")
     });
-
-
     return (
         <main className="page">
             <div>
                 <h1 className="form-title title">Cadastro</h1>
                 <Formik
-                    initialValues={{ name: "", type: "", price: 0}}
+                    initialValues={{ name: "", type: "", price: 0 }}
                     onSubmit={handleAddProduct}
                     validationSchema={validationsRegister}
                 >
@@ -70,8 +72,17 @@ export default function AddProduct() {
 
                         <div className="productForm__group">
                             <label htmlFor="type" className="productForm__group--label">Tipo: </label>
-                            <Field name="type" id="type" className="productForm__group--input" placeholder="Tipo" />
-
+                            <div>
+                                <Field onChange={(e) => setInputTypeValue(e.target.value)} value={inputTypeValue} name="type" id="type" className="productForm__group--input" placeholder="Tipo" />
+                                <select className="productForm__group--select" onChange={(e) => { setInputTypeValue(e.target.value) }} name="types" id="types" >
+                                    <option value=""></option>
+                                    {
+                                        arrProductTypes.map(type => {
+                                            return <option key={type} value={type.toLowerCase()} >{type}</option>
+                                        })
+                                    }
+                                </select>
+                            </div>
                             <ErrorMessage
                                 component="span"
                                 name="type"

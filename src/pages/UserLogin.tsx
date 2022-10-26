@@ -50,56 +50,58 @@ export default function UserLogin({ setUser }: Props) {
 
 
     return (
-        <div className="auth-form-container">
-            <h1 className="title form-title">Login</h1>
-            <Formik
-                initialValues={{ email: "", password: "" }}
-                onSubmit={handleLogin}
-                validationSchema={validationsLogin}
-            >
-                <Form className="login-form">
-                    <div className="form-group">
-                        <Field name="email" className="form-field" id="email" placeholder="Email" />
-                        <ErrorMessage
-                            component="span"
-                            name="email"
-                            className="error-message"
-                        />
-                    </div>
-                    <div className="form-group">
-                        <Field type="password" name="password" className="form-field" id="password" placeholder="Senha" />
+        <main className="page main-formAuth">
+            <div className="auth-form-container">
+                <h1 className="title form-title">Login</h1>
+                <Formik
+                    initialValues={{ email: "", password: "" }}
+                    onSubmit={handleLogin}
+                    validationSchema={validationsLogin}
+                >
+                    <Form className="login-form">
+                        <div className="form-group">
+                            <Field name="email" className="form-field" id="email" placeholder="Email" />
+                            <ErrorMessage
+                                component="span"
+                                name="email"
+                                className="error-message"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <Field type="password" name="password" className="form-field" id="password" placeholder="Senha" />
 
-                        <ErrorMessage
-                            component="span"
-                            name="password"
-                            className="error-message"
-                        />
-                    </div>
+                            <ErrorMessage
+                                component="span"
+                                name="password"
+                                className="error-message"
+                            />
+                        </div>
 
-                    <Button className="green-button" isLoading={isLoading} type="submit">
-                        Login
-                    </Button>
-                </Form>
-            </Formik>
-            {
-                showErrorMsg &&
-                <span className='error-message' >{errorMsg}</span>
-            }
-            <p className="translate-y-8 ml-auto mr-0 w-1/2 text-end">Ainda não tem uma conta?</p>
-            <div className="flex py-4 w-full">
-                <Link className="basis-1/2" to={"/"}>
-                    <Button className="green-button left" onClick={() => setUser({ email: 'teste@demo.com', id: 1 })}>
-                        Conta de demonstração
-                    </Button>
-                </Link>
-                <Link className="basis-1/2" to={"/cadastro"}>
-                    <Button className="green-button right">
-                        Cadastre-se
-                        <ArrowRight size={48} />
-                    </Button>
-                </Link>
+                        <Button className="green-button" isLoading={isLoading} type="submit">
+                            Login
+                        </Button>
+                    </Form>
+                </Formik>
+                {
+                    showErrorMsg &&
+                    <span className='error-message' >{errorMsg}</span>
+                }
+                <p className="translate-y-8 ml-auto mr-0 w-1/2 text-end">Ainda não tem uma conta?</p>
+                <div className="flex py-4 w-full">
+                    <Link className="basis-1/2" to={"/"}>
+                        <Button className="green-button left" onClick={() => setUser({ email: 'teste@demo.com', id: 1 })}>
+                            Conta de demonstração
+                        </Button>
+                    </Link>
+                    <Link className="basis-1/2" to={"/cadastro"}>
+                        <Button className="green-button right">
+                            Cadastre-se
+                            <ArrowRight size={48} />
+                        </Button>
+                    </Link>
 
+                </div >
             </div >
-        </div >
+        </main>
     );
 }

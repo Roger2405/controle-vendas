@@ -5,6 +5,7 @@ import ProductProps from "../types/product";
 import { getUserFromLocalStorage } from "./userFromLocalStorage";
 
 
+export var productsTypes: string[] = [];
 export async function getProductsFromDB() {
     let idUser = getUserFromLocalStorage().id;
     if (!idUser) {
@@ -26,7 +27,6 @@ export async function getProductsFromDB() {
 };
 export async function getGroupedProducts() {
     var productsArr: ProductProps[];
-    var productsTypes: string[] = [];
     var arrayProductsGrouped: ProductProps[][] = [];
     await getProductsFromDB()
         .then(response => {
@@ -49,5 +49,4 @@ export async function getGroupedProducts() {
             }
         })
     return arrayProductsGrouped;
-
 }

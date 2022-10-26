@@ -1,7 +1,7 @@
 import { Plus } from "phosphor-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getGroupedProducts, getProductsFromDB } from "../commons/getProductsFromDataBase";
+import { getGroupedProducts, getProductsFromDB, productsTypes } from "../commons/getProductsFromDataBase";
 import Button from "../components/Button";
 import Loading from "../components/Loading";
 import OrderProducts from "../components/OrderProducts";
@@ -21,6 +21,7 @@ export default function ProductsPage() {
             setErrorMessage(error.message)
         })
     }, [])
+
     return (
         <main className="page">
             <div className="h-full pt-4">
