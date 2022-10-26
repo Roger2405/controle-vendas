@@ -73,7 +73,7 @@ export default function AddProduct() {
                         <div className="productForm__group">
                             <label htmlFor="type" className="productForm__group--label">Tipo: </label>
                             <div>
-                                <Field onChange={(e) => setInputTypeValue(e.target.value)} value={inputTypeValue} name="type" id="type" className="productForm__group--input" placeholder="Tipo" />
+                                <Field name="type" id="type" className="productForm__group--input" placeholder="Tipo" />
                                 <select className="productForm__group--select" onChange={(e) => { setInputTypeValue(e.target.value) }} name="types" id="types" >
                                     <option value=""></option>
                                     {
