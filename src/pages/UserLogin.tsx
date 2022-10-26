@@ -19,7 +19,7 @@ export default function UserLogin({ setUser }: Props) {
 
     const handleLogin = (values: { email: string, password: string }) => {
         setIsLoading(true);
-        Axios.post("https://server-controle-vendas.herokuapp.com/user/login/", {
+        Axios.post(`${process.env.REACT_APP_LINK_API}/user/login/`, {
             email: values.email,
             password: values.password,
         }).then((response) => {

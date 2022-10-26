@@ -14,7 +14,7 @@ export default function UserRegister() {
 
     const handleRegister = (values: { email: string, password: string }) => {
         setIsLoading(true);
-        Axios.post("https://server-controle-vendas.herokuapp.com/user/register", {
+        Axios.post(`${process.env.REACT_APP_LINK_API}/user/register`, {
             email: values.email,
             password: values.password,
         }).then((response) => {

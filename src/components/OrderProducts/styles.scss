@@ -13,7 +13,7 @@
         border-radius: .5rem;
         box-shadow: var(--shadow);
         height: 3rem;
-        padding: .5rem;
+        padding-left: .5rem;
         margin-top: .25rem;
 
         align-items: center;
@@ -28,14 +28,21 @@
             flex-basis: 70%;
         }
 
+        .order__item--price {
+            margin-right: .5rem;
+        }
+
+        .edit-button {
+            height: 100%;
+            aspect-ratio: 1/1;
+            background-color: var(--primary);
+        }
+
         &:first-child {
             background-color: #EEEEEE;
             font-weight: 700;
         }
 
-        &:last-child {
-            border-bottom: none;
-        }
     }
 
 

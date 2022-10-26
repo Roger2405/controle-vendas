@@ -11,24 +11,36 @@ import { useEffect, useState } from "react";
 import Modal from "../components/Modal";
 import { productsTypes } from "../commons/getProductsFromDataBase";
 
+interface Props {
+    id: number
+}
 
-export default function AddProduct() {
-    const [isLoading, setIsLoading] = useState(false);
+export default function EditProduct({ id }: Props) {
     const [responseCode, setResponseCode] = useState(0);
-    const [inputTypeValue, setInputTypeValue] = useState('');
-
     const arrProductTypes = productsTypes;
 
     const navigate = useNavigate();
-    function handleAddProduct(values: { name: string, type: string, price: number }) {
-        setIsLoading(true);
-        Axios.post(`https://server-controle-vendas.herokuapp.com/products/register?id=${getUserFromLocalStorage().id}`, {
+
+    useEffect(() => {
+        Axios.get(`https://server-controle-vendas.herokuapp.com/?idUser=${getUserFromLocalStorage().id}/products?id=${id}`, {
+        }).then((response) => {
+            console.log(response.data.msg)
+            if (response.data.success) {
+                //navigate('/produtos');
+                setResponseCode(1);
+            }
+            else {
+                setResponseCode(-1);
+            }
+        });
+    })
+    function handleEditProduct(values: { name: string, type: string, price: number }) {
+        Axios.post(`https://server-controle-vendas.herokuapp.com/?idUser=${getUserFromLocalStorage().id}/products/update?id=${id}`, {
             name: values.name,
             type: values.type,
             price: values.price,
         }).then((response) => {
             console.log(response.data.msg)
-            setIsLoading(false);
             if (response.data.success) {
                 //navigate('/produtos');
                 setResponseCode(1);
@@ -38,6 +50,7 @@ export default function AddProduct() {
             }
         });
     }
+
     const validationsRegister = yup.object().shape({
         name: yup
             .string()
@@ -55,7 +68,7 @@ export default function AddProduct() {
                 <h1 className="form-title title">Cadastro</h1>
                 <Formik
                     initialValues={{ name: "", type: "", price: 0 }}
-                    onSubmit={handleAddProduct}
+                    onSubmit={handleEditProduct}
                     validationSchema={validationsRegister}
                 >
                     <Form className="productForm-container">
@@ -113,7 +126,7 @@ export default function AddProduct() {
                         <div className='absolute w-full px-4 bottom-0 flex h-24'>
 
                             <Button className='red-button left' onClick={() => { navigate('/produtos') }} ><X size={48} />Cancelar</Button>
-                            <Button isLoading={isLoading} type="submit" className='green-button right' >Adicionar<Check size={48} /></Button>
+                            <Button type="submit" className='green-button right' >Adicionar<Check size={48} /></Button>
 
                         </div>
                     </Form>
