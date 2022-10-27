@@ -1,6 +1,6 @@
 
 import Button from "../components/Button";
-import '../styles/AddProduct.scss';
+import '../styles/ProductForm.scss';
 import { ArrowRight, Check, X } from "phosphor-react";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -15,14 +15,13 @@ import { productsTypes } from "../commons/getProductsFromDataBase";
 export default function AddProduct() {
     const [isLoading, setIsLoading] = useState(false);
     const [responseCode, setResponseCode] = useState(0);
-    const [inputTypeValue, setInputTypeValue] = useState('');
 
     const arrProductTypes = productsTypes;
 
     const navigate = useNavigate();
     function handleAddProduct(values: { name: string, type: string, price: number }) {
         setIsLoading(true);
-        Axios.post(`https://server-controle-vendas.herokuapp.com/products/register?id=${getUserFromLocalStorage().id}`, {
+        Axios.post(`${process.env.REACT_APP_LINK_API}/${getUserFromLocalStorage().id}/products/register`, {
             name: values.name,
             type: values.type,
             price: values.price,
@@ -47,6 +46,7 @@ export default function AddProduct() {
             .required("O tipo é obrigatório"),
         price: yup
             .number()
+            .moreThan(0, 'O preço deve ser maior que 0')
             .required("O preço é obrigatório")
     });
     return (
@@ -72,20 +72,8 @@ export default function AddProduct() {
 
                         <div className="productForm__group">
                             <label htmlFor="type" className="productForm__group--label">Tipo: </label>
-                            <Field list="product-types" name="type" id="type" className="productForm__group--input" placeholder="Tipo" />
-                            {
-                                /*
-                                <select className="productForm__group--select" onChange={(e) => { setInputTypeValue(e.target.value) }} name="types" id="types" >
-                                    <option value=""></option>
-                                    {
-                                        arrProductTypes.map(type => {
-                                            return <option key={type} value={type.toLowerCase()} >{type}</option>
-                                        })
-                                    }
-                                    </select>
-                                    */
 
-                            }
+                            <Field list="product-types" name="type" id="type" className="productForm__group--input" placeholder="Tipo" />
                             <datalist id="product-types">
                                 {
                                     arrProductTypes.map(type => {
@@ -93,6 +81,7 @@ export default function AddProduct() {
                                     })
                                 }
                             </datalist>
+
                             <ErrorMessage
                                 component="span"
                                 name="type"
@@ -101,7 +90,7 @@ export default function AddProduct() {
                         </div>
                         <div className="productForm__group">
                             <label htmlFor="price" className="productForm__group--label">Preço: </label>
-                            <Field id="price" name="price" type="number" className="productForm__group--input" value="" placeholder="Preço" />
+                            <Field id="price" name="price" type="number" className="productForm__group--input" placeholder="Preço" />
 
                             <ErrorMessage
                                 component="span"

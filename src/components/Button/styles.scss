@@ -30,6 +30,12 @@
 
         position: relative;
     }
+
+}
+
+.danger-button {
+    box-shadow: none;
+    color: var(--red);
 }
 
 .green-button {

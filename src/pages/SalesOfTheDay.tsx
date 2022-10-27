@@ -16,7 +16,6 @@ export default function SalesOfTheDay() {
     var salesFromLocalStorage = getSalesFromLocalStorage();
 
     const [showModal, setShowModal] = useState(false);
-    const [confirmExclusion, setConfirmExclusion] = useState<boolean>();
 
     const [sales, setSales] = useState(salesFromLocalStorage);
 
@@ -30,29 +29,11 @@ export default function SalesOfTheDay() {
         setSalesInLocalStorage(sales);
     }, [sales])
 
-    useEffect(() => {
-        if (confirmExclusion) {
-            setSales([]);
-        }
-        setShowModal(false);
-    }, [confirmExclusion]);
+    
 
 
     return (
         <main className="page">
-            {
-                showModal &&
-                <Modal >
-                    <div className="flex flex-col justify-center h-full w-full text-center">
-                        <p className="font-bold text-3xl px-4">Deseja realmente excluir os dados da venda?</p>
-                    </div>
-
-                    <div className='flex w-full'>
-                        <Button className='gray-button modal-button' onClick={() => setConfirmExclusion(false)} >Cancelar</Button>
-                        <Button className='red-button modal-button' onClick={() => setConfirmExclusion(true)} >Confirmar</Button>
-                    </div>
-                </Modal>
-            }
             <div className="w-full flex flex-col justify-between h-full">
                 <div className="pb-32">
                     <ListOrderProducts className="h-full" hiddenOverflow orderProducts={sales} />

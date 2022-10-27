@@ -13,7 +13,7 @@ export async function getProductsFromDB() {
         return [];
     }
     else {
-        const arrProducts: ProductProps[] = await Axios.get(`${process.env.REACT_APP_LINK_API}/products?id=${idUser}`)
+        const arrProducts: ProductProps[] = await Axios.get(`${process.env.REACT_APP_LINK_API}/${idUser}/products`)
             .then((response) => {
                 if (response.data[0]) {
                     return response.data;

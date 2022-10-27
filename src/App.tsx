@@ -13,6 +13,7 @@ import { getUserFromLocalStorage } from "./commons/userFromLocalStorage";
 import AddProduct from "./pages/AddProduct";
 import ProductsPage from './pages/ProductsPage';
 import AddSales from './pages/AddSales';
+import EditProduct from './pages/EditProduct';
 
 type User = {
   email: string,
@@ -42,6 +43,7 @@ function App() {
         {/*<Route path="resumo" element={<Summary />} />*/}
         <Route path="produtos" element={<ProductsPage />} />
         <Route path="adicionar-produto" element={<AddProduct />} />
+        <Route path="editar-produto/:id" element={<EditProduct />} />
       </Route>
     </Routes>
 

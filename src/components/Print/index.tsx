@@ -1,7 +1,7 @@
 
 import domtoimage from 'dom-to-image';
 import { Download } from 'phosphor-react';
-import { ReactNode, useState } from 'react';
+import { ReactNode, useId, useState } from 'react';
 import OrderProduct from '../../types/orderProduct';
 import Button from '../Button';
 import Input from '../Input';
