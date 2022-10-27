@@ -33,10 +33,10 @@ export async function getGroupedProducts() {
             if (response) {
                 productsArr = response;
                 productsArr.forEach(product => {
-                    if (productsTypes.includes(product.type_product)) {
+                    if (productsTypes.includes(product.type_product.toLowerCase())) {
                         return;
                     }
-                    productsTypes.push(product.type_product);
+                    productsTypes.push(product.type_product.toLowerCase());
                 });
                 for (var i = 0; i < productsTypes.length; i++) {
                     let arr = productsArr.filter(product => product.type_product === productsTypes[i]);

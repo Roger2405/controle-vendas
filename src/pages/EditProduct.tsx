@@ -144,7 +144,7 @@ export default function EditProduct() {
                 showModal ?
                     <Modal >
                         <div className="flex flex-col justify-center h-full w-full text-center">
-                            <p className="font-bold text-3xl px-4">Deseja realmente excluir este produto?</p>
+                            <p className="font-bold text-gray-500 text-3xl px-4">Deseja realmente excluir este produto?</p>
                         </div>
 
                         <div className='flex w-full'>
@@ -174,7 +174,7 @@ export default function EditProduct() {
                                     </>
                                     :
                                     <>
-                                        <p className="font-bold my-auto text-3xl px-4">Não foi possível atualizar!</p>
+                                        <p className="font-bold text-red-500 my-auto text-3xl px-4">Não foi possível atualizar!</p>
                                         <div className='w-full mt-auto'>
                                             <Button className='gray-button modal-button' onClick={() => setResponseCode(0)} >Fechar</Button>
                                         </div>

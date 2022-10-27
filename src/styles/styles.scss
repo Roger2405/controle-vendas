@@ -5,11 +5,17 @@ $headerHeigth: 4rem;
 @tailwind components;
 
 :root {
-    --background: #CAEFB7;
-    --primary: #579853;
+    //--background: #CAEFB7;
+    //--primary: #579853;
+    //--red: #E55454;
+    //--gray: #8F8F8F;
+    //--item-color: #E5F7DB;
+    //--white: #FFFFFF;
+    --background: #D6EFDA;
+    --primary: #309057;
     --red: #E55454;
     --gray: #8F8F8F;
-    --item-color: #E5F7DB;
+    --item-color: #ffffffbb;
     --white: #FFFFFF;
     --dark: #000000;
 
@@ -40,10 +46,11 @@ body {
 
 .subtitle {
     font-size: 1.5rem;
-    color: var(--white);
+    line-height: 1.5rem;
+    color: var(--primary);
     text-shadow: var(--shadow);
     font-weight: 700;
-    text-transform: uppercase;
+    //text-transform: uppercase;
     text-align: left;
     margin-left: .5rem;
 }

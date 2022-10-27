@@ -54,7 +54,7 @@ export default function AddProduct() {
     return (
         <main className="page">
             <div>
-                <h1 className="form-title title">Cadastro</h1>
+                <h1 className="form-title title">Adicionar produto</h1>
                 <Formik
                     initialValues={{ name: "", type: "", price: 0 }}
                     onSubmit={handleAddProduct}
