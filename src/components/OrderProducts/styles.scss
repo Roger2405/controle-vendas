@@ -3,10 +3,10 @@
     //height: calc(100% - 48px - 116px);
     //max-height: 80%;
     position: relative;
-    padding: .75rem .5rem;
-    background-color: var(--secondary);
+    padding: 0 .5rem 2rem;
     gap: .25rem;
     color: var(--primary);
+    //border-top: .125rem solid;
 
     .order__item {
         background-color: var(--item-color);
@@ -39,7 +39,8 @@
         }
 
         &:first-child {
-            background-color: #EEEEEE;
+            background-color: unset;
+            box-shadow: none;
             font-weight: 700;
         }
 
