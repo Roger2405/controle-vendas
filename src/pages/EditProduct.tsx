@@ -166,7 +166,10 @@ export default function EditProduct() {
                                         <p className="font-bold my-auto text-3xl px-8">Produto atualizado com sucesso!</p>
                                         <div className='w-full mt-auto flex'>
                                             <Button className='gray-button modal-button' onClick={() => setResponseCode(0)} >Fechar</Button>
-                                            <Button className='green-button modal-button' onClick={() => navigate('/produtos')} >Ir para Produtos</Button>
+                                            <Button className='green-button modal-button' onClick={() => {
+                                                navigate('/produtos')
+                                                window.location.reload()
+                                            }} >Ir para Produtos</Button>
                                         </div>
                                     </>
                                     :

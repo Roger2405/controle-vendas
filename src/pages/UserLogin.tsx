@@ -90,13 +90,13 @@ export default function UserLogin({ setUser }: Props) {
                 <div className="flex py-4 w-full">
                     <Link className="basis-1/2" to={"/"}>
                         <Button className="green-button left" onClick={() => setUser({ email: 'teste@demo.com', id: 1 })}>
-                            Conta de demonstração
+                            Conta demo
                         </Button>
                     </Link>
                     <Link className="basis-1/2" to={"/cadastro"}>
                         <Button className="green-button right">
                             Cadastre-se
-                            <ArrowRight size={48} />
+                            <ArrowRight size={24} />
                         </Button>
                     </Link>
 

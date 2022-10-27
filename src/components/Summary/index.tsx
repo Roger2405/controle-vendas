@@ -78,11 +78,11 @@ export default function Summary({ setShowSummary, orderProducts }: Props) {
                 <div className='mt-4 flex h-24'>
                     {
                         payment !== 0 ?
-                            <Button className='red-button left' onClick={() => setPayment(0)} ><X size={48} />Cancelar</Button>
+                            <Button className='red-button left' onClick={() => setPayment(0)} ><X size={32} />Cancelar</Button>
                             :
-                            <Button className='gray-button left' onClick={() => setShowSummary(false)} ><ArrowLeft size={48} />Voltar</Button>
+                            <Button className='gray-button left' onClick={() => setShowSummary(false)} ><ArrowLeft size={32} />Voltar</Button>
                     }
-                    <Button className='green-button right' onClick={navigateToHome}>Confirmar<Check size={48} /></Button>
+                    <Button className='green-button right' onClick={navigateToHome}>Confirmar<Check size={32} /></Button>
                 </div>
             </section>
 

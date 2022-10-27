@@ -21,7 +21,9 @@ export default function AddProduct() {
     const navigate = useNavigate();
     function handleAddProduct(values: { name: string, type: string, price: number }) {
         setIsLoading(true);
-        Axios.post(`${process.env.REACT_APP_LINK_API}/${getUserFromLocalStorage().id}/products/register`, {
+        const userId = getUserFromLocalStorage().id;
+        console.log(userId)
+        Axios.post(`${process.env.REACT_APP_LINK_API}/${userId}/products/register`, {
             name: values.name,
             type: values.type,
             price: values.price,

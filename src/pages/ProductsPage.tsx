@@ -63,7 +63,7 @@ export default function ProductsPage() {
                 }
             </div>
             <div className='max-w-xl fixed right-1/2 translate-x-1/2 bottom-4 px-4 w-full'>
-                <Button className='green-button' onClick={() => navigate('/adicionar-produto')} ><Plus size={32} />Adicionar produto</Button>
+                <Button className='green-button' onClick={() => navigate('/adicionar-produto')} ><Plus size={24} />Adicionar produto</Button>
             </div>
 
         </main >

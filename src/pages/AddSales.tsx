@@ -115,11 +115,11 @@ export default function AddSales() {
                                     {
                                         orderProducts.length === 0 //if doesn't exists any products in the order, the button have the "return previous page" function, else, it clears the order; 
                                             ?
-                                            <Button className='gray-button left' onClick={navigateToHome} ><ArrowLeft size={48} />Voltar</Button>
+                                            <Button className='gray-button left' onClick={navigateToHome} ><ArrowLeft size={32} />Voltar</Button>
                                             :
-                                            <Button className='red-button left' onClick={() => setOrderProducts([])} ><X size={48} />Cancelar</Button>
+                                            <Button className='red-button left' onClick={() => setOrderProducts([])} ><X size={32} />Cancelar</Button>
                                     }
-                                    <Button className='green-button right' disabled={orderProducts.length === 0 ? true : false} onClick={() => setShowSummary(true)} >Avançar<ArrowRight size={48} /></Button>
+                                    <Button className='green-button right' disabled={orderProducts.length === 0 ? true : false} onClick={() => setShowSummary(true)} >Avançar<ArrowRight size={32} /></Button>
                                 </div>
                             </div>
 
