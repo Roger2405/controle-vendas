@@ -25,7 +25,7 @@ export default function ProductsPage() {
 
     return (
         <main className="page">
-            <div className="pt-4 mb-32">
+            <div className="pt-4 pb-32">
                 {
                     arrProducts?.length ?
                         <>
