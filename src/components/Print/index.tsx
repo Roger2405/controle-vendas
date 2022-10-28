@@ -20,6 +20,7 @@ interface Props {
 export default function Print({ sales, total }: Props) {
     const date = new Date().toLocaleDateString('pt-BR');
     const time = new Date().toLocaleTimeString('pt-BR');
+    const dataMySQL = new Date().getDate()
 
     const [fieldValue, setFieldValue] = useState('');
     const [fieldName, setFieldName] = useState('');

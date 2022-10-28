@@ -9,35 +9,48 @@ import Modal from "../components/Modal";
 import { getSalesFromLocalStorage, setSalesInLocalStorage } from '../commons/dataFromLocalStorage';
 import Print from "../components/Print";
 import { Plus } from "phosphor-react";
+import { getSalesByDate, getSalesFromDB } from "../commons/getSalesFromDB";
+import OrderProduct from "../types/orderProduct";
 
 export default function SalesOfTheDay() {
     const navigate = useNavigate();
 
     var salesFromLocalStorage = getSalesFromLocalStorage();
 
-    const [sales, setSales] = useState(salesFromLocalStorage);
+    const [sales, setSales] = useState<OrderProduct[]>([]);
+    const [total, setTotal] = useState<number>(0);
 
+    const date = new Date().toISOString().split('T')[0]
+    console.log('DATA: ', date)
 
-    let sumTotal: number = 0;
-    sales.map(product => {
-        sumTotal += (product.count * product.price_product);
-    })
+    /*
+})*/
 
     useEffect(() => {
-        setSalesInLocalStorage(sales);
-    }, [sales])
-
+        //setSalesInLocalStorage(sales);
+        getSalesByDate(date).then(res => {
+            setSales(res)
+            let sumTotal: number = 0;
+            res.map(product => {
+                sumTotal += (product.count * product.price_product);
+            });
+            setTotal(sumTotal);
+        });
+    }, [])
 
     return (
         <main className="page">
             <div className="w-full flex flex-col justify-between h-full">
                 <div className="pb-32">
+
                     <ListOrderProducts className="h-full" hiddenOverflow orderProducts={sales} />
 
                 </div>
-                <Print total={sumTotal} sales={sales} />
+                {/*
+                    <Print total={sumTotal} sales={sales} />*/
+                }
                 <div className='max-w-xl fixed right-1/2 translate-x-1/2 bottom-4 px-4 w-full'>
-                    <Total sumTotal={sumTotal} />
+                    <Total sumTotal={total} />
                     <Button className='green-button' onClick={() => navigate('/adicionar-venda')} ><Plus size={24} />Nova venda</Button>
                     {/*<Button className=' text-red-800' onClick={() => setShowModal(true)} >Resetar vendas</Button>*/}
                 </div>

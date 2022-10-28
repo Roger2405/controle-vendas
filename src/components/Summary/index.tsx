@@ -13,6 +13,8 @@ import MoneyCards from '../MoneyCard';
 import Total from '../Total';
 import Input from '../Input';
 import Button from '../Button';
+import Axios from 'axios';
+import { getUserFromLocalStorage } from '../../commons/userFromLocalStorage';
 
 interface Props {
     setShowSummary: React.Dispatch<React.SetStateAction<boolean>>,
@@ -25,6 +27,7 @@ export default function Summary({ setShowSummary, orderProducts }: Props) {
     const total = getSumTotal(orderProducts);
     const [payment, setPayment] = useState(0);
     const [changeMoney, setChangeMoney] = useState<number>(0);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         setChangeMoney(payment - total);
@@ -41,25 +44,45 @@ export default function Summary({ setShowSummary, orderProducts }: Props) {
     }
 
 
-    function navigateToHome() {
-        const oldSales = getSalesFromLocalStorage();
-        var newSales = oldSales;
+    function refreshSalesOnDB() {
+        //const oldSales = getSalesFromLocalStorage();
+        //var newSales = oldSales;
 
-        orderProducts.forEach(orderProduct => {
-            const indexById = searchIndexById(newSales, orderProduct.id);
-            if (indexById >= 0) {
-                newSales[indexById].count += orderProduct.count;
-            }
-            else {
-                newSales.push(orderProduct);
-            }
+        // orderProducts.forEach(orderProduct => {
+        //     const indexById = searchIndexById(newSales, orderProduct.id);
+        //     if (indexById >= 0) {
+        //         newSales[indexById].count += orderProduct.count;
+        //     }
+        //     else {
+        //         newSales.push(orderProduct);
+        //     }
+
+        // })
+        const userId = getUserFromLocalStorage().id;
+        console.error('userId: ', userId)
+        setIsLoading(true);
+        const date = new Date().toISOString().split('T')[0].toString();
+        orderProducts.forEach(product => {
+            Axios.post(`${process.env.REACT_APP_LINK_API}/${userId}/sales/register`, {
+                productId: product.id,
+                count: product.count,
+                price: product.price_product,
+                date: date
+            }).then((response) => {
+                if (response.data.success) {
+                    console.log('Venda atualizada')
+                }
+                setIsLoading(false);
+            });
 
         })
-
-        setSalesInLocalStorage(newSales);
-        removeOrderProductsFromLocalStorage();
+        //setSalesInLocalStorage(newSales);
+        //removeOrderProductsFromLocalStorage();
         navigate('/')
-    }
+        window.location.reload();
+    };
+
+
 
 
     return (
@@ -82,7 +105,7 @@ export default function Summary({ setShowSummary, orderProducts }: Props) {
                             :
                             <Button className='gray-button left' onClick={() => setShowSummary(false)} ><ArrowLeft size={32} />Voltar</Button>
                     }
-                    <Button className='green-button right' onClick={navigateToHome}>Confirmar<Check size={32} /></Button>
+                    <Button className='green-button right' onClick={refreshSalesOnDB}>Confirmar<Check size={32} /></Button>
                 </div>
             </section>
 

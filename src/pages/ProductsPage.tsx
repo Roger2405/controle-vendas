@@ -17,6 +17,9 @@ export default function ProductsPage() {
         getGroupedProducts().then(
             arr => {
                 setArrProducts(arr);
+                console.log(arr)
+                console.log(arr[0])
+
             }
         ).catch(error => {
             setErrorMessage(error.message)
@@ -32,7 +35,7 @@ export default function ProductsPage() {
                             {arrProducts.map(group => {
                                 return (
                                     <div key={group[0]?.id}>
-                                        <h2 className="subtitle">{group[0].type_product}</h2>
+                                        <h2 className="subtitle">{group[0]?.type_product}</h2>
                                         <div className={`order max-h-7xl w-full mx-auto}`}>
                                             <div className='order__item'>
                                                 <p className='order__item--name'>Nome</p>

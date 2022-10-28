@@ -4,7 +4,7 @@ import { PencilSimple } from 'phosphor-react';
 
 
 interface Props extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
-    orderProducts: any[],
+    orderProducts: OrderProduct[],
     setOrderProducts?: React.Dispatch<React.SetStateAction<OrderProduct[]>>
     setTotal?: React.Dispatch<React.SetStateAction<number>>,
     hiddenOverflow: boolean,
