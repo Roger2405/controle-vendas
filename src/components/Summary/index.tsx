@@ -62,6 +62,7 @@ export default function Summary({ setShowSummary, orderProducts }: Props) {
         console.error('userId: ', userId)
         setIsLoading(true);
         const date = new Date().toISOString().split('T')[0].toString();
+        console.log("DATA AO CADASTRAR VENDA: ", date);
         orderProducts.forEach(product => {
             Axios.post(`${process.env.REACT_APP_LINK_API}/${userId}/sales/register`, {
                 productId: product.id,
@@ -79,7 +80,7 @@ export default function Summary({ setShowSummary, orderProducts }: Props) {
         //setSalesInLocalStorage(newSales);
         //removeOrderProductsFromLocalStorage();
         navigate('/')
-        window.location.reload();
+        //window.location.reload();
     };
 
 
