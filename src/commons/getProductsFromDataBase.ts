@@ -33,7 +33,7 @@ export async function getGroupedProducts() {
             if (response) {
                 productsArr = response;
                 productsArr.forEach(product => {
-                    if (productsTypes.includes(product.type_product.toLowerCase())) {
+                    if (productsTypes.includes(product.type_product)) {
                         return;
                     }
                     productsTypes.push(product.type_product.toLowerCase());
