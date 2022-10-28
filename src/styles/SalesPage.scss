@@ -3,8 +3,12 @@
     //background-color: green;
     text-transform: uppercase;
     border-bottom: .25rem solid;
+    margin: 1rem 0;
+    color: var(--gray);
 
     &.active {
+        font-size: 1.25rem;
+        font-weight: 700;
         color: var(--primary);
         border-color: var(--primary);
     }
