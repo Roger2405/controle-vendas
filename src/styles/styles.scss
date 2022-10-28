@@ -57,7 +57,7 @@ body {
 
 
 .page {
-    padding-top: $headerHeigth;
+    padding: $headerHeigth .5rem 0;
     height: 100vh;
     background-color: var(--background);
 }

@@ -1,0 +1,11 @@
+.button-sales {
+    flex-basis: 50%;
+    //background-color: green;
+    text-transform: uppercase;
+    border-bottom: .25rem solid;
+
+    &.active {
+        color: var(--primary);
+        border-color: var(--primary);
+    }
+}

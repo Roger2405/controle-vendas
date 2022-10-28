@@ -4,15 +4,16 @@ import { Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import Header from "./components/Header";
-import Sales from "./pages/SalesOfTheDay";
 import UserLogin from "./pages/UserLogin";
 import UserRegister from "./pages/UserRegister";
 
 
 import { getUserFromLocalStorage } from "./commons/userFromLocalStorage";
-import AddProduct from "./pages/AddProduct";
-import ProductsPage from './pages/ProductsPage';
+import SalesPage from "./pages/SalesPage";
 import AddSales from './pages/AddSales';
+
+import ProductsPage from './pages/ProductsPage';
+import AddProduct from "./pages/AddProduct";
 import EditProduct from './pages/EditProduct';
 
 type User = {
@@ -36,12 +37,12 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Header isLogged={isLogged} />}>
-        <Route index element={isLogged ? <Sales /> : <UserLogin setUser={setUser} />} />
+        <Route index element={isLogged ? <SalesPage /> : <UserLogin setUser={setUser} />} />
         <Route path="cadastro" element={<UserRegister />} />
-        <Route path="adicionar-venda" element={<AddSales />} />
 
         {/*<Route path="resumo" element={<Summary />} />*/}
         <Route path="produtos" element={<ProductsPage />} />
+        <Route path="adicionar-venda" element={<AddSales />} />
         <Route path="adicionar-produto" element={<AddProduct />} />
         <Route path="editar-produto/:id" element={<EditProduct />} />
       </Route>
