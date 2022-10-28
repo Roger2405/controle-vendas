@@ -36,7 +36,9 @@ export async function getGroupedProducts() {
                     if (productsTypes.includes(product.type_product)) {
                         return;
                     }
-                    productsTypes.push(product.type_product.toLowerCase());
+                    else {
+                        productsTypes.push(product.type_product);
+                    }
                 });
                 for (var i = 0; i < productsTypes.length; i++) {
                     let arr = productsArr.filter(product => product.type_product === productsTypes[i]);
