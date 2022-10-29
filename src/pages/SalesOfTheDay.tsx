@@ -20,6 +20,7 @@ export default function SalesOfTheDay() {
     const [sales, setSales] = useState<OrderProduct[]>([]);
     const [total, setTotal] = useState<number>(0);
 
+    
     const date = new Date().toISOString().split('T')[0];
     //const fullDate = date.getFullYear().toString() + date.getMonth().toString().padStart(2, '0') + date.getDay().toString().padStart(2, '0');
 

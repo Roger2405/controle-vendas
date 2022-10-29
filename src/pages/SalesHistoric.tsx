@@ -6,7 +6,6 @@ import SaleResumeProps from "../types/saleResume";
 export default function SalesHistoric() {
     const [salesResume, setSalesResume] = useState<SaleResumeProps[]>();
 
-    const date = new Date().toISOString().split('T')[0]
     /*
 })*/
 
@@ -15,12 +14,13 @@ export default function SalesHistoric() {
         getSalesFromDB()
             .then(response => {
                 let sales = response;
+                /*
                 sales.forEach(
                     sale => {
                         sale.data_venda = new Date(sale.data_venda).toUTCString()
                     }
                 )
-
+*/
                 setSalesResume(sales)
                 console.log(sales)
             });

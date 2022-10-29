@@ -60,13 +60,15 @@ export default function Summary({ setShowSummary, orderProducts }: Props) {
         // })
         const userId = getUserFromLocalStorage().id;
         setIsLoading(true);
-        const date = new Date().toISOString().split('T')[0];
+        const date = new Date();
+
+        const fullDate = `${date.getFullYear().toString()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
         orderProducts.forEach(product => {
             Axios.post(`${process.env.REACT_APP_LINK_API}/${userId}/sales/register`, {
                 productId: product.id,
                 count: product.count,
                 price: product.price_product,
-                date: date
+                date: fullDate
             }).then((response) => {
                 if (response.data.success) {
                     console.log('Venda atualizada')
