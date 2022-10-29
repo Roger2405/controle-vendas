@@ -75,19 +75,18 @@ export default function Summary({ setShowSummary, orderProducts }: Props) {
                     console.log('Venda atualizada')
                 }
                 else {
-                    alert(response.data.msg)
-                    throw response.data.msg;
+                    alert(response.data.msg);
                 }
                 setIsLoading(false);
             }).catch(err => {
-                alert(err)
+                alert(err.message)
             })
 
         })
         //setSalesInLocalStorage(newSales);
         //removeOrderProductsFromLocalStorage();
-        navigate('/')
-        window.location.reload();
+        //navigate('/')
+        //window.location.reload();
     };
 
 
