@@ -60,19 +60,10 @@ export default function OrderProducts({ orderProducts, setOrderProducts, setTota
                     return (
                         <div key={product.id} className='order__item relative' onClick={() => decrementCountProduct(product)}>
                             <p className='order__item--name'>{product.name_product}</p>
-                            {
-                                product.count ?
-                                    <>
-                                        <span className='order__item--count'>{product.count}</span>
-                                        <p className='order__item--price'><strong>{(subtotal).toFixed(2)}</strong></p>
-
-                                    </>
-                                    :
-                                    <>
-                                        <p className='order__item--price'><strong>{(subtotal).toFixed(2)}</strong></p>
-                                        <button className='edit-button'><PencilSimple color='white' className='mx-auto' size={32} /></button>
-                                    </>
-                            }
+                            <span className='order__item--count'>{product.count}</span>
+                            <p className='order__item--price'><strong>R$ {(subtotal).toLocaleString('pt-BR', {
+                                minimumFractionDigits: 2
+                            })}</strong></p>
 
                         </div>
                     )

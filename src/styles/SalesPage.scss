@@ -17,15 +17,22 @@
 .sale {
     .sale__header {
         background-color: var(--primary);
-        margin-top: .5rem;
+        box-shadow: var(--shadow);
+        border-radius: .25rem;
         color: var(--white);
         display: flex;
-        justify-content: space-between;
+        margin-top: .5rem;
         padding: .75rem .5rem;
+        width: 100%;
+        font-weight: 700;
+
+        &--date {
+            margin-left: 1rem;
+        }
 
         &--total {
-            font-weight: 700;
-            font-size: 1.25rem;
+
+            margin-left: auto;
 
             &::before {
                 content: 'R$ ';
@@ -35,10 +42,16 @@
 
 }
 
-.sale-selected {
-
+.sale.sale-selected {
     .sale__header--toggleIcon {
         transform: rotateZ(90deg);
+        transition: .25s;
+    }
+}
+
+.sale {
+    .sale__header--toggleIcon {
+        transform: rotateZ(0deg);
         transition: .25s;
     }
 }

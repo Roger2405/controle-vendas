@@ -5,7 +5,7 @@ import Button from "../components/Button";
 import Total from "../components/Total";
 import Modal from "../components/Modal";
 
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 import { getSalesFromLocalStorage, setSalesInLocalStorage } from '../commons/dataFromLocalStorage';
@@ -31,8 +31,8 @@ export default function SalesOfTheDay() {
     useEffect(() => {
         //setSalesInLocalStorage(sales);
         getSalesByDate(date).then(res => {
-            if(res) {
-                setSales(res) 
+            if (res) {
+                setSales(res)
             }
             let sumTotal: number = 0;
             res.map(product => {
@@ -47,11 +47,8 @@ export default function SalesOfTheDay() {
             <div className="w-full flex flex-col justify-between h-full">
                 <div className="pb-32">
                     {
-                        sales.length > 0 ?
-                            <OrderProducts className="h-full" hiddenOverflow orderProducts={sales} />
-                            :
-                            <>
-                            </>
+                        sales.length > 0 &&
+                        <OrderProducts className="h-full" hiddenOverflow orderProducts={sales} />
                     }
 
                 </div>
@@ -61,7 +58,6 @@ export default function SalesOfTheDay() {
                 <div className='max-w-xl fixed right-1/2 translate-x-1/2 bottom-4 px-4 w-full'>
                     <Total sumTotal={total} />
                     <Button className='green-button' onClick={() => navigate('/adicionar-venda')} ><Plus size={24} />Nova venda</Button>
-                    {/*<Button className=' text-red-800' onClick={() => setShowModal(true)} >Resetar vendas</Button>*/}
                 </div>
             </div>
 
