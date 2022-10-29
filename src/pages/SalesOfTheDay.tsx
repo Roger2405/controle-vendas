@@ -20,7 +20,7 @@ export default function SalesOfTheDay() {
     const [sales, setSales] = useState<OrderProduct[]>([]);
     const [total, setTotal] = useState<number>(0);
 
-    
+
     const date = new Date().toISOString().split('T')[0];
     //const fullDate = date.getFullYear().toString() + date.getMonth().toString().padStart(2, '0') + date.getDay().toString().padStart(2, '0');
 
@@ -28,7 +28,9 @@ export default function SalesOfTheDay() {
     useEffect(() => {
         //setSalesInLocalStorage(sales);
         getSalesByDate(date).then(res => {
-            setSales(res)
+            if(res) {
+                setSales(res) 
+            }
             let sumTotal: number = 0;
             res.map(product => {
                 sumTotal += (product.count * product.price_product);
@@ -41,8 +43,13 @@ export default function SalesOfTheDay() {
         <div>
             <div className="w-full flex flex-col justify-between h-full">
                 <div className="pb-32">
-
-                    <OrderProducts className="h-full" hiddenOverflow orderProducts={sales} />
+                    {
+                        sales.length > 0 ?
+                            <OrderProducts className="h-full" hiddenOverflow orderProducts={sales} />
+                            :
+                            <>
+                            </>
+                    }
 
                 </div>
                 {/*

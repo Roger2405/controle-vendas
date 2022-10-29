@@ -36,9 +36,9 @@ export async function getSalesByDate(date: string) {
                     return response.data;
                 }
                 else {
-                    alert(response.data.msg);
+                    console.log(response.data.msg);
                 }
-            }).catch(err => alert(err.message));
+            });
         return arrSales;
     }
 };
