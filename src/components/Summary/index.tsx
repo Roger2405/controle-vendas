@@ -85,8 +85,8 @@ export default function Summary({ setShowSummary, orderProducts }: Props) {
         })
         //setSalesInLocalStorage(newSales);
         //removeOrderProductsFromLocalStorage();
-        //navigate('/')
-        //window.location.reload();
+        navigate('/')
+        window.location.reload();
     };
 
 
