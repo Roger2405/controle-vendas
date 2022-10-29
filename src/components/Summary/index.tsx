@@ -68,7 +68,7 @@ export default function Summary({ setShowSummary, orderProducts }: Props) {
                 productId: product.id,
                 count: product.count,
                 price: product.price_product,
-                date: fullDate
+                date: '2022-10-29'
             }).then((response) => {
                 if (response.data.success) {
                     console.log('Venda atualizada')
