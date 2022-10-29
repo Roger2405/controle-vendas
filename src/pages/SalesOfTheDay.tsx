@@ -1,9 +1,12 @@
-import { useNavigate } from "react-router-dom";
+
 import { useEffect, useState } from "react";
 
 import Button from "../components/Button";
 import Total from "../components/Total";
 import Modal from "../components/Modal";
+
+import {useNavigate} from 'react-router-dom';
+
 
 import { getSalesFromLocalStorage, setSalesInLocalStorage } from '../commons/dataFromLocalStorage';
 import Print from "../components/Print";

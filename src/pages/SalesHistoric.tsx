@@ -5,7 +5,7 @@ import SaleResumeProps from "../types/saleResume";
 
 export default function SalesHistoric() {
     const [salesResume, setSalesResume] = useState<SaleResumeProps[]>();
-
+    const [dateSalesDetails, setDateSalesDetails] = useState('');
     /*
 })*/
 
@@ -28,21 +28,22 @@ export default function SalesHistoric() {
     return (
         <div>
             {
-                salesResume &&
-                <div>
-                    {
-                        salesResume.map(sale => {
-                            return (
-                                <div className="sale-resume">
-                                    <CaretRight size={24} />
-                                    <p className="sale-resume__date">{(sale.data_venda)}</p>
-                                    <p className="sale-resume__total">{sale.total.toFixed(2)}</p>
-                                </div>
-                            )
-                        })
-                    }
-                </div>
-
+                salesResume ?
+                    <div>
+                        {
+                            salesResume?.map(sale => {
+                                return (
+                                    <div className={`sale-resume ${dateSalesDetails == sale.data_venda ? 'sale-selected' : ''}`} onClick={() => setDateSalesDetails(sale.data_venda)}>
+                                        <CaretRight size={24} />
+                                        <p className="sale-resume__date">{(sale.data_venda)}</p>
+                                        <p className="sale-resume__total">{sale.total.toFixed(2)}</p>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                    :
+                    <></>
             }
         </div>
 
