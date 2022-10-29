@@ -25,13 +25,12 @@ export async function getSalesFromDB() {
 };
 export async function getSalesByDate(date: string) {
     const idUser = getUserFromLocalStorage().id;
-    alert(`Date from getSalesFroDB : ${date}`)
     if (!idUser) {
         alert("Usuário não está logado");
         throw new Error("Usuário não está logado");
     }
     else {
-        const arrSales: OrderProduct[] = await Axios.get(`${process.env.REACT_APP_LINK_API}/${idUser}/sales`)
+        const arrSales: OrderProduct[] = await Axios.get(`${process.env.REACT_APP_LINK_API}/${idUser}/sales?date=${date}`)
             .then((response) => {
                 if (response.data[0]) {
                     return response.data;
