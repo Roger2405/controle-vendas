@@ -4,7 +4,7 @@ import '../styles/SalesPage.scss';
 import SalesHistoric from "./SalesHistoric";
 
 export default function SalesPage() {
-    const [showIndex, setShowIndex] = useState(false);
+    const [showIndex, setShowIndex] = useState(true);
     return (
         <main className="page w-full">
             <div className="flex">
