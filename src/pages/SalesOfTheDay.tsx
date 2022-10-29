@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import ListOrderProducts from "../components/OrderProducts";
 import Button from "../components/Button";
 import Total from "../components/Total";
 import Modal from "../components/Modal";
@@ -11,6 +10,7 @@ import Print from "../components/Print";
 import { Plus } from "phosphor-react";
 import { getSalesByDate, getSalesFromDB } from "../commons/getSalesFromDB";
 import OrderProduct from "../types/orderProduct";
+import OrderProducts from "../components/OrderProducts";
 
 export default function SalesOfTheDay() {
     const navigate = useNavigate();
@@ -20,11 +20,9 @@ export default function SalesOfTheDay() {
     const [sales, setSales] = useState<OrderProduct[]>([]);
     const [total, setTotal] = useState<number>(0);
 
-    const date = new Date().toISOString().split('T')[0]
-    console.log('DATA: ', date)
+    const date = new Date().toISOString().split('T')[0];
+    //const fullDate = date.getFullYear().toString() + date.getMonth().toString().padStart(2, '0') + date.getDay().toString().padStart(2, '0');
 
-    /*
-})*/
 
     useEffect(() => {
         //setSalesInLocalStorage(sales);
@@ -43,7 +41,7 @@ export default function SalesOfTheDay() {
             <div className="w-full flex flex-col justify-between h-full">
                 <div className="pb-32">
 
-                    <ListOrderProducts className="h-full" hiddenOverflow orderProducts={sales} />
+                    <OrderProducts className="h-full" hiddenOverflow orderProducts={sales} />
 
                 </div>
                 {/*

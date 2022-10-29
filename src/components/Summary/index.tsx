@@ -61,8 +61,8 @@ export default function Summary({ setShowSummary, orderProducts }: Props) {
         const userId = getUserFromLocalStorage().id;
         console.error('userId: ', userId)
         setIsLoading(true);
-        const date = new Date().toISOString().split('T')[0].toString();
-        console.log("DATA AO CADASTRAR VENDA: ", date);
+        const date = new Date().toISOString();
+        alert(date);
         orderProducts.forEach(product => {
             Axios.post(`${process.env.REACT_APP_LINK_API}/${userId}/sales/register`, {
                 productId: product.id,

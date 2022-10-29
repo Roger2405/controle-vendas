@@ -1,9 +1,10 @@
 import { useState } from "react";
 import SalesOfTheDay from "./SalesOfTheDay";
 import '../styles/SalesPage.scss';
+import SalesHistoric from "./SalesHistoric";
 
 export default function SalesPage() {
-    const [showIndex, setShowIndex] = useState(true);
+    const [showIndex, setShowIndex] = useState(false);
     return (
         <main className="page w-full">
             <div className="flex">
@@ -14,8 +15,7 @@ export default function SalesPage() {
                 showIndex ?
                     <SalesOfTheDay />
                     :
-                    <>
-                    </>
+                    <SalesHistoric />
             }
         </main>
     )
