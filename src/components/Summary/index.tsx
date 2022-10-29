@@ -73,6 +73,8 @@ export default function Summary({ setShowSummary, orderProducts }: Props) {
             }).then((response) => {
                 if (response.data.success) {
                     console.log('Venda atualizada')
+                    navigate('/')
+                    window.location.reload();
                 }
                 else {
                     alert(response.data.msg);
@@ -85,8 +87,6 @@ export default function Summary({ setShowSummary, orderProducts }: Props) {
         })
         //setSalesInLocalStorage(newSales);
         //removeOrderProductsFromLocalStorage();
-        navigate('/')
-        //window.location.reload();
     };
 
 
