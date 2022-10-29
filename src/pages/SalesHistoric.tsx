@@ -1,51 +1,83 @@
 import { ArrowDown, CaretDown, CaretRight } from "phosphor-react";
 import { useEffect, useState } from "react";
-import { getSalesFromDB } from "../commons/getSalesFromDB";
+import { getSalesByDate, getSalesFromDB } from "../commons/getSalesFromDB";
+import OrderProduct from "../types/orderProduct";
 import SaleResumeProps from "../types/saleResume";
 
 export default function SalesHistoric() {
-    const [salesResume, setSalesResume] = useState<SaleResumeProps[]>();
+    const [headerSales, setHeaderSales] = useState<SaleResumeProps[]>();
     const [dateSalesDetails, setDateSalesDetails] = useState('');
-    /*
-})*/
+    const [saleDetails, setSaleDetails] = useState<OrderProduct[]>([]);
 
     useEffect(() => {
         //setSalesInLocalStorage(sales);
         getSalesFromDB()
             .then(response => {
                 let sales = response;
-                /*
-                sales.forEach(
+                /*sales.forEach(
                     sale => {
                         sale.data_venda = new Date(sale.data_venda).toUTCString()
                     }
-                )
-*/
-                setSalesResume(sales)
+                )*/
+                setHeaderSales(sales)
                 console.log(sales)
             });
     }, [])
+    useEffect(() => {
+        console.log("Sale details:", saleDetails)
+    }, [saleDetails])
+
+    async function selectSale(date_sale: string) {
+        console.log()
+        const divHeaderSale = document.querySelector('.sale-selected');
+        getSalesByDate(date_sale.split('T')[0]).then(res => setSaleDetails(res))
+
+        if (dateSalesDetails == date_sale) {
+            divHeaderSale?.classList.remove('sale-selected')
+            setDateSalesDetails('');
+        }
+        else {
+            setDateSalesDetails(date_sale)
+        }
+    }
+
     return (
         <div>
             {
-                salesResume ?
-                    <div>
-                        {
-                            salesResume?.map(sale => {
-                                return (
-                                    <div className={`sale-resume ${dateSalesDetails == sale.data_venda ? 'sale-selected' : ''}`} onClick={() => setDateSalesDetails(sale.data_venda)}>
-                                        <CaretRight size={24} />
-                                        <p className="sale-resume__date">{(sale.data_venda)}</p>
-                                        <p className="sale-resume__total">{sale.total.toFixed(2)}</p>
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
-                    :
-                    <></>
+                headerSales &&
+                headerSales?.map(sale => {
+                    return (
+                        <div className={`sale ${dateSalesDetails == sale.data_venda ? 'sale-selected' : ''}`} onClick={() => selectSale(sale.data_venda)}>
+                            <div className="sale__header">
+                                <CaretRight className="sale__header--toggleIcon" size={24} />
+                                <p className="sale__header--date">{(sale.data_venda)}</p>
+                                <p className="sale__header--total">{sale.total.toFixed(2)}</p>
+                            </div>
+                            {
+                                sale.data_venda === dateSalesDetails ?
+                                    saleDetails &&
+                                    < table className="sale__items w-full">
+                                        {
+                                            saleDetails.map(item => {
+                                                return (
+                                                    <tr className="">
+                                                        <td>{item.name_product}</td>
+                                                        <td>{item.count}</td>
+                                                        <td className="text-right">R$ {item.price_product.toFixed(2)}</td>
+                                                    </tr>
+                                                )
+                                            })
+                                        }
+                                    </table>
+                                    :
+                                    <></>
+                            }
+
+                        </div>
+                    )
+                })
             }
-        </div>
+        </div >
 
     )
 }

@@ -14,24 +14,31 @@
     }
 }
 
-.sale-resume {
-    background-color: var(--primary);
-    margin-top: .5rem;
-    color: var(--white);
-    display: flex;
-    justify-content: space-between;
-    padding: .75rem .5rem;
+.sale {
+    .sale__header {
+        background-color: var(--primary);
+        margin-top: .5rem;
+        color: var(--white);
+        display: flex;
+        justify-content: space-between;
+        padding: .75rem .5rem;
 
-    &__total {
-        font-weight: 700;
-        font-size: 1.25rem;
+        &--total {
+            font-weight: 700;
+            font-size: 1.25rem;
 
-        &::before {
-            content: 'R$ ';
+            &::before {
+                content: 'R$ ';
+            }
         }
     }
+
 }
 
 .sale-selected {
-    background-color: blue;
+
+    .sale__header--toggleIcon {
+        transform: rotateZ(90deg);
+        transition: .25s;
+    }
 }
