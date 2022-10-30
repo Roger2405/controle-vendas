@@ -2,6 +2,7 @@ import { ArrowDown, CaretDown, CaretRight, Plus } from "phosphor-react";
 import { useEffect, useState } from "react";
 import { getSalesByDate, getSalesFromDB } from "../commons/getSalesFromDB";
 import Button from "../components/Button";
+import Loading from "../components/Loading";
 import OrderProducts from "../components/OrderProducts";
 import OrderProduct from "../types/orderProduct";
 import SaleResumeProps from "../types/saleResume";
@@ -31,9 +32,8 @@ export default function SalesHistoric() {
     }, [saleDetails])
 
     async function selectSale(date_sale: string) {
-        let date = date_sale.split('T')[0]
-        console.log('date_sale', date_sale)
         const divHeaderSale = document.querySelector('.sale-selected');
+        setSaleDetails([]);
         getSalesByDate(date_sale.split('T')[0]).then(res => setSaleDetails(res))
 
         if (dateSalesDetails == date_sale) {
@@ -59,11 +59,16 @@ export default function SalesHistoric() {
                                 <p className="sale__header--total">{sale.total.toFixed(2).replace('.', ',')}</p>
                             </div>
                             {
-                                sale.data_venda === dateSalesDetails &&
-                                saleDetails &&
-                                <div>
-                                    <OrderProducts orderProducts={saleDetails} hiddenOverflow />
-                                </div>
+                                sale.data_venda === dateSalesDetails ?
+                                    saleDetails.length > 0 ?
+                                        <div>
+                                            <OrderProducts orderProducts={saleDetails} hiddenOverflow />
+                                        </div>
+                                        :
+                                        <Loading dark />
+
+                                    :
+                                    <></>
                                 /*
                                 < table className="sale__items w-full">
                                     {

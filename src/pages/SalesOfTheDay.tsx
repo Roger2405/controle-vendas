@@ -14,6 +14,7 @@ import { Plus } from "phosphor-react";
 import { getSalesByDate, getSalesFromDB } from "../commons/getSalesFromDB";
 import OrderProduct from "../types/orderProduct";
 import OrderProducts from "../components/OrderProducts";
+import Loading from "../components/Loading";
 
 export default function SalesOfTheDay() {
     const navigate = useNavigate();
@@ -45,10 +46,12 @@ export default function SalesOfTheDay() {
     return (
         <div>
             <div className="w-full flex flex-col justify-between h-full">
-                <div className="pb-32">
+                <div className="pb-32 h-full">
                     {
-                        sales.length > 0 &&
-                        <OrderProducts className="h-full" hiddenOverflow orderProducts={sales} />
+                        sales.length > 0 ?
+                            <OrderProducts className="h-full" hiddenOverflow orderProducts={sales} />
+                            :
+                            <Loading dark />
                     }
 
                 </div>
