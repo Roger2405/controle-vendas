@@ -31,7 +31,8 @@ export default function SalesHistoric() {
     }, [saleDetails])
 
     async function selectSale(date_sale: string) {
-        console.log()
+        let date = date_sale.split('T')[0]
+        console.log('date_sale', date_sale)
         const divHeaderSale = document.querySelector('.sale-selected');
         getSalesByDate(date_sale.split('T')[0]).then(res => setSaleDetails(res))
 

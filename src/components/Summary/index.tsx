@@ -60,16 +60,21 @@ export default function Summary({ setShowSummary, orderProducts }: Props) {
         // })
         const userId = getUserFromLocalStorage().id;
         setIsLoading(true);
-        const date = new Date();
 
-        const fullDate = `${date.getFullYear().toString()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
-        console.log('FULL DATE: ', fullDate)
+        //code from stackoverflow
+        var starttime = new Date();
+        var isotime = new Date((new Date(starttime)).toISOString());
+        var fixedtime = new Date(isotime.getTime() - (starttime.getTimezoneOffset() * 60000));
+        var formatedMysqlString = fixedtime.toISOString().slice(0, 19).replace('T', ' ');
+        console.log(formatedMysqlString);
+
+        console.log('FULL DATE: ', formatedMysqlString)
         orderProducts.forEach(product => {
             Axios.post(`${process.env.REACT_APP_LINK_API}/${userId}/sales/register`, {
                 productId: product.id,
                 count: product.count,
                 price: product.price_product,
-                date: fullDate
+                date: formatedMysqlString
             }).then((response) => {
                 if (response.data.success) {
                     console.log('Venda atualizada')
