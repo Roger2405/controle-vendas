@@ -23,39 +23,48 @@ export default function SalesOfTheDay() {
     var salesFromLocalStorage = getSalesFromLocalStorage();
 
     const [sales, setSales] = useState<OrderProduct[]>([]);
-    const [receivedData, setReceivedData] = useState<boolean>()
+    const [isLoading, setIsLoading] = useState<boolean>()
     const [total, setTotal] = useState<number>(0);
 
 
     const fullDate = getFormatedDate();
     const date = fullDate.split(' ')[0];
-    //const fullDate = date.getFullYear().toString() + date.getMonth().toString().padStart(2, '0') + date.getDay().toString().padStart(2, '0');
-
 
     useEffect(() => {
+        setIsLoading(true)
         getSalesByDate(date).then(res => {
-            if (res.length > 0) {
-                setSales(res);
-            }
-            setReceivedData(true);
-            console.log(receivedData)
+            setSales(res);
+            setIsLoading(false)
             let sumTotal: number = 0;
-            res.map(product => {
+            sales.map(product => {
                 sumTotal += (product.count * product.price_product);
             });
             setTotal(sumTotal);
-        });
+        })
     }, [])
+
+    useEffect(() => {
+
+    }, [sales])
 
     return (
         <div>
             <div className="w-full flex flex-col justify-between h-full">
                 <div className="pb-32 h-full min-h-full">
                     {
-                        receivedData ?
-                            < OrderProducts className="h-full" hiddenOverflow orderProducts={sales} />
-                            :
+                        isLoading ?
                             <Loading dark />
+                            :
+                            <>
+                                {
+                                    sales?.length > 0 ?
+                                        < OrderProducts className="h-full" hiddenOverflow orderProducts={sales} />
+                                        :
+                                        <p>Não foram encontradas vendas do dia!</p>
+
+                                }
+
+                            </>
                     }
 
                 </div>
