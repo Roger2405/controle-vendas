@@ -39,19 +39,8 @@ export default function OrderProducts({ orderProducts, setOrderProducts, setTota
         <div className={`order max-h-7xl w-full mx-auto ${hiddenOverflow ? 'overflowHidden' : ''}`}>
             <div className='order__item'>
                 <p className='order__item--name'>Nome</p>
-                {
-                    orderProducts[0]?.count ?
-                        <>
-                            <span className='order__item--count'>Qtd.</span>
-                            <p className='order__item--price'>Soma</p>
-                        </>
-                        :
-                        <>
-                            <p className='order__item--price'>Preço</p>
-                            <span className='h-full aspect-square'></span>
-
-                        </>
-                }
+                <span className='order__item--count'>Qtd.</span>
+                <p className='order__item--price'>Soma</p>
             </div>
             {
                 orderProducts.map(product => {
