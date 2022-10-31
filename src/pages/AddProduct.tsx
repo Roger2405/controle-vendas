@@ -1,7 +1,7 @@
 
 import Button from "../components/Button";
 import '../styles/ProductForm.scss';
-import { ArrowRight, Check, X } from "phosphor-react";
+import { ArrowRight, Check, FileImage, X } from "phosphor-react";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { getUserFromLocalStorage } from "../commons/userFromLocalStorage";
@@ -19,6 +19,8 @@ export default function AddProduct() {
     const arrProductTypes = productsTypes;
 
     const navigate = useNavigate();
+
+
     function handleAddProduct(values: { name: string, type: string, price: number }) {
         setIsLoading(true);
         const userId = getUserFromLocalStorage().id;
@@ -26,7 +28,7 @@ export default function AddProduct() {
         Axios.post(`${process.env.REACT_APP_LINK_API}/${userId}/products/register`, {
             name: values.name,
             type: values.type,
-            price: values.price,
+            price: values.price
         }).then((response) => {
             console.log(response.data.msg)
             setIsLoading(false);
@@ -51,6 +53,7 @@ export default function AddProduct() {
             .moreThan(0, 'O preço deve ser maior que 0')
             .required("O preço é obrigatório")
     });
+
     return (
         <main className="page">
             <div>

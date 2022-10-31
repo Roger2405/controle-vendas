@@ -46,22 +46,9 @@ export default function Summary({ setShowSummary, orderProducts }: Props) {
 
 
     function refreshSalesOnDB() {
-        //const oldSales = getSalesFromLocalStorage();
-        //var newSales = oldSales;
-
-        // orderProducts.forEach(orderProduct => {
-        //     const indexById = searchIndexById(newSales, orderProduct.id);
-        //     if (indexById >= 0) {
-        //         newSales[indexById].count += orderProduct.count;
-        //     }
-        //     else {
-        //         newSales.push(orderProduct);
-        //     }
-
-        // })
         const userId = getUserFromLocalStorage().id;
-        setIsLoading(true);
         const date = getFormatedDate();
+        setIsLoading(true);
 
         orderProducts.forEach(product => {
             Axios.post(`${process.env.REACT_APP_LINK_API}/${userId}/sales/register`, {
@@ -71,7 +58,6 @@ export default function Summary({ setShowSummary, orderProducts }: Props) {
                 date: date
             }).then((response) => {
                 if (response.data.success) {
-                    console.log('Venda atualizada')
                     navigate('/')
                     window.location.reload();
                 }

@@ -23,60 +23,56 @@ export default function SalesOfTheDay() {
     var salesFromLocalStorage = getSalesFromLocalStorage();
 
     const [sales, setSales] = useState<OrderProduct[]>([]);
-    const [isLoading, setIsLoading] = useState<boolean>()
     const [total, setTotal] = useState<number>(0);
 
+    const [errorMessage, setErrorMessage] = useState('');
 
     const fullDate = getFormatedDate();
     const date = fullDate.split(' ')[0];
 
     useEffect(() => {
-        setIsLoading(true)
         getSalesByDate(date).then(res => {
             setSales(res);
-            setIsLoading(false)
+
+            //calcula a valor total das vendas 
             let sumTotal: number = 0;
             sales.map(product => {
                 sumTotal += (product.count * product.price_product);
             });
             setTotal(sumTotal);
+
+        }).catch(error => {
+            setErrorMessage(error.message)
         })
     }, [])
 
-    useEffect(() => {
-
-    }, [sales])
-
     return (
-        <div>
-            <div className="w-full flex flex-col justify-between h-full">
-                <div className="pb-32 h-full min-h-full">
-                    {
-                        isLoading ?
-                            <Loading dark />
-                            :
-                            <>
-                                {
-                                    sales?.length > 0 ?
-                                        < OrderProducts className="h-full" hiddenOverflow orderProducts={sales} />
-                                        :
-                                        <p>Não foram encontradas vendas do dia!</p>
+        <>
 
-                                }
-
-                            </>
-                    }
-
-                </div>
-                {/*
-                    <Print total={sumTotal} sales={sales} />*/
+            <div className="pt-4 pb-32 h-full">
+                {
+                    sales.length > 0 ?
+                        < OrderProducts className="h-full" hiddenOverflow orderProducts={sales} />
+                        :
+                        <>
+                            {
+                                errorMessage ?
+                                    <div className="h-full flex flex-col justify-center text-center"><p>{errorMessage}</p></div>
+                                    :
+                                    <Loading dark />
+                            }
+                        </>
                 }
-                <div className='max-w-xl fixed right-1/2 translate-x-1/2 bottom-4 px-4 w-full'>
-                    <Total sumTotal={total} />
-                    <Button className='green-button' onClick={() => navigate('/adicionar-venda')} ><Plus size={24} />Nova venda</Button>
-                </div>
-            </div>
 
-        </div>
+            </div>
+            {/*
+                    <Print total={sumTotal} sales={sales} />*/
+            }
+            <div className='max-w-xl fixed right-1/2 translate-x-1/2 bottom-4 px-4 w-full'>
+                <Total sumTotal={total} />
+                <Button className='green-button' onClick={() => navigate('/adicionar-venda')} ><Plus size={24} />Nova venda</Button>
+            </div>
+        </>
+
     )
 }

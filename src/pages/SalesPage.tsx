@@ -15,12 +15,15 @@ export default function SalesPage() {
                 <button onClick={() => setShowIndex(true)} className={`button-sales ${showIndex && 'active'}`}>Vendas do Dia</button>
                 <button onClick={() => setShowIndex(false)} className={`button-sales ${!showIndex && 'active'}`}>Histórico</button>
             </div>
-            {
-                showIndex ?
-                    <SalesOfTheDay />
-                    :
-                    <SalesHistoric />
-            }
+            <div className="h-full">
+                {
+                    showIndex ?
+                        <SalesOfTheDay />
+                        :
+                        <SalesHistoric />
+                }
+
+            </div>
         </main>
     )
 }

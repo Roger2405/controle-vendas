@@ -13,7 +13,7 @@ export async function getSalesFromDB() {
     else {
         const arrSales: SaleResumeProps[] = await Axios.get(`${process.env.REACT_APP_LINK_API}/${idUser}/sales`)
             .then((response) => {
-                if (response.data) {
+                if (response.data[0]) {
                     return response.data;
                 }
                 else {
@@ -36,7 +36,7 @@ export async function getSalesByDate(date: string) {
                     return response.data;
                 }
                 else {
-                    console.log(response.data.msg);
+                    throw Error(response.data.msg);
                 }
             });
         return arrSales;

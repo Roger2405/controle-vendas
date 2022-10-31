@@ -22,34 +22,23 @@ import Loading from '../components/Loading';
 
 
 export default function AddSales() {
-    //var productsFromDB = ;
-    //console.log("", productsFromDB);
-
-
-    /*const user = localStorage.getItem('user');
-    var jsonUser;
-    if (user) {
-        jsonUser = JSON.parse(user);
-
-    }
-    */
-    var arrFilter = [];
-
-
     const navigate = useNavigate();
+
     const [orderProducts, setOrderProducts] = useState<OrderProduct[]>([]);
+
+    const [errorMessage, setErrorMessage] = useState<string>();
     //const [inputValue, setInputValue] = useState<string>('');
     const [total, setTotal] = useState<number>(getSumTotal(orderProducts));
     const [arrFiltered, setArrFiltered] = useState<ProductProps[][]>([]);
-    const [showSummary, setShowSummary] = useState(false);
+    const [completedOrder, setCompletedOrder] = useState(false);
     const [overflowX, setOverflowX] = useState(true);
 
     useEffect(() => {
         getGroupedProducts().then(
             groupedProducts => {
                 setArrFiltered(groupedProducts);
-            }
-        )
+            })
+            .catch(error => setErrorMessage(error.message))
     }, []);
     //updates the search when the inputValue is update
     /*
@@ -71,12 +60,6 @@ export default function AddSales() {
     }, [orderProducts]);
 
 
-
-
-
-    function navigateToOrders() {
-        navigate('/resumo');
-    }
     function navigateToHome() {
         navigate('/');
     }
@@ -85,7 +68,7 @@ export default function AddSales() {
         <>
             {
 
-                !showSummary ?
+                !completedOrder ?
 
                     <main className='page main-addSale'>
 
@@ -97,13 +80,24 @@ export default function AddSales() {
                             {/*<InputSearch setInputValue={setInputValue} />*/}
                             {
                                 arrFiltered.length > 0 ?
-                                    arrFiltered.map(group => {
-                                        return (
-                                            <Products overflowX={overflowX} key={group[0]?.type_product} group={group} orderProducts={orderProducts} setTotal={setTotal} total={total} setOrderProducts={setOrderProducts} />
-                                        )
-                                    })
+                                    <>
+                                        {
+                                            arrFiltered.map(group => {
+                                                return (
+                                                    <Products overflowX={overflowX} key={group[0]?.type_product} group={group} orderProducts={orderProducts} setTotal={setTotal} total={total} setOrderProducts={setOrderProducts} />
+                                                )
+                                            })
+                                        }
+                                    </>
                                     :
-                                    <Loading dark />
+                                    <>
+                                        {
+                                            errorMessage ?
+                                                <div className="h-full flex flex-col justify-center text-center"><p>{errorMessage}</p></div>
+                                                :
+                                                <Loading dark />
+                                        }
+                                    </>
                             }
                         </section>
                         <section className='order-section flex flex-col justify-between'>
@@ -119,7 +113,7 @@ export default function AddSales() {
                                             :
                                             <Button className='red-button left' onClick={() => setOrderProducts([])} ><X size={32} />Cancelar</Button>
                                     }
-                                    <Button className='green-button right' disabled={orderProducts.length === 0 ? true : false} onClick={() => setShowSummary(true)} >Avançar<ArrowRight size={32} /></Button>
+                                    <Button className='green-button right' disabled={orderProducts.length === 0 ? true : false} onClick={() => setCompletedOrder(true)} >Avançar<ArrowRight size={32} /></Button>
                                 </div>
                             </div>
 
@@ -130,7 +124,7 @@ export default function AddSales() {
                     </main>
                     :
                     <main className='page'>
-                        <Summary setShowSummary={setShowSummary} orderProducts={orderProducts} />
+                        <Summary setShowSummary={setCompletedOrder} orderProducts={orderProducts} />
                     </main>
 
             }

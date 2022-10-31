@@ -4,22 +4,20 @@ import { useNavigate } from "react-router-dom";
 import { getGroupedProducts, getProductsFromDB, productsTypes } from "../commons/getProductsFromDataBase";
 import Button from "../components/Button";
 import Loading from "../components/Loading";
-import OrderProducts from "../components/OrderProducts";
 import ProductProps from "../types/product";
 
 
 export default function ProductsPage() {
+    
     const navigate = useNavigate();
     const [arrProducts, setArrProducts] = useState<ProductProps[][]>();
+
     const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
         getGroupedProducts().then(
             arr => {
                 setArrProducts(arr);
-                console.log(arr)
-                console.log(arr[0])
-
             }
         ).catch(error => {
             setErrorMessage(error.message)
@@ -28,7 +26,7 @@ export default function ProductsPage() {
 
     return (
         <main className="page">
-            <div className="pt-4 pb-32">
+            <div className="pt-4 pb-32 h-full">
                 {
                     arrProducts?.length ?
                         <>
@@ -58,7 +56,7 @@ export default function ProductsPage() {
                         <>
                             {
                                 errorMessage ?
-                                    <div className="h-full flex flex-col justify-center text-center">{errorMessage}</div>
+                                    <div className="h-full flex flex-col justify-center text-center"><p>{errorMessage}</p></div>
                                     :
                                     <Loading dark />
                             }
