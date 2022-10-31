@@ -15,6 +15,7 @@ import Input from '../Input';
 import Button from '../Button';
 import Axios from 'axios';
 import { getUserFromLocalStorage } from '../../commons/userFromLocalStorage';
+import getFormatedDate from '../../commons/formatedDate';
 
 interface Props {
     setShowSummary: React.Dispatch<React.SetStateAction<boolean>>,
@@ -60,21 +61,14 @@ export default function Summary({ setShowSummary, orderProducts }: Props) {
         // })
         const userId = getUserFromLocalStorage().id;
         setIsLoading(true);
+        const date = getFormatedDate();
 
-        //code from stackoverflow
-        var starttime = new Date();
-        var isotime = new Date((new Date(starttime)).toISOString());
-        var fixedtime = new Date(isotime.getTime() - (starttime.getTimezoneOffset() * 60000));
-        var formatedMysqlString = fixedtime.toISOString().slice(0, 19).replace('T', ' ');
-        console.log(formatedMysqlString);
-
-        console.log('FULL DATE: ', formatedMysqlString)
         orderProducts.forEach(product => {
             Axios.post(`${process.env.REACT_APP_LINK_API}/${userId}/sales/register`, {
                 productId: product.id,
                 count: product.count,
                 price: product.price_product,
-                date: formatedMysqlString
+                date: date
             }).then((response) => {
                 if (response.data.success) {
                     console.log('Venda atualizada')
