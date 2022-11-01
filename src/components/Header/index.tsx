@@ -20,12 +20,14 @@ export default function Header({ isLogged }: HeaderProps) {
     }, [])
 
 
+
+
     return (
         <>
             <header className="header" hidden={!isLogged}>
                 <nav className='navigation justify-end'>
                     <div className="div-link">
-                        <button onClick={() => setShowNav(!showNav)} className="nav-link">{showNav ?
+                        <button onBlur={() => setShowNav(false)} onClick={() => setShowNav(!showNav)} className="nav-link">{showNav ?
                             <X size={48} color='white' />
                             :
                             <List size={48} color='white' />

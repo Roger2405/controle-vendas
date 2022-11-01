@@ -79,7 +79,7 @@ function Product({ product, onClick }: Props) {
     return (
         <div onClick={onClick} className='product__item relative'>
             <p className='product__item--name'>{product.name_product}</p>
-            <p className='product__item--price'><strong>R$ {(product.price_product).toLocaleString('pt-BR', {
+            <p className='product__item--price'><strong>{(product.price_product).toLocaleString('pt-BR', {
                 minimumFractionDigits: 2
             })}</strong></p>
             <button className='edit-button'><PencilSimple color='white' className='mx-auto' size={32} /></button>

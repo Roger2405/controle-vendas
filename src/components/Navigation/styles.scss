@@ -1,5 +1,6 @@
 .div-parent {
     height: 0;
+    width: 0;
     top: 0;
     left: 0;
     position: absolute;
@@ -8,8 +9,8 @@
 }
 
 .navBar-inactive {
-    perspective: 6cm;
-    transform: rotateX(90deg);
+    //perspective: 6cm;
+    transform: rotateY(-90deg) skewY(15deg);
     transition: .25s;
 }
 
@@ -17,9 +18,9 @@
     position: relative;
     background-color: var(--primary);
     //width: 95%;
-    box-shadow: .25rem 0 .5rem rgba(0, 0, 0, 0.25);
     border-radius: 0 0 1rem 0;
     padding: 4rem 2rem 2rem 1rem;
+    width: 100px;
 
     top: 0;
     left: 0;
