@@ -6,54 +6,25 @@ import Modal from '../Modal';
 import Button from '../Button';
 
 
-export default function Navigation() {
+interface Props {
+    showNav: boolean
+}
 
-    const [showNav, setShowNav] = useState<boolean>(false);
-    const [linkProductsActive, setLinkProductsActive] = useState<boolean>(false);
+export default function Navigation({ showNav }: Props) {
+
+
     const [showModal, setShowModal] = useState(false);
 
-    useEffect(() => {
-        const path = window.location.pathname;
-        path.includes('produto') ? setLinkProductsActive(true) : setLinkProductsActive(false);
-    }, [])
 
 
     return (
-        <div onClick={() => setShowNav(!showNav)} className='h-full'>
-            <nav className='navigation justify-end'>
-                <div className="div-link">
-                    <button className="link logout" onClick={() => {
-                        setShowModal(true)
-                    }}><span>Sair</span></button>
-                </div>
-                <div className='div-link'>
-                    <Link onClick={() => setLinkProductsActive(false)} className={`link ${!linkProductsActive && 'active'}`} to="/">Vendas</Link>
-
-                </div>
-                <div className='div-link'>
-                    <Link onClick={() => setLinkProductsActive(true)} className={`link ${linkProductsActive && 'active'}`} to="produtos">Produtos</Link>
-                </div>
-
+        <div className={`div-parent ${showNav ? '' : 'navBar-inactive'}`}>
+            <nav className={`navBar`} >
+                <Link className="navBar__list--item" to="produtos">Conta</Link>
+                <Link className="navBar__list--item" onClick={() => {
+                    localStorage.setItem('user', '');
+                }} reloadDocument to='/'>Sair</Link>
             </nav>
-            <>
-                {
-                    /*
-                    <button className="button-nav">{showNav ?
-                        <X size={48} color='white' />
-                        :
-                        <List size={48} color='white' />
-                    }</button>
-                    <nav className={`navBar ${showNav ? '' : 'navBar-inactive'}`} >
-                        <Link className="navBar__list--item" to="produtos">Produtos</Link>
-                        <Link className="navBar__list--item" to="/">Vendas</Link>
-                        <Link className="navBar__list--item" onClick={() => {
-                            localStorage.setItem('user', '');
-                        }} reloadDocument to='/'>Sair</Link>
-                    </nav>
-                    */
-                }
-
-            </>
             {
                 showModal &&
                 <Modal >

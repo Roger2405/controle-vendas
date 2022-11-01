@@ -1,4 +1,4 @@
-.order {
+.product-list {
     /*max-height: 216px;*/
     //height: calc(100% - 48px - 116px);
     //max-height: 80%;
@@ -8,7 +8,7 @@
     gap: .25rem;
     color: var(--primary);
 
-    .order__item {
+    .product__item {
         background-color: var(--item-color);
         border-radius: .5rem;
         box-shadow: var(--shadow);
@@ -24,11 +24,11 @@
         text-transform: uppercase;
         overflow: hidden;
 
-        .order__item--name {
+        .product__item--name {
             flex-basis: 70%;
         }
 
-        .order__item--price {
+        .product__item--price {
             margin-right: .5rem;
         }
 

@@ -1,93 +1,25 @@
-.navigation {
-    padding-top: .5rem;
-    display: flex;
-    height: 100%;
-    align-items: flex-end;
-    background-image: linear-gradient(var(--primary) 50%, var(--background) 60%);
+.div-parent {
+    height: 0;
+    top: 0;
+    left: 0;
+    position: absolute;
+    transition: .25s;
 
-    .div-link {
-        height: 3rem;
-        flex-basis: 40%;
-        color: var(--background);
-        text-align: center;
-        line-height: 3rem;
-        text-transform: uppercase;
-        font-weight: 700;
-        font-size: 1.25rem;
-
-
-        .link {
-            display: inline-block;
-            background-color: var(--primary);
-            height: 100%;
-            width: 100%;
-            border-radius: 1rem;
-        }
-
-        &:nth-child(3) .link:not(.active) {
-            border-radius: 1rem 1rem 0 1rem;
-        }
-
-        &:nth-child(2) .link:not(.active) {
-            border-radius: 1rem 1rem 1rem 0;
-        }
-
-
-        &:nth-child(1) {
-            flex-basis: 20%;
-            padding: .5rem;
-            background-color: var(--primary);
-
-            .link.logout {
-                border-radius: .25rem;
-                font-weight: 400;
-                position: relative;
-                background-color: var(--background);
-                color: var(--primary);
-
-                display: flex;
-                align-items: center;
-
-
-                span {
-                    text-align: center;
-                    width: 100%;
-                    font-size: 1rem;
-                }
-
-            }
-        }
-
-
-    }
-
-
-
-
-
-    .link.active {
-        background-color: var(--background);
-        border-radius: 1rem 1rem 0 0;
-        color: var(--primary);
-    }
-
-    /*
-    .div-link:has(.link:not(.active)) {
-        background-color: var(--background);
-    }
-*/
 }
 
-/*
-.navBar {
-    position: absolute;
-    background-color: var(--primary);
-    width: 95%;
-    height: 100%;
-    border-radius: 0 2rem 2rem 0;
-    box-shadow: .25rem 0 .5rem rgba(0, 0, 0, 0.25);
+.navBar-inactive {
+    perspective: 6cm;
+    transform: rotateX(90deg);
+    transition: .25s;
+}
 
-    padding: 4rem 2rem;
+.navBar {
+    position: relative;
+    background-color: var(--primary);
+    //width: 95%;
+    box-shadow: .25rem 0 .5rem rgba(0, 0, 0, 0.25);
+    border-radius: 0 0 1rem 0;
+    padding: 4rem 2rem 2rem 1rem;
 
     top: 0;
     left: 0;
@@ -100,28 +32,17 @@
 
     transition: .25s;
 
-    z-index: 10;
-
-
-
 
     .navBar__list--item {
         border-radius: .25rem;
         color: #FFFFFF;
         line-height: 2rem;
         max-height: 4rem;
-        padding: .5rem .5rem;
+        margin-top: 1rem;
         text-transform: uppercase;
 
-        &:last-child {
-            margin-top: auto;
-        }
-    }
-}
 
-.navBar-inactive {
-    left: -100%;
-    transition: .25s;
+    }
 }
 
 .button-nav {
@@ -132,33 +53,3 @@
     z-index: 15;
 
 }
-
-
-
-@media screen and (min-width:992px) {
-    .navBar {
-        align-items: center;
-        flex-direction: row;
-        justify-content: start;
-        padding: 0;
-        position: relative;
-        border-radius: 0;
-        box-shadow: none;
-
-        .navBar__list--item {
-            &:last-child {
-                margin-top: 0;
-                margin-left: auto;
-            }
-        }
-
-    }
-
-    .button-nav {
-        display: none;
-    }
-
-    .navBar-inactive {
-        left: 0;
-    }
-}*/

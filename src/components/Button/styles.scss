@@ -20,7 +20,6 @@
 
     padding: 0 1rem;
 
-    transition: all .5s;
 
 
     &>span {
@@ -44,6 +43,7 @@
 
 .green-button {
     background-color: var(--primary);
+
 }
 
 .red-button {
@@ -132,7 +132,5 @@
 }
 
 .button:enabled:hover {
-    //filter: brightness(125%);
-    opacity: .75;
-    transition: .25s;
+    filter: brightness(1.25);
 }

@@ -6,9 +6,10 @@ import Button from "../components/Button";
 import Loading from "../components/Loading";
 import ProductProps from "../types/product";
 
+import '../styles/ProductsPage.scss';
 
 export default function ProductsPage() {
-    
+
     const navigate = useNavigate();
     const [arrProducts, setArrProducts] = useState<ProductProps[][]>();
 
@@ -34,10 +35,10 @@ export default function ProductsPage() {
                                 return (
                                     <div key={group[0]?.id}>
                                         <h2 className="subtitle">{group[0]?.type_product}</h2>
-                                        <div className={`order max-h-7xl w-full mx-auto}`}>
-                                            <div className='order__item'>
-                                                <p className='order__item--name'>Nome</p>
-                                                <p className='order__item--price'>Preço</p>
+                                        <div className={`product-list max-h-7xl w-full mx-auto}`}>
+                                            <div className='product__item'>
+                                                <p className='product__item--name'>Nome</p>
+                                                <p className='product__item--price'>Preço</p>
                                                 <span className='h-full aspect-square'></span>
                                             </div>
                                             {
@@ -76,9 +77,11 @@ interface Props extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElem
 
 function Product({ product, onClick }: Props) {
     return (
-        <div onClick={onClick} className='order__item relative'>
-            <p className='order__item--name'>{product.name_product}</p>
-            <p className='order__item--price'><strong>{product.price_product.toFixed(2)}</strong></p>
+        <div onClick={onClick} className='product__item relative'>
+            <p className='product__item--name'>{product.name_product}</p>
+            <p className='product__item--price'><strong>R$ {(product.price_product).toLocaleString('pt-BR', {
+                minimumFractionDigits: 2
+            })}</strong></p>
             <button className='edit-button'><PencilSimple color='white' className='mx-auto' size={32} /></button>
         </div>
     )

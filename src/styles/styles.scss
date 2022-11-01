@@ -13,6 +13,7 @@ $headerHeigth: 4rem;
     //--white: #FFFFFF;
     --background: #F0F8FF;
     --primary: #3D9957;
+    --light-green: #b1e4aa;
     --red: #E55454;
     --gray: #8F8F8F;
     --item-color: #ffffff;
@@ -28,6 +29,12 @@ $headerHeigth: 4rem;
 }
 
 body {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 
     height: 100vh;
     z-index: 0;
