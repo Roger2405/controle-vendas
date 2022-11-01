@@ -1,14 +1,13 @@
 .productForm {
     margin: auto;
     max-width: 600px;
-    padding: 1rem;
 
 
     &__group {
         align-items: center;
         display: flex;
         justify-content: space-between;
-        margin: .5rem;
+        margin: .5rem 0;
         flex-wrap: wrap;
 
         &--label {

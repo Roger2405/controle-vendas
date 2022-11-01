@@ -108,7 +108,7 @@ export default function AddProduct() {
                             </div>
                         </div>
 
-                        <div className='fixed bottom-0 flex h-24 w-full max-w-xl mx-auto'>
+                        <div className='fixed right-1/2 translate-x-1/2 bottom-0 flex h-24 w-full max-w-xl mx-auto px-4'>
                             <Button className='red-button left' onClick={() => { navigate('/produtos') }} ><X size={48} />Cancelar</Button>
                             <Button isLoading={isLoading} type="submit" className='green-button right' >Adicionar<Check size={48} /></Button>
                         </div>
