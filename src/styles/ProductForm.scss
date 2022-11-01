@@ -1,52 +1,49 @@
-.productForm-container {
-    //background-color: var(--primary);
-
-    .productForm {
-        max-width: 500px;
-        margin: auto;
-        padding: 1rem;
+.productForm {
+    margin: auto;
+    max-width: 600px;
+    padding: 1rem;
 
 
-        &__group {
-            align-items: center;
+    &__group {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        margin: .5rem;
+        flex-wrap: wrap;
+
+        &--label {
+            flex-basis: 30%;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--primary);
+
+        }
+
+        &--input {
+            padding: .75rem;
+            border-radius: 1rem;
+            background-color: var(--item-color);
+            border: .125rem solid var(--primary);
+            color: var(--primary);
+            flex-basis: 70%;
+
+
+            &::placeholder {
+                //color: var(--primary);
+            }
+
+        }
+
+        div {
             display: flex;
-            justify-content: space-between;
-            margin: .5rem;
-            flex-wrap: wrap;
+            flex-basis: 70%;
+            width: 70%;
 
-            &--label {
-                flex-basis: 30%;
-                text-transform: uppercase;
-                font-weight: 700;
-                color: var(--primary);
-
+            .productForm__group--input {
+                flex-basis: 50%;
             }
 
-            &--input {
-                padding: .75rem;
-                border-radius: 1rem;
-                background-color: var(--item-color);
-                border: .125rem solid var(--primary);
-                color: var(--primary);
-                flex-basis: 70%;
-
-
-                &::placeholder {
-                    //color: var(--primary);
-                }
-
-            }
-
-            div {
-                display: flex;
-                flex-basis: 70%;
-                width: 70%;
-
-                .productForm__group--input {
-                    flex-basis: 50%;
-                }
-
-                /*
+            /*
                 .productForm__group--select {
                     flex-basis: 50%;
                     width: 50%;
@@ -63,12 +60,11 @@
 
                 }
 */
-            }
+        }
 
-            span {
-                width: 100%;
-                text-align: end;
-            }
+        span {
+            width: 100%;
+            text-align: end;
         }
     }
 

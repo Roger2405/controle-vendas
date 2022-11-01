@@ -78,7 +78,7 @@ export default function EditProduct() {
     });
     return (
         <main className="page">
-            <div>
+            <div className='h-full'>
                 <h1 className="form-title title">Editar produto</h1>
                 {
                     productData ?
@@ -87,58 +87,59 @@ export default function EditProduct() {
                             onSubmit={handleEditProduct}
                             validationSchema={validationsRegister}
                         >
-                            <Form className="productForm-container">
-                                <div className="productForm__group">
-                                    <label htmlFor="name" className="productForm__group--label">Nome: </label>
-                                    <Field name="name" id="name" className="productForm__group--input" placeholder="Nome" />
+                            <Form className="productForm flex flex-col h-max justify-between">
+                                <div>
 
-                                    <ErrorMessage
-                                        component="span"
-                                        name="name"
-                                        className="error-message"
-                                    />
+                                    <div className="productForm__group">
+                                        <label htmlFor="name" className="productForm__group--label">Nome: </label>
+                                        <Field name="name" id="name" className="productForm__group--input" placeholder="Nome" />
+
+                                        <ErrorMessage
+                                            component="span"
+                                            name="name"
+                                            className="error-message"
+                                        />
+                                    </div>
+
+                                    <div className="productForm__group">
+                                        <label htmlFor="type" className="productForm__group--label">Tipo: </label>
+                                        <Field list="product-types" name="type" id="type" className="productForm__group--input" placeholder="Tipo" />
+
+                                        <datalist id="product-types">
+                                            {
+                                                arrProductTypes.map(type => {
+                                                    return <option key={type} value={type.toLowerCase()} >{type}</option>
+                                                })
+                                            }
+                                        </datalist>
+                                        <ErrorMessage
+                                            component="span"
+                                            name="type"
+                                            className="error-message"
+                                        />
+                                    </div>
+                                    <div className="productForm__group">
+                                        <label htmlFor="price" className="productForm__group--label">Preço: </label>
+                                        <Field id="price" name="price" type="number" className="productForm__group--input" placeholder="Preço" />
+
+                                        <ErrorMessage
+                                            component="span"
+                                            name="price"
+                                            className="error-message"
+                                        />
+                                    </div>
                                 </div>
+                                <Button className='danger-button' onClick={() => setShowModal(true)} >Excluir produto</Button>
 
-                                <div className="productForm__group">
-                                    <label htmlFor="type" className="productForm__group--label">Tipo: </label>
-                                    <Field list="product-types" name="type" id="type" className="productForm__group--input" placeholder="Tipo" />
-
-                                    <datalist id="product-types">
-                                        {
-                                            arrProductTypes.map(type => {
-                                                return <option key={type} value={type.toLowerCase()} >{type}</option>
-                                            })
-                                        }
-                                    </datalist>
-                                    <ErrorMessage
-                                        component="span"
-                                        name="type"
-                                        className="error-message"
-                                    />
-                                </div>
-                                <div className="productForm__group">
-                                    <label htmlFor="price" className="productForm__group--label">Preço: </label>
-                                    <Field id="price" name="price" type="number" className="productForm__group--input" placeholder="Preço" />
-
-                                    <ErrorMessage
-                                        component="span"
-                                        name="price"
-                                        className="error-message"
-                                    />
-                                </div>
-
-                                <div className='absolute w-full px-4 bottom-0 flex h-24'>
-
+                                <div className='fixed bottom-0 flex h-24 w-full max-w-xl mx-auto'>
                                     <Button className='red-button left' onClick={() => { navigate('/produtos') }} ><X size={48} />Cancelar</Button>
                                     <Button isLoading={isLoading} type="submit" className='green-button right' >Confirmar<Check size={48} /></Button>
-
                                 </div>
                             </Form>
                         </Formik>
                         :
                         <Loading />
                 }
-                <Button className='danger-button' onClick={() => setShowModal(true)} >Excluir produto</Button>
             </div>
             {
                 showModal ?

@@ -1,51 +1,56 @@
-.product-list {
-    /*max-height: 216px;*/
-    //height: calc(100% - 48px - 116px);
-    //max-height: 80%;
-    position: relative;
-    padding: .75rem .5rem;
-    background-color: var(--secondary);
-    gap: .25rem;
-    color: var(--primary);
+.products-section {
+    padding-top: 1rem;
+    height: 100vh;
 
-    .product__item {
-        background-color: var(--item-color);
-        border-radius: .5rem;
-        box-shadow: var(--shadow);
-        height: 3rem;
-        padding-left: .5rem;
-        margin-top: .25rem;
+    .product-list {
+        /*max-height: 216px;*/
+        //height: calc(100% - 48px - 116px);
+        //max-height: 80%;
+        position: relative;
+        padding: .75rem .5rem;
+        background-color: var(--secondary);
+        gap: .25rem;
+        color: var(--primary);
 
-        align-items: center;
-        display: flex;
-        gap: .5rem;
-        justify-content: space-between;
+        .product__item {
+            background-color: var(--item-color);
+            border-radius: .5rem;
+            box-shadow: var(--shadow);
+            height: 3rem;
+            padding-left: .5rem;
+            margin-top: .25rem;
 
-        text-transform: uppercase;
-        overflow: hidden;
+            align-items: center;
+            display: flex;
+            gap: .5rem;
+            justify-content: space-between;
 
-        .product__item--name {
-            flex-basis: 70%;
+            text-transform: uppercase;
+            overflow: hidden;
+
+            .product__item--name {
+                flex-basis: 70%;
+            }
+
+            .product__item--price {
+                margin-right: .5rem;
+            }
+
+            .edit-button {
+                height: 100%;
+                aspect-ratio: 1/1;
+                background-color: var(--primary);
+            }
+
+            &:first-child {
+                background-color: #EEEEEE;
+                font-weight: 700;
+            }
+
         }
 
-        .product__item--price {
-            margin-right: .5rem;
-        }
 
-        .edit-button {
-            height: 100%;
-            aspect-ratio: 1/1;
-            background-color: var(--primary);
-        }
 
-        &:first-child {
-            background-color: #EEEEEE;
-            font-weight: 700;
-        }
 
     }
-
-
-
-
 }

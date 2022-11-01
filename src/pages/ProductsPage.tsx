@@ -27,7 +27,9 @@ export default function ProductsPage() {
 
     return (
         <main className="page">
-            <div className="pt-4 pb-32 h-full">
+
+
+            <section className="products-section">
                 {
                     arrProducts?.length ?
                         <>
@@ -63,7 +65,9 @@ export default function ProductsPage() {
                             }
                         </>
                 }
-            </div>
+            </section>
+
+
             <div className='max-w-xl fixed right-1/2 translate-x-1/2 bottom-4 px-4 w-full'>
                 <Button className='green-button' onClick={() => navigate('/adicionar-produto')} ><Plus size={24} />Adicionar produto</Button>
             </div>

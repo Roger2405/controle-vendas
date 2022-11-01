@@ -27,11 +27,16 @@ export default function Header({ isLogged }: HeaderProps) {
             <header className="header" hidden={!isLogged}>
                 <nav className='navigation justify-end'>
                     <div className="div-link">
-                        <button onBlur={() => setShowNav(false)} onClick={() => setShowNav(!showNav)} className="nav-link">{showNav ?
+                        <button onBlur={() => {
+                            setTimeout(() => {
+                                setShowNav(false)
+                            }, 250)
+                        }
+                    } onClick={() => setShowNav(!showNav)} className="nav-link">{showNav ?
                             <X size={48} color='white' />
                             :
                             <List size={48} color='white' />
-                        }</button>
+                            }</button>
                     </div>
                     <div className='div-link'>
                         <Link onClick={() => setLinkProductsActive(false)} className={`link ${!linkProductsActive && 'active'}`} to="/">Vendas</Link>

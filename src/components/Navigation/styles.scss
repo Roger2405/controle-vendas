@@ -1,25 +1,26 @@
 .div-parent {
     height: 0;
     width: 0;
-    top: 0;
+    top: .5rem;
     left: 0;
-    position: absolute;
+    position: relative;
     transition: .25s;
 
 }
 
 .navBar-inactive {
     //perspective: 6cm;
-    transform: rotateY(-90deg) skewY(15deg);
+    transform: rotateY(-90deg) skewY(10deg);
     transition: .25s;
 }
 
 .navBar {
     position: relative;
+    border: .125rem solid var(--background);
     background-color: var(--primary);
     //width: 95%;
-    border-radius: 0 0 1rem 0;
-    padding: 4rem 2rem 2rem 1rem;
+    border-radius: 0 1rem 1rem 0;
+    padding: 2rem 1rem;
     width: 100px;
 
     top: 0;
