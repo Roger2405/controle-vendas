@@ -29,7 +29,7 @@ export default function SaleDetails() {
                         salesGroupedByDate.map(sales => {
                             return (
                                 <div>
-                                    <h2>{getFormatedDate(sales[0].data_venda).split(' ')[1]}</h2>
+                                    <h2>{getFormatedDate(sales[0].data_venda)}</h2>
                                     <OrderProducts hiddenOverflow={false} orderProducts={sales} />
                                 </div>
                             )
