@@ -1,7 +1,7 @@
 import { ArrowLeft } from "phosphor-react";
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom";
-import getFormatedDate from "../commons/formatedDate";
+import { getHourByDateString } from "../commons/formatedDate";
 import { getSaleDetails } from "../commons/getSalesFromDB"
 import Button from "../components/Button";
 import Loading from "../components/Loading";
@@ -29,7 +29,7 @@ export default function SaleDetails() {
                         salesGroupedByDate.map(sales => {
                             return (
                                 <div>
-                                    <h2>{getFormatedDate(sales[0].data_venda)}</h2>
+                                    <h2>{getHourByDateString(sales[0].data_venda)}</h2>
                                     <OrderProducts hiddenOverflow={false} orderProducts={sales} />
                                 </div>
                             )

@@ -13,3 +13,8 @@ export default function getFormatedDate(date?: string) {
     //var formatedMysqlString = fixedtime.toISOString().slice(0, 19).replace('T', ' ');
     return `${fixeddate} ${fixedtime}`;
 }
+export function getHourByDateString(isoDateString: string) {
+    let date = new Date(isoDateString);
+
+    return date.toLocaleTimeString()
+}
