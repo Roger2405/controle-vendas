@@ -12,10 +12,9 @@ import OrderProduct from "../types/orderProduct";
 export default function SaleDetails() {
     const { date } = useParams();
     const navigate = useNavigate();
-    console.log(date)
     const [salesGroupedByDate, setSalesGroupedByDate] = useState<OrderProduct[][]>([]);
     useEffect(() => {
-        getSaleDetails('2022-11-02')
+        getSaleDetails(date || '')
             .then(res => {
                 setSalesGroupedByDate(res)
                 console.log(res)

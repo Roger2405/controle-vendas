@@ -48,6 +48,7 @@ export default function Summary({ setShowSummary, orderProducts }: Props) {
     function refreshSalesOnDB() {
         const userId = getUserFromLocalStorage().id;
         const date = getFormatedDate();
+
         setIsLoading(true);
 
         orderProducts.forEach(product => {

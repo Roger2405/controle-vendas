@@ -37,11 +37,11 @@ export default function OrderProducts({ orderProducts, setOrderProducts, setTota
     return (
 
         <div className={`order max-h-7xl w-full mx-auto ${hiddenOverflow ? 'overflowHidden' : ''}`}>
-            <div className='order__item'>
+            {/* <div className='order__item'>
                 <p className='order__item--name'>Nome</p>
                 <span className='order__item--count'>Qtd.</span>
                 <p className='order__item--price'>Soma</p>
-            </div>
+            </div> */}
             {
                 orderProducts.map(product => {
                     let subtotal = product.price_product * (product.count ? product.count : 1);
