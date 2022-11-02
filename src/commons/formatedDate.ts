@@ -15,6 +15,6 @@ export default function getFormatedDate(date?: string) {
 }
 export function getHourByDateString(isoDateString: string) {
     let date = new Date(isoDateString);
-
-    return date.toLocaleTimeString()
+    return isoDateString.toString().split('T')[1].slice(0, 8);
+    //return `${date.getUTCHours()}:${date.getUTCMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')}`
 }
