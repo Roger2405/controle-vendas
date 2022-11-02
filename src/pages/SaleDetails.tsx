@@ -30,6 +30,7 @@ export default function SaleDetails() {
                             return (
                                 <div>
                                     <h2>{getHourByDateString(sales[0].data_venda)}</h2>
+                                    <h2>{(sales[0].data_venda)}</h2>
                                     <OrderProducts hiddenOverflow={false} orderProducts={sales} />
                                 </div>
                             )
