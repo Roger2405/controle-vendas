@@ -33,12 +33,14 @@ export default function SalesOfTheDay() {
     useEffect(() => {
         getSalesByDate(date).then(res => {
             setSales(res);
+            console.log(res[0])
 
             //calcula a valor total das vendas 
             let sumTotal: number = 0;
-            sales.map(product => {
+            res.map(product => {
                 sumTotal += (product.count * product.price_product);
             });
+            console.log(sumTotal)
             setTotal(sumTotal);
 
         }).catch(error => {
@@ -49,9 +51,10 @@ export default function SalesOfTheDay() {
     return (
         <>
 
-            <div className="pt-4 pb-32 h-full">
+            <section className="list-section">
                 {
                     sales.length > 0 ?
+
                         < OrderProducts className="h-full" hiddenOverflow orderProducts={sales} />
                         :
                         <>
@@ -64,7 +67,7 @@ export default function SalesOfTheDay() {
                         </>
                 }
 
-            </div>
+            </section>
             {/*
                     <Print total={sumTotal} sales={sales} />*/
             }

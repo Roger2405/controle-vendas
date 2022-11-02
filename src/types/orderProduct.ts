@@ -4,5 +4,6 @@ export default interface OrderProduct {
     count: number,
     type_product: string,
     price_product: number,
+    data_venda: string,
     id: number
 }

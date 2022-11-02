@@ -15,6 +15,7 @@ import AddSales from './pages/AddSales';
 import ProductsPage from './pages/ProductsPage';
 import AddProduct from "./pages/AddProduct";
 import EditProduct from './pages/EditProduct';
+import SaleDetails from './pages/SaleDetails';
 
 type User = {
   email: string,
@@ -38,6 +39,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Header isLogged={isLogged} />}>
         <Route index element={isLogged ? <SalesPage /> : <UserLogin setUser={setUser} />} />
+        <Route path="sales/:date" element={<SaleDetails />} />
         <Route path="cadastro" element={<UserRegister />} />
 
         {/*<Route path="resumo" element={<Summary />} />*/}

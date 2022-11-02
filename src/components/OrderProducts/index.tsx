@@ -50,7 +50,7 @@ export default function OrderProducts({ orderProducts, setOrderProducts, setTota
                         <div key={product.id} className='order__item relative' onClick={() => decrementCountProduct(product)}>
                             <p className='order__item--name'>{product.name_product}</p>
                             <span className='order__item--count'>{product.count}</span>
-                            <p className='order__item--price'><strong>R$ {(subtotal).toLocaleString('pt-BR', {
+                            <p className='order__item--price'><strong>{(subtotal).toLocaleString('pt-BR', {
                                 minimumFractionDigits: 2
                             })}</strong></p>
 

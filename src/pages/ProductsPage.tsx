@@ -29,7 +29,7 @@ export default function ProductsPage() {
         <main className="page">
 
 
-            <section className="products-section">
+            <section className="list-section">
                 {
                     arrProducts?.length ?
                         <>

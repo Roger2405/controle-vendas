@@ -9,7 +9,7 @@ interface Props extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLB
 
 export default function Button({ type, className, children, onClick, isLoading, disabled }: Props) {
     return (
-        <button type={type} onClick={onClick} disabled={(disabled || isLoading)} className={`button ${className}`} >
+        <button type={!type ? 'button' : type} onClick={onClick} disabled={(disabled || isLoading)} className={`button ${className}`} >
             {
                 isLoading ?
                     <Loading />
