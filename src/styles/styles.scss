@@ -1,4 +1,4 @@
-$headerHeigth: 4rem;
+$headerHeight: 4rem;
 
 @tailwind base;
 @tailwind utilities;
@@ -18,14 +18,14 @@ $headerHeigth: 4rem;
     --gray: #8F8F8F;
     --item-color: #ffffff;
     --white: #FFFFFF;
-    --dark: #000000;
+    --dark: #235f34;
 
     --shadow: 0 .125rem .25rem rgba(0, 0, 0, 0.25);
     //--secondary: #CCCCCC;
 }
 
 * {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 body {
@@ -68,7 +68,7 @@ body {
 }
 
 .page {
-    padding: $headerHeigth .5rem 0;
+    padding: $headerHeight .5rem 0;
     height: 100vh;
     width: 100vw;
     background-color: var(--background);

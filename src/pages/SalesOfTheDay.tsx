@@ -33,14 +33,12 @@ export default function SalesOfTheDay() {
     useEffect(() => {
         getSalesByDate(date).then(res => {
             setSales(res);
-            console.log(res[0])
 
             //calcula a valor total das vendas 
             let sumTotal: number = 0;
             res.map(product => {
                 sumTotal += (product.count * product.price_product);
             });
-            console.log(sumTotal)
             setTotal(sumTotal);
 
         }).catch(error => {

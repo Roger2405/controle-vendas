@@ -21,7 +21,7 @@
         &::after {
             width: 20%;
             height: 4px;
-            background-color: var(--white);
+            background-color: var(--primary);
             right: 0;
             top: 50%;
             content: '';
@@ -31,7 +31,7 @@
         &::before {
             width: 20%;
             height: 4px;
-            background-color: var(--white);
+            background-color: var(--primary);
             left: 0;
             top: 50%;
             content: '';
