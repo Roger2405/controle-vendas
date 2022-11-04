@@ -17,6 +17,7 @@ header {
     display: flex;
     max-width: 500px;
     height: 100%;
+    flex-basis: auto;
     align-items: flex-end;
     background-image: linear-gradient(var(--primary) 50%, var(--background) 60%);
     position: relative;
@@ -24,7 +25,7 @@ header {
 
     .div-link {
         height: 3rem;
-        flex-basis: calc(50% - 24px);
+        flex-basis: calc((100% - 64px)/3);
         color: var(--background);
         text-align: center;
         line-height: 3rem;
@@ -38,23 +39,39 @@ header {
             background-color: var(--primary);
             height: 100%;
             width: 100%;
-            border-radius: 1rem;
+            //border-radius: 1rem;
 
             transition: .25s;
+
+            &:not(.active) {
+                border-bottom: $lineHeight solid var(--dark);
+            }
 
             &:hover:not(.active) {
                 filter: brightness(1.25);
             }
+
+            &>* {
+                margin: .5rem auto;
+            }
         }
 
-        &:nth-child(3) .link:not(.active) {
-            border-radius: 1rem 1rem 0 1rem;
-            border-bottom: $lineHeight solid var(--dark);
-        }
+        /*
+
         &:nth-child(2) .link:not(.active) {
             border-radius: 1rem 1rem 1rem 0;
             border-bottom: $lineHeight solid var(--dark);
         }
+
+        &:nth-child(3) .link:not(.active) {
+            //border-radius: 1rem 1rem 0 1rem;
+            border-bottom: $lineHeight solid var(--dark);
+        }
+
+        &:nth-child(4) .link:not(.active) {
+            border-radius: 0 0 0 1rem;
+            border-bottom: $lineHeight solid var(--dark);
+        }*/
 
 
         &:nth-child(1) {

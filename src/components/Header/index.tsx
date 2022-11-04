@@ -1,4 +1,4 @@
-import { List, X } from "phosphor-react";
+import { CurrencyDollar, List, Package, Stack, X } from "phosphor-react";
 import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import Navigation from "../Navigation";
@@ -11,12 +11,12 @@ interface HeaderProps {
 
 export default function Header({ isLogged }: HeaderProps) {
 
-    const [linkProductsActive, setLinkProductsActive] = useState<boolean>(false);
+    const [activeLink, setActiveLink] = useState(0);
     const [showNav, setShowNav] = useState<boolean>(false);
 
     useEffect(() => {
         const path = window.location.pathname;
-        path.includes('produto') ? setLinkProductsActive(true) : setLinkProductsActive(false);
+        path.includes('produto') ? setActiveLink(1) : path.includes('estoque') ? setActiveLink(2) : setActiveLink(0);
     }, [])
 
 
@@ -32,18 +32,21 @@ export default function Header({ isLogged }: HeaderProps) {
                                 setShowNav(false)
                             }, 250)
                         }
-                    } onClick={() => setShowNav(!showNav)} className="nav-link">{showNav ?
+                        } onClick={() => setShowNav(!showNav)} className="nav-link">{showNav ?
                             <X size={48} color='white' />
                             :
                             <List size={48} color='white' />
                             }</button>
                     </div>
                     <div className='div-link'>
-                        <Link onClick={() => setLinkProductsActive(false)} className={`link ${!linkProductsActive && 'active'}`} to="/">Vendas</Link>
+                        <Link onClick={() => setActiveLink(0)} className={`link ${activeLink === 0 && 'active'}`} to="/"><CurrencyDollar size={32} color={`${activeLink === 0 ? '#6FBB85' : '#FFFFFF'}`} /></Link>
 
                     </div>
                     <div className='div-link'>
-                        <Link onClick={() => setLinkProductsActive(true)} className={`link ${linkProductsActive && 'active'}`} to="produtos">Produtos</Link>
+                        <Link onClick={() => setActiveLink(1)} className={`link ${activeLink === 1 && 'active'}`} to="produtos"><Package size={32} color={`${activeLink === 1 ? '#6FBB85' : '#FFFFFF'}`} /></Link>
+                    </div>
+                    <div className='div-link'>
+                        <Link onClick={() => setActiveLink(2)} className={`link ${activeLink === 2 && 'active'}`} to="produtos"><Stack size={32} color={`${activeLink === 2 ? '#6FBB85' : '#FFFFFF'}`} /></Link>
                     </div>
                 </nav>
                 <Navigation showNav={showNav} />
