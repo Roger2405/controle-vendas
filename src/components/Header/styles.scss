@@ -12,7 +12,7 @@ header {
 .navigation {
     padding-top: .5rem;
     display: flex;
-    max-width: 400px;
+    max-width: 500px;
     height: 100%;
     align-items: flex-end;
     background-image: linear-gradient(var(--primary) 50%, var(--background) 60%);
@@ -46,10 +46,12 @@ header {
 
         &:nth-child(3) .link:not(.active) {
             border-radius: 1rem 1rem 0 1rem;
+            border-bottom: .125rem solid var(--dark);
         }
 
         &:nth-child(2) .link:not(.active) {
             border-radius: 1rem 1rem 1rem 0;
+            border-bottom: .125rem solid var(--dark);
         }
 
 
@@ -58,6 +60,7 @@ header {
             padding: 0 .5rem;
             position: relative;
             box-sizing: content-box;
+            border-bottom: 2px solid var(--dark);
             //padding: .5rem;
             background-color: var(--primary);
 
@@ -86,5 +89,6 @@ header {
         background-color: var(--background);
         border-radius: 1rem 1rem 0 0;
         color: var(--primary);
+        border-top: .125rem solid var(--dark);
     }
 }

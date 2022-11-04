@@ -10,7 +10,7 @@ export default function MoneyCards({ setPayment }: Props) {
     return (
         <div className="cards">
             {
-                arr.map(item => {
+                arr.reverse().map(item => {
                     return (
                         <Card setPayment={setPayment} value={item} />
                     )

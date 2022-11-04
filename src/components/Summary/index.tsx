@@ -56,6 +56,7 @@ export default function Summary({ setShowSummary, orderProducts }: Props) {
                 productId: product.id,
                 count: product.count,
                 price: product.price_product,
+                name: product.name_product,
                 date: date
             }).then((response) => {
                 if (response.data.success) {
