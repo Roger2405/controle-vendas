@@ -43,18 +43,18 @@ export default function SalesHistoric() {
                     <section className="list-section">
                         {headerSales?.map(sale => {
                             return (
-                                <div className={`sale ${dateSalesDetails == sale.data_venda ? 'sale-selected' : ''}`} onClick={() => selectSale(sale.data_venda)}>
+                                <div className={`sale ${dateSalesDetails == sale.date_sale ? 'sale-selected' : ''}`} onClick={() => selectSale(sale.date_sale)}>
                                     <div className="sale__header">
                                         <CaretRight className="sale__header--toggleIcon" size={24} />
-                                        <p className="sale__header--date">{new Date(sale.data_venda).toLocaleDateString()}</p>
+                                        <p className="sale__header--date">{new Date(sale.date_sale).toLocaleDateString()}</p>
                                         <p className="sale__header--total">{sale.total.toFixed(2).replace('.', ',')}</p>
                                     </div>
                                     {
-                                        sale.data_venda === dateSalesDetails ?
+                                        sale.date_sale === dateSalesDetails ?
                                             saleDetails.length > 0 ?
                                                 <>
                                                     <OrderProducts orderProducts={saleDetails} hiddenOverflow />
-                                                    <Link to={`sales/${sale.data_venda.split('T')[0]}`}>
+                                                    <Link to={`sales/${sale.date_sale.split('T')[0]}`}>
                                                         <Button className="danger-button">Ver detalhes</Button>
                                                     </Link>
 
