@@ -46,7 +46,7 @@ export default function Header({ isLogged }: HeaderProps) {
                         <Link onClick={() => setActiveLink(1)} className={`link ${activeLink === 1 && 'active'}`} to="produtos"><Package size={32} color={`${activeLink === 1 ? '#6FBB85' : '#FFFFFF'}`} /></Link>
                     </div>
                     <div className='div-link'>
-                        <Link onClick={() => setActiveLink(2)} className={`link ${activeLink === 2 && 'active'}`} to="produtos"><Stack size={32} color={`${activeLink === 2 ? '#6FBB85' : '#FFFFFF'}`} /></Link>
+                        <Link onClick={() => setActiveLink(2)} className={`link ${activeLink === 2 && 'active'}`} to="estoque"><Stack size={32} color={`${activeLink === 2 ? '#6FBB85' : '#FFFFFF'}`} /></Link>
                     </div>
                 </nav>
                 <Navigation showNav={showNav} />

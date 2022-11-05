@@ -2,6 +2,7 @@ import { trace } from 'console';
 import { useEffect, useState } from 'react';
 import OrderProduct from '../../types/orderProduct';
 import ProductProps from '../../types/product';
+import OrderProducts from '../OrderProducts';
 import './style.scss';
 
 
@@ -14,8 +15,9 @@ interface Props {
     overflowX: boolean
 }
 export default function ProductsGrid({ group, orderProducts, setOrderProducts, setTotal, overflowX }: Props) {
-    function refreshOrderProducts(product: OrderProduct) {
-        let productToUpdate = product;
+    function refreshOrderProducts(product: unknown) {
+
+        let productToUpdate = product as OrderProduct;
         if (!isInTheCart(productToUpdate.id)) {
             productToUpdate.count = 1;
         }
@@ -26,7 +28,7 @@ export default function ProductsGrid({ group, orderProducts, setOrderProducts, s
             orderProducts.splice(index, 1);
 
         }
-        setTotal(total => total + product.price_product);
+        setTotal(total => total + productToUpdate.price_product);
         setOrderProducts(oldProducts => [...oldProducts, productToUpdate]);
 
     }
@@ -55,7 +57,7 @@ export default function ProductsGrid({ group, orderProducts, setOrderProducts, s
                             {group.map(product => {
                                 const productIsInTheCart: boolean = isInTheCart(product.id)
                                 return (
-                                    <div key={product.id} id={product.id.toString()} className={`product ${productIsInTheCart && 'product-in-the-cart'}`} onClick={() => refreshOrderProducts(product as OrderProduct)}>
+                                    <div key={product.id} id={product.id.toString()} className={`product ${productIsInTheCart && 'product-in-the-cart'}`} onClick={() => refreshOrderProducts(product)}>
                                         <h3 className='product__name overflow-hidden'>{product.name_product}</h3>
                                         <p className={`product__price`}>R$ {product.price_product.toFixed(2)}</p>
                                         {product.imgUrl &&

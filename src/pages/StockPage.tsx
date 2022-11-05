@@ -1,19 +1,27 @@
+import Axios from "axios";
 import { PencilSimple, Plus } from "phosphor-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { number } from "yup/lib/locale";
 import { getGroupedProducts, getProductsFromDB, productsTypes } from "../commons/getProductsFromDataBase";
+import { getUserFromLocalStorage } from "../commons/userFromLocalStorage";
 import Button from "../components/Button";
 import Loading from "../components/Loading";
+import Modal from "../components/Modal";
 import ProductProps from "../types/product";
 
-import '../styles/ProductsPage.scss';
+//import '../styles/ProductsPage.scss';
 
-export default function ProductsPage() {
+export default function StockPage() {
+
     const navigate = useNavigate();
-
     const [arrProducts, setArrProducts] = useState<ProductProps[][]>();
 
+    const [showModal, setShowModal] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+    const [responseCode, setResponseCode] = useState(0);
+
+    const idUser = getUserFromLocalStorage().id;
 
     useEffect(() => {
         getGroupedProducts().then(
@@ -24,6 +32,20 @@ export default function ProductsPage() {
             setErrorMessage(error.message)
         })
     }, [])
+
+
+    function addStock(productId: number, newQuantity: number) {
+        Axios.post(`${process.env.REACT_APP_LINK_API}/${idUser}/products/${productId}/updateStock`, {
+            quantity: newQuantity,
+        }).then((response) => {
+            if (response.data.success) {
+                setResponseCode(1);
+            }
+            else {
+                setResponseCode(-1);
+            }
+        });
+    }
 
     return (
         <main className="page">
@@ -40,12 +62,20 @@ export default function ProductsPage() {
                                         <div className={`product-list max-h-7xl w-full mx-auto}`}>
                                             <div className='product__item'>
                                                 <p className='product__item--name'>Nome</p>
-                                                <p className='product__item--price'>Preço</p>
-                                                <span className='h-full aspect-square'></span>
+                                                <p className='product__item--price'>Qtd.</p>
                                             </div>
                                             {
                                                 group.map(product => {
-                                                    return <Product key={product.id} product={product} />
+                                                    return (
+                                                        <div className='product__item relative'>
+                                                            <p className='product__item--name'>{product.name_product}</p>
+                                                            <div className="flex mr-2 gap-2">
+                                                                <button>-</button>
+                                                                <p className='product__item--quantity'><strong>{(product.quantity)}</strong></p>
+                                                                <button onClick={() => addStock(product.id, (product.quantity + 1))}>+</button>
+                                                            </div>
+                                                        </div>
+                                                    )
                                                 })
                                             }
                                         </div>
@@ -65,29 +95,6 @@ export default function ProductsPage() {
                 }
             </section>
 
-
-            <div className='max-w-xl fixed right-1/2 translate-x-1/2 bottom-4 px-4 w-full'>
-                <Button className='green-button' onClick={() => navigate('/adicionar-produto')} ><Plus size={24} />Adicionar produto</Button>
-            </div>
-
         </main >
-    )
-}
-interface Props extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-    product: ProductProps
-}
-
-function Product({ product }: Props) {
-    const navigate = useNavigate();
-    return (
-        <div className='product__item relative'>
-            <p className='product__item--name'>{product.name_product}</p>
-            <p className='product__item--price'><strong>{(product.price_product).toLocaleString('pt-BR', {
-                minimumFractionDigits: 2
-            })}</strong></p>
-            <button onClick={() => {
-                navigate(`/editar-produto/${product.id}`)
-            }} className='edit-button'><PencilSimple color='white' className='mx-auto' size={32} /></button>
-        </div>
     )
 }

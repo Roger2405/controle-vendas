@@ -1,9 +1,9 @@
 .controls {
     position: absolute;
-    top: 0;
+    top: 4rem;
     right: 0;
     display: flex;
-
+    z-index: 20;
 
     input {
         padding: .75rem;

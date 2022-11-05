@@ -16,6 +16,7 @@ import ProductsPage from './pages/ProductsPage';
 import AddProduct from "./pages/AddProduct";
 import EditProduct from './pages/EditProduct';
 import SaleDetails from './pages/SaleDetails';
+import StockPage from './pages/StockPage';
 
 type User = {
   email: string,
@@ -44,6 +45,7 @@ function App() {
 
         {/*<Route path="resumo" element={<Summary />} />*/}
         <Route path="produtos" element={<ProductsPage />} />
+        <Route path="estoque" element={<StockPage />} />
         <Route path="adicionar-venda" element={<AddSales />} />
         <Route path="adicionar-produto" element={<AddProduct />} />
         <Route path="editar-produto/:id" element={<EditProduct />} />

@@ -65,10 +65,10 @@ export default function SalesOfTheDay() {
                         </>
                 }
 
+                <Print total={total} sales={sales} />
             </section>
-            {/*
-                    <Print total={sumTotal} sales={sales} />*/
-            }
+
+
             <div className='max-w-xl fixed right-1/2 translate-x-1/2 bottom-4 px-4 w-full'>
                 <Total sumTotal={total} />
                 <Button className='green-button' onClick={() => navigate('/adicionar-venda')} ><Plus size={24} />Nova venda</Button>
