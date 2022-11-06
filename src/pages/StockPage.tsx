@@ -22,6 +22,12 @@ export default function StockPage() {
     const [errorMessage, setErrorMessage] = useState('');
     const [responseCode, setResponseCode] = useState(0);
     const [editMode, setEditMode] = useState(false);
+    const [quantitiesChanged, setQuantitiesChanged] = useState<Map<number, number>>(new Map());
+    function updateMap(k: number, v: number) {
+        setQuantitiesChanged(quantitiesChanged.set(k, v));
+        setShowModal(!showModal)
+    }
+
 
     const idUser = getUserFromLocalStorage().id;
 
@@ -29,6 +35,15 @@ export default function StockPage() {
         getGroupedProducts().then(
             arr => {
                 setArrProducts(arr);
+                let mapQuantities = new Map();
+                arr.map(group => {
+                    group.map(product => {
+                        mapQuantities.set(product.id, product.quantity)
+                        //mapArrayQuantities.set(product.id, product.quantity);
+                    })
+                })
+                console.log(mapQuantities)
+                setQuantitiesChanged(mapQuantities);
             }
         ).catch(error => {
             setErrorMessage(error.message)
@@ -38,24 +53,22 @@ export default function StockPage() {
         getProductsAndSetInState();
     }, [])
 
-
-    function changeQuantity(productId: number, newQuantity: number) {
-        Axios.post(`${process.env.REACT_APP_LINK_API}/${idUser}/products/${productId}/updateStock`, {
-            quantity: newQuantity,
-        }).then((response) => {
-            if (response.data.success) {
-                getProductsAndSetInState();
-            }
-            else {
-                setResponseCode(-1);
-            }
-        });
-    }
+    /*
+        function changeQuantity(productId: number, newQuantity: number) {
+            Axios.post(`${process.env.REACT_APP_LINK_API}/${idUser}/products/${productId}/updateStock`, {
+                quantity: newQuantity,
+            }).then((response) => {
+                if (response.data.success) {
+                    getProductsAndSetInState();
+                }
+                else {
+                    setResponseCode(-1);
+                }
+            });
+        }*/
 
     return (
         <main className="page">
-
-
             <section className="stock">
                 {
                     arrProducts?.length ?
@@ -64,27 +77,44 @@ export default function StockPage() {
                                 return (
                                     <div key={group[0]?.id}>
                                         <h2 className="subtitle">{group[0]?.type_product}</h2>
-                                        <div className={`stock-list`}>
-                                            <div className='product__item'>
-                                                <p className='product__item--name'>Nome</p>
-                                                <p className='product__item--quantity'>Qtd.</p>
+                                        <div className="stock-list">
+                                            <div className="item">
+                                                <p className='item__name'>Nome</p>
+                                                <p className='item__quantity'>Qtd.</p>
                                             </div>
                                             {
                                                 group.map(product => {
                                                     return (
-                                                        <div className='product__item relative'>
-                                                            <p className='product__item--name'>{product.name_product}</p>
-                                                            <div className="product__item--quantity">
-                                                                {
-                                                                    editMode &&
-                                                                    <button onClick={() => changeQuantity(product.id, (product.quantity - 1))}>-</button>
-                                                                }
-                                                                <p className=''><strong>{(product.quantity)}</strong></p>
-                                                                {
-                                                                    editMode &&
-                                                                    <button onClick={() => changeQuantity(product.id, (product.quantity + 1))}>+</button>
-                                                                }
-                                                            </div>
+                                                        <div key={product.id} className='item relative'>
+                                                            <p className='item__name'>{product.name_product}</p>
+                                                            {
+                                                                editMode ?
+                                                                    <div className="item__quantity">
+                                                                        <button onClick={() => {
+                                                                            const oldQtd = quantitiesChanged.get(product.id) || 0;
+
+                                                                            if (oldQtd > 0) {
+                                                                                updateMap(product.id, oldQtd - 1)
+                                                                            }
+                                                                        }}>-</button>
+                                                                        <p className='quantity__value'>{(quantitiesChanged.get(product.id))}</p>
+                                                                        <>
+                                                                            {
+                                                                                (quantitiesChanged.get(product.id) || 0) - product.quantity !== 0 &&
+                                                                                <span className={`quantity__diff ${((quantitiesChanged.get(product.id) || 0) - product.quantity > 0) ? 'positive-diff' : 'negative-diff'}`}>{(quantitiesChanged.get(product.id) || 0) - product.quantity}</span>
+                                                                            }
+                                                                        </>
+                                                                        <button onClick={() => {
+                                                                            let newQtd = (quantitiesChanged.get(product.id) || product.quantity) + 1;
+                                                                            updateMap(product.id, newQtd)
+                                                                        }}>+</button>
+                                                                    </div>
+                                                                    :
+                                                                    <div className="item__quantity">
+                                                                        <p className=''>{(quantitiesChanged.get(product.id))}</p>
+                                                                    </div>
+                                                            }
+
                                                         </div>
                                                     )
                                                 })
