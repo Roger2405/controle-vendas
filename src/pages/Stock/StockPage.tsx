@@ -92,9 +92,8 @@ export default function StockPage() {
                                                             {
                                                                 editMode ?
                                                                     <div className="item__quantity">
-                                                                        <button onClick={() => {
+                                                                        <button className="button-minus" onClick={() => {
                                                                             const oldQtd = quantitiesChanged.get(product.id) || 0;
-
                                                                             if (oldQtd > 0) {
                                                                                 updateMap(product.id, oldQtd - 1)
                                                                             }
@@ -106,7 +105,7 @@ export default function StockPage() {
                                                                                 <span className={`quantity__diff ${((quantitiesChanged.get(product.id) || 0) - product.quantity > 0) ? 'positive-diff' : 'negative-diff'}`}>{(quantitiesChanged.get(product.id) || 0) - product.quantity}</span>
                                                                             }
                                                                         </>
-                                                                        <button onClick={() => {
+                                                                        <button className="button-plus" onClick={() => {
                                                                             let newQtd = (quantitiesChanged.get(product.id) || product.quantity) + 1;
                                                                             updateMap(product.id, newQtd)
                                                                         }}>+</button>

@@ -101,6 +101,14 @@
                 }
             }
 
+            .product-unavaliable {
+                background-color: var(--gray);
+            }
+
+            .hidden-product {
+                display: none;
+            }
+
         }
     }
 

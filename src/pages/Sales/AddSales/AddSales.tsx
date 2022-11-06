@@ -4,17 +4,18 @@ import '../../../styles/styles.scss';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 //types
-import Summary from './Summary';
 import { ArrowLeft, X, ArrowRight } from 'phosphor-react';
 import { getSumTotal } from '../../../commons/dataFromLocalStorage';
 import { getGroupedProducts } from '../../../commons/getProductsFromDataBase';
+
 import Button from '../../../components/Button';
 import Loading from '../../../components/Loading';
 import Total from '../../../components/Total';
 import OrderProduct from '../../../types/orderProduct';
 import ProductProps from '../../../types/product';
 import OrderProducts from '../../../components/OrderProducts';
-import ProductsGrid from '../../../components/ProductsGrid';
+import ProductsGrid from './ProductsGrid';
+import Summary from './Summary';
 
 
 export default function AddSales() {
@@ -27,7 +28,9 @@ export default function AddSales() {
     const [total, setTotal] = useState<number>(getSumTotal(orderProducts));
     const [arrFiltered, setArrFiltered] = useState<ProductProps[][]>([]);
     const [completedOrder, setCompletedOrder] = useState(false);
+
     const [overflowX, setOverflowX] = useState(true);
+    const [hideUnavaliableProducts, setHideUnavaliableProducts] = useState(true);
 
     useEffect(() => {
         getGroupedProducts().then(
@@ -69,9 +72,21 @@ export default function AddSales() {
                     <main className='page main-addSale'>
 
                         <section className='products-section px-2 py-4'>
-                            <div className='scroll-checkbox'>
-                                <label htmlFor="scroll-x">Scroll X</label>
-                                <input checked={overflowX} onClick={() => setOverflowX(!overflowX)} type="checkbox" name="scroll-x" id="scroll-x" />
+                            <div className='div-checkboxes'>
+                                <div className='checkbox'>
+                                    <label htmlFor="hide">Ocultar sem estoque</label>
+                                    <input
+                                        checked={hideUnavaliableProducts}
+                                        onClick={() => setHideUnavaliableProducts(!hideUnavaliableProducts)} type="checkbox" name="scroll-x" id="scroll-x" />
+                                </div>
+                                <div className='checkbox'>
+                                    <label htmlFor="scroll-x">Scroll X</label>
+                                    <input
+                                        checked={overflowX}
+                                        onClick={() => setOverflowX(!overflowX)}
+                                        type="checkbox" name="scroll-x" id="scroll-x" />
+                                </div>
+
                             </div>
                             {/*<InputSearch setInputValue={setInputValue} />*/}
                             {
@@ -80,7 +95,7 @@ export default function AddSales() {
                                         {
                                             arrFiltered.map(group => {
                                                 return (
-                                                    <ProductsGrid overflowX={overflowX} key={group[0]?.type_product} group={group} orderProducts={orderProducts} setTotal={setTotal} total={total} setOrderProducts={setOrderProducts} />
+                                                    <ProductsGrid hideUnavaliableProducts={hideUnavaliableProducts} overflowX={overflowX} key={group[0]?.type_product} group={group} orderProducts={orderProducts} setTotal={setTotal} total={total} setOrderProducts={setOrderProducts} />
                                                 )
                                             })
                                         }

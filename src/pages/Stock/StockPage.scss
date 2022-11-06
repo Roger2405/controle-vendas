@@ -32,55 +32,71 @@
             align-items: center;
             display: flex;
             flex-basis: 30%;
+            width: 30%;
+
             gap: 1rem;
             justify-content: center;
 
             height: 100%;
-            margin: 0 .5rem;
             position: relative;
 
+            &:has(button) {
+                justify-content: space-between;
+            }
 
-            .quantity {
-                &__diff {
-                    color: var(--white);
-                    display: inline-block;
 
-                    font-size: .75rem;
-                    line-height: 1rem;
-                    height: 1rem;
-                    min-width: 2rem;
+            .button-minus,
+            .button-plus {
+                aspect-ratio: 1/1;
+                max-width: calc(100% / 3);
+                height: 100%;
+                color: var(--white);
+            }
 
-                    top: 0;
-                    right: 0;
-                    position: absolute;
+            .button-minus {
+                background-color: var(--gray);
+            }
 
-                    text-align: end;
-                    padding: 0 .25rem;
+            .button-plus {
+                background-color: var(--primary);
+            }
 
-                    &.positive-diff {
-                        background-color: var(--primary);
-                    }
 
-                    &.negative-diff {
-                        background-color: var(--gray);
-                    }
+            .quantity__diff {
+                color: var(--white);
+                display: inline-block;
+
+                font-size: .75rem;
+                line-height: 1rem;
+                height: 1rem;
+                min-width: 2rem;
+
+                top: 0;
+                right: 0;
+                position: absolute;
+
+                text-align: end;
+                padding: 0 .25rem;
+
+                &.positive-diff {
+                    background-color: var(--primary);
                 }
 
-
-                &__value {
-                    color: var(--dark);
+                &.negative-diff {
+                    background-color: var(--gray);
                 }
             }
-        }
 
-        &:first-child {
-            background-color: #EEEEEE;
-            font-weight: 700;
-        }
 
+            .quantity__value {
+                color: var(--dark);
+            }
+        }
     }
 
-
-
+    &:first-child {
+        background-color: #EEEEEE;
+        font-weight: 700;
+    }
 
 }

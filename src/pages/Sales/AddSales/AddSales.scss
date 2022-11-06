@@ -4,15 +4,20 @@
     overflow-y: scroll;
     height: 55%; // 50
 
-    .scroll-checkbox {
+    .div-checkboxes {
         text-transform: uppercase;
         font-weight: 700;
         display: flex;
+        justify-content: space-between;
         gap: 1rem;
         width: 100%;
-        justify-content: end;
 
+        .checkbox {
+            display: flex;
+            gap: .5rem;
+        }
     }
+
 }
 
 .order-section {

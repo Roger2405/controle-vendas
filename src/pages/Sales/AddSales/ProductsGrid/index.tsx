@@ -1,8 +1,8 @@
 import { trace } from 'console';
 import { useEffect, useState } from 'react';
-import OrderProduct from '../../types/orderProduct';
-import ProductProps from '../../types/product';
-import OrderProducts from '../OrderProducts';
+import OrderProduct from '../../../../types/orderProduct';
+import ProductProps from '../../../../types/product';
+import OrderProducts from '../../../../components/OrderProducts';
 import './style.scss';
 
 
@@ -12,9 +12,10 @@ interface Props {
     orderProducts: OrderProduct[],
     total: number,
     setTotal: React.Dispatch<React.SetStateAction<number>>,
-    overflowX: boolean
+    overflowX: boolean,
+    hideUnavaliableProducts: boolean
 }
-export default function ProductsGrid({ group, orderProducts, setOrderProducts, setTotal, overflowX }: Props) {
+export default function ProductsGrid({ group, orderProducts, setOrderProducts, setTotal, hideUnavaliableProducts, overflowX }: Props) {
     function refreshOrderProducts(product: unknown) {
 
         let productToUpdate = product as OrderProduct;
@@ -57,7 +58,11 @@ export default function ProductsGrid({ group, orderProducts, setOrderProducts, s
                             {group.map(product => {
                                 const productIsInTheCart: boolean = isInTheCart(product.id)
                                 return (
-                                    <div key={product.id} id={product.id.toString()} className={`product ${productIsInTheCart && 'product-in-the-cart'}`} onClick={() => refreshOrderProducts(product)}>
+                                    <div key={product.id} id={product.id.toString()}
+                                        className={`product ${productIsInTheCart && 'product-in-the-cart'}
+                                    ${product.quantity <= 0 && 'product-unavaliable'}
+                                    ${(product.quantity <= 0 && hideUnavaliableProducts) && 'hidden-product'}
+                                    `} onClick={() => refreshOrderProducts(product)}>
                                         <h3 className='product__name overflow-hidden'>{product.name_product}</h3>
                                         <p className={`product__price`}>R$ {product.price_product.toFixed(2)}</p>
                                         {product.imgUrl &&
