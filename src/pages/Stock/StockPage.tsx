@@ -1,17 +1,15 @@
 import Axios from "axios";
-import { Check, PencilSimple, Plus, X } from "phosphor-react";
+import { Check, PencilSimple, X } from "phosphor-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { number } from "yup/lib/locale";
-import { getGroupedProducts, getProductsFromDB, productsTypes } from "../commons/getProductsFromDataBase";
-import { getUserFromLocalStorage } from "../commons/userFromLocalStorage";
-import Button from "../components/Button";
-import Loading from "../components/Loading";
-import Modal from "../components/Modal";
-import ProductProps from "../types/product";
+import { getGroupedProducts } from "../../commons/getProductsFromDataBase";
+import { getUserFromLocalStorage } from "../../commons/userFromLocalStorage";
+import Button from "../../components/Button";
+import Loading from "../../components/Loading";
+import ProductProps from "../../types/product";
 
 
-import '../styles/StockPage.scss';
+import './StockPage.scss';
 
 export default function StockPage() {
 
@@ -53,19 +51,23 @@ export default function StockPage() {
         getProductsAndSetInState();
     }, [])
 
-    /*
-        function changeQuantity(productId: number, newQuantity: number) {
-            Axios.post(`${process.env.REACT_APP_LINK_API}/${idUser}/products/${productId}/updateStock`, {
-                quantity: newQuantity,
-            }).then((response) => {
-                if (response.data.success) {
-                    getProductsAndSetInState();
-                }
-                else {
-                    setResponseCode(-1);
-                }
-            });
-        }*/
+
+    function updateQuantitiesOnDB(newQuantities: Map<number, number>) {
+        let strArrayQuantities = JSON.stringify(Array.from(newQuantities))
+        //console.log(JSON.parse(strArrayQuantities)[0]);
+        console.log(strArrayQuantities);
+
+        Axios.post(`${process.env.REACT_APP_LINK_API}/${idUser}/stock/update`, {
+            newQuantities: strArrayQuantities,
+        }).then((response) => {
+            if (response.data.success) {
+                alert('SUCESSO');
+            }
+            else {
+                alert('ALGO DEU ERRADO')
+            }
+        });
+    }
 
     return (
         <main className="page">
@@ -142,7 +144,10 @@ export default function StockPage() {
                     editMode ?
                         <div className='flex mb-4'>
                             <Button className='red-button left' onClick={() => { }} ><X size={32} />Cancelar</Button>
-                            <Button className='green-button right' onClick={() => setEditMode(false)}>Confirmar<Check size={32} /></Button>
+                            <Button className='green-button right' onClick={() => {
+                                setEditMode(false)
+                                updateQuantitiesOnDB(quantitiesChanged)
+                            }}>Confirmar<Check size={32} /></Button>
                         </div>
                         :
                         <Button className='green-button' onClick={() => setEditMode(true)} ><PencilSimple size={24} />Editar estoque</Button>

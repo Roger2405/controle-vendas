@@ -1,16 +1,21 @@
+//styles
+import './ProductsPage.scss';
+//icons
 import { PencilSimple, Plus } from "phosphor-react";
+//types
+import ProductProps from "../../../types/product";
+//hooks
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getGroupedProducts, getProductsFromDB, productsTypes } from "../commons/getProductsFromDataBase";
-import Button from "../components/Button";
-import Loading from "../components/Loading";
-import ProductProps from "../types/product";
+import { getGroupedProducts } from "../../../commons/getProductsFromDataBase";
+//components
+import Button from "../../../components/Button";
+import Loading from "../../../components/Loading";
 
-import '../styles/ProductsPage.scss';
+
 
 export default function ProductsPage() {
     const navigate = useNavigate();
-
     const [arrProducts, setArrProducts] = useState<ProductProps[][]>();
 
     const [errorMessage, setErrorMessage] = useState('');
@@ -27,8 +32,6 @@ export default function ProductsPage() {
 
     return (
         <main className="page">
-
-
             <section className="list-section">
                 {
                     arrProducts?.length ?
@@ -38,9 +41,9 @@ export default function ProductsPage() {
                                     <div key={group[0]?.id}>
                                         <h2 className="subtitle">{group[0]?.type_product}</h2>
                                         <div className={`product-list max-h-7xl w-full mx-auto}`}>
-                                            <div className='product__item'>
-                                                <p className='product__item--name'>Nome</p>
-                                                <p className='product__item--price'>Preço</p>
+                                            <div className='product'>
+                                                <p className='product__name'>Nome</p>
+                                                <p className='product__price'>Preço</p>
                                                 <span className='h-full aspect-square'></span>
                                             </div>
                                             {
@@ -80,9 +83,9 @@ interface Props extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElem
 function Product({ product }: Props) {
     const navigate = useNavigate();
     return (
-        <div className='product__item relative'>
-            <p className='product__item--name'>{product.name_product}</p>
-            <p className='product__item--price'><strong>{(product.price_product).toLocaleString('pt-BR', {
+        <div className='product relative'>
+            <p className='product__name'>{product.name_product}</p>
+            <p className='product__price'><strong>{(product.price_product).toLocaleString('pt-BR', {
                 minimumFractionDigits: 2
             })}</strong></p>
             <button onClick={() => {

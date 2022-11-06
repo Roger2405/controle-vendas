@@ -1,5 +1,5 @@
 //styles
-import '../styles/ProductForm.scss';
+import './ProductForm.scss';
 //dependencies
 import { useNavigate, useParams } from "react-router-dom";
 import { ErrorMessage, Field, Form, Formik } from "formik";
@@ -8,14 +8,14 @@ import { Check, X } from "phosphor-react";
 import * as yup from "yup";
 import Axios from "axios";
 //components
-import Modal from "../components/Modal";
-import Button from "../components/Button";
-import Loading from "../components/Loading";
+import Modal from "../../components/Modal";
+import Button from "../../components/Button";
+import Loading from "../../components/Loading";
 //type
-import ProductProps from "../types/product";
+import ProductProps from "../../types/product";
 //commons
-import { productsTypes } from "../commons/getProductsFromDataBase";
-import { getUserFromLocalStorage } from "../commons/userFromLocalStorage";
+import { productsTypes } from "../../commons/getProductsFromDataBase";
+import { getUserFromLocalStorage } from "../../commons/userFromLocalStorage";
 
 
 export default function EditProduct() {

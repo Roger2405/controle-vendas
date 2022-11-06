@@ -2,10 +2,10 @@ import { useState } from "react";
 import * as yup from "yup";
 import { ErrorMessage, Formik, Form, Field } from "formik";
 import Axios from "axios";
-import '../styles/AuthForm.scss';
-import '../styles/styles.scss';
+import './AuthForm.scss';
+import '../../styles/styles.scss';
 import { Link } from "react-router-dom";
-import Button from "../components/Button";
+import Button from "../../components/Button";
 import { ArrowRight } from "phosphor-react";
 
 interface Props {

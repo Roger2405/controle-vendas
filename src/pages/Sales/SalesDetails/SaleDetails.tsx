@@ -1,12 +1,16 @@
 import { ArrowLeft } from "phosphor-react";
+//common functions
+import { getHourByDateString } from "../../../commons/formatedDate";
+import { getSaleDetails } from "../../../commons/getSalesFromDB";
+//types
+import OrderProduct from "../../../types/orderProduct";
+//hooks
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom";
-import { getHourByDateString } from "../commons/formatedDate";
-import { getSaleDetails } from "../commons/getSalesFromDB"
-import Button from "../components/Button";
-import Loading from "../components/Loading";
-import OrderProducts from "../components/OrderProducts";
-import OrderProduct from "../types/orderProduct";
+import Button from "../../../components/Button";
+import Loading from "../../../components/Loading";
+import OrderProducts from "../../../components/OrderProducts";
+
 
 
 export default function SaleDetails() {

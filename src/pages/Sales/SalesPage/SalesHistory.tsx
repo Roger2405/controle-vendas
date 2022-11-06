@@ -1,12 +1,16 @@
 import { ArrowDown, CaretDown, CaretRight, Plus } from "phosphor-react";
+//types
+import OrderProduct from "../../../types/orderProduct";
+import SaleResumeProps from "../../../types/saleResume";
+//common functions
+import { getSalesFromDB, getSalesByDate } from "../../../commons/getSalesFromDB";
+//hooks
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getSalesByDate, getSalesFromDB } from "../commons/getSalesFromDB";
-import Button from "../components/Button";
-import Loading from "../components/Loading";
-import OrderProducts from "../components/OrderProducts";
-import OrderProduct from "../types/orderProduct";
-import SaleResumeProps from "../types/saleResume";
+//components
+import Button from "../../../components/Button";
+import Loading from "../../../components/Loading";
+import OrderProducts from "../../../components/OrderProducts";
 
 export default function SalesHistoric() {
     const [headerSales, setHeaderSales] = useState<SaleResumeProps[]>([]);

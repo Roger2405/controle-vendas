@@ -1,10 +1,10 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as yup from "yup";
 import Axios from "axios";
-import '../styles/AuthForm.scss';
+import './AuthForm.scss';
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Button from "../components/Button";
+import Button from "../../components/Button";
 
 export default function UserRegister() {
     const [isLoading, setIsLoading] = useState(false);

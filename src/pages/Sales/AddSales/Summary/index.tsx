@@ -1,21 +1,24 @@
-//styles
+//types
+import OrderProduct from '../../../../types/orderProduct';
+
 //hooks
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-//components
+
 //common functions
 import { ArrowLeft, Check, X } from 'phosphor-react';
-import { getSalesFromLocalStorage, getSumTotal, removeOrderProductsFromLocalStorage, setSalesInLocalStorage } from '../../commons/dataFromLocalStorage';
-import OrderProduct from '../../types/orderProduct';
-import Print from '../Print';
-import OrderProducts from '../OrderProducts';
-import MoneyCards from '../MoneyCard';
-import Total from '../Total';
-import Input from '../Input';
-import Button from '../Button';
 import Axios from 'axios';
-import { getUserFromLocalStorage } from '../../commons/userFromLocalStorage';
-import getFormatedDate from '../../commons/formatedDate';
+import { getSumTotal } from '../../../../commons/dataFromLocalStorage';
+import { getUserFromLocalStorage } from '../../../../commons/userFromLocalStorage';
+import getFormatedDate from '../../../../commons/formatedDate';
+
+//components
+import Print from '../../../../components/Print';
+import OrderProducts from '../../../../components/OrderProducts';
+import MoneyCards from '../../../../components/MoneyCard';
+import Total from '../../../../components/Total';
+import Input from '../../../../components/Input';
+import Button from '../../../../components/Button';
 
 interface Props {
     setShowSummary: React.Dispatch<React.SetStateAction<boolean>>,

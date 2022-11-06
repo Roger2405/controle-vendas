@@ -1,15 +1,15 @@
 
-import Button from "../components/Button";
-import '../styles/ProductForm.scss';
+import Button from "../../components/Button";
+import './ProductForm.scss';
 import { ArrowRight, Check, FileImage, X } from "phosphor-react";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { getUserFromLocalStorage } from "../commons/userFromLocalStorage";
+import { getUserFromLocalStorage } from "../../commons/userFromLocalStorage";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as yup from "yup";
 import { useEffect, useState } from "react";
-import Modal from "../components/Modal";
-import { productsTypes } from "../commons/getProductsFromDataBase";
+import Modal from "../../components/Modal";
+import { productsTypes } from "../../commons/getProductsFromDataBase";
 
 
 export default function AddProduct() {

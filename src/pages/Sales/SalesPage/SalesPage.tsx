@@ -1,10 +1,12 @@
+//styles
+import './SalesPage.scss';
+//hooks
 import { useState } from "react";
-import SalesOfTheDay from "./SalesOfTheDay";
-import '../styles/SalesPage.scss';
-import SalesHistoric from "./SalesHistoric";
-import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
-import { Plus } from "phosphor-react";
+//pages
+import SalesOfTheDay from "./SalesOfTheDay";
+import SalesHistoric from "./SalesHistory";
+
 
 export default function SalesPage() {
     const [showIndex, setShowIndex] = useState(true);

@@ -1,21 +1,21 @@
-
-import { useEffect, useState } from "react";
-
-import Button from "../components/Button";
-import Total from "../components/Total";
-import Modal from "../components/Modal";
-
-import { useNavigate } from 'react-router-dom';
-
-
-import { getSalesFromLocalStorage, setSalesInLocalStorage } from '../commons/dataFromLocalStorage';
-import Print from "../components/Print";
+//icons
 import { Plus } from "phosphor-react";
-import { getSalesByDate, getSalesFromDB } from "../commons/getSalesFromDB";
-import OrderProduct from "../types/orderProduct";
-import OrderProducts from "../components/OrderProducts";
-import Loading from "../components/Loading";
-import getFormatedDate from "../commons/formatedDate";
+//hooks
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+//types
+import OrderProduct from "../../../types/orderProduct";
+//common functions
+import { getSalesFromLocalStorage } from "../../../commons/dataFromLocalStorage";
+import getFormatedDate from "../../../commons/formatedDate";
+import { getSalesByDate } from "../../../commons/getSalesFromDB";
+//components
+import Button from "../../../components/Button";
+import Loading from "../../../components/Loading";
+import OrderProducts from "../../../components/OrderProducts";
+import Print from "../../../components/Print";
+import Total from "../../../components/Total";
+
 
 export default function SalesOfTheDay() {
     const navigate = useNavigate();

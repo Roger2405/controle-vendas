@@ -1,24 +1,20 @@
-import '../styles/AddSales.scss';
-import '../styles/styles.scss';
+import './AddSales.scss';
+import '../../../styles/styles.scss';
 //hooks
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 //types
-import ProductProps from '../types/product';
-import OrderProduct from '../types/orderProduct';
-//components
-import ListOrderProducts from '../components/OrderProducts';
-import Total from '../components/Total';
-import Button from '../components/Button';
-import Products from '../components/ProductsGrid';
-//common functions
-import { getOrderProductsFromLocalStorage, getSumTotal, setOrderProductsToLocalStorage } from '../commons/dataFromLocalStorage';
-import InputSearch from '../components/InputSearch';
-import { ArrowLeft, ArrowRight, X } from 'phosphor-react';
-import { getGroupedProducts, getProductsFromDB } from '../commons/getProductsFromDataBase';
-import { getUserFromLocalStorage } from '../commons/userFromLocalStorage';
-import Summary from '../components/Summary';
-import Loading from '../components/Loading';
+import Summary from './Summary';
+import { ArrowLeft, X, ArrowRight } from 'phosphor-react';
+import { getSumTotal } from '../../../commons/dataFromLocalStorage';
+import { getGroupedProducts } from '../../../commons/getProductsFromDataBase';
+import Button from '../../../components/Button';
+import Loading from '../../../components/Loading';
+import Total from '../../../components/Total';
+import OrderProduct from '../../../types/orderProduct';
+import ProductProps from '../../../types/product';
+import OrderProducts from '../../../components/OrderProducts';
+import ProductsGrid from '../../../components/ProductsGrid';
 
 
 export default function AddSales() {
@@ -84,7 +80,7 @@ export default function AddSales() {
                                         {
                                             arrFiltered.map(group => {
                                                 return (
-                                                    <Products overflowX={overflowX} key={group[0]?.type_product} group={group} orderProducts={orderProducts} setTotal={setTotal} total={total} setOrderProducts={setOrderProducts} />
+                                                    <ProductsGrid overflowX={overflowX} key={group[0]?.type_product} group={group} orderProducts={orderProducts} setTotal={setTotal} total={total} setOrderProducts={setOrderProducts} />
                                                 )
                                             })
                                         }
@@ -101,7 +97,7 @@ export default function AddSales() {
                             }
                         </section>
                         <section className='order-section flex flex-col justify-between'>
-                            <ListOrderProducts hiddenOverflow orderProducts={orderProducts} setTotal={setTotal} setOrderProducts={setOrderProducts} />
+                            <OrderProducts hiddenOverflow orderProducts={orderProducts} setTotal={setTotal} setOrderProducts={setOrderProducts} />
                             <div className='px-4'>
                                 <Total sumTotal={total} />
 
