@@ -1,4 +1,5 @@
-$lineHeight: .25rem;
+$listIconWidth: 32px;
+
 
 header {
     height: 4rem;
@@ -7,25 +8,26 @@ header {
     position: fixed;
     //padding: 0 .5rem;
     z-index: 15;
-    box-shadow: inset 0 (-$lineHeight) 0 var(--dark);
+    box-shadow: inset 0 (-.25rem) 0 var(--dark);
 
 }
 
 
 .navigation {
-    padding-top: .5rem;
+    padding: .5rem 1rem 0;
     display: flex;
     max-width: 500px;
+    width: 100%;
     height: 100%;
     flex-basis: auto;
     align-items: flex-end;
-    background-image: linear-gradient(var(--primary) 50%, var(--background) 60%);
     position: relative;
+
 
 
     .div-link {
         height: 3rem;
-        flex-basis: calc((100% - 64px)/3);
+        flex-basis: calc((100% - $listIconWidth)/3);
         color: var(--background);
         text-align: center;
         line-height: 3rem;
@@ -33,6 +35,9 @@ header {
         font-weight: 700;
         font-size: 1.25rem;
 
+        .nav-link {
+            margin: .5rem 0;
+        }
 
         .link {
             display: inline-block;
@@ -44,7 +49,7 @@ header {
             transition: .25s;
 
             &:not(.active) {
-                border-bottom: $lineHeight solid var(--dark);
+                border-bottom: var(--border);
             }
 
             &:hover:not(.active) {
@@ -75,11 +80,10 @@ header {
 
 
         &:nth-child(1) {
-            flex-basis: 48px;
-            padding: 0 .5rem;
+            flex-basis: $listIconWidth;
             position: relative;
-            box-sizing: content-box;
-            border-bottom: $lineHeight solid var(--dark);
+            margin-right: .5rem;
+            border-bottom: var(--border);
             //padding: .5rem;
             background-color: var(--primary);
 
@@ -108,6 +112,6 @@ header {
         background-color: var(--background);
         border-radius: 1rem 1rem 0 0;
         color: var(--primary);
-        border-top: $lineHeight solid var(--dark);
+        border-top: var(--border);
     }
 }

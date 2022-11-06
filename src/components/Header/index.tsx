@@ -33,9 +33,9 @@ export default function Header({ isLogged }: HeaderProps) {
                             }, 250)
                         }
                         } onClick={() => setShowNav(!showNav)} className="nav-link">{showNav ?
-                            <X size={48} color='white' />
+                            <X size={32} color='white' />
                             :
-                            <List size={48} color='white' />
+                            <List size={32} color='white' />
                             }</button>
                     </div>
                     <div className='div-link'>

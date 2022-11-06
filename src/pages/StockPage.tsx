@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { PencilSimple, Plus } from "phosphor-react";
+import { Check, PencilSimple, Plus, X } from "phosphor-react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { number } from "yup/lib/locale";
@@ -10,7 +10,8 @@ import Loading from "../components/Loading";
 import Modal from "../components/Modal";
 import ProductProps from "../types/product";
 
-//import '../styles/ProductsPage.scss';
+
+import '../styles/StockPage.scss';
 
 export default function StockPage() {
 
@@ -20,10 +21,11 @@ export default function StockPage() {
     const [showModal, setShowModal] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [responseCode, setResponseCode] = useState(0);
+    const [editMode, setEditMode] = useState(false);
 
     const idUser = getUserFromLocalStorage().id;
 
-    useEffect(() => {
+    function getProductsAndSetInState() {
         getGroupedProducts().then(
             arr => {
                 setArrProducts(arr);
@@ -31,15 +33,18 @@ export default function StockPage() {
         ).catch(error => {
             setErrorMessage(error.message)
         })
+    }
+    useEffect(() => {
+        getProductsAndSetInState();
     }, [])
 
 
-    function addStock(productId: number, newQuantity: number) {
+    function changeQuantity(productId: number, newQuantity: number) {
         Axios.post(`${process.env.REACT_APP_LINK_API}/${idUser}/products/${productId}/updateStock`, {
             quantity: newQuantity,
         }).then((response) => {
             if (response.data.success) {
-                setResponseCode(1);
+                getProductsAndSetInState();
             }
             else {
                 setResponseCode(-1);
@@ -51,7 +56,7 @@ export default function StockPage() {
         <main className="page">
 
 
-            <section className="list-section">
+            <section className="stock">
                 {
                     arrProducts?.length ?
                         <>
@@ -59,20 +64,26 @@ export default function StockPage() {
                                 return (
                                     <div key={group[0]?.id}>
                                         <h2 className="subtitle">{group[0]?.type_product}</h2>
-                                        <div className={`product-list max-h-7xl w-full mx-auto}`}>
+                                        <div className={`stock-list`}>
                                             <div className='product__item'>
                                                 <p className='product__item--name'>Nome</p>
-                                                <p className='product__item--price'>Qtd.</p>
+                                                <p className='product__item--quantity'>Qtd.</p>
                                             </div>
                                             {
                                                 group.map(product => {
                                                     return (
                                                         <div className='product__item relative'>
                                                             <p className='product__item--name'>{product.name_product}</p>
-                                                            <div className="flex mr-2 gap-2">
-                                                                <button>-</button>
-                                                                <p className='product__item--quantity'><strong>{(product.quantity)}</strong></p>
-                                                                <button onClick={() => addStock(product.id, (product.quantity + 1))}>+</button>
+                                                            <div className="product__item--quantity">
+                                                                {
+                                                                    editMode &&
+                                                                    <button onClick={() => changeQuantity(product.id, (product.quantity - 1))}>-</button>
+                                                                }
+                                                                <p className=''><strong>{(product.quantity)}</strong></p>
+                                                                {
+                                                                    editMode &&
+                                                                    <button onClick={() => changeQuantity(product.id, (product.quantity + 1))}>+</button>
+                                                                }
                                                             </div>
                                                         </div>
                                                     )
@@ -94,6 +105,19 @@ export default function StockPage() {
                         </>
                 }
             </section>
+
+
+            <div className='max-w-xl fixed right-1/2 translate-x-1/2 bottom-4 px-4 w-full'>
+                {
+                    editMode ?
+                        <div className='flex mb-4'>
+                            <Button className='red-button left' onClick={() => { }} ><X size={32} />Cancelar</Button>
+                            <Button className='green-button right' onClick={() => setEditMode(false)}>Confirmar<Check size={32} /></Button>
+                        </div>
+                        :
+                        <Button className='green-button' onClick={() => setEditMode(true)} ><PencilSimple size={24} />Editar estoque</Button>
+                }
+            </div>
 
         </main >
     )

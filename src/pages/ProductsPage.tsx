@@ -87,7 +87,7 @@ function Product({ product }: Props) {
             })}</strong></p>
             <button onClick={() => {
                 navigate(`/editar-produto/${product.id}`)
-            }} className='edit-button'><PencilSimple color='white' className='mx-auto' size={32} /></button>
+            }} className='editProduct-button'><PencilSimple color='white' className='mx-auto' size={32} /></button>
         </div>
     )
 }
