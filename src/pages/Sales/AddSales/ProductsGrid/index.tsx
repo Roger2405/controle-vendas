@@ -59,12 +59,21 @@ export default function ProductsGrid({ group, orderProducts, setOrderProducts, s
                                 const productIsInTheCart: boolean = isInTheCart(product.id)
                                 return (
                                     <div key={product.id} id={product.id.toString()}
-                                        className={`product ${productIsInTheCart && 'product-in-the-cart'}
-                                    ${product.quantity <= 0 && 'product-unavaliable'}
-                                    ${(product.quantity <= 0 && hideUnavaliableProducts) && 'hidden-product'}
-                                    `} onClick={() => refreshOrderProducts(product)}>
+                                        className=
+                                        {`product ${productIsInTheCart && 'product-in-the-cart'}
+                                        ${product.quantity <= 0 && 'product-unavaliable'}
+                                        ${(product.quantity <= 0 && hideUnavaliableProducts) && 'hidden-product'}
+                                        `}
+                                        onClick=
+                                        {() => refreshOrderProducts(product)}
+                                    >
+                                        <div className='product__stock'>
+                                            <p className='product__stock--label'>estoque</p>
+                                            <span className='product__stock--value'>{product.quantity}</span>
+                                        </div>
                                         <h3 className='product__name overflow-hidden'>{product.name_product}</h3>
-                                        <p className={`product__price`}>R$ {product.price_product.toFixed(2)}</p>
+                                        <span className='product__count'>{orderProducts.find(item => item.id === product.id)?.count}</span>
+                                        <p className='product__price'>R$ {product.price_product.toFixed(2)}</p>
                                         {product.imgUrl &&
                                             <img className='product__image bg-neutral-400' src='https://cdn-icons-png.flaticon.com/128/7565/7565160.png' alt="Imagem do produto" />
                                         }
