@@ -72,7 +72,7 @@ export default function StockPage() {
 
     return (
         <main className="page">
-            <section className="stock">
+            <section className="stock list-section">
                 {
                     arrProducts?.length ?
                         <>
