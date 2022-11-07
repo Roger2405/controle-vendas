@@ -83,7 +83,7 @@ export default function Summary({ setShowSummary, orderProducts }: Props) {
 
 
     return (
-        <div className='h-full relative flex flex-col justify-between'>
+        <div className='h-full flex flex-col justify-between'>
             <section className='flex flex-col h-1/2'>
                 <h1 className='title'>Resumo</h1>
                 <Print sales={orderProducts} mustIncludeInput total={total} />

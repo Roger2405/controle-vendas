@@ -3,7 +3,7 @@
     //height: calc(100% - 48px - 116px);
     //max-height: 80%;
     position: relative;
-    padding: .75rem .5rem;
+    padding: .75rem 0;
     background-color: var(--secondary);
     gap: .25rem;
     color: var(--primary);
@@ -13,28 +13,27 @@
         border-radius: .5rem;
         box-shadow: var(--shadow);
         height: 3rem;
-        padding-left: .5rem;
-        margin-top: .25rem;
+        margin-top: .5rem;
 
         align-items: center;
         display: flex;
-        gap: .5rem;
         justify-content: space-between;
 
-        text-transform: uppercase;
         overflow: hidden;
+
+        text-transform: uppercase;
 
         .item__name {
             flex-basis: 70%;
+            padding-left: .5rem;
         }
 
         .item__quantity {
             align-items: center;
             display: flex;
             flex-basis: 30%;
-            width: 30%;
+            max-width: 30%;
 
-            gap: 1rem;
             justify-content: center;
 
             height: 100%;
@@ -47,10 +46,11 @@
 
             .button-minus,
             .button-plus {
-                aspect-ratio: 1/1;
-                max-width: calc(100% / 3);
+                //aspect-ratio: 1/1;
+                width: 30%;
                 height: 100%;
                 color: var(--white);
+                box-shadow: var(--shadow);
             }
 
             .button-minus {
@@ -69,34 +69,33 @@
                 font-size: .75rem;
                 line-height: 1rem;
                 height: 1rem;
-                min-width: 2rem;
 
                 top: 0;
-                right: 0;
                 position: absolute;
 
                 text-align: end;
-                padding: 0 .25rem;
+                padding-right: .25rem;
 
                 &.positive-diff {
-                    background-color: var(--primary);
+                    right: 0;
+
                 }
 
                 &.negative-diff {
-                    background-color: var(--gray);
+                    left: 0;
+
                 }
             }
 
 
             .quantity__value {
                 color: var(--dark);
+                text-align: center;
+                width: 40%;
             }
         }
+
     }
 
-    &:first-child {
-        background-color: #EEEEEE;
-        font-weight: 700;
-    }
 
 }

@@ -8,40 +8,41 @@ import Button from "../../components/Button";
 import Loading from "../../components/Loading";
 import ProductProps from "../../types/product";
 
-
 import './StockPage.scss';
 
 export default function StockPage() {
 
     const navigate = useNavigate();
-    const [arrProducts, setArrProducts] = useState<ProductProps[][]>();
+    const [arrProducts, setArrProducts] = useState<ProductProps[][]>([]);
 
-    const [showModal, setShowModal] = useState(false);
+    const [state, setState] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [responseCode, setResponseCode] = useState(0);
     const [editMode, setEditMode] = useState(false);
     const [quantitiesChanged, setQuantitiesChanged] = useState<Map<number, number>>(new Map());
     function updateMap(k: number, v: number) {
         setQuantitiesChanged(quantitiesChanged.set(k, v));
-        setShowModal(!showModal)
+        setState(!state)
     }
 
 
     const idUser = getUserFromLocalStorage().id;
 
+    function setInitialMapQuantities(arr: ProductProps[][]) {
+        let initialMapQuantities = new Map();
+        arr.map(group => {
+            group.map(product => {
+                initialMapQuantities.set(product.id, product.quantity)
+            })
+        })
+        setQuantitiesChanged(initialMapQuantities);
+    }
+
     function getProductsAndSetInState() {
         getGroupedProducts().then(
             arr => {
                 setArrProducts(arr);
-                let mapQuantities = new Map();
-                arr.map(group => {
-                    group.map(product => {
-                        mapQuantities.set(product.id, product.quantity)
-                        //mapArrayQuantities.set(product.id, product.quantity);
-                    })
-                })
-                console.log(mapQuantities)
-                setQuantitiesChanged(mapQuantities);
+                setInitialMapQuantities(arr);
             }
         ).catch(error => {
             setErrorMessage(error.message)
@@ -80,12 +81,9 @@ export default function StockPage() {
                                     <div key={group[0]?.id}>
                                         <h2 className="subtitle">{group[0]?.type_product}</h2>
                                         <div className="stock-list">
-                                            <div className="item">
-                                                <p className='item__name'>Nome</p>
-                                                <p className='item__quantity'>Qtd.</p>
-                                            </div>
                                             {
                                                 group.map(product => {
+
                                                     return (
                                                         <div key={product.id} className='item relative'>
                                                             <p className='item__name'>{product.name_product}</p>
@@ -98,6 +96,7 @@ export default function StockPage() {
                                                                                 updateMap(product.id, oldQtd - 1)
                                                                             }
                                                                         }}>-</button>
+
                                                                         <p className='quantity__value'>{(quantitiesChanged.get(product.id))}</p>
                                                                         <>
                                                                             {
@@ -142,7 +141,10 @@ export default function StockPage() {
                 {
                     editMode ?
                         <div className='flex mb-4'>
-                            <Button className='red-button left' onClick={() => { }} ><X size={32} />Cancelar</Button>
+                            <Button className='red-button left' onClick={() => {
+                                setInitialMapQuantities(arrProducts)
+                                setEditMode(false)
+                            }} ><X size={32} />Cancelar</Button>
                             <Button className='green-button right' onClick={() => {
                                 setEditMode(false)
                                 updateQuantitiesOnDB(quantitiesChanged)
