@@ -29,6 +29,15 @@ function App() {
   const [user, setUser] = useState<User>(getUserFromLocalStorage());
   const [isLogged, setIsLogged] = useState(false);
 
+  const [darkTheme, setDarkTheme] = useState(false);
+
+  useEffect(() => {
+    const htmlElement = document.querySelector('html');
+    if (darkTheme)
+      htmlElement?.classList.add('dark-mode');
+    else
+      htmlElement?.classList.remove('dark-mode');
+  }, [darkTheme])
 
   useEffect(() => {
     if (user.id) {//provisorio
@@ -40,7 +49,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Header isLogged={isLogged} />}>
+      <Route path="/" element={<Header darkTheme={darkTheme} isLogged={isLogged} setDarkTheme={setDarkTheme} />}>
         <Route index element={isLogged ? <SalesPage /> : <UserLogin setUser={setUser} />} />
         <Route path="sales/:date" element={<SaleDetails />} />
         <Route path="cadastro" element={<UserRegister />} />

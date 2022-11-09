@@ -12,19 +12,27 @@ $headerHeight: 4rem;
     //--item-color: #E5F7DB;
     //--white: #FFFFFF;
     --background: #FFFFFF; //#F0F8FF;
-    --primary: #63aa76; // #72cf8a; #6FBB85;
+    --primary: #45C567; // #72cf8a; #6FBB85;
 
     --light-green: #b1e4aa;
     --red: #E55454;
-    --gray: #8F8F8F;
+    --gray: #888888;
     --item-color: #ffffff;
     --white: #FFFFFF;
-    --dark: #256c39;
+    --text: #000;
+    --dark: #33924c;
 
     --border: .25rem solid var(--dark);
 
     --shadow: 0 .125rem .25rem rgba(0, 0, 0, 0.25);
     //--secondary: #CCCCCC;
+}
+
+.dark-mode:root {
+    --background: #333333;
+    --text: #EEE;
+
+    --item-color: #383838;
 }
 
 * {
@@ -39,6 +47,7 @@ body {
     -ms-user-select: none;
     user-select: none;
 
+    color: var(--text);
     height: 100vh;
     z-index: 0;
     width: 100vw;

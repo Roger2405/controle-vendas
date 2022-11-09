@@ -7,24 +7,38 @@ import Button from '../Button';
 
 
 interface Props {
+    setDarkTheme: React.Dispatch<React.SetStateAction<boolean>>,
+    setShowNav: React.Dispatch<React.SetStateAction<boolean>>,
     showNav: boolean
 }
 
-export default function Navigation({ showNav }: Props) {
+export default function Navigation({ showNav, setDarkTheme, setShowNav }: Props) {
 
-
-    const [showModal, setShowModal] = useState(false);
-
-
+    const [showModal, setShowModal] = useState<boolean>();
 
     return (
-        <div className={`div-parent ${showNav ? '' : 'navBar-inactive'}`}>
-            <nav className={`navBar`} >
-                <Link className="navBar__list--item" to="produtos">Conta</Link>
-                <Link className="navBar__list--item" onClick={() => {
-                    localStorage.setItem('user', '');
-                }} reloadDocument to='/'>Sair</Link>
-            </nav>
+        <>
+            <div className={`div-parent ${showNav ? '' : 'navBar-inactive'}`}>
+                <nav className={`navBar`}>
+                    <div className='navBar__list--item div-switchMode'>
+                        <label htmlFor='switch-mode'>Modo<br /> escuro</label>
+                        <label className="switch">
+                            <input id='switch-mode' onClick={(e) => {
+                                e.currentTarget.checked ?
+                                    setDarkTheme(true)
+                                    :
+                                    setDarkTheme(false)
+                            }} type="checkbox" />
+                            <span className="slider round"></span>
+                        </label>
+
+                    </div>
+                    <Link className="navBar__list--item" to="produtos">Conta</Link>
+                    <button className="navBar__list--item" onClick={() => {
+                        setShowModal(true)
+                    }} >Sair</button>
+                </nav>
+            </div>
             {
                 showModal &&
                 <Modal >
@@ -41,7 +55,8 @@ export default function Navigation({ showNav }: Props) {
                     </div>
                 </Modal>
             }
-        </div>
+
+        </>
 
     )
 }

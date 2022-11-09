@@ -28,28 +28,38 @@ header {
     .div-link {
         height: 3rem;
         flex-basis: calc((100% - $listIconWidth)/3);
-        color: var(--background);
-        text-align: center;
-        line-height: 3rem;
-        text-transform: uppercase;
-        font-weight: 700;
-        font-size: 1.25rem;
 
         .nav-link {
             margin: .5rem 0;
+
+            & path,
+            & polyline,
+            & line {
+                stroke: var(--background);
+            }
         }
 
         .link {
             display: inline-block;
-            background-color: var(--primary);
             height: 100%;
             width: 100%;
             //border-radius: 1rem;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: .5rem;
 
             transition: .25s;
 
             &:not(.active) {
+                color: var(--background);
                 border-bottom: var(--border);
+
+                & path,
+                & polyline,
+                & line {
+                    stroke: var(--background);
+                }
             }
 
             &:hover:not(.active) {
@@ -57,8 +67,9 @@ header {
             }
 
             &>* {
-                margin: .5rem auto;
+                margin: 0 auto;
             }
+
         }
 
         /*
