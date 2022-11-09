@@ -3,7 +3,7 @@
 </h1>
 <img src="https://img.shields.io/static/v1?label=&message=Em desenvolvimento&color=579853&style=for-the-badge&logo="/>
 
-Projeto sendo desenvolvido com React e TypeScript com o objetivo de registrar e controlar vendas (focado em MEI).
+Projeto sendo desenvolvido com React e TypeScript com o objetivo de registrar vendas e controlar estoque.
 
 <div align="center">
 <img width="15%" src="https://user-images.githubusercontent.com/86917178/200309679-c187a502-896a-49a4-b1ad-15be8a8ac5ea.png" />
