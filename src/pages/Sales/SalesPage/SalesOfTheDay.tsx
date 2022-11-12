@@ -58,7 +58,7 @@ export default function SalesOfTheDay() {
                     countSum += item.count;
                 })
                 const dateItem = new Date(dateGroup[0].date_sale);
-                arrDataChart.push({ name: `${dateItem.getHours()}: ${dateItem.getMinutes().toString().padStart(2, '0')}`, uv: countSum })
+                arrDataChart.push({ name: `${dateItem.getHours() + 3}: ${dateItem.getMinutes().toString().padStart(2, '0')}`, uv: countSum })
             })
             setDataChart(arrDataChart);
         })
