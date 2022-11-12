@@ -70,7 +70,7 @@ export default function Print({ sales, total }: Props) {
                         sales.map(sale => {
                             const subtotal = sale.price_product * sale.count;
                             return (
-                                <tr className='border-b-2'>
+                                <tr key={sale.id} className='border-b-2'>
                                     <td>{sale.name_product}</td>
                                     <td>{sale.count}</td>
                                     <td className=''>R$ {subtotal.toFixed(2)}</td>

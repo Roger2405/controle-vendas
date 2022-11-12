@@ -55,3 +55,11 @@
         transition: .25s;
     }
 }
+
+.chart {
+
+    *:not(.recharts-curve) {
+        stroke: var(--text);
+
+    }
+}
