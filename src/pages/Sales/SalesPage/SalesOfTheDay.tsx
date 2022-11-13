@@ -53,12 +53,12 @@ export default function SalesOfTheDay() {
         getSaleDetails(date).then(res => {
             let arrDataChart: { name: string, uv: number }[] = [];
             res.forEach(dateGroup => {
-                let countSum = 0;
+                let amount = 0;
                 dateGroup.forEach(item => {
-                    countSum += item.count;
+                    amount += item.price_product;
                 })
                 const dateItem = new Date(dateGroup[0].date_sale);
-                arrDataChart.push({ name: `${dateItem.getHours() + 3}: ${dateItem.getMinutes().toString().padStart(2, '0')}`, uv: countSum })
+                arrDataChart.push({ name: `${dateItem.getUTCHours()}: ${dateItem.getMinutes().toString().padStart(2, '0')}`, uv: amount })
             })
             setDataChart(arrDataChart);
         })
@@ -75,7 +75,7 @@ export default function SalesOfTheDay() {
                         <>
                             {
                                 dataChart.length > 1 &&
-                                <AreaChart className="chart" width={300} height={200} data={dataChart}>
+                                <AreaChart width={325} height={200} data={dataChart}>
                                     <defs>
                                         <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
                                             <stop offset="5%" stopColor="#45C567" stopOpacity={1} />
