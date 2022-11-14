@@ -30,6 +30,7 @@ export default function StockPage() {
         await getGroupedProducts()
             .then(arr => {
                 setArrProducts(arr);//atualiza o estado do array de produtos
+                setIsLoading(false)
             })
             .catch(error => {
                 setErrorMessage(error.message)//caso haja algum erro
@@ -49,15 +50,16 @@ export default function StockPage() {
 
     async function updateQuantitiesOnDB(newQuantities: Map<number, number>) {
         let strArrayQuantities = JSON.stringify(Array.from(newQuantities))
-        console.log("Array indo pro BD:", strArrayQuantities)
 
         setIsLoading(true);//inicia feedback de carregamento e desativa o botão de editar estoque até a atualizção do mesmo seja feita no BD
+
+
 
         Axios.post(`${process.env.REACT_APP_LINK_API}/${ID_USER}/stock/update`, {
             newQuantities: strArrayQuantities,//array em forma de string, passando as novas quantidades do estoque
         }).then((response) => {
             if (response.data.success) {
-                getProductsAndSetInState().then(() => setIsLoading(false))
+                getProductsAndSetInState()
                 //window.location.reload();
             }
             else {
