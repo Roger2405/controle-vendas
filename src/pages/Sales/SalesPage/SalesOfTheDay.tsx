@@ -15,7 +15,7 @@ import OrderProducts from "../../../components/OrderProducts";
 import Print from "../../../components/Print";
 import Total from "../../../components/Total";
 import React from "react";
-import { XAxis, YAxis, AreaChart, Tooltip, Area } from 'recharts';
+import { XAxis, YAxis, AreaChart, Tooltip, Area, Pie, PieChart, Cell } from 'recharts';
 
 
 
@@ -27,7 +27,7 @@ export default function SalesOfTheDay() {
 
     const [sales, setSales] = useState<OrderProduct[]>([]);
     const [total, setTotal] = useState<number>(0);
-    const [dataChart, setDataChart] = useState<{ name: string, uv: number }[]>([]);
+    const [dataChart, setDataChart] = useState<{ hour: string, uv: number }[]>([]);
 
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -51,18 +51,20 @@ export default function SalesOfTheDay() {
             setErrorMessage(error.message)
         })
         getSaleDetails(date).then(res => {
-            let arrDataChart: { name: string, uv: number }[] = [];
+            let arrDataChart: { hour: string, uv: number }[] = [];
             res.forEach(dateGroup => {
                 let amount = 0;
                 dateGroup.forEach(item => {
                     amount += item.price_product;
                 })
                 const dateItem = new Date(dateGroup[0].date_sale);
-                arrDataChart.push({ name: `${dateItem.getUTCHours()}: ${dateItem.getMinutes().toString().padStart(2, '0')}`, uv: amount })
+                arrDataChart.push({ hour: `${dateItem.getUTCHours()}: ${dateItem.getMinutes().toString().padStart(2, '0')}`, uv: amount })
             })
             setDataChart(arrDataChart);
         })
     }, [])
+
+    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
     return (
         <>
@@ -75,18 +77,52 @@ export default function SalesOfTheDay() {
                         <>
                             {
                                 dataChart.length > 1 &&
-                                <AreaChart width={325} height={200} data={dataChart}>
-                                    <defs>
-                                        <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                                            <stop offset="5%" stopColor="#45C567" stopOpacity={1} />
-                                            <stop offset="95%" stopColor="#45C567" stopOpacity={0} />
-                                        </linearGradient>
-                                    </defs>
-                                    <XAxis dataKey="name" />
-                                    <YAxis />
-                                    <Tooltip />
-                                    <Area type="monotone" dataKey="uv" stroke="#45C567" fillOpacity={1} fill="url(#colorUv)" />
-                                </AreaChart>
+                                <>
+                                    {/* <PieChart width={300} height={300} >
+                                        <Pie
+                                            data={dataChart}
+                                            cx={120}
+                                            cy={200}
+                                            innerRadius={60}
+                                            outerRadius={80}
+                                            fill="#8884d8"
+                                            paddingAngle={5}
+                                            dataKey="value"
+                                        >
+                                            {dataChart.map((entry, index) => (
+                                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                            ))}
+                                        </Pie>
+                                        <Pie
+                                            data={dataChart}
+                                            cx={420}
+                                            cy={200}
+                                            startAngle={180}
+                                            endAngle={0}
+                                            innerRadius={60}
+                                            outerRadius={80}
+                                            fill="#8884d8"
+                                            paddingAngle={5}
+                                            dataKey="value"
+                                        >
+                                            {dataChart.map((entry, index) => (
+                                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                            ))}
+                                        </Pie>
+                                    </PieChart> */}
+                                    <AreaChart width={300} height={200} data={dataChart}>
+                                        <defs>
+                                            <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                                                <stop offset="5%" stopColor="#45C567" stopOpacity={1} />
+                                                <stop offset="95%" stopColor="#45C567" stopOpacity={0} />
+                                            </linearGradient>
+                                        </defs>
+                                        <XAxis dataKey="hour" />
+                                        <YAxis />
+                                        <Tooltip />
+                                        <Area type="monotone" dataKey="uv" stroke="#45C567" fillOpacity={1} fill="url(#colorUv)" />
+                                    </AreaChart>
+                                </>
 
                             }
 

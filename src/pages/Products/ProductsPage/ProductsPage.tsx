@@ -41,11 +41,11 @@ export default function ProductsPage() {
                                     <div key={group[0]?.id}>
                                         <h2 className="subtitle">{group[0]?.type_product}</h2>
                                         <div className={`product-list max-h-7xl w-full mx-auto}`}>
-                                            <div className='product'>
+                                            {/*<div className='product'>
                                                 <p className='product__name'>Nome</p>
                                                 <p className='product__price'>Preço</p>
                                                 <span className='h-full aspect-square'></span>
-                                            </div>
+                                            </div>*/}
                                             {
                                                 group.map(product => {
                                                     return <Product key={product.id} product={product} />

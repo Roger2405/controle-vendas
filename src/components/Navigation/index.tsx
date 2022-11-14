@@ -7,14 +7,35 @@ import Button from '../Button';
 
 
 interface Props {
-    setDarkTheme: React.Dispatch<React.SetStateAction<boolean>>,
-    setShowNav: React.Dispatch<React.SetStateAction<boolean>>,
     showNav: boolean
 }
 
-export default function Navigation({ showNav, setDarkTheme, setShowNav }: Props) {
+export default function Navigation({ showNav }: Props) {
 
     const [showModal, setShowModal] = useState<boolean>();
+
+    const [darkTheme, setDarkTheme] = useState(window.matchMedia("(prefers-color-scheme: dark)").matches);
+
+    window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", function (e) {
+            const colorScheme = e.matches ? "dark" : "light";
+            console.log(colorScheme);
+
+            if (colorScheme === "dark") {
+                setDarkTheme(true)
+            } else {
+                setDarkTheme(false)
+            }
+        });
+    useEffect(() => {
+        const htmlElement = document.querySelector('html');
+        console.log('alterou o tema')
+        darkTheme ?
+            htmlElement?.classList.add('dark-mode')
+            :
+            htmlElement?.classList.remove('dark-mode')
+    }, [darkTheme])
 
     return (
         <>
@@ -28,7 +49,7 @@ export default function Navigation({ showNav, setDarkTheme, setShowNav }: Props)
                                     setDarkTheme(true)
                                     :
                                     setDarkTheme(false)
-                            }} type="checkbox" />
+                            }} type="checkbox" checked={darkTheme} />
                             <span className="slider round"></span>
                         </label>
 

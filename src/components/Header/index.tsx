@@ -6,12 +6,10 @@ import Navigation from "../Navigation";
 import './styles.scss';
 
 interface HeaderProps {
-    setDarkTheme: React.Dispatch<React.SetStateAction<boolean>>,
-    darkTheme: boolean,
     isLogged: boolean
 }
 
-export default function Header({ isLogged, setDarkTheme, darkTheme }: HeaderProps) {
+export default function Header({ isLogged }: HeaderProps) {
 
     const [activeLink, setActiveLink] = useState(0);
     const [showNav, setShowNav] = useState<boolean>(false);
@@ -59,7 +57,7 @@ export default function Header({ isLogged, setDarkTheme, darkTheme }: HeaderProp
                         </Link>
                     </div>
                 </nav>
-                <Navigation setDarkTheme={setDarkTheme} setShowNav={setShowNav} showNav={showNav} />
+                <Navigation showNav={showNav} />
 
 
             </header>

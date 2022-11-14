@@ -24,15 +24,16 @@ $headerHeight: 4rem;
 
     --border: .25rem solid var(--dark);
 
-    --shadow: 0 .125rem .25rem rgba(0, 0, 0, 0.25);
+    --shadow: 0 .125rem .25rem rgba(0, 0, 0,
+            /*0.25*/
+            0);
     //--secondary: #CCCCCC;
 }
 
 .dark-mode:root {
-    --background: #333333;
+    --background: #333;
     --text: #EEE;
-
-    --item-color: #383838;
+    --item-color: #444;
 }
 
 * {

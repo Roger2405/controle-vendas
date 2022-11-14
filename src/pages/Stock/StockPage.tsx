@@ -1,7 +1,6 @@
 import Axios from "axios";
 import { Check, PencilSimple, X } from "phosphor-react";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { getGroupedProducts } from "../../commons/getProductsFromDataBase";
 import { getUserFromLocalStorage } from "../../commons/userFromLocalStorage";
 import Button from "../../components/Button";
@@ -11,62 +10,60 @@ import ProductProps from "../../types/product";
 import './StockPage.scss';
 
 export default function StockPage() {
-
-    const navigate = useNavigate();
-    const [arrProducts, setArrProducts] = useState<ProductProps[][]>([]);
+    const ID_USER = getUserFromLocalStorage().id;
 
     const [state, setState] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('');
-    const [responseCode, setResponseCode] = useState(0);
     const [editMode, setEditMode] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const [arrProducts, setArrProducts] = useState<ProductProps[][]>([]);
     const [quantitiesChanged, setQuantitiesChanged] = useState<Map<number, number>>(new Map());
-    function updateMap(k: number, v: number) {
-        setQuantitiesChanged(quantitiesChanged.set(k, v));
-        setState(!state)
-    }
 
 
-    const idUser = getUserFromLocalStorage().id;
-
-    function setInitialMapQuantities(arr: ProductProps[][]) {
-        let initialMapQuantities = new Map();
-        arr.map(group => {
-            group.map(product => {
-                initialMapQuantities.set(product.id, product.quantity)
-            })
-        })
-        setQuantitiesChanged(initialMapQuantities);
-    }
-
-    function getProductsAndSetInState() {
-        getGroupedProducts().then(
-            arr => {
-                setArrProducts(arr);
-                setInitialMapQuantities(arr);
-            }
-        ).catch(error => {
-            setErrorMessage(error.message)
-        })
-    }
     useEffect(() => {
         getProductsAndSetInState();
     }, [])
 
+    async function getProductsAndSetInState() {
+        await getGroupedProducts()
+            .then(arr => {
+                setArrProducts(arr);//atualiza o estado do array de produtos
+            })
+            .catch(error => {
+                setErrorMessage(error.message)//caso haja algum erro
+            })
+    }
 
-    function updateQuantitiesOnDB(newQuantities: Map<number, number>) {
+    function updateMap(k: number, v: number) {
+        setQuantitiesChanged(() => quantitiesChanged.set(k, v));
+        setState(!state)
+    }
+
+    function resetMap() {
+        setQuantitiesChanged(new Map());
+    }
+
+
+
+    async function updateQuantitiesOnDB(newQuantities: Map<number, number>) {
         let strArrayQuantities = JSON.stringify(Array.from(newQuantities))
-        //console.log(JSON.parse(strArrayQuantities)[0]);
-        console.log(strArrayQuantities);
+        console.log("Array indo pro BD:", strArrayQuantities)
 
-        Axios.post(`${process.env.REACT_APP_LINK_API}/${idUser}/stock/update`, {
-            newQuantities: strArrayQuantities,
+        setIsLoading(true);//inicia feedback de carregamento e desativa o botão de editar estoque até a atualizção do mesmo seja feita no BD
+
+        Axios.post(`${process.env.REACT_APP_LINK_API}/${ID_USER}/stock/update`, {
+            newQuantities: strArrayQuantities,//array em forma de string, passando as novas quantidades do estoque
         }).then((response) => {
             if (response.data.success) {
-                alert('SUCESSO');
+                getProductsAndSetInState().then(() => setIsLoading(false))
+                //window.location.reload();
             }
             else {
                 alert('ALGO DEU ERRADO')
             }
+
         });
     }
 
@@ -97,11 +94,12 @@ export default function StockPage() {
                                                                             }
                                                                         }}>-</button>
 
-                                                                        <p className='quantity__value'>{(quantitiesChanged.get(product.id))}</p>
+                                                                        <p className='quantity__value'>{(quantitiesChanged.get(product.id) || product.quantity)}</p>
                                                                         <>
                                                                             {
+
                                                                                 (quantitiesChanged.get(product.id) || 0) - product.quantity !== 0 &&
-                                                                                <span className={`quantity__diff ${((quantitiesChanged.get(product.id) || 0) - product.quantity > 0) ? 'positive-diff' : 'negative-diff'}`}>{(quantitiesChanged.get(product.id) || 0) - product.quantity}</span>
+                                                                                <span className={`quantity__diff ${((quantitiesChanged.get(product.id) || product.quantity) - product.quantity === 0) ? 'no-diff' : ((quantitiesChanged.get(product.id) || product.quantity) - product.quantity > 0) ? 'positive-diff' : 'negative-diff'}`}>{(quantitiesChanged.get(product.id) || 0) - product.quantity}</span>
                                                                             }
                                                                         </>
                                                                         <button className="button-plus" onClick={() => {
@@ -110,8 +108,9 @@ export default function StockPage() {
                                                                         }}>+</button>
                                                                     </div>
                                                                     :
+
                                                                     <div className="item__quantity">
-                                                                        <p className=''>{(quantitiesChanged.get(product.id))}</p>
+                                                                        <p className=''>{(quantitiesChanged.get(product.id) || product.quantity)}</p>
                                                                     </div>
                                                             }
 
@@ -142,7 +141,7 @@ export default function StockPage() {
                     editMode ?
                         <div className='flex mb-4'>
                             <Button className='red-button left' onClick={() => {
-                                setInitialMapQuantities(arrProducts)
+                                resetMap()
                                 setEditMode(false)
                             }} ><X size={32} />Cancelar</Button>
                             <Button className='green-button right' onClick={() => {
@@ -151,7 +150,7 @@ export default function StockPage() {
                             }}>Confirmar<Check size={32} /></Button>
                         </div>
                         :
-                        <Button className='green-button' onClick={() => setEditMode(true)} ><PencilSimple size={24} />Editar estoque</Button>
+                        <Button className='green-button' isLoading={isLoading} onClick={() => setEditMode(true)} ><PencilSimple size={24} />Editar estoque</Button>
                 }
             </div>
 

@@ -76,6 +76,10 @@
                 text-align: end;
                 padding-right: .25rem;
 
+                &.no-diff {
+                    display: none;
+                }
+
                 &.positive-diff {
                     right: 0;
 
