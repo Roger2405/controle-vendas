@@ -4,6 +4,7 @@ import OrderProduct from '../../../../types/orderProduct';
 import ProductProps from '../../../../types/product';
 import OrderProducts from '../../../../components/OrderProducts';
 import './style.scss';
+import { FileImage } from 'phosphor-react';
 
 
 interface Props {
@@ -60,21 +61,25 @@ export default function ProductsGrid({ group, orderProducts, setOrderProducts, s
                                 return (
                                     <div key={product.id} id={product.id.toString()}
                                         className=
-                                        {`product ${productIsInTheCart && 'product-in-the-cart'}
-                                        ${product.quantity <= 0 && 'product-unavaliable'}
-                                        ${(product.quantity <= 0 && hideUnavaliableProducts) && 'hidden-product'}
-                                        `}
+                                        {`product ${productIsInTheCart ? 'product-in-the-cart' : ''} ${product.quantity <= 0 ? 'product-unavaliable' : ''} ${(product.quantity <= 0 && hideUnavaliableProducts) ? 'hidden-product' : ''}`}
                                         onClick=
                                         {() => refreshOrderProducts(product)}
                                     >
+                                        <h3 className='product__name'>{product.name_product}</h3>
                                         <div className='product__stock'>
                                             <p className='product__stock--label'>estoque</p>
                                             <span className='product__stock--value'>{product.quantity}</span>
                                         </div>
-                                        <h3 className='product__name overflow-hidden'>{product.name_product}</h3>
                                         <span className='product__count'>{orderProducts.find(item => item.id === product.id)?.count}</span>
-                                        <p className='product__price'>R$ {product.price_product.toFixed(2)}</p>
-                                        {product.imgUrl &&
+                                        <div className='product__price'>
+                                            <p className='product__price--value'>R$ {product.price_product.toFixed(2)}</p>
+
+                                        </div>
+
+                                        {product.imgUrl ?
+                                            <img className='product__image bg-neutral-400' src='https://cdn-icons-png.flaticon.com/128/7565/7565160.png' alt="Imagem do produto" />
+                                            :
+                                            //<div><FileImage /></div>
                                             <img className='product__image bg-neutral-400' src='https://cdn-icons-png.flaticon.com/128/7565/7565160.png' alt="Imagem do produto" />
                                         }
                                     </div>

@@ -11,7 +11,7 @@ $headerHeight: 4rem;
     //--gray: #8F8F8F;
     //--item-color: #E5F7DB;
     //--white: #FFFFFF;
-    --background: #FFFFFF; //#F0F8FF;
+    --background: #EEE; //#F0F8FF;
     --primary: #45C567; // #72cf8a; #6FBB85;
 
     --light-green: #b1e4aa;
@@ -32,7 +32,7 @@ $headerHeight: 4rem;
 
 .dark-mode:root {
     --background: #333;
-    --text: #EEE;
+    --text: #45C567;
     --item-color: #444;
 }
 

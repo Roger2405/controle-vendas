@@ -1,3 +1,5 @@
+$lineNameHeigth: 1.25rem;
+
 .productsType {
     .type {
         margin: 0;
@@ -36,72 +38,87 @@
                 background-color: var(--item-color);
 
                 display: grid;
-                grid-template-columns: 1fr 3fr;
-                grid-template-rows: auto 2.5rem;
-
-                overflow: hidden;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: 2.5rem 1fr 1fr 2.5rem;
+                grid-template-areas: "name name name"
+                    "image image stock"
+                    "image image count"
+                    "image image price";
+                gap: .25rem;
 
                 position: relative;
 
-                min-height: 90px;
-                width: 160px;
+                height: 160px;
+                width: 200px;
+                text-align: end;
 
-                flex-grow: 1;
 
-
+                /*
                 @media screen and (min-width: 992px) {
-                    height: 100px;
+                    height: 160px;
                     width: 200px;
-                }
+                }*/
 
                 .product__name,
-                .product__price {
-                    margin: 0;
-                    padding-right: .25rem;
-                    z-index: 1;
-                    text-align: end;
-                }
-
+                .product__price--value,
+                .product__count,
                 .product__stock {
-                    padding: .25rem;
-                    display: flex;
-
-                    &--label {
-                        font-size: .75rem;
-                        writing-mode: vertical-rl;
-                    }
+                    padding: 0 .5rem;
                 }
 
                 .product__name {
+                    grid-area: name;
                     //font-size: .75rem;
-                    right: 0;
                     font-weight: 300;
                     text-transform: uppercase;
                     //width: 100%;
                 }
 
+                .product__stock {
+                    grid-area: stock;
+
+                    color: var(--gray);
+
+                    &--label {
+                        font-size: .5rem;
+                        //writing-mode: vertical-rl;
+                    }
+                }
+
                 .product__count {
+                    grid-area: count;
+
                     font-size: 1.25rem;
                     font-weight: 700;
-                    padding: .5rem;
                     text-shadow: var(--shadow);
                 }
 
                 .product__price {
-                    padding: .25rem;
-                    font-weight: 700;
-                    background-color: var(--primary);
-                    color: var(--white);
-                    clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%);
+                    grid-area: price;
+                    position: relative;
+
+                    &--value {
+                        background-color: var(--primary);
+                        color: var(--white);
+                        clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%);
+
+                        position: absolute;
+                        right: 0;
+                        bottom: 0;
+
+                        width: 200%;
+                        height: 100%;
+                        line-height: 100%;
+
+                        font-weight: 700;
+
+                    }
                 }
 
                 .product__image {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    object-fit: contain;
+                    grid-area: image;
+
                     height: 100%;
-                    width: 35%;
                 }
             }
 
@@ -109,9 +126,9 @@
                 background-color: var(--primary);
                 color: var(--white);
 
-                .product__price {
-                    background-color: var(--background);
-                    color: var(--dark);
+                .product__price--value {
+                    background-color: var(--item-color);
+                    color: var(--primary);
                 }
             }
 
