@@ -37,7 +37,7 @@ export default function EditProduct() {
     }, [])
 
     function handleDeleteProduct() {
-        Axios.post(`${process.env.REACT_APP_LINK_API}/${getUserFromLocalStorage().id}/products/${productId}/delete`)
+        Axios.delete(`${process.env.REACT_APP_LINK_API}/${getUserFromLocalStorage().id}/products/${productId}/delete`)
             .then(response => {
                 if (response.data.success) {
                     navigate('/produtos');

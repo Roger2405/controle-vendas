@@ -40,50 +40,36 @@ export default function Summary({ setShowSummary, orderProducts }: Props) {
         }
     }, [payment]);
 
-    function searchIndexById(objSales: OrderProduct[], productId: number) {
-        return objSales.indexOf(objSales.filter(function (cartProduct) {
-            return cartProduct.id == productId;
-        })[0]);
-        //return -1 if the productId doesn't exists in the cart, else, returns the index
-    }
-
-
     function refreshSalesOnDB() {
         const userId = getUserFromLocalStorage().id;
         const date = getFormatedDate();
+        const strOrderProducts = JSON.stringify(Array.from(orderProducts));
 
         setIsLoading(true);
 
-        orderProducts.forEach(product => {
-            Axios.post(`${process.env.REACT_APP_LINK_API}/${userId}/sales/register`, {
-                productId: product.id,
-                count: product.count,
-                price: product.price_product,
-                name: product.name_product,
-                date: date
-            }).then((response) => {
-                if (response.data.success) {
-                    navigate('/')
-                    window.location.reload();
-                }
-                else {
-                    alert(response.data.msg);
-                }
-                setIsLoading(false);
-            }).catch(err => {
-                alert(err.message)
-            })
-
+        Axios.post(`${process.env.REACT_APP_LINK_API}/${userId}/sales/register`, {
+            /*
+            productId: product.id,
+            count: product.count,
+            price: product.price_product,
+            name: product.name_product,
+            date: date*/
+            orderProducts: strOrderProducts,
+            date: date
+        }).then((response) => {
+            console.log(response.data.msg);
+            console.log(response.data.success);
+        }).catch(err => {
+            alert(err.message)
+        }).finally(() => {
+            navigate('/');
+            setIsLoading(false);
         })
-        //setSalesInLocalStorage(newSales);
-        //removeOrderProductsFromLocalStorage();
+
     };
 
-
-
-
     return (
-        <div className='h-full flex flex-col justify-between'>
+        <div className='h-full relative flex flex-col justify-between'>
             <section className='flex flex-col h-1/2'>
                 <h1 className='title'>Resumo</h1>
                 <Print sales={orderProducts} mustIncludeInput total={total} />
@@ -91,10 +77,14 @@ export default function Summary({ setShowSummary, orderProducts }: Props) {
 
             </section>
             <section className='px-4 h-fit w-full max-w-2xl mx-auto'>
+
                 {<MoneyCards setPayment={setPayment} />}
+
                 <Total sumTotal={total} />
+
                 <Input label='Total pago:' onChange={(e) => setPayment(parseFloat(e.target.value))} value={payment} />
                 <Input disabled label='Troco:' value={changeMoney} />
+
                 <div className='mt-4 flex h-24'>
                     {
                         payment !== 0 ?
@@ -102,7 +92,10 @@ export default function Summary({ setShowSummary, orderProducts }: Props) {
                             :
                             <Button className='gray-button left' onClick={() => setShowSummary(false)} ><ArrowLeft size={32} />Voltar</Button>
                     }
-                    <Button className='green-button right' onClick={refreshSalesOnDB}>Confirmar<Check size={32} /></Button>
+                    <Button className='green-button right'
+                        isLoading={isLoading}
+                        onClick={refreshSalesOnDB}
+                    >Confirmar<Check size={32} /></Button>
                 </div>
             </section>
 

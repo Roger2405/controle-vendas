@@ -1,22 +1,18 @@
-import { trace } from 'console';
-import { useEffect, useState } from 'react';
 import OrderProduct from '../../../../types/orderProduct';
 import ProductProps from '../../../../types/product';
-import OrderProducts from '../../../../components/OrderProducts';
-import './style.scss';
-import { FileImage } from 'phosphor-react';
 
+import './style.scss';
 
 interface Props {
-    group: ProductProps[],
-    setOrderProducts: React.Dispatch<React.SetStateAction<OrderProduct[]>>,
-    orderProducts: OrderProduct[],
-    total: number,
-    setTotal: React.Dispatch<React.SetStateAction<number>>,
-    overflowX: boolean,
+    setOrderProducts: React.Dispatch<React.SetStateAction<OrderProduct[]>>
+    setTotal: React.Dispatch<React.SetStateAction<number>>
     hideUnavaliableProducts: boolean
+    orderProducts: OrderProduct[]
+    productsGroup: ProductProps[]
+    overflowX: boolean
+    total: number
 }
-export default function ProductsGrid({ group, orderProducts, setOrderProducts, setTotal, hideUnavaliableProducts, overflowX }: Props) {
+export default function ProductsGrid({ productsGroup, orderProducts, setOrderProducts, setTotal, hideUnavaliableProducts, overflowX }: Props) {
     function refreshOrderProducts(product: unknown) {
 
         let productToUpdate = product as OrderProduct;
@@ -36,7 +32,7 @@ export default function ProductsGrid({ group, orderProducts, setOrderProducts, s
     }
     function searchIndexById(productId: number) {
         return orderProducts.indexOf(orderProducts.filter(function (orderProduct) {
-            return orderProduct.id == productId;
+            return orderProduct.id === productId;
         })[0]);
         //return -1 if the productId doesn't exists in the cart, else, returns the index
     }
@@ -50,13 +46,15 @@ export default function ProductsGrid({ group, orderProducts, setOrderProducts, s
     return (
         <>
             {
-                group[0] !== undefined &&
+                productsGroup[0] !== undefined &&
+
                 <div className='productsType'>
-                    <h2 className='type mt-2'>{group[0].type_product}</h2>
+                    {/* SUBTITLE */}
+                    <h2 className='type mt-2'>{productsGroup[0].type_product}</h2>
 
                     <div className={`productsContainer ${overflowX && 'overflowX'}`}>
                         <div className='products'>
-                            {group.map(product => {
+                            {productsGroup.map(product => {
                                 const productIsInTheCart: boolean = isInTheCart(product.id)
                                 return (
                                     <div key={product.id} id={product.id.toString()}

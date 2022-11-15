@@ -32,6 +32,7 @@ export default function AddSales() {
     const [overflowX, setOverflowX] = useState(true);
     const [hideUnavaliableProducts, setHideUnavaliableProducts] = useState(true);
 
+    //
     useEffect(() => {
         getGroupedProducts().then(
             groupedProducts => {
@@ -39,6 +40,8 @@ export default function AddSales() {
             })
             .catch(error => setErrorMessage(error.message))
     }, []);
+
+
     //updates the search when the inputValue is update
     /*
     useEffect(() => {
@@ -69,7 +72,7 @@ export default function AddSales() {
 
                 !completedOrder ?
 
-                    <main className='page main-addSale'>
+                    <main className='page pageFull main-addSale'>
 
                         <section className='products-section px-2 py-4'>
                             <div className='div-checkboxes'>
@@ -89,27 +92,19 @@ export default function AddSales() {
 
                             </div>
                             {/*<InputSearch setInputValue={setInputValue} />*/}
-                            {
-                                arrFiltered.length > 0 ?
-                                    <>
-                                        {
-                                            arrFiltered.map(group => {
-                                                return (
-                                                    <ProductsGrid hideUnavaliableProducts={hideUnavaliableProducts} overflowX={overflowX} key={group[0]?.type_product} group={group} orderProducts={orderProducts} setTotal={setTotal} total={total} setOrderProducts={setOrderProducts} />
-                                                )
-                                            })
-                                        }
-                                    </>
+                            {arrFiltered.length > 0 ?
+                                <>{arrFiltered.map(groupFromArray => {
+                                    return (
+                                        <ProductsGrid hideUnavaliableProducts={hideUnavaliableProducts} overflowX={overflowX} key={groupFromArray[0]?.type_product} productsGroup={groupFromArray} orderProducts={orderProducts} setTotal={setTotal} total={total} setOrderProducts={setOrderProducts} />
+                                    )
+                                })}</>
+                                :
+                                <>{errorMessage ?
+                                    <div className="h-full flex flex-col justify-center text-center"><p>{errorMessage}</p></div>
                                     :
-                                    <>
-                                        {
-                                            errorMessage ?
-                                                <div className="h-full flex flex-col justify-center text-center"><p>{errorMessage}</p></div>
-                                                :
-                                                <Loading dark />
-                                        }
-                                    </>
-                            }
+                                    <Loading dark />
+                                }</>}
+
                         </section>
                         <section className='order-section flex flex-col justify-between'>
                             <OrderProducts hiddenOverflow orderProducts={orderProducts} setTotal={setTotal} setOrderProducts={setOrderProducts} />
@@ -132,9 +127,9 @@ export default function AddSales() {
 
 
 
-                    </main>
+                    </main >
                     :
-                    <main className='page'>
+                    <main className='page pageFull'>
                         <Summary setShowSummary={setCompletedOrder} orderProducts={orderProducts} />
                     </main>
 

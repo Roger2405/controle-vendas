@@ -2,7 +2,6 @@
 import './SalesPage.scss';
 //hooks
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 //pages
 import SalesOfTheDay from "./SalesOfTheDay";
 import SalesHistoric from "./SalesHistory";
@@ -10,7 +9,6 @@ import SalesHistoric from "./SalesHistory";
 
 export default function SalesPage() {
     const [showIndex, setShowIndex] = useState(true);
-    const navigate = useNavigate();
     return (
         <main className="page flex flex-col relative">
             <div className="flex w-full">

@@ -81,11 +81,18 @@ body {
     padding-bottom: 7rem;
 }
 
+.pageFull {
+    height: 100vh;
+}
+
 .page {
     padding: $headerHeight .5rem 0;
-    height: 100vh;
     width: 100vw;
     background-color: var(--background);
+    min-height: 100vh;
+
+    //overflow-y: scroll;
+    box-sizing: border-box;
 
     display: flex;
     flex-direction: column;

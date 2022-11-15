@@ -7,7 +7,7 @@ interface Props extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLB
     orderProducts: OrderProduct[],
     setOrderProducts?: React.Dispatch<React.SetStateAction<OrderProduct[]>>
     setTotal?: React.Dispatch<React.SetStateAction<number>>,
-    hiddenOverflow: boolean,
+    hiddenOverflow?: boolean,
     children?: React.ReactNode
 }
 

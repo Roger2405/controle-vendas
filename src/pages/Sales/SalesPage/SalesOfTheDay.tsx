@@ -127,7 +127,7 @@ export default function SalesOfTheDay() {
                             }
 
 
-                            < OrderProducts className="" hiddenOverflow orderProducts={sales} />
+                            < OrderProducts className="" orderProducts={sales} />
 
                         </>
 

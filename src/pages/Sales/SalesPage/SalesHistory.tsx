@@ -57,7 +57,7 @@ export default function SalesHistoric() {
                                         sale.date_sale === dateSalesDetails ?
                                             saleDetails.length > 0 ?
                                                 <>
-                                                    <OrderProducts orderProducts={saleDetails} hiddenOverflow />
+                                                    <OrderProducts orderProducts={saleDetails} />
                                                     <Link to={`sales/${sale.date_sale.split('T')[0]}`}>
                                                         <Button className="danger-button">Ver detalhes</Button>
                                                     </Link>

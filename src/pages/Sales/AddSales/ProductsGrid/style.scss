@@ -10,7 +10,7 @@ $lineNameHeigth: 1.25rem;
 
     .productsContainer {
         width: 100%;
-        padding-bottom: 1rem;
+        padding-bottom: 1.5rem;
 
         .products {
             display: flex;
@@ -57,6 +57,8 @@ $lineNameHeigth: 1.25rem;
                 width: 200px;
 
                 text-align: end;
+
+                transition: .25s;
 
                 .product__name,
                 .product__price--value,
@@ -125,9 +127,22 @@ $lineNameHeigth: 1.25rem;
                 }
             }
 
-            .product-in-the-cart {
+            .product.product-in-the-cart {
                 background-color: var(--primary);
                 color: var(--background);
+
+                .product__price--value {
+                    background-color: var(--item-color);
+                    color: var(--primary);
+                }
+            }
+
+
+            .product-unavaliable.product-in-the-cart {
+                background-color: var(--dark);
+                opacity: .75;
+                background-blend-mode: darken;
+                color: var(--text);
 
                 .product__price--value {
                     background-color: var(--item-color);
@@ -153,7 +168,8 @@ $lineNameHeigth: 1.25rem;
     }
 
     .productsContainer.overflowX {
-        overflow-x: scroll;
+        overflow-x: overlay;
+        scroll-behavior: smooth;
 
         .products {
             justify-content: left;
