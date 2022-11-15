@@ -5,6 +5,7 @@ $lineNameHeigth: 1.25rem;
         margin: 0;
         text-transform: uppercase;
         font-weight: 700;
+        color: var(--text);
     }
 
     .productsContainer {
@@ -17,7 +18,6 @@ $lineNameHeigth: 1.25rem;
             width: max-content;
             flex-wrap: wrap;
             gap: .5rem;
-            //padding-right: 1rem;
             justify-content: center;
 
             transition: .5s;
@@ -27,7 +27,7 @@ $lineNameHeigth: 1.25rem;
             }
 
             .product:hover {
-                transform: scale(1.05);
+                transform: scaleX(1.05);
                 transition: .25s;
             }
 
@@ -36,28 +36,27 @@ $lineNameHeigth: 1.25rem;
 
                 box-shadow: var(--shadow);
                 background-color: var(--item-color);
+                color: var(--primary);
 
                 display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                grid-template-rows: 2.5rem 1fr 1fr 2.5rem;
-                grid-template-areas: "name name name"
-                    "image image stock"
-                    "image image count"
-                    "image image price";
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: 2.5rem 1fr 2.5rem;
+                grid-template-areas:
+                    "stock name name name"
+                    "image image image count"
+                    "image image image price";
                 gap: .25rem;
 
                 position: relative;
 
+                &:not(:has(.product__image)) {
+                    height: 120px;
+                }
+
                 height: 160px;
                 width: 200px;
+
                 text-align: end;
-
-
-                /*
-                @media screen and (min-width: 992px) {
-                    height: 160px;
-                    width: 200px;
-                }*/
 
                 .product__name,
                 .product__price--value,
@@ -68,8 +67,8 @@ $lineNameHeigth: 1.25rem;
 
                 .product__name {
                     grid-area: name;
-                    //font-size: .75rem;
-                    font-weight: 300;
+                    //font: 1.125rem/1.5rem var(--font);
+                    //font-weight: 300;
                     text-transform: uppercase;
                     //width: 100%;
                 }
@@ -78,6 +77,7 @@ $lineNameHeigth: 1.25rem;
                     grid-area: stock;
 
                     color: var(--gray);
+                    text-align: start;
 
                     &--label {
                         font-size: .5rem;
@@ -89,6 +89,7 @@ $lineNameHeigth: 1.25rem;
                     grid-area: count;
 
                     font-size: 1.25rem;
+                    margin-top: auto;
                     font-weight: 700;
                     text-shadow: var(--shadow);
                 }
@@ -99,16 +100,16 @@ $lineNameHeigth: 1.25rem;
 
                     &--value {
                         background-color: var(--primary);
-                        color: var(--white);
+                        color: var(--item-color);
                         clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%);
 
                         position: absolute;
                         right: 0;
                         bottom: 0;
 
-                        width: 200%;
+                        width: 300%;
                         height: 100%;
-                        line-height: 100%;
+                        line-height: 2.5rem;
 
                         font-weight: 700;
 
@@ -118,13 +119,15 @@ $lineNameHeigth: 1.25rem;
                 .product__image {
                     grid-area: image;
 
+                    object-fit: contain;
+                    width: 100%;
                     height: 100%;
                 }
             }
 
             .product-in-the-cart {
                 background-color: var(--primary);
-                color: var(--white);
+                color: var(--background);
 
                 .product__price--value {
                     background-color: var(--item-color);
@@ -133,7 +136,13 @@ $lineNameHeigth: 1.25rem;
             }
 
             .product-unavaliable {
-                background-color: var(--gray);
+                background-color: var(--item-color);
+                color: var(--gray);
+
+                .product__price--value {
+                    background-color: var(--background);
+                    color: var(--gray);
+                }
             }
 
             .hidden-product {

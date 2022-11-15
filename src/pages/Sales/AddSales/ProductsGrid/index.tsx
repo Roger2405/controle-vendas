@@ -77,10 +77,10 @@ export default function ProductsGrid({ group, orderProducts, setOrderProducts, s
                                         </div>
 
                                         {product.imgUrl ?
-                                            <img className='product__image bg-neutral-400' src='https://cdn-icons-png.flaticon.com/128/7565/7565160.png' alt="Imagem do produto" />
+                                            <img className='product__image ' src='https://cdn-icons-png.flaticon.com/128/7565/7565160.png' alt="Imagem do produto" />
                                             :
                                             //<div><FileImage /></div>
-                                            <img className='product__image bg-neutral-400' src='https://cdn-icons-png.flaticon.com/128/7565/7565160.png' alt="Imagem do produto" />
+                                            <></>
                                         }
                                     </div>
                                 )

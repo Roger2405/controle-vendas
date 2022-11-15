@@ -19,7 +19,7 @@ $headerHeight: 4rem;
     --gray: #888888;
     --item-color: #ffffff;
     --white: #FFFFFF;
-    --text: #000;
+    --text: #444;
     --dark: #33924c;
 
     --border: .25rem solid var(--dark);
@@ -27,12 +27,13 @@ $headerHeight: 4rem;
     --shadow: 0 .125rem .25rem rgba(0, 0, 0,
             /*0.25*/
             0);
+    --font: 'Montserrat', sans-serif;
     //--secondary: #CCCCCC;
 }
 
 .dark-mode:root {
     --background: #333;
-    --text: #45C567;
+    --text: #FFF;
     --item-color: #444;
 }
 
