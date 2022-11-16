@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import Button from "../../../components/Button";
 import Loading from "../../../components/Loading";
 import OrderProducts from "../../../components/OrderProducts";
+import BarChartSales from "../../../components/BarChartSales";
 
 export default function SalesHistoric() {
     const [headerSales, setHeaderSales] = useState<SaleResumeProps[]>([]);

@@ -58,10 +58,13 @@
 
 .chart {
     margin: 0 auto;
-    width: 100px;
 
     *:not(.recharts-curve) {
         stroke: var(--text);
 
     }
+}
+
+.recharts-tooltip-label {
+    color: var(--text);
 }

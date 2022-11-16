@@ -83,6 +83,7 @@ body {
 
 .pageFull {
     height: 100vh;
+    justify-content: space-between;
 }
 
 .page {
@@ -96,7 +97,7 @@ body {
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: start;
 }
 
 @media screen and (min-width: 1440px) {

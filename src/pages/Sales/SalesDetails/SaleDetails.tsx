@@ -10,6 +10,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../../components/Button";
 import Loading from "../../../components/Loading";
 import OrderProducts from "../../../components/OrderProducts";
+import BarChartSales from "../../../components/BarChartSales";
 
 
 
@@ -28,6 +29,7 @@ export default function SaleDetails() {
     return (
         <main className="page">
             <section className="list-section">
+                <BarChartSales salesGroupedByDateTime={salesGroupedByDate} />
                 {
                     salesGroupedByDate?.length > 0 ?
                         salesGroupedByDate.map(sales => {
