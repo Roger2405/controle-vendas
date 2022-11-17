@@ -49,16 +49,18 @@ $lineNameHeigth: 1.25rem;
 
                 position: relative;
 
-                &:not(:has(.product__image)) {
-                    height: 120px;
-                }
-
                 height: 160px;
-                width: 200px;
+
+                flex-shrink: 1;
+                flex-basis: 200px;
 
                 text-align: end;
 
                 transition: .25s;
+
+                &:not(:has(.product__image)) {
+                    height: 120px;
+                }
 
                 .product__name,
                 .product__price--value,

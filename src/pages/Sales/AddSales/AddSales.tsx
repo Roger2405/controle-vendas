@@ -30,13 +30,16 @@ export default function AddSales() {
     const [completedOrder, setCompletedOrder] = useState(false);
 
     const [overflowX, setOverflowX] = useState(true);
-    const [hideUnavaliableProducts, setHideUnavaliableProducts] = useState(true);
 
+    let zeroStock: boolean;
+    const [hideUnavaliableProducts, setHideUnavaliableProducts] = useState<boolean>(true);
     //
     useEffect(() => {
         getGroupedProducts().then(
             groupedProducts => {
                 setArrFiltered(groupedProducts);
+                zeroStock = groupedProducts.every(groupByType => groupByType.every(product => product.quantity == 0))
+                setHideUnavaliableProducts(!zeroStock);
             })
             .catch(error => setErrorMessage(error.message))
     }, []);

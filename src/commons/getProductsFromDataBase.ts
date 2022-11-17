@@ -6,6 +6,7 @@ import { getUserFromLocalStorage } from "./userFromLocalStorage";
 
 
 export var productsTypes: string[] = [];
+
 export async function getProductsFromDB() {
     let idUser = getUserFromLocalStorage().id;
     if (!idUser) {
@@ -26,13 +27,11 @@ export async function getProductsFromDB() {
     }
 };
 export async function getGroupedProducts() {
-    var productsArr: ProductProps[];
     var arrayProductsGrouped: ProductProps[][] = [];
     await getProductsFromDB()
         .then(response => {
             if (response) {
-                productsArr = response;
-                productsArr.forEach(product => {
+                response.forEach(product => {
                     if (productsTypes.includes(product.type_product)) {
                         return;
                     }
@@ -41,7 +40,7 @@ export async function getGroupedProducts() {
                     }
                 });
                 for (var i = 0; i < productsTypes.length; i++) {
-                    let arr = productsArr.filter(product => product.type_product === productsTypes[i]);
+                    let arr = response.filter(product => product.type_product === productsTypes[i]);
                     arrayProductsGrouped.push(arr);
 
                     if (i > 50) {//watch dog

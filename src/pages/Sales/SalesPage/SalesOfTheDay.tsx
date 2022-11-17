@@ -18,6 +18,7 @@ import BarChartSales from "../../../components/BarChartSales";
 
 import React from "react";
 import { getSumTotal } from "../../../commons/dataFromLocalStorage";
+import PieChartSales from "../../../components/PieChartsSales";
 
 
 
@@ -41,6 +42,7 @@ export default function SalesOfTheDay() {
         getSalesByDate(date)
             .then(res => {
                 setSales(res);
+
                 setTotal(getSumTotal(res));
             })
             .catch(error => {
@@ -56,6 +58,7 @@ export default function SalesOfTheDay() {
                 {
                     sales.length > 0 ?
                         <>
+                            <PieChartSales strDate={date} />
                             <BarChartSales salesGroupedByDateTime={salesDetails} />
                             < OrderProducts className="" orderProducts={sales} />
                         </>
