@@ -56,15 +56,3 @@
     }
 }
 
-.chart {
-    margin: 0 auto;
-
-    *:not(.recharts-curve) {
-        stroke: var(--text);
-
-    }
-}
-
-.recharts-tooltip-label {
-    color: var(--text);
-}

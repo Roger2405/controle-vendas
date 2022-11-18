@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { XAxis, YAxis, Bar, BarChart } from "recharts";
 import OrderProduct from "../../types/orderProduct";
 
+import './styles.scss';
+
 interface Props {
     salesGroupedByDateTime: OrderProduct[][]
 }

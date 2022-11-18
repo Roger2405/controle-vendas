@@ -11,6 +11,7 @@ import Button from "../../../components/Button";
 import Loading from "../../../components/Loading";
 import OrderProducts from "../../../components/OrderProducts";
 import BarChartSales from "../../../components/BarChartSales";
+import PieChartSales from "../../../components/PieChartsSales";
 
 
 
@@ -29,6 +30,10 @@ export default function SaleDetails() {
     return (
         <main className="page">
             <section className="list-section">
+                {
+                    date &&
+                    <PieChartSales strDate={date} />
+                }
                 <BarChartSales salesGroupedByDateTime={salesGroupedByDate} />
                 {
                     salesGroupedByDate?.length > 0 ?
