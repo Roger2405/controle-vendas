@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import Button from "../../../components/Button";
 import Loading from "../../../components/Loading";
 import OrderProducts from "../../../components/OrderProducts";
-import BarChartSales from "../../../components/BarChartSales";
+
 
 export default function SalesHistoric() {
     const [headerSales, setHeaderSales] = useState<SaleResumeProps[]>([]);
@@ -46,33 +46,36 @@ export default function SalesHistoric() {
             {
                 headerSales?.length > 0 ?
                     <section className="list-section">
-                        {headerSales?.map(sale => {
-                            return (
-                                <div className={`sale ${dateSalesDetails == sale.date_sale ? 'sale-selected' : ''}`} onClick={() => selectSale(sale.date_sale)}>
-                                    <div className="sale__header">
-                                        <CaretRight className="sale__header--toggleIcon" size={24} />
-                                        <p className="sale__header--date">{new Date(sale.date_sale).toLocaleDateString()}</p>
-                                        <p className="sale__header--total">{sale.total.toFixed(2).replace('.', ',')}</p>
-                                    </div>
-                                    {
-                                        sale.date_sale === dateSalesDetails ?
-                                            saleDetails.length > 0 ?
-                                                <>
-                                                    <OrderProducts orderProducts={saleDetails} />
-                                                    <Link to={`sales/${sale.date_sale.split('T')[0]}`}>
-                                                        <Button className="danger-button">Ver detalhes</Button>
-                                                    </Link>
+                        <div className="sales-list">
+                            {headerSales?.map(sale => {
+                                return (
+                                    <div className={`sale ${dateSalesDetails == sale.date_sale ? 'sale-selected' : ''}`} onClick={() => selectSale(sale.date_sale)}>
+                                        <div className="sale__header">
+                                            <CaretRight className="sale__header--toggleIcon" size={24} />
+                                            <p className="sale__header--date">{new Date(sale.date_sale).toLocaleDateString()}</p>
+                                            <p className="sale__header--total">{sale.total.toFixed(2).replace('.', ',')}</p>
+                                        </div>
+                                        {
+                                            sale.date_sale === dateSalesDetails ?
+                                                saleDetails.length > 0 ?
+                                                    <>
+                                                        <OrderProducts orderProducts={saleDetails} />
+                                                        <Link to={`sales/${sale.date_sale.split('T')[0]}`}>
+                                                            <Button className="danger-button">Ver detalhes</Button>
+                                                        </Link>
 
-                                                </>
+                                                    </>
+                                                    :
+                                                    <Loading dark />
                                                 :
-                                                <Loading dark />
-                                            :
-                                            <></>
-                                    }
-                                </div>
-                            )
-                        })
-                        }
+                                                <></>
+                                        }
+                                    </div>
+                                )
+                            })
+                            }
+
+                        </div>
                     </section>
                     :
                     <>

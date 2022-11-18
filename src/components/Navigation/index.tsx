@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { List, X } from "phosphor-react";
 import './styles.scss';
 import Modal from '../Modal';
@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default function Navigation({ showNav }: Props) {
-
+    const navigate = useNavigate();
     const [showModal, setShowModal] = useState<boolean>();
 
     const [darkTheme, setDarkTheme] = useState(window.matchMedia("(prefers-color-scheme: dark)").matches);
@@ -71,6 +71,7 @@ export default function Navigation({ showNav }: Props) {
                         <Button className='gray-button modal-button' onClick={() => setShowModal(false)} >Cancelar</Button>
                         <Button className='red-button modal-button' onClick={() => {
                             localStorage.removeItem('user');
+                            navigate('/');
                             window.location.reload();
                         }} >Confirmar</Button>
                     </div>

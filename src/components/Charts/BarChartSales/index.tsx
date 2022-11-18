@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { XAxis, YAxis, Bar, BarChart } from "recharts";
-import OrderProduct from "../../types/orderProduct";
+import OrderProduct from "../../../types/orderProduct";
 
 import './styles.scss';
 
@@ -24,7 +24,6 @@ function getDataChart(salesGroupedByDateTime: OrderProduct[][]) {
         })
     })
     mapSalesPerHour.forEach((valueAmount, keyHour) => {
-        console.log('testando')
         console.log(valueAmount, keyHour)
         arrDataChart.push({ hour: keyHour, uv: valueAmount })
     })

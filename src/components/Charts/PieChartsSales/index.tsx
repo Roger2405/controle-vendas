@@ -1,8 +1,8 @@
 import React, { PureComponent, useEffect, useState } from 'react';
 import { PieChart, Pie, Sector, ResponsiveContainer, Cell, Tooltip, Legend } from 'recharts';
-import { getGroupedProducts } from '../../commons/getProductsFromDataBase';
-import { getSalesByDate } from '../../commons/getSalesFromDB';
-import OrderProduct from '../../types/orderProduct';
+import { getGroupedProducts } from '../../../commons/getProductsFromDataBase';
+import { getSalesByDate } from '../../../commons/getSalesFromDB';
+import OrderProduct from '../../../types/orderProduct';
 
 import './styles.scss';
 
@@ -51,10 +51,10 @@ export default function PieChartSales({ strDate }: Props) {
     }, [productsTypes])
 
 
-    const COLORS = ['#C54545', '#4597C5', '#45C567', '#9CC545', '#8C45C5', '#4F45C5', '#45C597', '#C2C545'];
+    const COLORS = ['#C54545', '#4597C5', '#45C567', '#B3C545', '#8C45C5', '#4F45C5', '#45c597', '#C5A145', '#C545A8', '#C57345'];
     return (
         <>
-            <PieChart className='pie-chart text-orange-600' width={window.screen.width * 0.9} height={200}>
+            <PieChart className='pie-chart text-orange-600' width={300} height={400}>
                 <Pie className='' data={chartData} dataKey="quantity" nameKey="type" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#82ca9d" label>
                     {totalProductsCount}
                     {chartData.map((entry, index) => (

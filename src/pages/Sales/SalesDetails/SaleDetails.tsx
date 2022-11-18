@@ -10,8 +10,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../../components/Button";
 import Loading from "../../../components/Loading";
 import OrderProducts from "../../../components/OrderProducts";
-import BarChartSales from "../../../components/BarChartSales";
-import PieChartSales from "../../../components/PieChartsSales";
+import Charts from "../../../components/Charts";
 
 
 
@@ -32,22 +31,26 @@ export default function SaleDetails() {
             <section className="list-section">
                 {
                     date &&
-                    <PieChartSales strDate={date} />
+                    <>
+                        <Charts strDate={date} salesDetails={salesGroupedByDate} />
+                    </>
                 }
-                <BarChartSales salesGroupedByDateTime={salesGroupedByDate} />
-                {
-                    salesGroupedByDate?.length > 0 ?
-                        salesGroupedByDate.map(sales => {
-                            return (
-                                <div>
-                                    <h2>{getHourByDateString(sales[0].date_sale)}</h2>
-                                    <OrderProducts hiddenOverflow={false} orderProducts={sales} />
-                                </div>
-                            )
-                        })
-                        :
-                        <Loading dark />
-                }
+                <div className="sale-list" >
+                    {
+                        salesGroupedByDate?.length > 0 ?
+                            salesGroupedByDate.map(sales => {
+                                return (
+                                    <div>
+                                        <h2>{getHourByDateString(sales[0].date_sale)}</h2>
+                                        <OrderProducts hiddenOverflow={false} orderProducts={sales} />
+                                    </div>
+                                )
+                            })
+                            :
+                            <Loading dark />
+                    }
+
+                </div>
             </section>
             <div className='max-w-xl fixed right-1/2 translate-x-1/2 bottom-4 px-4 w-full'>
                 <Button className='gray-button' onClick={() => navigate(-1)} ><ArrowLeft size={24} />Voltar</Button>

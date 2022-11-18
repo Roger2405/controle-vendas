@@ -50,9 +50,24 @@
 }
 
 .sale {
+    //width: 100%;
+
     .sale__header--toggleIcon {
         transform: rotateZ(0deg);
         transition: .25s;
     }
 }
 
+.list-section {
+    @media screen and (min-width: 992px) {
+        &:has(.charts) {
+            display: flex;
+            flex-direction: row-reverse;
+        }
+
+    }
+
+    .sale-list {
+        width: 100%;
+    }
+}
