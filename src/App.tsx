@@ -12,13 +12,13 @@ import Header from "./components/Header";
 import UserLogin from "./pages/Auth/UserLogin";
 import UserRegister from './pages/Auth/UserRegister';
 
-import AddProduct from "./pages/Products/AddProduct";
 import EditProduct from './pages/Products/EditProduct';
 import StockPage from './pages/Stock/StockPage';
 import SaleDetails from './pages/Sales/SalesDetails/SaleDetails';
 import SalesPage from './pages/Sales/SalesPage/SalesPage';
 import ProductsPage from './pages/Products/ProductsPage/ProductsPage';
 import AddSales from './pages/Sales/AddSales/AddSales';
+import AddProduct from './pages/Products/AddProduct';
 
 type User = {
   email: string,

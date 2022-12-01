@@ -14,9 +14,9 @@ interface Props {
 export default function PieChartSales({ strDate }: Props) {
     const [sales, setSales] = useState<OrderProduct[]>([])
     const [productsTypes, setProductsTypes] = useState<string[]>([]);
-    let totalProductsCount = 0;
-
     const [chartData, setChartData] = useState<{ type: string, quantity: number }[]>([])
+    const [totalProductsCount, setTotalProductsCount] = useState(0);
+
     useEffect(() => {
         getSalesByDate(strDate).then(res => {
             setSales(res);
@@ -31,22 +31,23 @@ export default function PieChartSales({ strDate }: Props) {
     }, [])
     useEffect(() => {
         let arr: { type: string, quantity: number }[] = [];
+        let sumProductsCount = 0;
         productsTypes.forEach(type => {
             let productsCountInType: number = 0;
 
             sales.filter(sale => sale.type_product === type).forEach(sale => {
                 productsCountInType += sale.count;
             })
+
             if (productsCountInType > 0) {
-                arr.push(
-                    {
-                        type: type,
-                        quantity: productsCountInType
-                    }
-                )
+                arr.push({
+                    type: type,
+                    quantity: productsCountInType
+                })
             }
-            totalProductsCount += productsCountInType;
+            sumProductsCount += productsCountInType;
         })
+        setTotalProductsCount(sumProductsCount);
         setChartData(arr);
     }, [productsTypes])
 
@@ -56,8 +57,8 @@ export default function PieChartSales({ strDate }: Props) {
         <>
             <PieChart className='pie-chart text-orange-600' width={300} height={400}>
                 <Pie className='' data={chartData} dataKey="quantity" nameKey="type" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#82ca9d" label>
-                    {totalProductsCount}
-                    {chartData.map((entry, index) => (
+
+                    {chartData.map((_, index) => (
                         <Cell
                             key={`cell-${index}`}
                             fill={COLORS[index % COLORS.length]}
@@ -65,35 +66,7 @@ export default function PieChartSales({ strDate }: Props) {
                     ))}
                 </Pie>
                 <Legend className='legend' />
-                {/*                 
-                <Pie
-                    data={chartData}
-                    cx={100}
-                    cy={100}
-                    innerRadius={60}
-                    outerRadius={80}
-                    fill="#8884d8"
-                    paddingAngle={1}
-                    dataKey="quantity"
-                >
-                    {chartData.map((entry, index) => {
-                        return <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                    }
-                    )}
-
-                    <Pie
-                        data={chartData}
-                        cx={420}
-                        cy={200}
-                        startAngle={180}
-                        endAngle={0}
-                        innerRadius={60}
-                        outerRadius={80}
-                        fill="#8884d8"
-                        paddingAngle={5}
-                        dataKey="quantity"
-                    ></Pie>
-                </Pie> */}
+                <p className='text-orange-700'>{totalProductsCount}</p>
             </PieChart>
         </>
     )

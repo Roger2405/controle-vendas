@@ -1,5 +1,10 @@
+import { Buffer } from 'buffer';
+import { useEffect, useState } from 'react';
+import Modal from '../../../../components/Modal';
 import OrderProduct from '../../../../types/orderProduct';
 import ProductProps from '../../../../types/product';
+import { base64string } from './srcBase64';
+
 
 import './style.scss';
 
@@ -13,6 +18,7 @@ interface Props {
     total: number
 }
 export default function ProductsGrid({ productsGroup, orderProducts, setOrderProducts, setTotal, hideUnavaliableProducts, overflowX }: Props) {
+    const [showModalTest, setShowModalTest] = useState(false);
     function refreshOrderProducts(product: unknown) {
 
         let productToUpdate = product as OrderProduct;
@@ -42,7 +48,27 @@ export default function ProductsGrid({ productsGroup, orderProducts, setOrderPro
         return indexById >= 0 ? true : false;
     }
 
-
+    function _arrayBufferToBase64(buffer: ArrayBuffer) {
+        var binary = '';
+        var bytes = new Uint8Array(buffer);
+        var len = bytes.byteLength;
+        for (var i = 0; i < len; i++) {
+            binary += String.fromCharCode(bytes[i]);
+        }
+        return window.btoa(binary);
+    }
+    function historic(product: { image: Blob }) {
+        console.log(product.image)
+        let srcImage = '';
+        var blob: Blob = product.image;
+        product.image.arrayBuffer().then((res) => {
+            srcImage = _arrayBufferToBase64(res)
+            console.log(srcImage)
+        })
+        var url = window.URL.createObjectURL(blob);
+    }
+    window.addEventListener('mouseout', () => setShowModalTest(true))
+    window.addEventListener('mouseover', () => setShowModalTest(false))
     return (
         <>
             {
@@ -56,6 +82,16 @@ export default function ProductsGrid({ productsGroup, orderProducts, setOrderPro
                         <div className='products'>
                             {productsGroup.map(product => {
                                 const productIsInTheCart: boolean = isInTheCart(product.id)
+                                let srcImage = '';
+                                if (product.image) {
+                                    const buffer = product.image.data;
+                                    let arr = new Uint8Array(buffer)
+                                    let base64 = _arrayBufferToBase64(buffer)
+                                    srcImage = arr.toString()
+                                    console.log(product.image)
+
+                                }
+
                                 return (
                                     <div key={product.id} id={product.id.toString()}
                                         className=
@@ -74,8 +110,17 @@ export default function ProductsGrid({ productsGroup, orderProducts, setOrderPro
 
                                         </div>
 
-                                        {product.imgUrl ?
-                                            <img className='product__image ' src='https://cdn-icons-png.flaticon.com/128/7565/7565160.png' alt="Imagem do produto" />
+                                        {srcImage ?
+                                            <>
+                                                <img className='product__image ' src={"data:image/png;base64," + srcImage} />
+                                                {
+                                                    showModalTest &&
+                                                    <Modal>
+                                                        <div className='w-full'>{srcImage}</div>
+                                                        <div className='w-full'>{base64string}</div>
+                                                    </Modal>
+                                                }
+                                            </>
                                             :
                                             //<div><FileImage /></div>
                                             <></>

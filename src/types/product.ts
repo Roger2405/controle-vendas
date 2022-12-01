@@ -1,6 +1,6 @@
 export default interface ProductProps {
     name_product: string,
-    imgUrl?: string,
+    image?: { type: string, data: Uint8Array },
     quantity: number,
     type_product: string,
     price_product: number,

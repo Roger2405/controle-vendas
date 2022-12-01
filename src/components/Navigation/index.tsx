@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
-import { List, X } from "phosphor-react";
-import './styles.scss';
+import { Link, useNavigate } from 'react-router-dom';
+
 import Modal from '../Modal';
 import Button from '../Button';
 
+import './styles.scss';
 
 interface Props {
     showNav: boolean
@@ -13,7 +13,6 @@ interface Props {
 export default function Navigation({ showNav }: Props) {
     const navigate = useNavigate();
     const [showModal, setShowModal] = useState<boolean>();
-
     const [darkTheme, setDarkTheme] = useState(window.matchMedia("(prefers-color-scheme: dark)").matches);
 
     window
@@ -28,6 +27,8 @@ export default function Navigation({ showNav }: Props) {
                 setDarkTheme(false)
             }
         });
+
+
     useEffect(() => {
         const htmlElement = document.querySelector('html');
         console.log('alterou o tema')

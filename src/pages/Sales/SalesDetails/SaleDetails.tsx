@@ -15,24 +15,27 @@ import Charts from "../../../components/Charts";
 
 
 export default function SaleDetails() {
-    const { date } = useParams();
+    const { date: strDate } = useParams();
     const navigate = useNavigate();
     const [salesGroupedByDate, setSalesGroupedByDate] = useState<OrderProduct[][]>([]);
     useEffect(() => {
-        getSaleDetails(date || '')
+        getSaleDetails(strDate || '')
             .then(res => {
                 setSalesGroupedByDate(res)
-                console.log(res)
             })
             .catch(err => console.log(err));
     }, [])
     return (
         <main className="page">
+            {strDate?.split('-').reverse().join('/')}
             <section className="list-section">
+                <span className="fixed right-0">
+                    { }
+                </span>
                 {
-                    date &&
+                    strDate &&
                     <>
-                        <Charts strDate={date} salesDetails={salesGroupedByDate} />
+                        <Charts strDate={strDate} salesDetails={salesGroupedByDate} />
                     </>
                 }
                 <div className="sale-list" >

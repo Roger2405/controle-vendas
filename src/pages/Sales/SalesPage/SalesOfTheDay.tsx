@@ -9,23 +9,22 @@ import OrderProduct from "../../../types/orderProduct";
 import getFormatedDate from "../../../commons/formatedDate";
 import { getSaleDetails, getSalesByDate } from "../../../commons/getSalesFromDB";
 //components
-import Button from "../../../components/Button";
+import Print from "../../../components/Print";
+
+import Charts from "../../../components/Charts";
 import Loading from "../../../components/Loading";
 import OrderProducts from "../../../components/OrderProducts";
-import Print from "../../../components/Print";
+
 import Total from "../../../components/Total";
+import Button from "../../../components/Button";
 
 import React from "react";
 import { getSumTotal } from "../../../commons/dataFromLocalStorage";
-import PieChartSales from "../../../components/Charts/PieChartsSales";
-import Charts from "../../../components/Charts";
+
 
 
 
 export default function SalesOfTheDay() {
-
-
-
     const navigate = useNavigate();
 
     const [sales, setSales] = useState<OrderProduct[]>([]);
@@ -58,7 +57,7 @@ export default function SalesOfTheDay() {
                 sales.length > 0 ?
                     <section className="list-section">
                         <Charts strDate={date} salesDetails={salesDetails} />
-                        < OrderProducts className="sales-list" orderProducts={sales} />
+                        <OrderProducts className="sales-list" orderProducts={sales} />
 
                         <Print total={total} sales={sales} />
                     </section>

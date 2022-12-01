@@ -1,6 +1,5 @@
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { isArray } from "util";
 import ProductProps from "../types/product";
 import { getUserFromLocalStorage } from "./userFromLocalStorage";
 
