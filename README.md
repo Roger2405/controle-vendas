@@ -3,29 +3,31 @@
 </h1>
 <img src="https://img.shields.io/static/v1?label=&message=Em desenvolvimento&color=579853&style=for-the-badge&logo="/>
 
-Projeto sendo desenvolvido com React e TypeScript com o objetivo de registrar vendas e controlar estoque.
+Aplicativo web sendo desenvolvido com React e TypeScript com o objetivo de registrar vendas e controlar estoque de produtos.
 
 <div align="center">
-<img width="15%" src="https://user-images.githubusercontent.com/86917178/200309679-c187a502-896a-49a4-b1ad-15be8a8ac5ea.png" />
-<img width="15%" src="https://user-images.githubusercontent.com/86917178/200307796-7201f5f9-7354-4d08-9fe0-4db82f08b5f2.png" />
-<img width="15%" src="https://user-images.githubusercontent.com/86917178/200308848-ce13645b-9d04-4612-8a97-2eb45bed5c12.png" />
-<img width="15%" src="https://user-images.githubusercontent.com/86917178/200307211-a9cad6fc-b04a-43de-a423-2b308e2dd316.png" />
-<img width="15%" src="https://user-images.githubusercontent.com/86917178/200308603-31ae23f4-4455-408b-a834-adcd6d031512.png" />
-<img width="15%" src="https://user-images.githubusercontent.com/86917178/200309323-718314f0-d262-4466-ba2d-4a1af9e7bcb6.png" />
+<img width="15%" src="https://user-images.githubusercontent.com/86917178/205514345-d18f69e8-6dcc-45d5-859e-817deeef445c.png" />
+<img width="15%" src="https://user-images.githubusercontent.com/86917178/205514273-578fe4da-f372-44ce-810c-9e294236e999.png" />
+<img width="15%" src="https://user-images.githubusercontent.com/86917178/205514392-84b2baa0-01b7-4ec6-ad45-c4c4fb7ed4de.png" />
+<img width="15%" src="https://user-images.githubusercontent.com/86917178/205514484-44b72d1e-d7bc-4768-9fda-0f626ac7419d.png" />
+<img width="15%" src="https://user-images.githubusercontent.com/86917178/205514547-cfcb331c-d80d-4465-bfa1-7f794cc4b1e6.png" />
+<img width="15%" src="https://user-images.githubusercontent.com/86917178/205514922-3b59ab15-e8ef-418d-8a51-eaa0d0f2a40c.png" />
 </div>
+Imagens do design do layout mobile elaborado no Figma. 
 
 # Features:
 ### Produtos: 
 - [x] Mostrando produtos separados por tipo
 - [x] Cadastro de produtos
 - [x] Alteração e exclusão de produtos
+- [ ] Produtos com imagens
 
 ### Autenticação:
 - [x] Cadastro e login do usuário
 
 ### Vendas:
 - [x] Carrinho funcional
-- [x] Registro das vendas do dia
+- [x] Registro de vendas
 - [x] Histórico de vendas
 
 ### Estoque:
