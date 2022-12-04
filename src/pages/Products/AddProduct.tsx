@@ -59,7 +59,7 @@ export default function AddProduct() {
             console.log(imageFile)
         }
         const data = {
-            name, type, quantity, price, image: imageFile
+            name, type, quantity, price, image: imageFile || null
         }
         Axios.post(`${process.env.REACT_APP_LINK_API}/${getUserFromLocalStorage().id}/products/register`, data, { headers: { 'Content-Type': 'multipart/form-data' } }).then((response) => {
             console.log(response.data.msg)

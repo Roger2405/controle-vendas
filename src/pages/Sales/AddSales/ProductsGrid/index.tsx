@@ -57,6 +57,18 @@ export default function ProductsGrid({ productsGroup, orderProducts, setOrderPro
         }
         return window.btoa(binary);
     }
+    const blobToBase64 = function (blob: Blob) {
+        var reader = new window.FileReader();
+        reader.readAsDataURL(blob)
+        return new Promise<string | undefined>(resolve => {
+            reader.onloadend = () => {
+                resolve(reader.result?.toString());
+            };
+        });
+    };
+    function bufferToBase64(buffer: Buffer) {
+
+    }
     function historic(product: { image: Blob }) {
         console.log(product.image)
         let srcImage = '';
@@ -84,11 +96,9 @@ export default function ProductsGrid({ productsGroup, orderProducts, setOrderPro
                                 const productIsInTheCart: boolean = isInTheCart(product.id)
                                 let srcImage = '';
                                 if (product.image) {
-                                    const buffer = product.image.data;
-                                    let arr = new Uint8Array(buffer)
-                                    let base64 = _arrayBufferToBase64(buffer)
-                                    srcImage = arr.toString()
-                                    console.log(product.image)
+                                    //alert(JSON.stringify(product.image))
+                                    srcImage = _arrayBufferToBase64(product.image.data)
+                                    console.log(srcImage)
 
                                 }
 
