@@ -20,6 +20,7 @@ import Button from "../../../components/Button";
 
 import React from "react";
 import { getSumTotal } from "../../../commons/dataFromLocalStorage";
+import PieChartSales from "../../../components/Charts/PieChartsSales";
 
 
 
@@ -56,7 +57,7 @@ export default function SalesOfTheDay() {
             {
                 sales.length > 0 ?
                     <section className="list-section">
-                        <Charts strDate={date} salesDetails={salesDetails} />
+                        <PieChartSales strDate={date} />
                         <OrderProducts className="sales-list" orderProducts={sales} />
 
                         <Print total={total} sales={sales} />

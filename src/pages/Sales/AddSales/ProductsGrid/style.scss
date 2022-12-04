@@ -74,6 +74,7 @@ $lineNameHeigth: 1.25rem;
                     //font: 1.125rem/1.5rem var(--font);
                     //font-weight: 300;
                     text-transform: uppercase;
+                    overflow-wrap: break-word;
                     //width: 100%;
                 }
 
@@ -85,7 +86,6 @@ $lineNameHeigth: 1.25rem;
 
                     &--label {
                         font-size: .5rem;
-                        //writing-mode: vertical-rl;
                     }
                 }
 

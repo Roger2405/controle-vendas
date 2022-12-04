@@ -26,6 +26,7 @@
 
         .product__name {
             flex-basis: 70%;
+            overflow: hidden;
         }
 
         .product__price {

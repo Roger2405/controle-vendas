@@ -56,7 +56,7 @@ export default function SaleDetails() {
                 </div>
             </section>
             <div className='max-w-xl fixed right-1/2 translate-x-1/2 bottom-4 px-4 w-full'>
-                <Button className='gray-button' onClick={() => navigate(-1)} ><ArrowLeft size={24} />Voltar</Button>
+                <Button className='gray-button left' onClick={() => navigate(-1)} ><ArrowLeft size={24} />Voltar</Button>
             </div>
         </main >
     )
