@@ -3,7 +3,7 @@
 </h1>
 <img src="https://img.shields.io/static/v1?label=&message=Em desenvolvimento&color=579853&style=for-the-badge&logo="/>
 
-Projeto sendo desenvolvido com React e TypeScript com o objetivo de registrar vendas e controlar estoque de produtos.
+Aplicativo web sendo desenvolvido com React e TypeScript com o objetivo de registrar vendas e controlar estoque de produtos.
 
 <div align="center">
 <img width="15%" src="https://user-images.githubusercontent.com/86917178/205514345-d18f69e8-6dcc-45d5-859e-817deeef445c.png" />
@@ -13,7 +13,7 @@ Projeto sendo desenvolvido com React e TypeScript com o objetivo de registrar ve
 <img width="15%" src="https://user-images.githubusercontent.com/86917178/205514547-cfcb331c-d80d-4465-bfa1-7f794cc4b1e6.png" />
 <img width="15%" src="https://user-images.githubusercontent.com/86917178/205514922-3b59ab15-e8ef-418d-8a51-eaa0d0f2a40c.png" />
 </div>
-
+Imagens do design do layout mobile elaborado no Figma. 
 
 # Features:
 ### Produtos: 
