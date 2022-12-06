@@ -26,7 +26,6 @@ export default function UserLogin({ setUser }: Props) {
             if (response.data.success) {
                 const user = response.data.user;
                 setUser(user);
-                localStorage.setItem('user', JSON.stringify(user));
             }
             setShowErrorMsg(true);
             setErrorMsg(response.data.msg);

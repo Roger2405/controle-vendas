@@ -38,48 +38,52 @@
 }
 
 .danger-button {
-    box-shadow: none;
-    text-shadow: none;
     text-transform: uppercase;
-    color: var(--red);
+    color: var(--text);
+    text-shadow: none;
+    box-shadow: var(--shadow)
 }
 
-
-.green-button:not(.right) {
+.green-button {
     background-color: var(--primary);
 }
 
-.right.green-button,
-.left.green-button {
-    background-color: unset;
-
-    &::before,
-    &::after {
-        background-color: var(--primary) !important;
-    }
-
-}
-
-.red-button {
-
-    &::before,
-    &::after {
-        background-color: var(--red) !important;
-    }
-}
-
 .gray-button {
-
-    &::before,
-    &::after {
-        background-color: var(--gray) !important;
-    }
+    background-color: var(--gray);
 }
+
 
 .left,
 .right {
     span {
         gap: 0;
+    }
+
+    &.red-button {
+        background-color: unset;
+
+        &::before,
+        &::after {
+            background-color: var(--red) !important;
+        }
+    }
+
+    &.green-button {
+        background-color: unset;
+
+        &::before,
+        &::after {
+            background-color: var(--primary) !important;
+        }
+    }
+
+    &.gray-button {
+        background-color: unset;
+
+        &::before,
+        &::after {
+            background-color: var(--gray) !important;
+        }
     }
 
     &::before {

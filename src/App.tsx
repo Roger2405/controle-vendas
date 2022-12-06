@@ -31,7 +31,7 @@ function App() {
 
 
   useEffect(() => {
-    if (user.id) {//provisorio
+    if (user.id) {//se há um usuário no localStorage -> usuário está logado 
       setIsLogged(true)
       localStorage.setItem('user', JSON.stringify(user))
     }

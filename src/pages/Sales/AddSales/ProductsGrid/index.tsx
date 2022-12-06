@@ -47,38 +47,6 @@ export default function ProductsGrid({ productsGroup, orderProducts, setOrderPro
         const indexById = searchIndexById(productId);
         return indexById >= 0 ? true : false;
     }
-
-    function _arrayBufferToBase64(buffer: ArrayBuffer) {
-        var binary = '';
-        var bytes = new Uint8Array(buffer);
-        var len = bytes.byteLength;
-        for (var i = 0; i < len; i++) {
-            binary += String.fromCharCode(bytes[i]);
-        }
-        return window.btoa(binary);
-    }
-    const blobToBase64 = function (blob: Blob) {
-        var reader = new window.FileReader();
-        reader.readAsDataURL(blob)
-        return new Promise<string | undefined>(resolve => {
-            reader.onloadend = () => {
-                resolve(reader.result?.toString());
-            };
-        });
-    };
-    function bufferToBase64(buffer: Buffer) {
-
-    }
-    function historic(product: { image: Blob }) {
-        console.log(product.image)
-        let srcImage = '';
-        var blob: Blob = product.image;
-        product.image.arrayBuffer().then((res) => {
-            srcImage = _arrayBufferToBase64(res)
-            console.log(srcImage)
-        })
-        var url = window.URL.createObjectURL(blob);
-    }
     window.addEventListener('mouseout', () => setShowModalTest(true))
     window.addEventListener('mouseover', () => setShowModalTest(false))
     return (
@@ -95,9 +63,8 @@ export default function ProductsGrid({ productsGroup, orderProducts, setOrderPro
                             {productsGroup.map(product => {
                                 const productIsInTheCart: boolean = isInTheCart(product.id)
                                 let srcImage = '';
-                                if (product.image) {
-                                    //alert(JSON.stringify(product.image))
-                                    srcImage = _arrayBufferToBase64(product.image.data)
+                                if (product.image_path) {
+                                    srcImage = `${process.env.REACT_APP_LINK_API}${product.image_path}`
                                     console.log(srcImage)
 
                                 }
@@ -122,7 +89,7 @@ export default function ProductsGrid({ productsGroup, orderProducts, setOrderPro
 
                                         {srcImage ?
                                             <>
-                                                <img className='product__image ' src={"data:image/png;base64," + srcImage} />
+                                                <img className='product__image ' src={srcImage} />
                                                 {
                                                     showModalTest &&
                                                     <Modal>

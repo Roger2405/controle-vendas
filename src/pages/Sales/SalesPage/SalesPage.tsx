@@ -4,7 +4,7 @@ import './SalesPage.scss';
 import { useState } from "react";
 //pages
 import SalesOfTheDay from "./SalesOfTheDay";
-import SalesHistoric from "./SalesHistory";
+import SalesHistoric from "./SalesHistoric";
 
 
 export default function SalesPage() {
