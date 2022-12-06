@@ -1,6 +1,6 @@
 export default interface ProductProps {
     name_product: string,
-    image?: BufferProps,
+    image_path?: string,
     quantity: number,
     type_product: string,
     price_product: number,
