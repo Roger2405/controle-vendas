@@ -1,5 +1,5 @@
 
 export default interface SaleResumeProps {
-    date_sale: string,
+    day_sale: string,
     total: number
 }

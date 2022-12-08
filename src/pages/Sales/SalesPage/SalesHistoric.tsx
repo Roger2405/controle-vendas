@@ -27,17 +27,17 @@ export default function SalesHistoric() {
             .catch(err => { setErrorMessage(err.message) })
     }, [])
 
-    async function selectSale(date_sale: string) {
+    async function selectSale(day_sale: string) {
         const divHeaderSale = document.querySelector('.sale-selected');
         setSaleDetails([]);
-        getSalesByDate(date_sale.split('T')[0]).then(res => setSaleDetails(res))
+        getSalesByDate(day_sale).then(res => setSaleDetails(res))
 
-        if (dateSalesDetails == date_sale) {
+        if (dateSalesDetails == day_sale) {
             divHeaderSale?.classList.remove('sale-selected')
             setDateSalesDetails('');
         }
         else {
-            setDateSalesDetails(date_sale)
+            setDateSalesDetails(day_sale)
         }
     }
 
@@ -49,18 +49,18 @@ export default function SalesHistoric() {
                         <div className="sales-list">
                             {headerSales?.map(sale => {
                                 return (
-                                    <div className={`sale ${dateSalesDetails == sale.date_sale ? 'sale-selected' : ''}`} onClick={() => selectSale(sale.date_sale)}>
+                                    <div className={`sale ${dateSalesDetails == sale.day_sale ? 'sale-selected' : ''}`} onClick={() => selectSale(sale.day_sale)}>
                                         <div className="sale__header">
                                             <CaretRight className="sale__header--toggleIcon" size={24} />
-                                            <p className="sale__header--date">{new Date(sale.date_sale).toLocaleDateString()}</p>
+                                            <p className="sale__header--date">{new Date(sale.day_sale).toLocaleDateString()}</p>
                                             <p className="sale__header--total">{sale.total.toFixed(2).replace('.', ',')}</p>
                                         </div>
                                         {
-                                            sale.date_sale === dateSalesDetails ?
+                                            sale.day_sale === dateSalesDetails ?
                                                 saleDetails.length > 0 ?
                                                     <>
                                                         <OrderProducts orderProducts={saleDetails} />
-                                                        <Link to={`sales/${sale.date_sale.split('T')[0]}`}>
+                                                        <Link to={`sales/${sale.day_sale.split('T')[0]}`}>
                                                             <Button className="danger-button">Ver detalhes</Button>
                                                         </Link>
 
