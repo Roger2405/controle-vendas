@@ -43,6 +43,7 @@ export default function Summary({ setShowSummary, orderProducts }: Props) {
     function refreshSalesOnDB() {
         const userId = getUserFromLocalStorage().id;
         const date = getFormatedDate();
+        alert(date)
         const strOrderProducts = JSON.stringify(Array.from(orderProducts));
 
         setIsLoading(true);
