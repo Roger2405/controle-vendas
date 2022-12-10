@@ -11,7 +11,6 @@ import { getSaleDetails, getSalesByDate } from "../../../commons/getSalesFromDB"
 //components
 import Print from "../../../components/Print";
 
-import Charts from "../../../components/Charts";
 import Loading from "../../../components/Loading";
 import OrderProducts from "../../../components/OrderProducts";
 
@@ -54,7 +53,7 @@ export default function SalesOfTheDay() {
             {
                 sales.length > 0 ?
                     <section className="list-section">
-                        <PieChartSales strDate={date} />
+                        <PieChartSales sales={sales} />
                         <OrderProducts className="sales-list" orderProducts={sales} />
 
                         <Print total={total} sales={sales} />

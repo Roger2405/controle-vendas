@@ -3,31 +3,33 @@ import { PieChart, Pie, Sector, ResponsiveContainer, Cell, Tooltip, Legend } fro
 import { getGroupedProducts } from '../../../commons/getProductsFromDataBase';
 import { getSalesByDate } from '../../../commons/getSalesFromDB';
 import OrderProduct from '../../../types/orderProduct';
+import Loading from '../../Loading';
 
 import './styles.scss';
 
 interface Props {
-    strDate: string
+    // strDate: string
+    sales: OrderProduct[]
 }
 
 
-export default function PieChartSales({ strDate }: Props) {
-    const [sales, setSales] = useState<OrderProduct[]>([])
+export default function PieChartSales({ sales }: Props) {
+    //const [sales, setSales] = useState<OrderProduct[]>([])
     const [productsTypes, setProductsTypes] = useState<string[]>([]);
     const [chartData, setChartData] = useState<{ type: string, quantity: number }[]>([])
     const [totalProductsCount, setTotalProductsCount] = useState(0);
 
     useEffect(() => {
-        getSalesByDate(strDate).then(res => {
-            setSales(res);
-            getGroupedProducts().then(groupedProductsResponse => {
-                let arrTypes: string[] = [];
-                groupedProductsResponse.forEach(group => {
-                    arrTypes.push(group[0].type_product)
-                })
-                setProductsTypes(arrTypes);
+        // getSalesByDate(strDate).then(res => {
+        //setSales(res);
+        getGroupedProducts().then(groupedProductsResponse => {
+            let arrTypes: string[] = [];
+            groupedProductsResponse.forEach(group => {
+                arrTypes.push(group[0].type_product)
             })
+            setProductsTypes(arrTypes);
         })
+        // })
     }, [])
     useEffect(() => {
         let arr: { type: string, quantity: number }[] = [];
@@ -36,6 +38,7 @@ export default function PieChartSales({ strDate }: Props) {
             let productsCountInType: number = 0;
 
             sales.filter(sale => sale.type_product === type).forEach(sale => {
+                console.log('tipo' + sale.type_product)
                 productsCountInType += sale.count;
             })
 
@@ -55,19 +58,25 @@ export default function PieChartSales({ strDate }: Props) {
     const COLORS = ['#C54545', '#4597C5', '#45C567', '#B3C545', '#8C45C5', '#4F45C5', '#45c597', '#C5A145', '#C545A8', '#C57345'];
     return (
         <>
-            <PieChart className='pie-chart text-orange-600' width={300} height={400}>
-                <Pie className='' data={chartData} dataKey="quantity" nameKey="type" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#82ca9d" label>
+            {
+                chartData ?
 
-                    {chartData.map((_, index) => (
-                        <Cell
-                            key={`cell-${index}`}
-                            fill={COLORS[index % COLORS.length]}
-                        />
-                    ))}
-                </Pie>
-                <Legend className='legend' />
-                <p className='text-orange-700'>{totalProductsCount}</p>
-            </PieChart>
+                    <PieChart className='pie-chart text-orange-600' width={300} height={400}>
+                        <Pie className='' data={chartData} dataKey="quantity" nameKey="type" cx="50%" cy="50%" innerRadius={60} outerRadius={80} fill="#82ca9d" label>
+
+                            {chartData.map((_, index) => (
+                                <Cell
+                                    key={`cell-${index}`}
+                                    fill={COLORS[index % COLORS.length]}
+                                />
+                            ))}
+                        </Pie>
+                        <Legend className='legend' />
+                        <p className='text-orange-700'>{totalProductsCount}</p>
+                    </PieChart>
+                    :
+                    <Loading />
+            }
         </>
     )
 }

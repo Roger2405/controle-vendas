@@ -61,9 +61,10 @@ export default function SalesHistoric() {
                                                 saleDetails.length > 0 ?
                                                     <>
                                                         <OrderProducts orderProducts={saleDetails} />
-                                                        <Link to={`sales/${new Date(sale.day_sale).toLocaleDateString().split('T')[0]}`}>
+                                                        <button onClick={() => alert(new Date(sale.day_sale).toUTCString())}>Detalhes</button>
+                                                        {/* <Link to={`sales/${new Date(sale.day_sale).toLocaleDateString().split('T')[0]}`}>
                                                             <Button className="danger-button">Ver detalhes</Button>
-                                                        </Link>
+                                                        </Link> */}
 
                                                     </>
                                                     :

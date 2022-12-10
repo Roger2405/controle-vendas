@@ -12,7 +12,7 @@ type Props = {
 export default function Charts({ strDate, salesDetails }: Props) {
     return (
         <div className="charts">
-            <PieChartSales strDate={strDate} />
+            {/* <PieChartSales strDate={strDate} /> */}
             <BarChartSales salesGroupedByDateTime={salesDetails} />
         </div>
     )
