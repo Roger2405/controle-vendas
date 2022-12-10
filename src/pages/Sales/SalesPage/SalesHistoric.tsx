@@ -53,7 +53,7 @@ export default function SalesHistoric() {
                                     <div className={`sale ${dateSalesDetails == sale.day_sale.split('T')[0] ? 'sale-selected' : ''}`} onClick={() => selectSale(sale.day_sale)}>
                                         <div className="sale__header">
                                             <CaretRight className="sale__header--toggleIcon" size={24} />
-                                            <p className="sale__header--date">{new Date(sale.day_sale).toLocaleDateString()}</p>
+                                            <p className="sale__header--date">{(sale.day_sale)}</p>
                                             <p className="sale__header--total">{sale.total.toFixed(2).replace('.', ',')}</p>
                                         </div>
                                         {
@@ -61,7 +61,7 @@ export default function SalesHistoric() {
                                                 saleDetails.length > 0 ?
                                                     <>
                                                         <OrderProducts orderProducts={saleDetails} />
-                                                        <Link to={`sales/${sale.day_sale.split('T')[0]}`}>
+                                                        <Link to={`sales/${new Date(sale.day_sale).toLocaleDateString().split('T')[0]}`}>
                                                             <Button className="danger-button">Ver detalhes</Button>
                                                         </Link>
 
