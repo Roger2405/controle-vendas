@@ -4,7 +4,7 @@ import './ProductForm.scss';
 import { useNavigate, useParams } from "react-router-dom";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useEffect, useState } from "react";
-import { Check, X } from "phosphor-react";
+import { Check, Trash, X } from "phosphor-react";
 import * as yup from "yup";
 import Axios from "axios";
 //components
@@ -14,7 +14,7 @@ import Loading from "../../components/Loading";
 //type
 import ProductProps from "../../types/product";
 //commons
-import { productsTypes } from "../../commons/getProductsFromDataBase";
+import { getProductById, productsTypes } from "../../commons/getProductsFromDataBase";
 import { getUserFromLocalStorage } from "../../commons/userFromLocalStorage";
 
 
@@ -25,17 +25,54 @@ export default function EditProduct() {
     const [confirmExclusion, setConfirmExclusion] = useState<boolean>();
 
     const arrProductTypes = productsTypes;
-    const [productData, setProductData] = useState<ProductProps>();
-    const productId = useParams().id;
+    const productId = useParams().id || '';
+    const [initialProductData, setInitialProductData] = useState<ProductProps>();
+
+
+
+    const [name, setName] = useState<string>();
+    const [type, setType] = useState<string>();
+    const [price, setPrice] = useState<number>();
+    const [quantity, setQuantity] = useState<number>();
+
+
+    const [newImageFile, setNewImageFile] = useState<File | undefined>();
+    const [srcImagePreview, setSrcImagePreview] = useState('');
+    var imagePreview: HTMLImageElement;
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        Axios.get(`${process.env.REACT_APP_LINK_API}/${getUserFromLocalStorage().id}/products/${productId}`).then((response) => {
-            setProductData(response.data[0])
-        });
+        getProductById(productId).then(res => {
+            setInitialProductData(res)
+            if (res.image_path)
+                setSrcImagePreview(process.env.REACT_APP_LINK_API + res.image_path)
+        })
     }, [])
+    useEffect(() => {
+        refreshSrcImagePreview();
+    }, [newImageFile])
 
+    function refreshSrcImagePreview() {
+        // Lê o arquivo e cria um link (o resultado vai ser enviado para o onload.
+        if (newImageFile) {
+            var r = new FileReader();
+            // Define o que ocorre quando concluir:
+            r.onload = () => {
+                // Define o `src` do elemento para o resultado:
+                if (r.result)
+                    setSrcImagePreview(r.result?.toString())
+            }
+            r.readAsDataURL(newImageFile);
+        }
+        //se não há uma nova imagem selecionada e há uma imagem do servidor
+        else if (initialProductData?.image_path)
+            //esta imagem é exibida no preview, atribuindo o seu link do servidor
+            setSrcImagePreview(process.env.REACT_APP_LINK_API + initialProductData.image_path)
+        else
+            setSrcImagePreview('')
+
+    }
     function handleDeleteProduct() {
         Axios.delete(`${process.env.REACT_APP_LINK_API}/${getUserFromLocalStorage().id}/products/${productId}/delete`)
             .then(response => {
@@ -49,13 +86,16 @@ export default function EditProduct() {
             })
     }
 
-    function handleEditProduct(values: { name: string, type: string, price: number }) {
+    function handleEditProduct() {
+        const formData = new FormData();
+        if (newImageFile) {
+            formData.append('image', newImageFile);
+        }
+        const data = {
+            name, type, quantity, price, image: newImageFile || null
+        }
         setIsLoading(true);
-        Axios.post(`${process.env.REACT_APP_LINK_API}/${getUserFromLocalStorage().id}/products/${productId}/update`, {
-            name: values.name,
-            type: values.type,
-            price: values.price,
-        }).then((response) => {
+        Axios.post(`${process.env.REACT_APP_LINK_API}/${getUserFromLocalStorage().id}/products/${productId}/update`, data).then((response) => {
             setIsLoading(false);
             if (response.data.success) {
                 setResponseCode(1);
@@ -65,46 +105,27 @@ export default function EditProduct() {
             }
         });
     }
-    const validationsRegister = yup.object().shape({
-        name: yup
-            .string()
-            .required("O nome é obrigatório"),
-        type: yup
-            .string()
-            .required("O tipo é obrigatório"),
-        price: yup
-            .number()
-            .required("O preço é obrigatório")
-    });
+
     return (
         <main className="page">
             <div className='h-full'>
                 <h1 className="form-title title">Editar produto</h1>
                 {
-                    productData ?
-                        <Formik
-                            initialValues={{ name: productData.name_product, type: productData.type_product, price: productData.price_product }}
-                            onSubmit={handleEditProduct}
-                            validationSchema={validationsRegister}
-                        >
-                            <Form className="productForm flex flex-col h-max justify-between">
-                                <div>
-
-                                    <div className="productForm__group">
-                                        <label htmlFor="name" className="productForm__group--label">Nome: </label>
-                                        <Field name="name" id="name" className="productForm__group--input" placeholder="Nome" />
-
-                                        <ErrorMessage
-                                            component="span"
-                                            name="name"
-                                            className="error-message"
-                                        />
+                    initialProductData ?
+                        <form encType='multipart/form-data' className='productForm'>
+                            <div className='form-data'>
+                                <div className='div-main'>
+                                    <div className="field">
+                                        <label htmlFor="name" className="field--label">Nome: </label>
+                                        <input onChange={(e) => {
+                                            setName(e.target.value)
+                                        }} defaultValue={initialProductData.name_product} name="name" id="name" className="field--input" placeholder="Nome" />
                                     </div>
-
-                                    <div className="productForm__group">
-                                        <label htmlFor="type" className="productForm__group--label">Tipo: </label>
-                                        <Field list="product-types" name="type" id="type" className="productForm__group--input" placeholder="Tipo" />
-
+                                    <div className="field">
+                                        <label htmlFor="type" className="field--label">Tipo: </label>
+                                        <input onChange={(e) => {
+                                            setType(e.target.value)
+                                        }} defaultValue={initialProductData.type_product} list="product-types" name="type" id="type" className="field--input" placeholder="Tipo" />
                                         <datalist id="product-types">
                                             {
                                                 arrProductTypes.map(type => {
@@ -112,31 +133,68 @@ export default function EditProduct() {
                                                 })
                                             }
                                         </datalist>
-                                        <ErrorMessage
-                                            component="span"
-                                            name="type"
-                                            className="error-message"
-                                        />
                                     </div>
-                                    <div className="productForm__group">
-                                        <label htmlFor="price" className="productForm__group--label">Preço: </label>
-                                        <Field id="price" name="price" type="number" className="productForm__group--input" placeholder="Preço" />
-
-                                        <ErrorMessage
-                                            component="span"
-                                            name="price"
-                                            className="error-message"
-                                        />
+                                    <div className="field">
+                                        <label htmlFor="quantity" className="field--label">Estoque Inicial: </label>
+                                        <input onChange={(e) => {
+                                            setQuantity(parseInt(e.target.value))
+                                        }} defaultValue={initialProductData.quantity} id="quantity" name="quantity" type="number" className="field--input" placeholder="Quantity" />
                                     </div>
                                 </div>
-                                <Button className='danger-button' onClick={() => setShowModal(true)} >Excluir produto</Button>
+                                <div className='div-image'>{/*GRID*/}
+                                    {/*Fornece um feedback caso o produto não tenha uma imagem, caso tenha e não foi alterada e caso já tenha sido alterada */}
+                                    <div className='div-preview'>
+                                        <img id='image-view' src={srcImagePreview} />
+                                    </div>
+                                    <button className='delete-image' type='button'><Trash size={48} color='white' /></button>
+                                    <label className='edit-image' htmlFor="image">
+                                        {newImageFile || initialProductData.image_path ? 'Alterar imagem' : 'Escolha uma imagem'}
+                                    </label>
+                                    <input id="image" name="image" type="file" onChange={e => {
+                                        setNewImageFile(e.target.files ? e.target.files[0] : undefined)
+                                        console.log(newImageFile)
+                                    }} className="hidden" />
 
-                                <div className='fixed right-1/2 translate-x-1/2 bottom-0 flex h-24 w-full max-w-xl mx-auto px-4'>
-                                    <Button className='red-button left' onClick={() => { navigate('/produtos') }} ><X size={48} />Cancelar</Button>
-                                    <Button isLoading={isLoading} type="submit" className='green-button right' >Confirmar<Check size={48} /></Button>
                                 </div>
-                            </Form>
-                        </Formik>
+                                <div className='div-details'>
+
+                                    <fieldset className="prices">
+                                        <legend>Preços</legend>
+                                        <div className="field">
+                                            <label htmlFor="price" className="field--label">Principal: </label>
+                                            <input onChange={(e) => {
+                                                setPrice(parseFloat(e.target.value))
+                                            }} defaultValue={initialProductData.price_product} id="price" name="price" type="number" className="field--input" placeholder="Preço" />
+                                        </div>
+                                        <div className="field optional">
+                                            <label htmlFor="price" className="field--label">Secundário: </label>
+                                            <input onChange={(e) => {
+                                                setPrice(parseFloat(e.target.value))
+                                            }} defaultValue={initialProductData.price_product} id="price" name="price" type="number" className="field--input" placeholder="Preço" />
+                                        </div>
+                                    </fieldset>
+                                    <div className="field optional">
+                                        <label htmlFor="price" className="field--label">Custo: </label>
+                                        <input onChange={(e) => {
+                                            setPrice(parseFloat(e.target.value))
+                                        }} defaultValue={initialProductData.price_product} id="price" name="price" type="number" className="field--input" placeholder="Preço" />
+                                    </div>
+                                </div>
+                                <button onClick={() => { handleDeleteProduct() }}>EXCLUIR PRODUTO</button>
+
+
+
+                            </div>
+
+                            <div className='fixed right-1/2 translate-x-1/2 bottom-0 flex h-24 w-full max-w-xl mx-auto px-4'>
+                                <Button className='red-button left' onClick={() => { navigate('/produtos') }} ><X size={48} />Cancelar</Button>
+                                <Button onClick={(e) => {
+                                    e.preventDefault()
+                                    handleEditProduct()
+                                }
+                                } isLoading={isLoading} type="submit" name='submit' className='green-button right' >Confirmar<Check size={48} /></Button>
+                            </div>
+                        </form>
                         :
                         <Loading />
                 }

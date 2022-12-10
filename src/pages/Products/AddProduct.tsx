@@ -170,7 +170,6 @@ export default function AddProduct() {
                     </Form>
                 </Formik> */}
                 </>
-                <iframe className='hidden' name="contato" src={urlPost}></iframe>
                 <form encType='multipart/form-data' className='productForm'>
                     <div>
                         <div className="productForm__group">
