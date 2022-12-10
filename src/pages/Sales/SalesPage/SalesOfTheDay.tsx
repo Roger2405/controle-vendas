@@ -30,7 +30,6 @@ export default function SalesOfTheDay() {
 
     const [sales, setSales] = useState<OrderProduct[]>([]);
     const [total, setTotal] = useState<number>(0);
-    const [salesDetails, setSalesDetails] = useState<OrderProduct[][]>([]);
 
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -48,8 +47,6 @@ export default function SalesOfTheDay() {
             .catch(error => {
                 setErrorMessage(error.message)
             })
-        getSaleDetails(date)
-            .then(setSalesDetails)
     }, [])
 
     return (

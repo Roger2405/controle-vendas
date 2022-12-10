@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import Button from "../../../components/Button";
 import Loading from "../../../components/Loading";
 import OrderProducts from "../../../components/OrderProducts";
+import getFormatedDate from "../../../commons/formatedDate";
 
 
 export default function SalesHistoric() {
@@ -28,16 +29,16 @@ export default function SalesHistoric() {
     }, [])
 
     async function selectSale(day_sale: string) {
+        let day = day_sale.split('T')[0];
         const divHeaderSale = document.querySelector('.sale-selected');
-        setSaleDetails([]);
-        getSalesByDate(day_sale).then(res => setSaleDetails(res))
+        getSalesByDate(day).then(res => setSaleDetails(res))
 
-        if (dateSalesDetails == day_sale) {
+        if (dateSalesDetails.split('T')[0] == day) {
             divHeaderSale?.classList.remove('sale-selected')
             setDateSalesDetails('');
         }
         else {
-            setDateSalesDetails(day_sale)
+            setDateSalesDetails(day)
         }
     }
 
@@ -49,14 +50,14 @@ export default function SalesHistoric() {
                         <div className="sales-list">
                             {headerSales?.map(sale => {
                                 return (
-                                    <div className={`sale ${dateSalesDetails == sale.day_sale ? 'sale-selected' : ''}`} onClick={() => selectSale(sale.day_sale)}>
+                                    <div className={`sale ${dateSalesDetails == sale.day_sale.split('T')[0] ? 'sale-selected' : ''}`} onClick={() => selectSale(sale.day_sale)}>
                                         <div className="sale__header">
                                             <CaretRight className="sale__header--toggleIcon" size={24} />
                                             <p className="sale__header--date">{new Date(sale.day_sale).toLocaleDateString()}</p>
                                             <p className="sale__header--total">{sale.total.toFixed(2).replace('.', ',')}</p>
                                         </div>
                                         {
-                                            sale.day_sale === dateSalesDetails ?
+                                            sale.day_sale.split('T')[0] === dateSalesDetails ?
                                                 saleDetails.length > 0 ?
                                                     <>
                                                         <OrderProducts orderProducts={saleDetails} />

@@ -50,3 +50,7 @@ export async function getGroupedProducts() {
         })
     return arrayProductsGrouped;
 }
+export async function getProductById(productId: string) {
+    const productData: ProductProps = await Axios.get(`${process.env.REACT_APP_LINK_API}/${getUserFromLocalStorage().id}/products/${productId}`).then(res => { return res.data[0] });
+    return productData;
+}
