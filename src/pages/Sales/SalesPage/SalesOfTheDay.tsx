@@ -38,6 +38,7 @@ export default function SalesOfTheDay() {
 
 
     useEffect(() => {
+        alert(date)
         getSalesByDate(date)
             .then(res => {
                 setSales(res);
