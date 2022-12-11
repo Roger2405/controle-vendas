@@ -16,6 +16,7 @@ import ProductProps from '../../../types/product';
 import OrderProducts from '../../../components/OrderProducts';
 import ProductsGrid from './ProductsGrid';
 import Summary from './Summary';
+import Switch from '../../../components/Switch';
 
 
 export default function AddSales() {
@@ -29,36 +30,21 @@ export default function AddSales() {
     const [arrFiltered, setArrFiltered] = useState<ProductProps[][]>([]);
     const [completedOrder, setCompletedOrder] = useState(false);
 
+    const [showUnavaliableProducts, setShowUnavaliableProducts] = useState<boolean>(true);
     const [overflowX, setOverflowX] = useState(true);
+    const [priceModel, setPriceModel] = useState('');
 
-    let zeroStock: boolean;
-    const [hideUnavaliableProducts, setHideUnavaliableProducts] = useState<boolean>(true);
-    //
     useEffect(() => {
         getGroupedProducts().then(
             groupedProducts => {
                 setArrFiltered(groupedProducts);
-                zeroStock = groupedProducts.every(groupByType => groupByType.every(product => product.quantity == 0))
-                setHideUnavaliableProducts(!zeroStock);
+                //se nenhum dos produtos tiver estoque registrado (diferente de 0)
+                const zeroStock = groupedProducts.every(groupByType => groupByType.every(product => product.quantity === 0))
+                //se não há estoque registrado (significando que não está tendo um controle de estoque), os produtos sem estoque não são ocultados 
+                setShowUnavaliableProducts(zeroStock ? true : false);
             })
             .catch(error => setErrorMessage(error.message))
     }, []);
-
-
-    //updates the search when the inputValue is update
-    /*
-    useEffect(() => {
-        const regex = new RegExp(inputValue.toString().toLowerCase());
-
-        arrFilter = [];
-        for (var i = 0; i < productsTypes.length; i++) {
-            let arr = productsArr.filter(product => product.type_product === productsTypes[i]);
-            arr = arr.filter(product => regex.test(product.name_product.toLowerCase()));
-            arrFilter.push(arr);
-        }
-        setArrFiltered(arrFilter);
-    }, [inputValue]);
-    */
 
     useEffect(() => {
         setTotal(getSumTotal(orderProducts));
@@ -78,19 +64,18 @@ export default function AddSales() {
                     <main className='page pageFull main-addSale'>
 
                         <section className='products-section px-2 py-4'>
-                            <div className='div-checkboxes'>
-                                <div className='checkbox'>
-                                    <label htmlFor="hide">Ocultar sem estoque</label>
-                                    <input
-                                        checked={hideUnavaliableProducts}
-                                        onClick={() => setHideUnavaliableProducts(!hideUnavaliableProducts)} type="checkbox" name="scroll-x" id="scroll-x" />
+                            <div className='div-options'>
+                                <div>
+                                    <Switch className='justify-between' state={showUnavaliableProducts} setState={setShowUnavaliableProducts}>Ver produtos <br />sem estoque</Switch>
+                                    <Switch className='justify-between' state={overflowX} setState={setOverflowX}>Scroll X</Switch>
                                 </div>
-                                <div className='checkbox'>
-                                    <label htmlFor="scroll-x">Scroll X</label>
-                                    <input
-                                        checked={overflowX}
-                                        onClick={() => setOverflowX(!overflowX)}
-                                        type="checkbox" name="scroll-x" id="scroll-x" />
+                                <div>
+                                    <label htmlFor="price-models">Modelos de preço:</label>
+                                    <select className='' onChange={(e) => setPriceModel(e.target.value)} name="price-models" id="price-models">
+                                        <option value="main">Principal</option>
+                                        <option value="secondary">Secundário</option>
+                                    </select>
+
                                 </div>
 
                             </div>
@@ -98,7 +83,7 @@ export default function AddSales() {
                             {arrFiltered.length > 0 ?
                                 <>{arrFiltered.map(groupFromArray => {
                                     return (
-                                        <ProductsGrid hideUnavaliableProducts={hideUnavaliableProducts} overflowX={overflowX} key={groupFromArray[0]?.type_product} productsGroup={groupFromArray} orderProducts={orderProducts} setTotal={setTotal} total={total} setOrderProducts={setOrderProducts} />
+                                        <ProductsGrid showUnavaliableProducts={showUnavaliableProducts} overflowX={overflowX} key={groupFromArray[0]?.type_product} productsGroup={groupFromArray} orderProducts={orderProducts} setTotal={setTotal} total={total} setOrderProducts={setOrderProducts} priceModel={priceModel} />
                                     )
                                 })}</>
                                 :

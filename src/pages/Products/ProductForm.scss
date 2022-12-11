@@ -1,18 +1,20 @@
 .productForm {
     margin: auto;
     max-width: 600px;
-    padding: 0 .25rem;
+    padding: 0 .5rem;
 
     .form-data {
         display: grid;
         grid-template-columns: 50% 50%;
         width: 100%;
-        gap: .25rem;
+        gap: .5rem;
     }
 
     .div-main {
         grid-column: span 2;
-
+        display: flex;
+        gap: .5rem;
+        flex-direction: column;
     }
 
     .div-image {
@@ -21,7 +23,7 @@
         margin-top: auto;
         grid-template-rows: auto 3rem;
         height: fit-content;
-        gap: .25rem;
+        gap: .5rem;
 
         * {
             border-radius: .25rem;
@@ -39,9 +41,29 @@
             background-color: var(--primary);
             text-transform: uppercase;
             text-align: center;
+            font-size: .875em;
             color: var(--white);
-        }
 
+            &:has(.input-file:focus) {
+                outline: .125rem solid var(--text);
+            }
+
+            .input-file {
+                // opacity: 0;
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                right: 0;
+                bottom: 0;
+                z-index: -1;
+                opacity: 0;
+
+                #file-upload-button {
+                    height: 100%;
+                }
+                //bg-transparent h-full absolute right-0 w-full bottom-0
+            }
+        }
         .delete-image {
             background-color: var(--red);
         }
@@ -49,14 +71,41 @@
     }
 
     .div-details {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        fieldset .field {
+            margin-left: .5rem;
+        }
+
+        //adaptando posicionamentos para a div que contém preço e custo
+        //definindo estilos para campos opcionais
         .field {
             flex-direction: column;
 
             &.optional {
-                opacity: .5;
+                position: relative;
+
+                .field--input {
+                    color: var(--item-color);
+                    background-color: var(--text);
+                    opacity: .25;
+                }
+
+                .field--label::after {
+                    color: var(--gray);
+                    content: '(opcional)';
+                    font-size: .5rem;
+                    line-height: .5rem;
+                    position: absolute;
+                    right: .25rem;
+                    bottom: .25rem;
+                }
             }
 
             &--label {
+                line-height: 1.5rem;
                 align-self: flex-start;
             }
 
@@ -69,6 +118,7 @@
     legend,
     .field--label {
         font-size: 1.25rem;
+        line-height: 1.25rem;
         text-transform: uppercase;
         font-weight: 700;
     }
@@ -78,6 +128,7 @@
             font-weight: 400;
 
             .field--label {
+                font-weight: 400;
                 font-size: 1rem;
             }
         }
@@ -88,22 +139,30 @@
         justify-content: space-between;
         align-items: center;
         display: flex;
-        margin-bottom: .5rem;
 
         &--label {
             text-transform: uppercase;
             font-weight: 700;
             color: var(--text);
-            width: 30%;
+            min-width: 30%;
+            width: fit-content;
         }
 
 
         input {
+            background-color: var(--item-color);
+
+            &::placeholder {
+                color: var(--gray);
+            }
+
+            outline-color: var(--primary);
             color: var(--primary);
             padding: .5rem;
             border-radius: .25rem;
             //background-color: var(--item-color);
             flex-grow: 1;
+            height: 3rem;
             box-shadow: 0 .25rem .25rem rgba(0, 0, 0, .25);
 
             //border: 1px solid var(--primary);

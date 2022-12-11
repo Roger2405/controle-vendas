@@ -29,11 +29,8 @@ export default function EditProduct() {
     const [initialProductData, setInitialProductData] = useState<ProductProps>();
 
 
-
-    const [name, setName] = useState<string>();
-    const [type, setType] = useState<string>();
-    const [price, setPrice] = useState<number>();
-    const [quantity, setQuantity] = useState<number>();
+    const [inputValues, setInputValues] = useState
+        ({ name: '', type: '', quantity: 0, mainPrice: 0, secondaryPrice: 0, cost: 0 });
 
 
     const [newImageFile, setNewImageFile] = useState<File | undefined>();
@@ -45,6 +42,15 @@ export default function EditProduct() {
     useEffect(() => {
         getProductById(productId).then(res => {
             setInitialProductData(res)
+
+            setInputValues({
+                name: res.name_product,
+                type: res.type_product,
+                quantity: res.quantity,
+                mainPrice: res.main_price,
+                secondaryPrice: res.secondary_price || res.main_price,
+                cost: res.cost
+            })
             if (res.image_path)
                 setSrcImagePreview(process.env.REACT_APP_LINK_API + res.image_path)
         })
@@ -69,7 +75,7 @@ export default function EditProduct() {
         else if (initialProductData?.image_path)
             //esta imagem é exibida no preview, atribuindo o seu link do servidor
             setSrcImagePreview(process.env.REACT_APP_LINK_API + initialProductData.image_path)
-        else
+        else if (initialProductData?.image_path)
             setSrcImagePreview('')
 
     }
@@ -91,8 +97,9 @@ export default function EditProduct() {
         if (newImageFile) {
             formData.append('image', newImageFile);
         }
+        const { name, type, quantity, mainPrice, secondaryPrice, cost } = inputValues;
         const data = {
-            name, type, quantity, price, image: newImageFile || null
+            name, type, quantity, mainPrice, secondaryPrice, cost, image: newImageFile || null
         }
         setIsLoading(true);
         Axios.post(`${process.env.REACT_APP_LINK_API}/${getUserFromLocalStorage().id}/products/${productId}/update`, data).then((response) => {
@@ -117,14 +124,14 @@ export default function EditProduct() {
                                 <div className='div-main'>
                                     <div className="field">
                                         <label htmlFor="name" className="field--label">Nome: </label>
-                                        <input onChange={(e) => {
-                                            setName(e.target.value)
-                                        }} defaultValue={initialProductData.name_product} name="name" id="name" className="field--input" placeholder="Nome" />
+                                        <input onBlur={(e) => {
+                                            setInputValues(prevState => ({ ...prevState, name: e.target.value }))
+                                        }} defaultValue={inputValues.name} name="name" id="name" className="field--input" placeholder="Nome" />
                                     </div>
                                     <div className="field">
                                         <label htmlFor="type" className="field--label">Tipo: </label>
-                                        <input onChange={(e) => {
-                                            setType(e.target.value)
+                                        <input onBlur={e => {
+                                            setInputValues(prevState => ({ ...prevState, type: e.target.value }))
                                         }} defaultValue={initialProductData.type_product} list="product-types" name="type" id="type" className="field--input" placeholder="Tipo" />
                                         <datalist id="product-types">
                                             {
@@ -136,9 +143,9 @@ export default function EditProduct() {
                                     </div>
                                     <div className="field">
                                         <label htmlFor="quantity" className="field--label">Estoque Inicial: </label>
-                                        <input onChange={(e) => {
-                                            setQuantity(parseInt(e.target.value))
-                                        }} defaultValue={initialProductData.quantity} id="quantity" name="quantity" type="number" className="field--input" placeholder="Quantity" />
+                                        <input onBlur={e => {
+                                            setInputValues(prevState => ({ ...prevState, quantity: parseInt(e.target.value) }))
+                                        }} defaultValue={initialProductData.quantity} id="quantity" name="quantity" type="number" className="field--input" placeholder="Quantidade inicial" />
                                     </div>
                                 </div>
                                 <div className='div-image'>{/*GRID*/}
@@ -146,7 +153,7 @@ export default function EditProduct() {
                                     <div className='div-preview'>
                                         <img id='image-view' src={srcImagePreview} />
                                     </div>
-                                    <button className='delete-image' type='button'><Trash size={48} color='white' /></button>
+                                    <button className='delete-image' type='button' onClick={() => setNewImageFile(undefined)}><Trash size={48} color='white' /></button>
                                     <label className='edit-image' htmlFor="image">
                                         {newImageFile || initialProductData.image_path ? 'Alterar imagem' : 'Escolha uma imagem'}
                                     </label>
@@ -157,34 +164,30 @@ export default function EditProduct() {
 
                                 </div>
                                 <div className='div-details'>
-
                                     <fieldset className="prices">
                                         <legend>Preços</legend>
                                         <div className="field">
                                             <label htmlFor="price" className="field--label">Principal: </label>
-                                            <input onChange={(e) => {
-                                                setPrice(parseFloat(e.target.value))
-                                            }} defaultValue={initialProductData.price_product} id="price" name="price" type="number" className="field--input" placeholder="Preço" />
+                                            <input onBlur={(e) => {
+                                                setInputValues(prevState => ({ ...prevState, mainPrice: parseFloat(e.target.value) }))
+                                            }} defaultValue={initialProductData.main_price} id="price" name="price" type="number" className="field--input" placeholder="Preço Principal" />
                                         </div>
                                         <div className="field optional">
                                             <label htmlFor="price" className="field--label">Secundário: </label>
-                                            <input onChange={(e) => {
-                                                setPrice(parseFloat(e.target.value))
-                                            }} defaultValue={initialProductData.price_product} id="price" name="price" type="number" className="field--input" placeholder="Preço" />
+                                            <input onBlur={(e) => {
+                                                setInputValues(prevState => ({ ...prevState, secondaryPrice: parseFloat(e.target.value) }))
+                                            }} defaultValue={initialProductData.secondary_price} id="price" name="price" type="number" className="field--input" placeholder="Preço Secundário" />
                                         </div>
                                     </fieldset>
                                     <div className="field optional">
                                         <label htmlFor="price" className="field--label">Custo: </label>
-                                        <input onChange={(e) => {
-                                            setPrice(parseFloat(e.target.value))
-                                        }} defaultValue={initialProductData.price_product} id="price" name="price" type="number" className="field--input" placeholder="Preço" />
+                                        <input onBlur={(e) => {
+                                            setInputValues(prevState => ({ ...prevState, cost: parseFloat(e.target.value) }))
+                                        }} defaultValue={initialProductData.cost} id="price" name="price" type="number" className="field--input" placeholder="Custo" />
                                     </div>
                                 </div>
-                                <button onClick={() => { handleDeleteProduct() }}>EXCLUIR PRODUTO</button>
-
-
-
                             </div>
+                            <Button className='danger-button' onClick={() => { handleDeleteProduct() }}>EXCLUIR PRODUTO</Button>
 
                             <div className='fixed right-1/2 translate-x-1/2 bottom-0 flex h-24 w-full max-w-xl mx-auto px-4'>
                                 <Button className='red-button left' onClick={() => { navigate('/produtos') }} ><X size={48} />Cancelar</Button>

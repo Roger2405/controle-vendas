@@ -3,11 +3,8 @@ export default interface ProductProps {
     image_path?: string,
     quantity: number,
     type_product: string,
-    price_product: number,
+    main_price: number,
+    secondary_price: number,
+    cost: number,
     id: number
-}
-
-interface BufferProps extends Buffer {
-    data: ArrayBuffer,
-    type: string
 }

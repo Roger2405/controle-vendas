@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import Modal from '../Modal';
-import Button from '../Button';
+import Modal from '../../Modal';
+import Button from '../../Button';
 
 import './styles.scss';
+import Switch from '../../Switch';
 
 interface Props {
     showNav: boolean
@@ -42,19 +43,7 @@ export default function Navigation({ showNav }: Props) {
         <>
             <div className={`div-parent ${showNav ? '' : 'navBar-inactive'}`}>
                 <nav className={`navBar`}>
-                    <div className='navBar__list--item div-switchMode'>
-                        <label htmlFor='switch-mode'>Modo<br /> escuro</label>
-                        <label className="switch">
-                            <input id='switch-mode' onClick={(e) => {
-                                e.currentTarget.checked ?
-                                    setDarkTheme(true)
-                                    :
-                                    setDarkTheme(false)
-                            }} type="checkbox" checked={darkTheme} />
-                            <span className="slider round"></span>
-                        </label>
-
-                    </div>
+                    <Switch className="navBar__list--item" state={darkTheme} setState={setDarkTheme}>Tema escuro</Switch>
                     <Link className="navBar__list--item" to="produtos">Conta</Link>
                     <button className="navBar__list--item" onClick={() => {
                         setShowModal(true)

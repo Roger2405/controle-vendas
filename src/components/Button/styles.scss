@@ -38,10 +38,16 @@
 }
 
 .danger-button {
+    color: var(--red) !important;
+}
+.info-button,
+.danger-button {
     text-transform: uppercase;
-    color: var(--text);
     text-shadow: none;
-    box-shadow: var(--shadow)
+    color: var(--text);
+    font-size: 1.25rem;
+    box-shadow: var(--shadow);
+
 }
 
 .green-button {

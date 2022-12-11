@@ -4,18 +4,28 @@
     overflow-y: scroll;
     height: 55%; // 50
 
-    .div-checkboxes {
+    .div-options {
         text-transform: uppercase;
+        color: var(--text);
         font-weight: 700;
         display: flex;
         justify-content: space-between;
         gap: 1rem;
+        font-size: .75rem;
         width: 100%;
 
-        .checkbox {
-            display: flex;
-            gap: .5rem;
+        &>div {
+            width: 50%;
         }
+
+        #price-models {
+            width: 100%;
+            height: 3rem;
+            background-color: var(--item-color);
+
+            text-transform: uppercase;
+        }
+
     }
 
 }
