@@ -32,7 +32,7 @@ export default function AddSales() {
 
     const [showUnavaliableProducts, setShowUnavaliableProducts] = useState<boolean>(true);
     const [overflowX, setOverflowX] = useState(true);
-    const [priceModel, setPriceModel] = useState('');
+    const [priceModel, setPriceModel] = useState('main');
 
     useEffect(() => {
         getGroupedProducts().then(
