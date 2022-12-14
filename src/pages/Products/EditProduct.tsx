@@ -102,7 +102,7 @@ export default function EditProduct() {
             name, type, quantity, mainPrice, secondaryPrice, cost, image: newImageFile || null
         }
         setIsLoading(true);
-        Axios.post(`${process.env.REACT_APP_LINK_API}/${getUserFromLocalStorage().id}/products/${productId}/update`, data).then((response) => {
+        Axios.post(`${process.env.REACT_APP_LINK_API}/${getUserFromLocalStorage().id}/products/${productId}/update`, data, { headers: { 'Content-Type': 'multipart/form-data' } }).then((response) => {
             setIsLoading(false);
             if (response.data.success) {
                 setResponseCode(1);
