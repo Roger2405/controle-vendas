@@ -5,17 +5,24 @@
     height: 55%; // 50
 
     .div-options {
+        position: fixed;
+        z-index: 10;
+        background-color: var(--background);
+        top: var(--headerHeight);
         text-transform: uppercase;
         color: var(--text);
         font-weight: 700;
         display: flex;
         justify-content: space-between;
-        gap: 1rem;
+        gap: .5rem;
         font-size: .75rem;
-        width: 100%;
+        left: 0;
+        padding: .5rem .25rem;
+
 
         &>div {
-            width: 50%;
+            position: relative;
+            flex-basis: 50%;
         }
 
         #price-models {
@@ -27,6 +34,8 @@
         }
 
     }
+
+    margin-top: 4rem;
 
 }
 

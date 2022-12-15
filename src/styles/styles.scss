@@ -1,5 +1,3 @@
-$headerHeight: 4rem;
-
 @tailwind base;
 @tailwind utilities;
 @tailwind components;
@@ -14,6 +12,7 @@ $headerHeight: 4rem;
     --background: #EEE; //#F0F8FF;
     --primary: #45C567; // #72cf8a; #6FBB85;
 
+    --headerHeight: 4rem;
     --light-green: #b1e4aa;
     --red: #E55454;
     --gray: #888888;
@@ -87,7 +86,7 @@ body {
 }
 
 .page {
-    padding: $headerHeight .5rem 0;
+    padding: var(--headerHeight) .5rem 0;
     width: 100vw;
     background-color: var(--background);
     min-height: 100vh;
