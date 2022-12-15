@@ -49,7 +49,9 @@ $lineNameHeigth: 1.25rem;
 
                 position: relative;
 
-                height: 160px;
+
+                max-height: 160px;
+                min-height: 160px;
 
                 flex-shrink: 1;
                 flex-basis: 200px;
@@ -59,7 +61,7 @@ $lineNameHeigth: 1.25rem;
                 transition: .25s;
 
                 &:not(:has(.product__image)) {
-                    height: 120px;
+                    min-height: 120px;
                 }
 
                 .product__name,
