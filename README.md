@@ -20,7 +20,7 @@ Imagens do design do layout mobile elaborado no Figma.
 - [x] Mostrando produtos separados por tipo
 - [x] Cadastro de produtos
 - [x] Alteração e exclusão de produtos
-- [ ] Produtos com imagens
+- [x] Produtos com imagens
 
 ### Autenticação:
 - [x] Cadastro e login do usuário
@@ -33,3 +33,4 @@ Imagens do design do layout mobile elaborado no Figma.
 ### Estoque:
 - [x] Edição de estoque
 - [x] Decremento de estoque ao efetuar uma venda
+
