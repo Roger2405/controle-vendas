@@ -7,6 +7,7 @@ import '../../styles/styles.scss';
 import { Link } from "react-router-dom";
 import Button from "../../components/Button";
 import { ArrowRight } from "phosphor-react";
+import Info from "../../components/Info";
 
 interface Props {
     setUser: React.Dispatch<any>
@@ -50,6 +51,10 @@ export default function UserLogin({ setUser }: Props) {
 
     return (
         <main className="page main-formAuth">
+            <Info>
+                Este projeto ainda está em desenvolvimento. <br></br>
+                Utilize a conta de demonstração.
+            </Info>
             <div className="auth-form-container">
                 <h1 className="title form-title">Login</h1>
                 <Formik

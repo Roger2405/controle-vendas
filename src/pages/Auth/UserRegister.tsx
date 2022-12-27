@@ -5,6 +5,7 @@ import './AuthForm.scss';
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Button from "../../components/Button";
+import Info from "../../components/Info";
 
 export default function UserRegister() {
     const [isLoading, setIsLoading] = useState(false);
@@ -47,6 +48,10 @@ export default function UserRegister() {
     return (
 
         <main className="page main-formAuth">
+            <Info>
+                Este projeto ainda está em desenvolvimento. <br></br>
+                Utilize a conta de demonstração.
+            </Info>
             <div className="auth-form-container">
                 <h1 className="form-title title">Cadastro</h1>
                 <Formik

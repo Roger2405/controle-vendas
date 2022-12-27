@@ -1,0 +1,17 @@
+.div {
+    background-color: var(--red);
+    color: var(--white);
+    border-radius: .25rem;
+    padding: .5rem;
+
+    text-align: center;
+
+    width: 50vw;
+    min-width: 200px;
+    margin-inline: auto;
+
+    p {
+        position: relative;
+
+    }
+}
